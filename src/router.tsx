@@ -1,8 +1,9 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+import AppLayout from '@/layout.tsx';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
-        <Route>
+        <Route element={<AppLayout />}>
             <Route>
                 <Route element={<>홈</>} path={'/'} />
             </Route>
