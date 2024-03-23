@@ -26,10 +26,10 @@ export default function PostSearch() {
     }, 250);
 
     return (
-        <div className={'flex w-[34rem] gap-x-2.5 rounded-3xl bg-gray-100 px-4 py-2.5'}>
+        <div className={'flex w-[30rem] gap-x-2.5 rounded-3xl bg-gray-100 px-4 py-2.5'}>
             <MagnifyingGlassIcon className={'size-6'} />
             <input
-                className={'flex-1 bg-gray-100 focus:outline-none'}
+                className={'flex-1 bg-gray-100 text-[0.9rem] focus:outline-none'}
                 onKeyDown={handleKeyDown}
                 type={'search'}
                 placeholder={'게시글 검색'}
