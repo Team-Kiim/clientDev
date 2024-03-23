@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import { XMarkIcon } from '@heroicons/react/24/outline';
@@ -12,6 +12,16 @@ interface Props {
 
 export default function AuthModal({ isAuthModalOpen, closeModal }: Props) {
     const [isSignUpMode, setIsSignUpMode] = useState(false);
+
+    useEffect(() => {
+        if (isAuthModalOpen) {
+            document.body.style.overflow = 'hidden';
+        }
+
+        return () => {
+            document.body.style.overflow = 'scroll';
+        };
+    }, [isAuthModalOpen]);
 
     return (
         <Modal
