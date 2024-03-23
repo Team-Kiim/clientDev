@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import PostToggle from '@/Components/PostSearchFilter/PostToggle.tsx';
+import PostTypeToggleButton from '@/Components/PostSearchFilter/PostTypeToggleButton.tsx';
 
 export default function SearchFilter() {
     return (
         <div className={'flex justify-between'}>
             <div />
-            <PostToggle />
+            <PostTypeToggleButton />
         </div>
     );
 }
