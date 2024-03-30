@@ -1,29 +1,23 @@
-import { debounce } from 'lodash';
-import { useCallback, useState } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
+import { useSearchParams } from 'react-router-dom';
 import { ComputerDesktopIcon, UserIcon } from '@heroicons/react/24/outline';
 
 export default function PostTypeToggleButton() {
-    const [postType, setPostType] = useState('develop');
+    const [searchParams, setSearchParams] = useSearchParams();
 
-    const queryClient = useQueryClient();
-
-    const debouncedInvalidateQuery = useCallback(
-        debounce((postType: string) => {
-            console.log('invalidate', postType);
-        }, 300),
-        [],
-    );
+    const currentPostType = searchParams.get('post_type') ?? 'develop';
 
     const handleButtonClick = (targetPostType: string) => {
-        setPostType(targetPostType);
-        debouncedInvalidateQuery(targetPostType);
+        if (targetPostType === currentPostType) {
+            return;
+        }
+        searchParams.set('post_type', targetPostType);
+        setSearchParams(searchParams);
     };
 
     return (
         <div className={'flex items-center justify-center rounded-lg border border-gray-300 p-1'}>
             <button
-                className={`flex cursor-pointer justify-center gap-x-1 rounded px-2 py-1 text-gray-700 transition-all ${postType === 'develop' ? 'bg-gray-100 font-medium' : 'bg-white font-normal'}`}
+                className={`flex cursor-pointer justify-center gap-x-1 rounded px-2 py-1 text-gray-700 transition-all ${currentPostType === 'develop' ? 'bg-gray-200 font-medium' : 'bg-white font-normal'}`}
                 type={'button'}
                 onClick={() => {
                     handleButtonClick('develop');
@@ -33,7 +27,7 @@ export default function PostTypeToggleButton() {
                 <span className={'text-[0.9rem]'}>개발</span>
             </button>
             <button
-                className={`flex cursor-pointer justify-center gap-x-1 rounded px-2 py-1 text-gray-700 transition-all ${postType === 'nonDevelop' ? 'bg-gray-100 font-medium' : 'bg-white font-normal'}`}
+                className={`flex cursor-pointer justify-center gap-x-1 rounded px-2 py-1 text-gray-700 transition-all ${currentPostType === 'nonDevelop' ? 'bg-gray-200 font-medium' : 'bg-white font-normal'}`}
                 type={'button'}
                 onClick={() => {
                     handleButtonClick('nonDevelop');
