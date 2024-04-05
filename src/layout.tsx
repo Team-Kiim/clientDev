@@ -6,14 +6,14 @@ export default function Layout() {
         <div>
             <header
                 className={
-                    'fixed z-10 flex h-[5rem] w-full flex-col justify-center border-b border-gray-300 bg-white/50 backdrop-blur-md'
+                    'fixed z-50 flex h-[5rem] w-full flex-col justify-center border-b border-gray-300 bg-white/50 backdrop-blur-md'
                 }
             >
-                <div className={'mx-64'}>
+                <div className={'mx-40'}>
                     <GlobalNavbar />
                 </div>
             </header>
-            <div className={'mx-64 pt-28'}>
+            <div className={'mx-40 pt-28'}>
                 <Outlet />
             </div>
         </div>
