@@ -15,7 +15,7 @@ export default function PostTypeToggleButton() {
     };
 
     return (
-        <div className={'flex items-center justify-center rounded-lg border border-gray-300 p-1'}>
+        <div className={'flex h-fit items-center justify-center rounded-lg border border-gray-300 p-1'}>
             <button
                 className={`flex cursor-pointer justify-center gap-x-1 rounded px-2 py-1 text-gray-700 transition-all ${currentPostType === 'develop' ? 'bg-gray-200 font-medium' : 'bg-white font-normal'}`}
                 type={'button'}
