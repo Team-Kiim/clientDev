@@ -16,8 +16,8 @@ export default function GlobalNavbar() {
                     <Link to={'/notice'} className={'font-medium text-gray-500 transition-all hover:text-gray-700'}>
                         공지사항
                     </Link>
-                    <Link to={'/community'} className={'font-medium text-gray-500 transition-all hover:text-gray-700'}>
-                        커뮤니티
+                    <Link to={'/qnas'} className={'font-medium text-gray-500 transition-all hover:text-gray-700'}>
+                        {'Q&A'}
                     </Link>
                 </div>
                 <PostSearch />

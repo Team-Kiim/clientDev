@@ -9,7 +9,7 @@ const router = createBrowserRouter(
                 <Route element={<MainPage />} path={'/'} />
             </Route>
             <Route>
-                <Route element={<>커뮤니티</>} path={'/community'} />
+                <Route element={<>Q&A</>} path={'/qnas'} />
                 <Route element={<>마이페이지</>} path={'/user/:userNickname'} />
             </Route>
         </Route>,
