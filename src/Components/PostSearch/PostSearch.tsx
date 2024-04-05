@@ -28,7 +28,7 @@ export default function PostSearch() {
     }, [searchParams]);
 
     return (
-        <div className={'flex w-[30rem] items-center gap-x-2.5 rounded-3xl bg-gray-100 px-5 py-2.5'}>
+        <div className={'flex w-[35rem] items-center gap-x-2.5 rounded-3xl bg-gray-100 px-5 py-2.5'}>
             <MagnifyingGlassIcon className={'size-6'} />
             <input
                 className={'flex-1 bg-gray-100 text-[0.9rem] focus:outline-none'}
