@@ -13,7 +13,7 @@ export default function Layout() {
                     <GlobalNavbar />
                 </div>
             </header>
-            <div className={'mx-40 pt-28'}>
+            <div className={'pt-28'}>
                 <Outlet />
             </div>
         </div>
