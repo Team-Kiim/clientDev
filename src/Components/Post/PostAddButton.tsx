@@ -5,7 +5,7 @@ export default function PostAddButton() {
     const navigate = useNavigate();
 
     const handlePostAddButtonClick = () => {
-        navigate('/post/write');
+        navigate('/qnas/write');
     };
 
     return (
