@@ -5,14 +5,14 @@ import PostList from '@/Components/Post/PostList.tsx';
 
 export default function Page() {
     return (
-        <div>
+        <div className={'mx-40'}>
             <SearchFilter />
             <PostAddButton />
-            <div className={'my-12'}>
+            <main className={'my-12'}>
                 <Suspense fallback={<>Loading...</>}>
                     <PostList />
                 </Suspense>
-            </div>
+            </main>
         </div>
     );
 }
