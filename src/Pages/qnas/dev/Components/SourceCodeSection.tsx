@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Select from 'react-select';
-import SourceCodeInput from '@/Pages/qnas/write/Components/SourceCodeInput.tsx';
-import SourceCodePreview from '@/Pages/qnas/write/Components/SourceCodePreview.tsx';
+import SourceCodeInput from '@/Pages/qnas/dev/Components/SourceCodeInput.tsx';
+import SourceCodePreview from '@/Pages/qnas/dev/Components/SourceCodePreview.tsx';
 
 const languageOptions = [
     { value: 'c', label: 'C' },

@@ -15,7 +15,7 @@ export default function SourceCodeInput() {
             <div className={'mt-2 flex flex-col gap-y-1.5'}>
                 <textarea
                     className={
-                        'h-[35rem] w-full resize-none rounded-lg border border-gray-300 p-4 text-[0.9rem] focus:outline-none'
+                        'h-[35rem] w-full resize-none rounded-lg border border-gray-300 p-4 text-[0.9rem] focus:outline-violet-600'
                     }
                     {...formMethods.register('sourceCode', {
                         required: { value: true, message: '소스코드를 입력해주세요.' },
