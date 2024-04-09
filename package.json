@@ -14,17 +14,6 @@
     "@heroicons/react": "^2.1.1",
     "@tanstack/react-query": "^5.25.0",
     "@tanstack/react-query-devtools": "^5.25.0",
-    "@tiptap/core": "^2.2.5",
-    "@tiptap/extension-bold": "^2.2.6",
-    "@tiptap/extension-color": "^2.2.5",
-    "@tiptap/extension-document": "^2.2.6",
-    "@tiptap/extension-list-item": "^2.2.5",
-    "@tiptap/extension-paragraph": "^2.2.6",
-    "@tiptap/extension-text": "^2.2.6",
-    "@tiptap/extension-text-style": "^2.2.5",
-    "@tiptap/pm": "^2.2.4",
-    "@tiptap/react": "^2.2.4",
-    "@tiptap/starter-kit": "^2.2.4",
     "@types/lodash": "^4.17.0",
     "@types/react-modal": "^3.16.3",
     "@types/react-syntax-highlighter": "^15.5.11",
@@ -59,7 +48,7 @@
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
-    "typescript": "^5.3.3",
+    "typescript": "^5.4.4",
     "vite": "^5.1.4"
   }
 }
