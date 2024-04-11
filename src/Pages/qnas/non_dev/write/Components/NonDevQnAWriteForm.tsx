@@ -5,6 +5,7 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import TitleInput from '@/Pages/qnas/Components/TitleInput.tsx';
 import TextEditor from '@/Pages/qnas/Components/TextEditor/TextEditor.tsx';
 import FileUploadZone from '@/Pages/qnas/Components/FileUploadZone.tsx';
+import UploadedFileList from '@/Pages/qnas/Components/UploadedFileList.tsx';
 
 interface FormData {
     title: string;
@@ -18,7 +19,7 @@ interface FileData {
 }
 
 export default function NonDevQnAWriteForm() {
-    const [fileInformation, setFileInformation] = useState<FileData[]>();
+    const [fileInformation, setFileInformation] = useState<FileData[]>([]);
 
     const navigate = useNavigate();
 
@@ -61,6 +62,33 @@ export default function NonDevQnAWriteForm() {
                         <h3 className={'mx-2 text-lg font-medium'}>첨부 파일</h3>
                         <FileUploadZone addFiles={addFiles} />
                     </div>
+                    {fileInformation.length !== 0 && (
+                        <div>
+                            <div className={'flex items-center'}>
+                                <h3 className={'mx-2 text-lg font-medium'}>
+                                    <span>
+                                        업로드된 파일 ({' '}
+                                        <span className={'text-violet-600'}>{fileInformation.length}</span> )
+                                    </span>
+                                </h3>
+                                <button
+                                    className={'px-2 py-1 transition hover:rounded-lg hover:bg-red-50'}
+                                    type={'button'}
+                                    onClick={() => {
+                                        if (window.confirm('업로드된 파일을 전부 삭제하시겠습니까?')) {
+                                            setFileInformation([]);
+                                        }
+                                    }}
+                                >
+                                    <span className={'font-medium text-red-700'}>전부 삭제</span>
+                                </button>
+                            </div>
+                            <UploadedFileList
+                                fileInformation={fileInformation}
+                                onFileDeleteButtonClick={handleFileDeleteButtonClick}
+                            />
+                        </div>
+                    )}
                     <div className={'mb-10 flex w-full justify-end gap-x-4'}>
                         <button
                             className={
