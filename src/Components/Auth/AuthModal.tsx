@@ -17,6 +17,7 @@ export default function AuthModal({ isAuthModalOpen, closeModal }: Props) {
     useEffect(() => {
         if (isAuthModalOpen) {
             document.body.style.overflow = 'hidden';
+            setIsSignUpMode(false);
         }
 
         return () => {
