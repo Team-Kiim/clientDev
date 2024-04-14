@@ -6,6 +6,7 @@ import { emailRegexp, passwordRegexp } from '@/Constants/regexps.ts';
 interface FormData {
     email: string;
     password: string;
+    nickname: string;
 }
 
 export default function SignUpForm() {
@@ -18,9 +19,11 @@ export default function SignUpForm() {
         defaultValues: {
             email: '',
             password: '',
+            nickname: '',
         },
     });
 
+    console.log(errors);
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
     const onSubmit: SubmitHandler<FormData> = data => {
@@ -100,6 +103,33 @@ export default function SignUpForm() {
                         <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
                             <ExclamationCircleIcon className={'size-5'} />
                             <span className={'text-sm'}>{errors.password.message}</span>
+                        </div>
+                    )}
+                </div>
+                <div className={'flex w-full flex-col gap-y-1.5'}>
+                    <input
+                        className={
+                            'w-full rounded-md border border-gray-300 px-3.5 py-3 placeholder:text-[0.9rem] focus:outline-violet-600'
+                        }
+                        type={'text'}
+                        placeholder={'닉네임'}
+                        autoComplete={'off'}
+                        autoCapitalize={'off'}
+                        {...register('nickname', {
+                            required: { value: true, message: '닉네임을 입력해주세요.' },
+                            maxLength: { value: 20, message: '최대 20자까지 입력 가능합니다.' },
+                        })}
+                    />
+                    {errors?.nickname?.message && errors?.nickname.type === 'maxLength' && (
+                        <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
+                            <ExclamationCircleIcon className={'size-5'} />
+                            <span className={'text-sm'}>{errors.nickname.message}</span>
+                        </div>
+                    )}
+                    {errors?.nickname?.message && errors?.nickname.type === 'required' && (
+                        <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
+                            <ExclamationCircleIcon className={'size-5'} />
+                            <span className={'text-sm'}>{errors.nickname.message}</span>
                         </div>
                     )}
                 </div>
