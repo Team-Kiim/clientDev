@@ -9,7 +9,7 @@ export default function PostAddButton() {
     };
 
     return (
-        <div className={'tooltip tooltip-top fixed bottom-10 right-40'} data-tip={'게시글 작성'}>
+        <div className={'tooltip tooltip-top fixed bottom-10 right-40'} data-tip={'Q&A 작성'}>
             <button
                 className={'rounded-full bg-violet-600 p-2'}
                 onClick={() => {
