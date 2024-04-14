@@ -50,7 +50,7 @@ export default function SignInForm({ closeModal }: Props) {
                     {errors?.email?.message && errors?.email.type === 'required' && (
                         <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
                             <ExclamationCircleIcon className={'size-5'} />
-                            <span className={'text-sm'}>{errors.email.message}</span>
+                            <p className={'text-sm'}>{errors.email.message}</p>
                         </div>
                     )}
                 </div>
@@ -86,7 +86,7 @@ export default function SignInForm({ closeModal }: Props) {
                     {errors?.password?.message && errors?.password.type === 'required' && (
                         <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
                             <ExclamationCircleIcon className={'size-5'} />
-                            <span className={'text-sm'}>{errors.password.message}</span>
+                            <p className={'text-sm'}>{errors.password.message}</p>
                         </div>
                     )}
                 </div>

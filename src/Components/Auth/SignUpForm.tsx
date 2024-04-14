@@ -50,13 +50,13 @@ export default function SignUpForm() {
                     {errors?.email?.message && errors?.email.type === 'required' && (
                         <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
                             <ExclamationCircleIcon className={'size-5'} />
-                            <span className={'text-sm'}>{errors.email.message}</span>
+                            <p className={'text-sm'}>{errors.email.message}</p>
                         </div>
                     )}
                     {errors?.email?.message && errors?.email.type === 'pattern' && (
                         <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
                             <ExclamationCircleIcon className={'size-5'} />
-                            <span className={'text-sm'}>{errors.email.message}</span>
+                            <p className={'text-sm'}>{errors.email.message}</p>
                         </div>
                     )}
                 </div>
@@ -96,13 +96,13 @@ export default function SignUpForm() {
                     {errors?.password?.message && errors?.password.type === 'required' && (
                         <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
                             <ExclamationCircleIcon className={'size-5'} />
-                            <span className={'text-sm'}>{errors.password.message}</span>
+                            <p className={'text-sm'}>{errors.password.message}</p>
                         </div>
                     )}
                     {errors?.password?.message && errors?.password.type === 'pattern' && (
                         <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
                             <ExclamationCircleIcon className={'size-5'} />
-                            <span className={'text-sm'}>{errors.password.message}</span>
+                            <p className={'text-sm'}>{errors.password.message}</p>
                         </div>
                     )}
                 </div>
@@ -123,13 +123,13 @@ export default function SignUpForm() {
                     {errors?.nickname?.message && errors?.nickname.type === 'maxLength' && (
                         <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
                             <ExclamationCircleIcon className={'size-5'} />
-                            <span className={'text-sm'}>{errors.nickname.message}</span>
+                            <p className={'text-sm'}>{errors.nickname.message}</p>
                         </div>
                     )}
                     {errors?.nickname?.message && errors?.nickname.type === 'required' && (
                         <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
                             <ExclamationCircleIcon className={'size-5'} />
-                            <span className={'text-sm'}>{errors.nickname.message}</span>
+                            <p className={'text-sm'}>{errors.nickname.message}</p>
                         </div>
                     )}
                 </div>
