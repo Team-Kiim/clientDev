@@ -1,19 +1,15 @@
-import { Suspense } from 'react';
 import SearchFilter from '@/Components/PostSearchFilter/SearchFilter.tsx';
-import QnAWriteLinksControl from '@/Components/QnAWrite/QnAWriteLinksControl.tsx';
-// import PostAddButton from '@/Components/Post/PostAddButton.tsx';
 import PostList from '@/Components/Post/PostList.tsx';
+import PostAddButton from '@/Components/Post/PostAddButton.tsx';
 
 export default function Page() {
     return (
-        <div className={'mx-40'}>
+        <div className={'mx-40 mt-28'}>
             <SearchFilter />
-            <QnAWriteLinksControl />
             <main className={'my-12'}>
-                <Suspense fallback={<>Loading...</>}>
-                    <PostList />
-                </Suspense>
+                <PostList />
             </main>
+            <PostAddButton />
         </div>
     );
 }
