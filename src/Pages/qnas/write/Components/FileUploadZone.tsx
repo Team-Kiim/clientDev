@@ -27,7 +27,7 @@ export default function FileUploadZone({ uploadFiles }: Props) {
                 <span className={'text-[0.95rem] font-medium'}>드로그 앤 드롭으로 파일을 추가</span>
                 <span className={'text-sm text-gray-600'}>또는</span>
                 <button
-                    className={'rounded-lg px-2 py-1 transition-all hover:bg-violet-50 focus:outline-none'}
+                    className={'rounded-lg px-2 py-1 transition-all hover:bg-violet-50'}
                     type={'button'}
                     onClick={open}
                 >

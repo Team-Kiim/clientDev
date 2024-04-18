@@ -84,7 +84,7 @@ export default function QnAWriteForm() {
                 )}
                 <div className={'mb-10 flex w-full justify-end gap-x-3'}>
                     <button
-                        className={'rounded-lg px-3 py-2 transition-all hover:bg-violet-50 focus:outline-none'}
+                        className={'rounded-lg px-3 py-2 transition-all hover:bg-violet-50'}
                         type={'button'}
                         onClick={() => {
                             navigate(-1);
@@ -93,9 +93,7 @@ export default function QnAWriteForm() {
                         <span className={'text-[0.95rem] font-medium text-violet-600'}>취소하기</span>
                     </button>
                     <button
-                        className={
-                            'rounded-lg bg-violet-600 px-3 py-2 transition-all hover:bg-violet-700 focus:outline-none'
-                        }
+                        className={'rounded-lg bg-violet-600 px-3 py-2 transition-all hover:bg-violet-700'}
                         type={'submit'}
                     >
                         <span className={'text-[0.95rem] font-medium text-white'}>작성하기</span>

@@ -27,7 +27,7 @@ export default function UploadedFileListItem({ fileData, onFileDeleteButtonClick
                     <span>{getFileExtension(fileData.file.name)} 파일</span>
                 </div>
                 <button
-                    className={'rounded-full p-2 transition-all hover:bg-red-50 hover:text-red-700 focus:outline-none'}
+                    className={'rounded-full p-2 transition-all hover:bg-red-50 hover:text-red-700'}
                     type={'button'}
                     onClick={() => {
                         onFileDeleteButtonClick(fileData);

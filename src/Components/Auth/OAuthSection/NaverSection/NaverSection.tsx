@@ -29,9 +29,7 @@ export default function NaverSection() {
     return (
         <>
             <button
-                className={
-                    'flex size-11 items-center justify-center rounded-md bg-[#03C75A] p-0.5 text-white focus:outline-none'
-                }
+                className={'flex size-11 items-center justify-center rounded-md bg-[#03C75A] p-0.5 text-white'}
                 onClick={() => {
                     // 아이디가 naverIdLogin 인 div 요소 안에 a 요소가 존재하므로, div#naverIdLogin 요소에 클릭 이벤트 핸들러를 등록하면 안되고,
                     // 자식 요소, 즉 a 요소에 클릭 이벤트 핸들러를 등록해야 한다.
