@@ -2,7 +2,16 @@
 export default {
     content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
     theme: {
-        extend: {},
+        extend: {
+            typography: {
+                DEFAULT: {
+                    css: {
+                        'blockquote p:first-of-type::before': false,
+                        'blockquote p:first-of-type::after': false,
+                    },
+                },
+            },
+        },
     },
-    plugins: [require('daisyui'), require('tailwind-scrollbar-hide')],
+    plugins: [require('daisyui'), require('tailwind-scrollbar-hide'), require('@tailwindcss/typography')],
 };
