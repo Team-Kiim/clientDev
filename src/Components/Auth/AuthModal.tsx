@@ -44,7 +44,7 @@ export default function AuthModal({ isAuthModalOpen, closeModal }: Props) {
                 <XMarkIcon className={'size-8'} />
             </button>
             <Link
-                className={'logo mb-10 inline-block text-center text-4xl text-violet-600'}
+                className={'logo mb-10 self-center text-4xl text-violet-600'}
                 to={'/'}
                 replace
                 onClick={() => {
