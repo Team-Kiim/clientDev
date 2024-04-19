@@ -12,7 +12,7 @@ export default function PostListItem({ post }: Props) {
         post;
 
     return (
-        <Link to={`/post/${id}`}>
+        <Link to={`/qnas/${id}`}>
             <div
                 className={
                     'flex h-64 flex-col rounded-md border border-gray-200 shadow-md transition-all hover:-translate-y-2 hover:shadow-lg'
