@@ -4,12 +4,12 @@ import LogOutSection from '@/Components/Auth/LogOutSection.tsx';
 import LogInSection from '@/Components/Auth/LogInSection.tsx';
 
 export default function GlobalNavbar() {
-    const isLoggedIn = true;
+    const isLoggedIn = false;
 
     return (
         <nav className={'flex w-full items-center justify-between'}>
             <div className={'flex h-full items-center gap-x-9'}>
-                <Link className={'text-2xl font-bold text-violet-600 '} to={'/'} replace>
+                <Link className={'logo text-2xl text-violet-600 '} to={'/'} replace>
                     KoffeeChat
                 </Link>
                 <div className={'flex items-center justify-center gap-x-6'}>
