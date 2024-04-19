@@ -87,7 +87,7 @@ export default function QnAWriteForm() {
                         className={'rounded-lg px-3 py-2 transition-all hover:bg-violet-50'}
                         type={'button'}
                         onClick={() => {
-                            navigate(-1);
+                            navigate('/');
                         }}
                     >
                         <span className={'text-[0.95rem] font-medium text-violet-600'}>취소하기</span>
