@@ -2,7 +2,7 @@ export type Post = {
     id: number;
     title: string;
     username: string;
-    profileImgSrc: string;
+    profileImgSrc?: string;
     bodyContent: string;
     viewCount: number;
     likeCount: number;
