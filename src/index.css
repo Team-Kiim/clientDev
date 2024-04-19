@@ -39,6 +39,10 @@ code {
     height: 35rem;
 }
 
+.ck.ck-sticky-panel .ck-sticky-panel__content_sticky {
+    position: absolute !important;
+}
+
 blockquote p {
     color: black !important;
 }
