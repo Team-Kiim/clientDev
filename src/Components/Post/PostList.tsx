@@ -6,7 +6,7 @@ import getPostList from '@/Utils/getPostList.ts';
 export default function PostList() {
     const [searchParams] = useSearchParams();
 
-    const postType = searchParams.get('post_type') ?? 'dev';
+    const qnaType = searchParams.get('qna_type') ?? 'dev';
     const title = searchParams.get('post_title') ?? '';
     const keywords = searchParams.getAll('keyword') ?? [];
 
@@ -15,7 +15,7 @@ export default function PostList() {
         isLoading,
         isPending,
     } = useQuery({
-        queryKey: ['post', { postType, title, keywords }],
+        queryKey: ['post', { qnaType, title, keywords }],
         queryFn: getPostList,
         gcTime: 0,
         throwOnError: true,
