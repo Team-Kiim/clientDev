@@ -13,5 +13,8 @@ export default {
             },
         },
     },
+    daisyui: {
+        themes: ['light'],
+    },
     plugins: [require('daisyui'), require('tailwind-scrollbar-hide'), require('@tailwindcss/typography')],
 };
