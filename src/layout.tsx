@@ -13,17 +13,17 @@ export default function Layout() {
     const { pathname } = useLocation();
 
     return (
-        <div>
+        <div className={'h-dvh overflow-auto'}>
             {!shouldHideGNB(pathname) && (
-                <header
+                <div
                     className={
-                        'fixed top-0 z-50 flex h-[5rem] w-full flex-col justify-center border-b border-gray-300 bg-white/50 backdrop-blur-md'
+                        'sticky top-0 z-50 flex h-[5rem] w-full min-w-[1500px] items-center justify-center border-b border-gray-300 bg-white'
                     }
                 >
-                    <div className={'mx-40'}>
+                    <div className={'w-[87.5rem]'}>
                         <GlobalNavbar />
                     </div>
-                </header>
+                </div>
             )}
             <div>
                 <Outlet />
