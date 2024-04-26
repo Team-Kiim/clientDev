@@ -6,7 +6,7 @@ import type { Post } from '@/Types/PostTypes.ts';
 const testData: Post[] = [
     {
         id: 1,
-        username: '김강민',
+        userNickname: '김강민',
         profileImgSrc: faker.image.avatar(),
         title: '게시글 테스트 제목',
         bodyContent:
@@ -19,7 +19,7 @@ const testData: Post[] = [
     },
     {
         id: 2,
-        username: '김강민',
+        userNickname: '김강민',
         profileImgSrc: faker.image.avatar(),
         title: '게시글 테스트 제목',
         bodyContent:
@@ -32,7 +32,7 @@ const testData: Post[] = [
     },
     {
         id: 3,
-        username: '김강민',
+        userNickname: '김강민',
         profileImgSrc: faker.image.avatar(),
         title: '게시글 테스트 제목',
         bodyContent:
@@ -45,7 +45,7 @@ const testData: Post[] = [
     },
     {
         id: 4,
-        username: '김강민',
+        userNickname: '김강민',
         profileImgSrc: faker.image.avatar(),
         title: '게시글 테스트 제목',
         bodyContent:
@@ -58,7 +58,7 @@ const testData: Post[] = [
     },
     {
         id: 5,
-        username: '김강민',
+        userNickname: '김강민',
         profileImgSrc: faker.image.avatar(),
         title: '게시글 테스트 제목',
         bodyContent:
@@ -71,7 +71,7 @@ const testData: Post[] = [
     },
     {
         id: 6,
-        username: '김강민',
+        userNickname: '김강민',
         profileImgSrc: faker.image.avatar(),
         title: '게시글 테스트 제목',
         bodyContent:
@@ -84,7 +84,7 @@ const testData: Post[] = [
     },
     {
         id: 7,
-        username: '김강민',
+        userNickname: '김강민',
         profileImgSrc: faker.image.avatar(),
         title: '게시글 테스트 제목',
         bodyContent:
@@ -97,7 +97,7 @@ const testData: Post[] = [
     },
     {
         id: 8,
-        username: '김강민',
+        userNickname: '김강민',
         profileImgSrc: faker.image.avatar(),
         title: '게시글 테스트 제목',
         bodyContent:
@@ -110,7 +110,7 @@ const testData: Post[] = [
     },
     {
         id: 9,
-        username: '김강민',
+        userNickname: '김강민',
         profileImgSrc: faker.image.avatar(),
         title: '게시글 테스트 제목',
         bodyContent:
@@ -123,7 +123,7 @@ const testData: Post[] = [
     },
     {
         id: 10,
-        username: '김강민',
+        userNickname: '김강민',
         profileImgSrc: faker.image.avatar(),
         title: '게시글 테스트 제목',
         bodyContent:
