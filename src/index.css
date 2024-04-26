@@ -50,3 +50,7 @@ blockquote p {
 pre:has(code[class='mermaid']) {
     background-color: white !important;
 }
+
+.ck-editor__main code {
+    color: black !important;
+}
