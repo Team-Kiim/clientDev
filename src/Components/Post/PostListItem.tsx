@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function PostListItem({ post }: Props) {
-    const { id, title, username, profileImgSrc, bodyContent, viewCount, likeCount, createdTime, skillCategories } =
+    const { id, title, userNickname, profileImgSrc, bodyContent, viewCount, likeCount, createdTime, skillCategories } =
         post;
 
     return (
@@ -37,7 +37,7 @@ export default function PostListItem({ post }: Props) {
                         <div className={'avatar size-7'}>
                             <img className={'rounded-full'} src={profileImgSrc} alt={'profileImgExample'} />
                         </div>
-                        <span className={'text-[0.82rem] font-medium'}>{username}</span>
+                        <span className={'text-[0.82rem] font-medium'}>{userNickname}</span>
                     </div>
                     <div className={'flex items-center gap-x-4'}>
                         <div className={'flex items-center gap-x-1'}>
