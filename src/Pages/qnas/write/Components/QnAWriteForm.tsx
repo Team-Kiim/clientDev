@@ -1,3 +1,4 @@
+import dompurify from 'dompurify';
 import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -55,7 +56,7 @@ export default function QnAWriteForm() {
     };
 
     const onSubmit: SubmitHandler<FormData> = data => {
-        console.log(data);
+        console.log(dompurify.sanitize(data.bodyContent));
     };
 
     return (
