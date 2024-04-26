@@ -46,3 +46,7 @@ code {
 blockquote p {
     color: black !important;
 }
+
+pre:has(code[class='mermaid']) {
+    background-color: white !important;
+}
