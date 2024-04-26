@@ -26,7 +26,7 @@ export default function PostListItem({ post }: Props) {
                 </div>
                 <div className={'flex flex-1 flex-col gap-y-3 px-3.5'}>
                     <h1 className={'line-clamp-1 text-xl font-medium'}>{title}</h1>
-                    <p className={'line-clamp-3 text-sm text-gray-500'}>{bodyContent}</p>
+                    <p className={'line-clamp-3 text-sm text-gray-500'}>{bodyContent.replace(/<[^>]+>/g, '')}</p>
                 </div>
                 <div
                     className={
