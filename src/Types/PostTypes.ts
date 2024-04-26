@@ -1,7 +1,7 @@
 export type Post = {
     id: number;
     title: string;
-    username: string;
+    userNickname: string;
     profileImgSrc?: string;
     bodyContent: string;
     viewCount: number;
