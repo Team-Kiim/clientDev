@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
-import { CalendarIcon, EyeIcon, HeartIcon } from '@heroicons/react/24/outline';
+import { BiLike } from 'react-icons/bi';
+import { CalendarIcon, EyeIcon } from '@heroicons/react/24/outline';
 import formatNumber from '@/Utils/formatNumber.ts';
 import type { Post } from '@/Types/PostTypes.ts';
 
@@ -41,11 +42,11 @@ export default function PostListItem({ post }: Props) {
                     </div>
                     <div className={'flex items-center gap-x-4'}>
                         <div className={'flex items-center gap-x-1'}>
-                            <HeartIcon className={'size-5 text-red-500'} />
+                            <BiLike className={'size-4 text-blue-600'} />
                             <span className={'text-[0.8rem]'}>{formatNumber(likeCount, 0)}</span>
                         </div>
                         <div className={'flex items-center gap-x-1'}>
-                            <EyeIcon className={'size-5 text-blue-500'} />
+                            <EyeIcon className={'size-5 text-violet-600'} />
                             <span className={'text-[0.8rem]'}>{formatNumber(viewCount, 0)}</span>
                         </div>
                     </div>
