@@ -74,7 +74,7 @@ export default function LikeButtonWithCount({ isMemberLiked, likeCount, postId }
                     type={'button'}
                     onClick={handleLikeButtonClick}
                 >
-                    <BiLike className={'size-9'} />
+                    <BiLike className={'size-7'} />
                 </button>
             </div>
             <span className={'text-[0.95rem] font-medium text-gray-500'}>{formatNumber(likeCount, 0)}</span>

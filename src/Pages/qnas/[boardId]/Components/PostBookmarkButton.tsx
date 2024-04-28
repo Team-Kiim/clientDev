@@ -61,7 +61,7 @@ export default function PostBookmarkButton({ isBookmarked, postId }: Props) {
                 type={'button'}
                 onClick={handleBookmarkButtonClick}
             >
-                <BookmarkIcon className={'size-9'} />
+                <BookmarkIcon className={'size-7'} />
             </button>
         </div>
     );
