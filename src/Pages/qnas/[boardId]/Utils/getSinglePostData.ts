@@ -111,6 +111,8 @@ const testData: Post = {
     createdTime: [2024, 4, 26],
     modifiedTime: [2024, 4, 26],
     skillCategories: ['C', 'C++', 'C#'],
+    isBookmarked: true,
+    isMemberLiked: true,
 };
 
 const getSinglePostData: QueryFunction<Post, [_1: string, _2: string]> = ({ queryKey }) => {

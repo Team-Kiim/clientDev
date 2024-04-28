@@ -5,7 +5,9 @@ export type Post = {
     profileImgSrc?: string;
     bodyContent: string;
     viewCount: number;
+    isMemberLiked: boolean;
     likeCount: number;
+    isBookmarked: boolean;
     createdTime: number[];
     modifiedTime?: number[];
     skillCategories?: string[];
