@@ -1,3 +1,9 @@
+export type FileData = {
+    id: number;
+    originalFileName: string;
+    saveFileName: string;
+};
+
 export type Post = {
     id: number;
     title: string;
