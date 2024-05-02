@@ -20,7 +20,7 @@ export default function QnATypeDecider() {
         <div className={'flex items-center gap-x-5 border-b border-gray-300 pb-2'}>
             <button
                 className={'rounded-lg px-2 py-1 transition-all hover:bg-violet-50'}
-                type={'submit'}
+                type={'button'}
                 onClick={() => {
                     handleQnATypeChangeButtonClick('dev');
                 }}
@@ -31,7 +31,7 @@ export default function QnATypeDecider() {
             </button>
             <button
                 className={'rounded-lg px-2 py-1 transition-all hover:bg-violet-50'}
-                type={'submit'}
+                type={'button'}
                 onClick={() => {
                     handleQnATypeChangeButtonClick('nonDev');
                 }}
