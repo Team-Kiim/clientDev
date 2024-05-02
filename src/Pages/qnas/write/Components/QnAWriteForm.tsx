@@ -3,10 +3,10 @@ import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
-import TitleInput from '@/Pages/qnas/write/Components/TitleInput.tsx';
-import FileUploadZone from '@/Pages/qnas/write/Components/FileUploadZone.tsx';
-import TextEditor from '@/Pages/qnas/write/Components/TextEditor.tsx';
-import UploadedFileList from '@/Pages/qnas/write/Components/UploadedFileList.tsx';
+import TitleInput from '@/Pages/qnas/Components/QnAPostInputs/TitleInput.tsx';
+import FileUploadZone from '@/Pages/qnas/Components/QnAPostInputs/FileUploadZone.tsx';
+import TextEditor from '@/Pages/qnas/Components/QnAPostInputs/TextEditor.tsx';
+import UploadedFileList from '@/Pages/qnas/Components/QnAPostInputs/UploadedFileList.tsx';
 
 interface FormData {
     title: string;
