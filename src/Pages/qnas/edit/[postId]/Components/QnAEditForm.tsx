@@ -45,7 +45,7 @@ export default function QnAEditForm() {
     });
 
     useEffect(() => {
-        updateQnAType(data.postType);
+        updateQnAType(data.qnaType);
     }, []);
 
     const existingFileData = data.fileDtoList;
