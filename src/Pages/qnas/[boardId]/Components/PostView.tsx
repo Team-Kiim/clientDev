@@ -3,7 +3,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import PostDetails from '@/Pages/qnas/[boardId]/Components/PostDetails.tsx';
 import PostInteraction from '@/Pages/qnas/[boardId]/Components/PostInteraction.tsx';
-import getSinglePostData from '@/Pages/qnas/[boardId]/Utils/getSinglePostData.ts';
+import getSinglePostData from '@/Pages/qnas/Utils/getSinglePostData.ts';
 
 export default function PostView() {
     const postId = useParams().postId;
