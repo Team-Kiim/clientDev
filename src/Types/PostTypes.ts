@@ -8,6 +8,7 @@ export type Post = {
     id: number;
     title: string;
     userNickname: string;
+    qnaType?: string;
     profileImgSrc?: string;
     bodyContent: string;
     viewCount: number;
@@ -17,4 +18,5 @@ export type Post = {
     createdTime: number[];
     modifiedTime?: number[];
     skillCategories?: string[];
+    fileDtoList?: FileData[];
 };
