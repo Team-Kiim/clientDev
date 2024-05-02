@@ -1,6 +1,6 @@
 import { Controller, useFormContext } from 'react-hook-form';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import Editor from 'ckeditor5-custom-build/build/ckeditor';
+import Editor from 'ckeditor5-custom-build';
 import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
 import { useSearchParams } from 'react-router-dom';
 

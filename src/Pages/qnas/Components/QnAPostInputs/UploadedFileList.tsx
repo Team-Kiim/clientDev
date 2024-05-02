@@ -1,8 +1,8 @@
-import UploadedFileListItem from '@/Pages/qnas/write/Components/UploadedFileListItem.tsx';
+import UploadedFileListItem from '@/Pages/qnas/Components/QnAPostInputs/UploadedFileListItem.tsx';
 
 interface FileData {
     id: string | number;
-    file: File;
+    file: File | { name: string };
 }
 
 interface Props {

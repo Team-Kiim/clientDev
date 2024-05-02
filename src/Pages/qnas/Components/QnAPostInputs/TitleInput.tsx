@@ -25,7 +25,7 @@ export default function TitleInput() {
                             <div className={'flex items-center gap-x-3'}>
                                 <input
                                     className={
-                                        'flex-1 py-2 text-[1.75rem] font-medium placeholder:font-medium placeholder:text-gray-400 focus:outline-none'
+                                        'flex-1 py-2 text-[1.75rem] font-bold placeholder:font-medium placeholder:text-gray-400 focus:outline-none'
                                     }
                                     value={field.value}
                                     type={'text'}
