@@ -7,6 +7,7 @@ const testData: Post = {
     id: 1,
     userNickname: 'kkang1202',
     profileImgSrc: faker.image.avatar(),
+    qnaType: 'dev',
     title: '게시글 테스트 제목',
     bodyContent:
         '<pre><code class="language-typescript">import dayjs from \'dayjs\';\n' +
@@ -113,6 +114,7 @@ const testData: Post = {
     skillCategories: ['C', 'C++', 'C#'],
     isBookmarked: true,
     isMemberLiked: true,
+    fileDtoList: [],
 };
 
 const getSinglePostData: QueryFunction<Post, [_1: string, _2: string]> = ({ queryKey }) => {
