@@ -1,12 +1,13 @@
 import dompurify from 'dompurify';
 import { nanoid } from 'nanoid';
 import { useEffect, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import TitleInput from '@/Pages/qnas/Components/QnAPostInputs/TitleInput.tsx';
 import FileUploadZone from '@/Pages/qnas/Components/QnAPostInputs/FileUploadZone.tsx';
 import TextEditor from '@/Pages/qnas/Components/QnAPostInputs/TextEditor.tsx';
 import UploadedFileList from '@/Pages/qnas/Components/QnAPostInputs/UploadedFileList.tsx';
+import useQnATypeStore from '@/Stores/useQnATypeStore.ts';
 
 interface FormData {
     title: string;
@@ -20,9 +21,9 @@ interface FileData {
 }
 
 export default function QnAWriteForm() {
-    const [uploadedFiles, setUploadedFiles] = useState<FileData[]>([]);
+    const { qnaType } = useQnATypeStore(state => state);
 
-    const [searchParams] = useSearchParams();
+    const [uploadedFiles, setUploadedFiles] = useState<FileData[]>([]);
 
     const navigate = useNavigate();
 
@@ -38,7 +39,7 @@ export default function QnAWriteForm() {
     useEffect(() => {
         formMethods.reset();
         setUploadedFiles([]);
-    }, [searchParams]);
+    }, [qnaType]);
 
     const uploadFiles = (files: File[]) => {
         const newUploadedFiles: FileData[] = files.map(file => {
