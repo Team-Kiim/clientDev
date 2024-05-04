@@ -9,10 +9,9 @@ export default function QnATypeDecider() {
             if (qnaType === 'dev') {
                 return;
             }
-
             updateQnAType('dev');
         };
-    }, []);
+    }, [qnaType]);
 
     const handleQnATypeChangeButtonClick = (qnaTypeToChange: string) => {
         if (qnaType === qnaTypeToChange) {
