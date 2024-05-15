@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import { ComputerDesktopIcon, UserIcon } from '@heroicons/react/24/outline';
 
-export default function PostTypeToggleButton() {
+export default function QnATypeToggleButtons() {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const currentQnAType = searchParams.get('qna_type') ?? 'dev';
