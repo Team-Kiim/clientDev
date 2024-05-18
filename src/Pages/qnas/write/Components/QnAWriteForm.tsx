@@ -68,15 +68,15 @@ export default function QnAWriteForm() {
                     <TextEditor />
                 </div>
                 <div className={'flex flex-col gap-y-2'}>
-                    <h3 className={'text-[1.05rem] font-medium'}>첨부 파일</h3>
+                    <h3 className={'text-[0.95rem] font-bold'}>첨부 파일</h3>
                     <div className={'flex gap-x-2'}>
                         <FileUploadZone uploadFiles={uploadFiles} />
                     </div>
                 </div>
                 {uploadedFiles.length !== 0 && (
                     <div className={'flex flex-col gap-y-2'}>
-                        <h3 className={'text-[1.05rem] font-medium'}>
-                            업로드 된 파일 (<span className={'text-violet-600'}>{uploadedFiles.length}</span>){' '}
+                        <h3 className={'text-[0.95rem] font-bold'}>
+                            업로드 된 파일 (<span className={'text-violet-700'}>{uploadedFiles.length}</span>){' '}
                         </h3>
                         <UploadedFileList
                             uploadedFiles={uploadedFiles}
