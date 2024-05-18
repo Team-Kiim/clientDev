@@ -1,4 +1,4 @@
-import { CiFileOn } from 'react-icons/ci';
+import { BsFileEarmarkArrowUpFill } from 'react-icons/bs';
 import { TrashIcon } from '@heroicons/react/24/outline';
 
 interface FileData {
@@ -13,10 +13,12 @@ interface Props {
 
 export default function UploadedFileListItem({ fileData, onFileDeleteButtonClick }: Props) {
     return (
-        <li className={'flex w-full items-center justify-between'}>
+        <li className={'flex w-full items-center justify-between border-b border-gray-300 py-0.5 last:border-none'}>
             <div className={'flex flex-1 items-center gap-x-2'}>
-                <CiFileOn className={'size-7'} />
-                <span className={'line-clamp-1 flex-1 text-[0.9rem] font-medium'}>{fileData.file.name}</span>
+                <BsFileEarmarkArrowUpFill className={'size-6'} />
+                <span className={'line-clamp-1 flex-1 text-[0.88rem] font-bold text-gray-600'}>
+                    {fileData.file.name}
+                </span>
             </div>
             <div className={'flex items-center gap-x-2'}>
                 <button
@@ -26,7 +28,7 @@ export default function UploadedFileListItem({ fileData, onFileDeleteButtonClick
                         onFileDeleteButtonClick(fileData);
                     }}
                 >
-                    <TrashIcon className={'size-5'} />
+                    <TrashIcon className={'size-6'} />
                 </button>
             </div>
         </li>
