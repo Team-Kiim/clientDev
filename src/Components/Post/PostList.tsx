@@ -15,7 +15,7 @@ export default function PostList() {
         isLoading,
         isPending,
     } = useQuery({
-        queryKey: ['post', { qnaType, title, keywords }],
+        queryKey: ['posts', { qnaType, title, keywords }],
         queryFn: getPostList,
         gcTime: 0,
         throwOnError: true,
@@ -26,7 +26,7 @@ export default function PostList() {
     }
 
     return (
-        <div className={'grid grid-cols-4 gap-x-3.5 gap-y-4'}>
+        <div className={'grid grid-cols-4 gap-x-3.5 gap-y-5'}>
             {postList.map(post => {
                 return <PostListItem key={post.id} post={post} />;
             })}
