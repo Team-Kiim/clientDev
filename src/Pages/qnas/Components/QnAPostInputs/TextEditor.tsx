@@ -103,7 +103,7 @@ export default function TextEditor() {
                 }}
                 render={({ field }) => {
                     return (
-                        <div className={'prose w-full max-w-full'}>
+                        <div className={'prose w-full max-w-full prose-strong:text-inherit'}>
                             <CKEditor
                                 // id 가 변경되면, 에디터의 content 가 초기화 된다.
                                 //
