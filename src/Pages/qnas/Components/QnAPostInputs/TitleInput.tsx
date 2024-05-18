@@ -1,5 +1,5 @@
 import { Controller, useFormContext } from 'react-hook-form';
-import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 
 interface FormData {
     title: string;
@@ -25,7 +25,7 @@ export default function TitleInput() {
                             <div className={'flex items-center gap-x-3'}>
                                 <input
                                     className={
-                                        'flex-1 py-2 text-[1.75rem] font-bold placeholder:font-medium placeholder:text-gray-400 focus:outline-none'
+                                        'flex-1 py-2 text-[1.7rem] font-bold placeholder:text-gray-400 focus:outline-none'
                                     }
                                     value={field.value}
                                     type={'text'}
@@ -35,7 +35,7 @@ export default function TitleInput() {
                                     onBlur={field.onBlur}
                                     onChange={field.onChange}
                                 />
-                                <div className={'text-gray-400'}>
+                                <div className={'text-[0.95rem] text-gray-600'}>
                                     <span>{`${field.value.length} / 100`}</span>
                                 </div>
                             </div>
@@ -45,13 +45,13 @@ export default function TitleInput() {
             </div>
             {errors?.title?.message && errors?.title.type === 'required' && (
                 <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
-                    <ExclamationCircleIcon className={'size-5'} />
+                    <ExclamationTriangleIcon className={'size-5'} />
                     <p className={'text-sm'}>{errors.title.message}</p>
                 </div>
             )}
             {errors?.title?.message && errors?.title.type === 'maxLength' && (
                 <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
-                    <ExclamationCircleIcon className={'size-5'} />
+                    <ExclamationTriangleIcon className={'size-5'} />
                     <p className={'text-sm'}>{errors.title.message}</p>
                 </div>
             )}
