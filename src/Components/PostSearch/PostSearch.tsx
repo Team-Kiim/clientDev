@@ -37,10 +37,14 @@ export default function PostSearch() {
     }, [searchParams]);
 
     return (
-        <div className={'flex w-[35rem] items-center gap-x-2.5 rounded-3xl bg-gray-100 px-5 py-2.5'}>
+        <div
+            className={
+                'flex w-[36rem] items-center gap-x-2.5 rounded-2xl border border-gray-300 bg-white px-4 py-1.5 transition-all focus-within:border-gray-700 hover:border-gray-700'
+            }
+        >
             <MagnifyingGlassIcon className={'size-6'} />
             <input
-                className={'flex-1 bg-gray-100 text-[0.9rem] focus:outline-none'}
+                className={'flex-1 bg-white text-[0.9rem] focus:outline-none'}
                 onKeyDown={handleKeyDown}
                 type={'search'}
                 placeholder={'게시글 검색'}
@@ -50,7 +54,7 @@ export default function PostSearch() {
             />
             <div className={'tooltip tooltip-bottom'} data-tip={'초기화'}>
                 <button
-                    className={'flex items-center transition-all hover:scale-110'}
+                    className={'flex items-center rounded-full p-1 '}
                     type={'button'}
                     onClick={() => {
                         if (!searchParams.has('post_title')) {
