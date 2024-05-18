@@ -46,7 +46,7 @@ export default function PostSearch() {
             <input
                 className={'flex-1 bg-white text-[0.9rem] focus:outline-none'}
                 onKeyDown={handleKeyDown}
-                type={'search'}
+                type={'text'}
                 placeholder={'게시글 검색'}
                 autoComplete={'off'}
                 autoCapitalize={'off'}
