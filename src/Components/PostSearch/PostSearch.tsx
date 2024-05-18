@@ -1,10 +1,14 @@
 import { debounce } from 'lodash';
 import { KeyboardEventHandler, useEffect, useRef } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { ArrowPathIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 export default function PostSearch() {
     const inputRef = useRef<HTMLInputElement>(null);
+
+    const navigate = useNavigate();
+
+    const { pathname } = useLocation();
 
     const [searchParams, setSearchParams] = useSearchParams();
 
@@ -18,8 +22,13 @@ export default function PostSearch() {
                 return;
             }
             const inputValue = inputRef.current.value;
+
             searchParams.set('post_title', inputValue);
-            setSearchParams(searchParams);
+            if (pathname.includes('qnas')) {
+                navigate(`/qnas?${searchParams.toString()}`);
+            } else {
+                navigate(`/?${searchParams.toString()}`);
+            }
         }
     }, 250);
 
