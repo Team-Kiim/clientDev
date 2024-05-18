@@ -26,10 +26,10 @@ export default function PostList() {
     }
 
     return (
-        <div className={'grid grid-cols-4 gap-x-3.5 gap-y-5'}>
+        <ul className={'grid grid-cols-4 gap-x-3.5 gap-y-5'}>
             {postList.map(post => {
                 return <PostListItem key={post.id} post={post} />;
             })}
-        </div>
+        </ul>
     );
 }
