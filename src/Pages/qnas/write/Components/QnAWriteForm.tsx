@@ -92,13 +92,13 @@ export default function QnAWriteForm() {
                             navigate('/');
                         }}
                     >
-                        <span className={'text-[0.95rem] font-medium text-violet-600'}>취소하기</span>
+                        <span className={'text-[0.95rem] font-bold text-violet-600'}>취소하기</span>
                     </button>
                     <button
                         className={'rounded-lg bg-violet-600 px-3 py-2 transition-all hover:bg-violet-700'}
                         type={'submit'}
                     >
-                        <span className={'text-[0.95rem] font-medium text-white'}>작성하기</span>
+                        <span className={'text-[0.95rem] font-bold text-white'}>작성하기</span>
                     </button>
                 </div>
             </form>
