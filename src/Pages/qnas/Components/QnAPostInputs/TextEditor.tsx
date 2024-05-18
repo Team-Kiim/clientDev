@@ -1,7 +1,7 @@
 import { Controller, useFormContext } from 'react-hook-form';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import Editor from 'ckeditor5-custom-build';
-import { ExclamationCircleIcon } from '@heroicons/react/24/outline';
+import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { useSearchParams } from 'react-router-dom';
 
 interface FormData {
@@ -126,7 +126,7 @@ export default function TextEditor() {
             />
             {errors?.bodyContent?.message && errors?.bodyContent.type === 'required' && (
                 <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
-                    <ExclamationCircleIcon className={'size-5'} />
+                    <ExclamationTriangleIcon className={'size-5'} />
                     <p className={'text-sm'}>{errors.bodyContent.message}</p>
                 </div>
             )}
