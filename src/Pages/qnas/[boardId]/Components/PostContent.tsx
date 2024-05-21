@@ -56,7 +56,7 @@ export default function PostContent({ bodyContent }: Props) {
 
     return (
         <article
-            className={'prose prose-sm max-w-full text-[#020617]'}
+            className={'prose prose-sm max-w-full text-[#020617] prose-strong:text-inherit'}
             dangerouslySetInnerHTML={{ __html: htmlContent }}
         />
     );
