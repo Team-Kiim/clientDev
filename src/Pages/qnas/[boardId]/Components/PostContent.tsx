@@ -54,5 +54,10 @@ export default function PostContent({ bodyContent }: Props) {
         Prism.highlightAll();
     }, []);
 
-    return <article className={'prose max-w-full text-[#020617]'} dangerouslySetInnerHTML={{ __html: htmlContent }} />;
+    return (
+        <article
+            className={'prose prose-sm max-w-full text-[#020617]'}
+            dangerouslySetInnerHTML={{ __html: htmlContent }}
+        />
+    );
 }
