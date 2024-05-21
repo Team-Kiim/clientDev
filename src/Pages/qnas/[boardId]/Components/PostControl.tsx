@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
+import { MdEdit, MdOutlineDelete } from 'react-icons/md';
 
 interface Props {
     postId: number;
@@ -27,18 +28,19 @@ export default function PostControl({ postId }: Props) {
     });
 
     return (
-        <div className={'flex w-full justify-end gap-x-1 text-[0.95rem] font-medium text-gray-500'}>
+        <div className={'flex w-full justify-end gap-x-4 text-[0.9rem] font-medium text-gray-500'}>
             <button
-                className={'rounded-lg px-2 py-1 transition-all hover:bg-violet-50 hover:text-violet-600'}
+                className={'flex items-center gap-x-1 text-gray-700'}
                 type={'button'}
                 onClick={() => {
                     navigate(`/qnas/edit/${postId}`);
                 }}
             >
-                수정
+                <span className={'font-bold'}>수정하기</span>
+                <MdEdit className={'size-5'} />
             </button>
             <button
-                className={'rounded-lg px-2 py-1 transition-all hover:bg-red-50 hover:text-red-700'}
+                className={'flex items-center gap-x-1 text-red-700'}
                 type={'button'}
                 onClick={() => {
                     if (window.confirm('정말로 삭제하시겠습니까?')) {
@@ -46,7 +48,8 @@ export default function PostControl({ postId }: Props) {
                     }
                 }}
             >
-                삭제
+                <span className={'font-bold'}>삭제하기</span>
+                <MdOutlineDelete className={'size-5'} />
             </button>
         </div>
     );
