@@ -2,7 +2,7 @@ import axios from 'axios';
 import { debounce } from 'lodash';
 import { useCallback, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { BookmarkIcon } from '@heroicons/react/24/outline';
+import { HiBookmark, HiOutlineBookmark } from 'react-icons/hi2';
 import type { Post } from '@/Types/PostTypes.ts';
 
 interface Props {
@@ -55,14 +55,12 @@ export default function PostBookmarkButton({ isBookmarked, postId }: Props) {
     };
 
     return (
-        <div className={'tooltip tooltip-left'} data-tip={isBookmarked ? '북마크 해제' : '북마크 하기'}>
-            <button
-                className={`rounded-full border p-2.5 transition-all active:scale-95 ${isBookmarked ? 'border-violet-200 bg-violet-50 text-violet-600' : 'border-gray-200 bg-white text-gray-700'} shadow-md`}
-                type={'button'}
-                onClick={handleBookmarkButtonClick}
-            >
-                <BookmarkIcon className={'size-7'} />
-            </button>
-        </div>
+        <button
+            className={'text-gray-700 transition-all active:scale-95'}
+            type={'button'}
+            onClick={handleBookmarkButtonClick}
+        >
+            {isBookmarked ? <HiBookmark className={'size-7'} /> : <HiOutlineBookmark className={'size-7'} />}
+        </button>
     );
 }
