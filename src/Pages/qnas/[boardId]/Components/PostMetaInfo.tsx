@@ -18,7 +18,7 @@ export default function PostMetaInfo({ createdTime, title, userNickname, profile
     const createdWeekDay = dayjs(createdDate).format('dddd');
 
     return (
-        <section className={'flex flex-col gap-y-4'}>
+        <header className={'flex flex-col gap-y-4'}>
             <div className={'mx-0.5 flex items-center gap-x-1.5'}>
                 <CalendarIcon className={'size-5'} />
                 <span className={'mx-1 text-[0.86rem] text-gray-600'}>
@@ -39,6 +39,6 @@ export default function PostMetaInfo({ createdTime, title, userNickname, profile
                     조회수 : <span className={'font-bold'}>{formatNumber(viewCount, 0)}</span>
                 </div>
             </div>
-        </section>
+        </header>
     );
 }
