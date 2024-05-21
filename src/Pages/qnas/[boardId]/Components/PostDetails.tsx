@@ -18,7 +18,7 @@ export default function PostDetails({
 }: Props) {
     return (
         <>
-            <main className={'flex max-w-full flex-col gap-y-2.5'}>
+            <main className={'mb-10 flex max-w-full flex-col gap-y-2.5'}>
                 <PostMetaInfo
                     createdTime={createdTime}
                     title={title}
