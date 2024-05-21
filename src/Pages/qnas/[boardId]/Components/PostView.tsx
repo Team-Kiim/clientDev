@@ -14,9 +14,9 @@ export default function PostView() {
     });
 
     return (
-        <div className={'relative col-span-7'}>
-            <PostInteraction {...pick(data, ['isMemberLiked', 'likeCount', 'isBookmarked'])} postId={postId} />
+        <div className={'col-span-7'}>
             <PostDetails {...omit(data, ['isBookmarked', 'likeCount'])} />
+            <PostInteraction {...pick(data, ['isMemberLiked', 'likeCount', 'isBookmarked'])} postId={postId} />
         </div>
     );
 }
