@@ -18,7 +18,7 @@ export default function PostDetails({
 }: Props) {
     return (
         <>
-            <main className={'mb-10 flex max-w-full flex-col gap-y-2.5'}>
+            <article className={'mb-10 flex max-w-full flex-col gap-y-2.5'}>
                 <PostMetaInfo
                     createdTime={createdTime}
                     title={title}
@@ -29,7 +29,7 @@ export default function PostDetails({
                 <PostControl postId={id} />
                 <hr />
                 <PostContent bodyContent={bodyContent} />
-            </main>
+            </article>
         </>
     );
 }
