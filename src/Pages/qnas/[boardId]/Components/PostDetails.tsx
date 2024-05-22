@@ -1,6 +1,7 @@
 import PostMetaInfo from '@/Pages/qnas/[boardId]/Components/PostMetaInfo.tsx';
 import PostControl from '@/Pages/qnas/[boardId]/Components/PostControl.tsx';
 import PostContent from '@/Pages/qnas/[boardId]/Components/PostContent.tsx';
+import PostKeywordList from '@/Pages/qnas/[boardId]/Components/PostKeywordList.tsx';
 import type { Post } from '@/Types/PostTypes.ts';
 
 type Props = Omit<Post, 'isBookmarked' | 'likeCount' | 'dislikeCount'>;
@@ -18,7 +19,7 @@ export default function PostDetails({
 }: Props) {
     return (
         <>
-            <article className={'mb-10 flex max-w-full flex-col gap-y-2.5'}>
+            <article className={'flex max-w-full flex-col gap-y-2.5'}>
                 <PostMetaInfo
                     createdTime={createdTime}
                     title={title}
@@ -29,6 +30,7 @@ export default function PostDetails({
                 <PostControl postId={id} />
                 <hr />
                 <PostContent bodyContent={bodyContent} />
+                <PostKeywordList keywords={skillCategories} />
             </article>
         </>
     );
