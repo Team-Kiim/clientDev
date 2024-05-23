@@ -19,13 +19,7 @@ export default function LogInSection() {
                         </div>
                     </div>
                 </Link>
-                <button
-                    className={
-                        'rounded-lg bg-violet-600 px-3.5 py-2.5 text-[0.9rem] font-semibold text-white transition-all hover:bg-violet-700'
-                    }
-                >
-                    로그아웃
-                </button>
+                <button className={'font-bold transition-all hover:text-violet-700'}>로그아웃</button>
             </div>
         </div>
     );
