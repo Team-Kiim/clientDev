@@ -19,7 +19,9 @@ export default function LogInSection() {
                         </div>
                     </div>
                 </Link>
-                <button className={'font-bold transition-all hover:text-violet-700'}>로그아웃</button>
+                <button className={'font-bold transition-all hover:text-violet-700'} type={'button'}>
+                    로그아웃
+                </button>
             </div>
         </div>
     );
