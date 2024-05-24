@@ -15,6 +15,7 @@ export default function PostAddButton() {
                 onClick={() => {
                     handlePostAddButtonClick();
                 }}
+                type={'button'}
             >
                 <PlusIcon className={'size-11 text-white'} />
             </button>
