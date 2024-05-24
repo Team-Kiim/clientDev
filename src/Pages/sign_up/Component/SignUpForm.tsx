@@ -5,7 +5,9 @@ import NicknameInput from '@/Pages/sign_up/Component/NicknameInput.tsx';
 
 interface FormData {
     email: string;
+    verificationCode: string;
     password: string;
+    confirmPassword: string;
     nickname: string;
 }
 
@@ -14,7 +16,9 @@ export default function SignUpForm() {
         mode: 'onBlur',
         defaultValues: {
             email: '',
+            verificationCode: '',
             password: '',
+            confirmPassword: '',
             nickname: '',
         },
     });
