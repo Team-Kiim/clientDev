@@ -37,13 +37,13 @@ export default function NicknameInput() {
             {errors?.nickname?.message && errors?.nickname.type === 'required' && (
                 <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
                     <ExclamationTriangleIcon className={'size-5'} />
-                    <p className={'text-sm'}>{errors.nickname.message}</p>
+                    <p className={'text-[0.8rem] font-bold'}>{errors.nickname.message}</p>
                 </div>
             )}
             {errors?.nickname?.message && errors?.nickname.type === 'maxLength' && (
                 <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
                     <ExclamationTriangleIcon className={'size-5'} />
-                    <p className={'text-sm'}>{errors.nickname.message}</p>
+                    <p className={'text-[0.8rem] font-bold'}>{errors.nickname.message}</p>
                 </div>
             )}
         </div>
