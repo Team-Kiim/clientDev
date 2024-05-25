@@ -127,7 +127,7 @@ export default function TextEditor() {
             {errors?.bodyContent?.message && errors?.bodyContent.type === 'required' && (
                 <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
                     <ExclamationTriangleIcon className={'size-5'} />
-                    <p className={'text-sm'}>{errors.bodyContent.message}</p>
+                    <p className={'text-sm font-bold'}>{errors.bodyContent.message}</p>
                 </div>
             )}
         </div>

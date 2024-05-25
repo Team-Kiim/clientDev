@@ -46,13 +46,13 @@ export default function TitleInput() {
             {errors?.title?.message && errors?.title.type === 'required' && (
                 <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
                     <ExclamationTriangleIcon className={'size-5'} />
-                    <p className={'text-sm'}>{errors.title.message}</p>
+                    <p className={'text-sm font-bold'}>{errors.title.message}</p>
                 </div>
             )}
             {errors?.title?.message && errors?.title.type === 'maxLength' && (
                 <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
                     <ExclamationTriangleIcon className={'size-5'} />
-                    <p className={'text-sm'}>{errors.title.message}</p>
+                    <p className={'text-sm font-bold'}>{errors.title.message}</p>
                 </div>
             )}
         </div>
