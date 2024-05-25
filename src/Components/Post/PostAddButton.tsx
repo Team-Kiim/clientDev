@@ -1,11 +1,17 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { GoPencil } from 'react-icons/go';
 
 export default function PostAddButton() {
     const navigate = useNavigate();
 
+    const { pathname } = useLocation();
+
     const handlePostAddButtonClick = () => {
-        navigate('/qnas/write');
+        if (pathname === '/' || pathname === '/qnas') {
+            navigate('/qnas/write');
+        } else {
+            navigate('/community/write');
+        }
     };
 
     return (
