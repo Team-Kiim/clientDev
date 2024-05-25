@@ -62,7 +62,7 @@ export default function QnAWriteForm() {
 
     return (
         <FormProvider {...formMethods}>
-            <form className={'mt-3 flex flex-col gap-y-14'} onSubmit={formMethods.handleSubmit(onSubmit)}>
+            <form className={'mt-3 flex flex-col gap-y-10'} onSubmit={formMethods.handleSubmit(onSubmit)}>
                 <TitleInput />
                 <div className={'flex flex-col gap-y-3'}>
                     <TextEditor />
