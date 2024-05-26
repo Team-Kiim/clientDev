@@ -4,6 +4,7 @@ import MainPage from '@/Pages/page.tsx';
 import SignInPage from '@/Pages/sign_in/page.tsx';
 import SignUpPage from '@/Pages/sign_up/page.tsx';
 import NaverRedirect from '@/Components/Auth/OAuthSection/NaverSection/NaverRedirect.tsx';
+import KakaoRedirect from '@/Components/Auth/OAuthSection/KakaoSection/KakaoRedirect.tsx';
 import PostPage from '@/Pages/qnas/[boardId]/page.tsx';
 import QnAWritePage from '@/Pages/qnas/write/page.tsx';
 import QnAEditPage from '@/Pages/qnas/edit/[postId]/page.tsx';
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
                 <Route element={<SignInPage />} path={'/sign_in'} />
                 <Route element={<SignUpPage />} path={'/sign_up'} />
                 <Route element={<NaverRedirect />} path={'/oauth/naver'} />
+                <Route element={<KakaoRedirect />} path={'/oauth/kakao'} />
             </Route>
             <Route>
                 <Route element={<>Q&A</>} path={'/qnas'} />
