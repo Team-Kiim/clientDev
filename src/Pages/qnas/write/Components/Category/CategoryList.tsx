@@ -9,7 +9,7 @@ interface Props {
 
 export default function CategoryList({ selectedParentCategory, selectedCategories, updateSelectedCategories }: Props) {
     return (
-        <ul className={'my-2 flex h-[15rem] w-full flex-wrap content-start gap-x-2 overflow-y-auto'}>
+        <ul className={'mt-2 flex h-[8rem] w-full flex-wrap content-start gap-x-2 overflow-y-auto'}>
             {CATEGORIES.find(parentCategory => parentCategory.value === selectedParentCategory).childCategories.map(
                 childCategory => {
                     return (
