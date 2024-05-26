@@ -31,7 +31,7 @@ export default function EmailVerificationInputs() {
                 )
             ) {
                 try {
-                    await axios.post(`/api/auth/mail-auth`, { email });
+                    await axios.post(`/api/email/send-auth-code`, { email });
                     setIsVerificationRequested(true);
                     window.alert('인증 코드가 발송되었습니다.');
                 } catch (error) {
@@ -44,12 +44,14 @@ export default function EmailVerificationInputs() {
 
     const handleVerificationConfirmButtonClick = async () => {
         const verificationCode = getValues().verificationCode.replace(/\s/gi, '');
+        const email = getValues().email.replace(/\s/gi, '');
         if (verificationCode === '' || getFieldState('verificationCode').invalid) {
             return;
         } else {
             try {
-                await axios.post(`/api/auth/mail-auth-answer`, {
-                    answer: verificationCode,
+                await axios.post(`/api/email/check-auth-code`, {
+                    email,
+                    code: verificationCode,
                 });
                 window.alert('인증되었습니다.');
                 setIsEmailVerified(true);
@@ -73,11 +75,14 @@ export default function EmailVerificationInputs() {
                 >
                     <input
                         id={'emailInput'}
-                        className={'w-full flex-1 text-[0.9rem] focus:outline-none'}
+                        className={
+                            'w-full flex-1 text-[0.9rem] focus:outline-none disabled:bg-white disabled:opacity-75'
+                        }
                         type={'text'}
                         placeholder={'유효한 이메일 주소를 입력해주세요.'}
                         autoComplete={'off'}
                         autoCapitalize={'off'}
+                        disabled={isVerificationRequested}
                         {...register('email', {
                             required: {
                                 value: true,
@@ -129,7 +134,7 @@ export default function EmailVerificationInputs() {
                         placeholder={'인증 코드를 입력해주세요.'}
                         autoComplete={'off'}
                         autoCapitalize={'off'}
-                        disabled={!isVerificationRequested}
+                        disabled={!isVerificationRequested || isEmailVerified}
                         readOnly={isEmailVerified}
                         {...register('verificationCode', {
                             required: {
