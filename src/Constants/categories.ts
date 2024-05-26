@@ -7,7 +7,7 @@ interface Category {
     }[];
 }
 
-export const categories: Category[] = [
+export const CATEGORIES: Category[] = [
     {
         value: 'PROGRAMMING_LANGUAGE',
         label: '프로그래밍 언어',
