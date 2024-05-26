@@ -2,6 +2,7 @@ import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
 import EmailVerificationInputs from '@/Pages/sign_up/Component/EmailVerificationInputs.tsx';
 import PasswordInputs from '@/Pages/sign_up/Component/PasswordInputs.tsx';
 import NicknameInput from '@/Pages/sign_up/Component/NicknameInput.tsx';
+import JobSelectInput from '@/Pages/sign_up/Component/JobSelectInput.tsx';
 
 interface FormData {
     email: string;
@@ -9,6 +10,7 @@ interface FormData {
     password: string;
     confirmPassword: string;
     nickname: string;
+    job: string;
 }
 
 export default function SignUpForm() {
@@ -20,6 +22,7 @@ export default function SignUpForm() {
             password: '',
             confirmPassword: '',
             nickname: '',
+            job: '',
         },
     });
 
@@ -36,6 +39,7 @@ export default function SignUpForm() {
                     <EmailVerificationInputs />
                     <PasswordInputs />
                     <NicknameInput />
+                    <JobSelectInput />
                 </div>
                 <button
                     className={
