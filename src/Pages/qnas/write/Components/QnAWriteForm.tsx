@@ -56,11 +56,11 @@ export default function QnAWriteForm() {
             <form className={'mt-3 flex flex-col gap-y-4'} onSubmit={formMethods.handleSubmit(onSubmit)}>
                 <div className={'flex flex-col gap-y-10'}>
                     <TitleInput />
-                    <TextEditor />
                     <CategorySelector
                         updateSelectedCategories={updateSelectedCategories}
                         selectedCategories={selectedCategories}
                     />
+                    <TextEditor />
                 </div>
                 <div className={'mb-10 flex w-full justify-end gap-x-4'}>
                     <button
