@@ -53,15 +53,15 @@ export default function QnAWriteForm() {
 
     return (
         <FormProvider {...formMethods}>
-            <form className={'mt-3 flex flex-col gap-y-10'} onSubmit={formMethods.handleSubmit(onSubmit)}>
-                <TitleInput />
-                <div className={'flex flex-col gap-y-3'}>
+            <form className={'mt-3 flex flex-col gap-y-4'} onSubmit={formMethods.handleSubmit(onSubmit)}>
+                <div className={'flex flex-col gap-y-10'}>
+                    <TitleInput />
                     <TextEditor />
+                    <CategorySelector
+                        updateSelectedCategories={updateSelectedCategories}
+                        selectedCategories={selectedCategories}
+                    />
                 </div>
-                <CategorySelector
-                    updateSelectedCategories={updateSelectedCategories}
-                    selectedCategories={selectedCategories}
-                />
                 <div className={'mb-10 flex w-full justify-end gap-x-4'}>
                     <button
                         className={'rounded-lg px-6 py-2.5 transition-all hover:bg-violet-50'}
