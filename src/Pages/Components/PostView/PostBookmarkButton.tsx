@@ -3,7 +3,7 @@ import { debounce } from 'lodash';
 import { useCallback, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HiBookmark, HiOutlineBookmark } from 'react-icons/hi2';
-import type { Post } from '@/Types/Post.ts';
+import type { PostInfo } from '@/Types/PostInfo.ts';
 
 interface Props {
     isBookmarked: boolean;
@@ -17,19 +17,19 @@ export default function PostBookmarkButton({ isBookmarked, postId }: Props) {
 
     const { mutate } = useMutation({
         mutationFn() {
-            const bookmarkStateToUpdate = queryClient.getQueryData<Post>(['post', postId]);
+            const bookmarkStateToUpdate = queryClient.getQueryData<PostInfo>(['post', postId]);
             return axios.patch('http://localhost:3001/tasks/2nRGVWLfaHWsq4VtPEsHp', {
                 isBookmarked: bookmarkStateToUpdate,
             });
         },
 
         onSuccess() {
-            const updatedBookmarkState = queryClient.getQueryData<Post>(['post', postId]).isBookmarked;
+            const updatedBookmarkState = queryClient.getQueryData<PostInfo>(['post', postId]).isMemberBookmarked;
             setPreviousBookmarkState(updatedBookmarkState);
         },
 
         onError() {
-            const postData = queryClient.getQueryData<Post>(['post', postId]);
+            const postData = queryClient.getQueryData<PostInfo>(['post', postId]);
             queryClient.setQueryData(['post', postId], {
                 ...postData,
                 isBookmarked: previousBookmarkState,
@@ -46,10 +46,10 @@ export default function PostBookmarkButton({ isBookmarked, postId }: Props) {
     const handleBookmarkButtonClick = async () => {
         await queryClient.cancelQueries({ queryKey: ['post', postId] });
 
-        const postData = queryClient.getQueryData<Post>(['post', postId]);
+        const postData = queryClient.getQueryData<PostInfo>(['post', postId]);
         queryClient.setQueryData(['post', postId], {
             ...postData,
-            isBookmarked: !postData.isBookmarked,
+            isBookmarked: !postData.isMemberBookmarked,
         });
         debouncedMutate();
     };

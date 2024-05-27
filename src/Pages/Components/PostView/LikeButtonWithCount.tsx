@@ -2,8 +2,8 @@ import { debounce } from 'lodash';
 import { useCallback, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { BiLike, BiSolidLike } from 'react-icons/bi';
-import type { Post } from '@/Types/Post.ts';
 import formatNumber from '@/Utils/formatNumber.ts';
+import type { PostInfo } from '@/Types/PostInfo.ts';
 
 interface Props {
     isMemberLiked: boolean;
@@ -19,26 +19,23 @@ export default function LikeButtonWithCount({ isMemberLiked, likeCount, postId }
 
     const { mutate } = useMutation({
         mutationFn() {
-            const { isMemberLiked: likeStateToUpdate, likeCount: likeCountToUpdate } = queryClient.getQueryData<Post>([
-                'post',
-                postId,
-            ]);
+            const { isMemberLiked: likeStateToUpdate, likeCount: likeCountToUpdate } =
+                queryClient.getQueryData<PostInfo>(['post', postId]);
             console.log(likeStateToUpdate, likeCountToUpdate);
             return Promise.resolve(true);
         },
 
         onSuccess() {
-            const { isMemberLiked: updatedLikeState, likeCount: updatedLikeCount } = queryClient.getQueryData<Post>([
-                'post',
-                postId,
-            ]);
+            const { isMemberLiked: updatedLikeState, likeCount: updatedLikeCount } = queryClient.getQueryData<PostInfo>(
+                ['post', postId],
+            );
 
             setPreviousLikeState(updatedLikeState);
             setPreviousLikeCount(updatedLikeCount);
         },
 
         onError() {
-            const postData = queryClient.getQueryData<Post>(['post', postId]);
+            const postData = queryClient.getQueryData<PostInfo>(['post', postId]);
             queryClient.setQueryData(['post', postId], {
                 ...postData,
                 isMemberLiked: previousLikeState,
@@ -56,7 +53,7 @@ export default function LikeButtonWithCount({ isMemberLiked, likeCount, postId }
     const handleLikeButtonClick = async () => {
         await queryClient.cancelQueries({ queryKey: ['post', postId] });
 
-        const postData = queryClient.getQueryData<Post>(['post', postId]);
+        const postData = queryClient.getQueryData<PostInfo>(['post', postId]);
         queryClient.setQueryData(['post', postId], {
             ...postData,
             isMemberLiked: !postData.isMemberLiked,
