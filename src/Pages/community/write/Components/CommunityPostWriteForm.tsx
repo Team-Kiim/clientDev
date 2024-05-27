@@ -36,7 +36,7 @@ export default function CommunityPostWriteForm() {
                         className={'rounded-lg px-6 py-2.5 transition-all hover:bg-violet-50'}
                         type={'button'}
                         onClick={() => {
-                            navigate(-1);
+                            navigate('/community');
                         }}
                     >
                         <span className={'text-[0.95rem] font-bold text-violet-600'}>취소</span>
