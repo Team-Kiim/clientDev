@@ -27,20 +27,25 @@ export default function PostListItem({ post }: Props) {
     return (
         <li
             className={
-                'h-[15.5rem] rounded-md border border-gray-100 shadow-lg transition-all hover:-translate-y-2 hover:shadow-xl'
+                'h-[26rem] rounded-md border border-gray-100 shadow-lg transition-all hover:-translate-y-2 hover:shadow-xl'
             }
         >
             <Link to={`/qnas/${id}`}>
                 <div className={'flex h-full flex-col'}>
-                    <div className={'flex items-center gap-x-2.5 px-3.5 py-2 text-gray-600'}>
+                    <div className={'w-full'}>
+                        <img className={'h-[11rem] w-full rounded-t-md object-cover'} src={imagePath} alt={imageName} />
+                    </div>
+                    <div className={'mb-1 mt-2.5 flex gap-x-1.5 px-3.5 text-gray-600'}>
                         <CalendarIcon className={'size-4'} />
                         <span
-                            className={'text-[0.8rem]'}
+                            className={'text-[0.75rem]'}
                         >{`${createdTime[0]}년 ${createdTime[1]}월 ${createdTime[2]}일`}</span>
                     </div>
-                    <div className={'flex flex-1 flex-col gap-y-3 px-3.5'}>
+                    <div className={'flex flex-1 flex-col gap-y-1.5 px-3.5'}>
                         <h1 className={'line-clamp-1 text-lg font-bold'}>{title}</h1>
-                        <p className={'line-clamp-4 text-sm text-gray-500'}>{bodyContent.replace(/<[^>]+>/g, '')}</p>
+                        <p className={'line-clamp-4 text-[0.85rem] text-gray-500'}>
+                            {bodyContent.replace(/<[^>]+>/g, '')}
+                        </p>
                     </div>
                     <div
                         className={
@@ -51,7 +56,7 @@ export default function PostListItem({ post }: Props) {
                             <div className={'avatar size-7'}>
                                 <img className={'rounded-full'} src={profileImagePath} alt={profileImageName} />
                             </div>
-                            <span className={'text-[0.82rem] font-bold'}>{nickname}</span>
+                            <span className={'line-clamp-1 text-[0.82rem] font-bold'}>{nickname}</span>
                         </div>
                         <div className={'flex items-center gap-x-4'}>
                             <div className={'flex items-center gap-x-1'}>
