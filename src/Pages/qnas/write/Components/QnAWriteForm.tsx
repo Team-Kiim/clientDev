@@ -3,8 +3,8 @@ import { isEqual } from 'lodash';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
-import TitleInput from '@/Pages/qnas/Components/QnAPostInputs/TitleInput.tsx';
-import TextEditor from '@/Pages/qnas/Components/QnAPostInputs/TextEditor.tsx';
+import TitleInput from '@/Pages/Components/PostInputs/TitleInput.tsx';
+import TextEditor from '@/Pages/Components/PostInputs/TextEditor.tsx';
 import CategorySelector from '@/Pages/qnas/write/Components/Category/CategorySelector.tsx';
 
 interface FormData {
