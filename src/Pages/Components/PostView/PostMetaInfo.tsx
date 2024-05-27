@@ -8,12 +8,12 @@ dayjs.locale('ko');
 interface Props {
     createdTime: number[];
     title: string;
-    userNickname: string;
-    profileImgSrc: string;
+    nickname: string;
+    profileImgPath: string;
     viewCount: number;
 }
 
-export default function PostMetaInfo({ createdTime, title, userNickname, profileImgSrc, viewCount }: Props) {
+export default function PostMetaInfo({ createdTime, title, nickname, profileImgPath, viewCount }: Props) {
     const createdDate = new Date(createdTime[0], createdTime[1] - 1, createdTime[2]);
     const createdWeekDay = dayjs(createdDate).format('dddd');
 
@@ -30,10 +30,10 @@ export default function PostMetaInfo({ createdTime, title, userNickname, profile
                 <div className={'flex items-center gap-x-3'}>
                     <div className={'avatar'}>
                         <div className={'size-8 rounded-full'}>
-                            <img src={profileImgSrc} alt={'profileImage'} />
+                            <img src={profileImgPath} alt={'profileImage'} />
                         </div>
                     </div>
-                    <span className={'text-[0.9rem] font-bold tracking-wider'}>{userNickname}</span>
+                    <span className={'text-[0.9rem] font-bold tracking-wider'}>{nickname}</span>
                 </div>
                 <div className={'text-[0.9rem] text-gray-600'}>
                     조회수 : <span className={'font-bold'}>{formatNumber(viewCount, 0)}</span>
