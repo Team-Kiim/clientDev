@@ -9,6 +9,8 @@ import PostPage from '@/Pages/qnas/[boardId]/page.tsx';
 import QnAWritePage from '@/Pages/qnas/write/page.tsx';
 import QnAEditPage from '@/Pages/qnas/edit/[postId]/page.tsx';
 
+import CommunityPostWritePage from '@/Pages/community/write/page.tsx';
+
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route element={<AppLayout />}>
@@ -24,6 +26,7 @@ const router = createBrowserRouter(
                 <Route element={<PostPage />} path={'/qnas/:postId'} />
                 <Route element={<QnAWritePage />} path={'/qnas/write'} />
                 <Route element={<QnAEditPage />} path={'/qnas/edit/:postId'} />
+                <Route element={<CommunityPostWritePage />} path={'/community/write'} />
                 <Route element={<>마이페이지</>} path={'/user/:userNickname'} />
             </Route>
         </Route>,
