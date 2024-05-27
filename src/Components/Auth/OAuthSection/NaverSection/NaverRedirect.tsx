@@ -1,14 +1,13 @@
 import axios from 'axios';
-import { useQuery } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import { Navigate, useLocation } from 'react-router-dom';
 
 export default function NaverRedirect() {
     const { hash } = useLocation();
     const accessToken = hash.slice(1).split('&')[0].split('=')[1];
 
-    const { isSuccess, isError } = useQuery({
-        queryKey: ['oauth', 'naver'],
-        queryFn: () => {
+    const { mutate, isSuccess, isError } = useMutation({
+        mutationFn: () => {
             return axios
                 .post('/api/oauth/get-member-info', {
                     accessToken,
@@ -29,6 +28,8 @@ export default function NaverRedirect() {
                 });
         },
     });
+
+    mutate();
 
     if (isSuccess) {
         return <Navigate to={'/'} replace={true} />;
