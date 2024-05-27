@@ -30,7 +30,7 @@ export type PostInfo = {
     imageFileInfoDtoList: ImageInfo[] | null;
 };
 
-export type DevPostInfo = PostInfo & {
+export type QnAPostInfo = PostInfo & {
     skillCategories: string[] | null;
 };
 
