@@ -3,7 +3,7 @@ import { CalendarIcon } from '@heroicons/react/24/outline';
 import { BiSolidLike } from 'react-icons/bi';
 import { TiEye } from 'react-icons/ti';
 import formatNumber from '@/Utils/formatNumber.ts';
-import type { Post } from '@/Types/PostTypes.ts';
+import type { Post } from '@/Types/Post.ts';
 
 interface Props {
     post: Post;
