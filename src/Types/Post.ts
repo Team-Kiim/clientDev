@@ -1,9 +1,3 @@
-export type FileData = {
-    id: number;
-    originalFileName: string;
-    saveFileName: string;
-};
-
 export type Post = {
     id: number;
     title: string;
@@ -18,5 +12,4 @@ export type Post = {
     createdTime: number[];
     modifiedTime?: number[];
     skillCategories?: string[];
-    fileDtoList?: FileData[];
 };
