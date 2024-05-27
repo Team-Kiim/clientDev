@@ -1,15 +1,13 @@
 export type Post = {
     id: number;
     title: string;
-    userNickname: string;
-    qnaType?: string;
-    profileImgSrc?: string;
+    nickname: string;
+    profileImageName: string | null;
+    profileImagePath: string | null;
+    imageName: string | null;
+    imagePath: string | null;
     bodyContent: string;
     viewCount: number;
-    isMemberLiked: boolean;
     likeCount: number;
-    isBookmarked: boolean;
     createdTime: number[];
-    modifiedTime?: number[];
-    skillCategories?: string[];
 };
