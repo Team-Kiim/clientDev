@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
 import EmailVerificationInputs from '@/Pages/sign_up/Component/EmailVerificationInputs.tsx';
@@ -16,6 +17,8 @@ interface FormData {
 }
 
 export default function SignUpForm() {
+    const [isEmailVerified, setIsEmailVerified] = useState(false);
+
     const navigate = useNavigate();
 
     const formMethods = useForm<FormData>({
@@ -30,7 +33,15 @@ export default function SignUpForm() {
         },
     });
 
+    const updateEmailVerification = () => {
+        setIsEmailVerified(true);
+    };
+
     const onSubmit: SubmitHandler<FormData> = async data => {
+        if (!isEmailVerified) {
+            window.alert('이메일 인증을 완료해주세요.');
+            return;
+        }
         const email = data.email.replace(/\s/gi, '');
         const password = data.password.replace(/\s/gi, '');
         const nickname = data.nickname.trim();
@@ -55,7 +66,7 @@ export default function SignUpForm() {
         <FormProvider {...formMethods}>
             <form className={'flex w-full flex-col gap-y-8'} onSubmit={formMethods.handleSubmit(onSubmit)}>
                 <div className={'flex w-full flex-col gap-y-7'}>
-                    <EmailVerificationInputs />
+                    <EmailVerificationInputs updateEmailVerification={updateEmailVerification} />
                     <PasswordInputs />
                     <NicknameInput />
                     <JobSelectInput />

@@ -4,12 +4,16 @@ import { useFormContext } from 'react-hook-form';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { emailRegexp } from '@/Constants/regexps.ts';
 
+interface Props {
+    updateEmailVerification(): void;
+}
+
 interface FormData {
     email: string;
     verificationCode: string;
 }
 
-export default function EmailVerificationInputs() {
+export default function EmailVerificationInputs({ updateEmailVerification }: Props) {
     const [isEmailVerified, setIsEmailVerified] = useState(false);
     const [isVerificationRequested, setIsVerificationRequested] = useState(false);
 
@@ -55,6 +59,7 @@ export default function EmailVerificationInputs() {
                 });
                 window.alert('인증되었습니다.');
                 setIsEmailVerified(true);
+                updateEmailVerification();
             } catch (error) {
                 //TODO
                 // 에러처리
