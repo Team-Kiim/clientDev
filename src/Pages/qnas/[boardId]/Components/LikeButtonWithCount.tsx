@@ -2,7 +2,7 @@ import { debounce } from 'lodash';
 import { useCallback, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { BiLike, BiSolidLike } from 'react-icons/bi';
-import type { Post } from '@/Types/PostTypes.ts';
+import type { Post } from '@/Types/Post.ts';
 import formatNumber from '@/Utils/formatNumber.ts';
 
 interface Props {

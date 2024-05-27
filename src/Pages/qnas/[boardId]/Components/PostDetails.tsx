@@ -2,7 +2,7 @@ import PostMetaInfo from '@/Pages/qnas/[boardId]/Components/PostMetaInfo.tsx';
 import PostControl from '@/Pages/qnas/[boardId]/Components/PostControl.tsx';
 import PostContent from '@/Pages/qnas/[boardId]/Components/PostContent.tsx';
 import PostKeywordList from '@/Pages/qnas/[boardId]/Components/PostKeywordList.tsx';
-import type { Post } from '@/Types/PostTypes.ts';
+import type { Post } from '@/Types/Post.ts';
 
 type Props = Omit<Post, 'isBookmarked' | 'likeCount' | 'dislikeCount'>;
 

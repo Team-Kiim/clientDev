@@ -3,7 +3,7 @@ import { debounce } from 'lodash';
 import { useCallback, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HiBookmark, HiOutlineBookmark } from 'react-icons/hi2';
-import type { Post } from '@/Types/PostTypes.ts';
+import type { Post } from '@/Types/Post.ts';
 
 interface Props {
     isBookmarked: boolean;
