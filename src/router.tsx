@@ -2,6 +2,7 @@ import { createBrowserRouter, createRoutesFromElements, Route } from 'react-rout
 import AppLayout from '@/layout.tsx';
 import MainPage from '@/Pages/page.tsx';
 import CommunityPostListPage from '@/Pages/community/page.tsx';
+import CommunityPostPage from '@/Pages/community/[boardId]/page.tsx';
 import SignInPage from '@/Pages/sign_in/page.tsx';
 import SignUpPage from '@/Pages/sign_up/page.tsx';
 import NaverRedirect from '@/Components/Auth/OAuthSection/NaverSection/NaverRedirect.tsx';
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
                 <Route element={<PostPage />} path={'/qnas/:postId'} />
                 <Route element={<QnAWritePage />} path={'/qnas/write'} />
                 <Route element={<QnAEditPage />} path={'/qnas/edit/:postId'} />
+                <Route element={<CommunityPostPage />} path={'/community/:postId'} />
                 <Route element={<CommunityPostWritePage />} path={'/community/write'} />
                 <Route element={<>마이페이지</>} path={'/user/:userNickname'} />
             </Route>
