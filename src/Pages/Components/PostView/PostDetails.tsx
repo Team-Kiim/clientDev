@@ -1,6 +1,6 @@
-import PostMetaInfo from '@/Pages/qnas/[boardId]/Components/PostMetaInfo.tsx';
-import PostControl from '@/Pages/qnas/[boardId]/Components/PostControl.tsx';
-import PostContent from '@/Pages/qnas/[boardId]/Components/PostContent.tsx';
+import PostMetaInfo from '@/Pages/Components/PostView/PostMetaInfo.tsx';
+import PostControl from '@/Pages/Components/PostView/PostControl.tsx';
+import PostContent from '@/Pages/Components/PostView/PostContent.tsx';
 import PostKeywordList from '@/Pages/qnas/[boardId]/Components/PostKeywordList.tsx';
 import type { Post } from '@/Types/Post.ts';
 
