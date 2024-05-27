@@ -1,6 +1,7 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import AppLayout from '@/layout.tsx';
 import MainPage from '@/Pages/page.tsx';
+import CommunityPostListPage from '@/Pages/community/page.tsx';
 import SignInPage from '@/Pages/sign_in/page.tsx';
 import SignUpPage from '@/Pages/sign_up/page.tsx';
 import NaverRedirect from '@/Components/Auth/OAuthSection/NaverSection/NaverRedirect.tsx';
@@ -16,6 +17,7 @@ const router = createBrowserRouter(
         <Route element={<AppLayout />}>
             <Route>
                 <Route element={<MainPage />} path={'/'} />
+                <Route element={<CommunityPostListPage />} path={'/community'} />
                 <Route element={<SignInPage />} path={'/sign_in'} />
                 <Route element={<SignUpPage />} path={'/sign_up'} />
                 <Route element={<NaverRedirect />} path={'/oauth/naver'} />
