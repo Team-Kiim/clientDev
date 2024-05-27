@@ -17,7 +17,7 @@ export default function PostAddButton() {
     return (
         <button
             className={
-                'flex items-center gap-x-2 rounded-xl bg-violet-600 px-3.5 py-2.5 text-white transition-all hover:bg-violet-700'
+                'flex items-center gap-x-2 rounded-xl border border-violet-600 bg-violet-600 px-3.5 py-2.5 text-white transition-all hover:border-violet-700 hover:bg-violet-700'
             }
             onClick={() => {
                 handlePostAddButtonClick();
