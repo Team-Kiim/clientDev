@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import PostListItem from '@/Components/Post/PostListItem.tsx';
 import getPostList from '@/Utils/getPostList.ts';
@@ -6,7 +6,9 @@ import getPostList from '@/Utils/getPostList.ts';
 export default function PostList() {
     const [searchParams] = useSearchParams();
 
-    const qnaType = searchParams.get('qna_type') ?? 'dev';
+    const { pathname } = useLocation();
+
+    const postType = pathname.split('/')[1];
     const title = searchParams.get('post_title') ?? '';
     const keywords = searchParams.getAll('keyword') ?? [];
 
@@ -15,7 +17,7 @@ export default function PostList() {
         isLoading,
         isPending,
     } = useQuery({
-        queryKey: ['posts', { qnaType, title, keywords }],
+        queryKey: ['posts', { postType, title, keywords }],
         queryFn: getPostList,
         gcTime: 0,
         throwOnError: true,
