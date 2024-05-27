@@ -4,6 +4,8 @@ import GlobalNavbar from '@/Components/GNB/GlobalNavbar.tsx';
 const shouldHideGNB = (pathname: string): boolean => {
     if (
         pathname.includes('/qnas/write') ||
+        pathname.includes('/community/write') ||
+        pathname.includes('/community/edit') ||
         pathname.includes('/qnas/edit') ||
         pathname.includes('/sign_in') ||
         pathname.includes('/sign_up')
