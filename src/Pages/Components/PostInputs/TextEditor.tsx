@@ -79,7 +79,7 @@ const editorConfiguration = {
             { language: 'typescript', label: 'TypeScript' },
         ],
     },
-    placeholder: '질문 내용을 입력해주세요.',
+    placeholder: '게시글 내용을 입력해주세요.',
 };
 
 export default function TextEditor() {
@@ -98,7 +98,7 @@ export default function TextEditor() {
                 rules={{
                     required: {
                         value: true,
-                        message: '질문 내용을 입력해주세요.',
+                        message: '게시글 내용을 입력해주세요.',
                     },
                 }}
                 render={({ field }) => {
