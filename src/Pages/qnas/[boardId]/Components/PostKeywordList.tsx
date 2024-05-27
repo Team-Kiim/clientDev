@@ -1,8 +1,11 @@
 interface Props {
-    keywords: string[];
+    categories: {
+        parentCategory: string;
+        childCategory: string;
+    }[];
 }
 
-export default function PostKeywordList({ keywords }: Props) {
+export default function PostKeywordList({ categories }: Props) {
     return (
         <ul className={'mb-5 mt-7 flex items-center gap-x-2.5'}>
             {keywords.map(keyword => {
