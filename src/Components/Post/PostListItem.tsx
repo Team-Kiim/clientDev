@@ -10,7 +10,19 @@ interface Props {
 }
 
 export default function PostListItem({ post }: Props) {
-    const { id, title, userNickname, profileImgSrc, bodyContent, viewCount, likeCount, createdTime } = post;
+    const {
+        id,
+        title,
+        nickname,
+        profileImagePath,
+        profileImageName,
+        imagePath,
+        imageName,
+        bodyContent,
+        viewCount,
+        likeCount,
+        createdTime,
+    } = post;
 
     return (
         <li
@@ -37,9 +49,9 @@ export default function PostListItem({ post }: Props) {
                     >
                         <div className={'flex items-center gap-x-2'}>
                             <div className={'avatar size-7'}>
-                                <img className={'rounded-full'} src={profileImgSrc} alt={'profileImgExample'} />
+                                <img className={'rounded-full'} src={profileImagePath} alt={profileImageName} />
                             </div>
-                            <span className={'text-[0.82rem] font-bold'}>{userNickname}</span>
+                            <span className={'text-[0.82rem] font-bold'}>{nickname}</span>
                         </div>
                         <div className={'flex items-center gap-x-4'}>
                             <div className={'flex items-center gap-x-1'}>
