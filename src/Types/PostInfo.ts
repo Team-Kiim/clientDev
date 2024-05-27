@@ -31,7 +31,12 @@ export type PostInfo = {
 };
 
 export type QnAPostInfo = PostInfo & {
-    skillCategories: string[] | null;
+    skillCategories:
+        | {
+              parentCategory: string;
+              childCategory: string;
+          }[]
+        | null;
 };
 
 export type CommunityPostInfo = PostInfo & {
