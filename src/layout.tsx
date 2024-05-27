@@ -18,7 +18,7 @@ export default function Layout() {
     const { pathname } = useLocation();
 
     return (
-        <div className={'h-dvh overflow-auto'}>
+        <div>
             {!shouldHideGNB(pathname) && (
                 <div
                     className={
