@@ -4,15 +4,15 @@ import LikeButtonWithCount from '@/Pages/Components/PostView/LikeButtonWithCount
 interface Props {
     isMemberLiked: boolean;
     likeCount: number;
-    isBookmarked: boolean;
+    isMemberBookmarked: boolean;
     postId: string;
 }
 
-export default function PostInteraction({ isMemberLiked, likeCount, isBookmarked, postId }: Props) {
+export default function PostInteraction({ isMemberLiked, likeCount, isMemberBookmarked, postId }: Props) {
     return (
         <section className={'mb-2.5 flex items-center justify-end gap-x-4 border-b border-gray-300 pb-2.5'}>
             <LikeButtonWithCount isMemberLiked={isMemberLiked} likeCount={likeCount} postId={postId} />
-            <PostBookmarkButton isBookmarked={isBookmarked} postId={postId} />
+            <PostBookmarkButton isBookmarked={isMemberBookmarked} postId={postId} />
         </section>
     );
 }
