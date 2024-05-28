@@ -1,6 +1,7 @@
 import { createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import AppLayout from '@/layout.tsx';
 import MainPage from '@/Pages/page.tsx';
+import QnAPostListPage from '@/Pages/qnas/page.tsx';
 import CommunityPostListPage from '@/Pages/community/page.tsx';
 import CommunityPostPage from '@/Pages/community/[boardId]/page.tsx';
 import SignInPage from '@/Pages/sign_in/page.tsx';
@@ -18,6 +19,7 @@ const router = createBrowserRouter(
         <Route element={<AppLayout />}>
             <Route>
                 <Route element={<MainPage />} path={'/'} />
+                <Route element={<QnAPostListPage />} path={'/qnas'} />
                 <Route element={<CommunityPostListPage />} path={'/community'} />
                 <Route element={<SignInPage />} path={'/sign_in'} />
                 <Route element={<SignUpPage />} path={'/sign_up'} />
