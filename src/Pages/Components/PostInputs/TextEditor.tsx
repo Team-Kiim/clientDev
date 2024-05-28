@@ -1,8 +1,13 @@
+import axios from 'axios';
 import { Controller, useFormContext } from 'react-hook-form';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
-import Editor from 'ckeditor5-custom-build';
+import Editor from 'ckeditor5-custom-build/build/ckeditor';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { useSearchParams } from 'react-router-dom';
+
+interface Props {
+    postId: number;
+}
 
 interface FormData {
     bodyContent: string;
@@ -24,6 +29,7 @@ const editorConfiguration = {
             'horizontalLine',
             'code',
             'codeBlock',
+            'imageUpload',
             '|',
             'bulletedList',
             'numberedList',
@@ -82,11 +88,51 @@ const editorConfiguration = {
     placeholder: '게시글 내용을 입력해주세요.',
 };
 
-export default function TextEditor() {
+export default function TextEditor({ postId }: Props) {
     const {
         control,
         formState: { errors },
     } = useFormContext<FormData>();
+
+    const customUploadAdapter = loader => {
+        return {
+            upload() {
+                return new Promise((resolve, reject) => {
+                    const data = new FormData();
+                    loader.file.then(file => {
+                        const fileBlob = new Blob([file], {
+                            type: 'application/octet-stream',
+                        });
+                        const postIdBlob = new Blob([JSON.stringify(postId)], {
+                            type: 'application/json',
+                        });
+
+                        data.append('file', fileBlob);
+                        data.append('postId', postIdBlob);
+
+                        axios
+                            .post('/api/file/image', data, {
+                                headers: { 'Content-Type': 'multipart/form-data' },
+                            })
+                            .then(res => {
+                                const imgName = res.data.name;
+                                const postType = res.data.path;
+                                resolve({
+                                    default: `http://192.168.219.103:8080/image/${postType}/${imgName}`,
+                                });
+                            })
+                            .catch(err => reject(err));
+                    });
+                });
+            },
+        };
+    };
+
+    function uploadPlugin(editor) {
+        editor.plugins.get('FileRepository').createUploadAdapter = loader => {
+            return customUploadAdapter(loader);
+        };
+    }
 
     const [searchParams] = useSearchParams();
 
@@ -112,10 +158,13 @@ export default function TextEditor() {
                                 // (출처: 공식문서)
                                 id={searchParams}
                                 data={field.value}
+                                // @ts-ignore
                                 editor={Editor}
-                                config={editorConfiguration}
+                                config={{
+                                    ...editorConfiguration,
+                                    extraPlugins: [uploadPlugin],
+                                }}
                                 onChange={(_, editor) => {
-                                    console.log(editor.getData());
                                     field.onChange(editor.getData());
                                 }}
                                 onBlur={field.onBlur}
