@@ -1,11 +1,16 @@
+import axios from 'axios';
 import dompurify from 'dompurify';
 import { isEqual } from 'lodash';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import TitleInput from '@/Pages/Components/PostInputs/TitleInput.tsx';
 import TextEditor from '@/Pages/Components/PostInputs/TextEditor.tsx';
 import CategorySelector from '@/Pages/qnas/write/Components/Category/CategorySelector.tsx';
+
+interface Props {
+    postId: number;
+}
 
 interface FormData {
     title: string;
@@ -13,7 +18,7 @@ interface FormData {
     keywords: string[];
 }
 
-export default function QnAWriteForm() {
+export default function QnAWriteForm({ postId }: Props) {
     const navigate = useNavigate();
 
     const [selectedCategories, setSelectedCategories] = useState<
@@ -28,9 +33,19 @@ export default function QnAWriteForm() {
         defaultValues: {
             title: '',
             bodyContent: '',
-            keywords: [],
         },
     });
+
+    useEffect(() => {
+        console.log(formMethods.formState);
+        return () => {
+            console.log(formMethods.formState);
+            if (formMethods.formState.isSubmitSuccessful) {
+                return;
+            }
+            // axios.delete(`/api/dev-post/cancel/${postId}`).then().catch();
+        };
+    }, []);
 
     const updateSelectedCategories = (newCategory: { parentCategory: string; childCategory: string }) => {
         for (const category of selectedCategories) {
@@ -47,8 +62,36 @@ export default function QnAWriteForm() {
         setSelectedCategories([...selectedCategories, newCategory]);
     };
 
-    const onSubmit: SubmitHandler<FormData> = data => {
-        console.log(dompurify.sanitize(data.bodyContent));
+    const onSubmit: SubmitHandler<FormData> = async data => {
+        const currentImages = document.querySelectorAll('img');
+        const currentImageIdList: number[] = [];
+        for (const $currentImage of currentImages) {
+            const currentImageId = Number($currentImage.src.split('#')[1]);
+            currentImageIdList.push(currentImageId);
+        }
+
+        try {
+            const response = await axios
+                .post('/api/dev-post/post', {
+                    id: postId,
+                    title: data.title,
+                    bodyContent: dompurify.sanitize(data.bodyContent),
+                    skillCategoryList: selectedCategories.map(category => {
+                        return {
+                            parentSkillCategory: category.parentCategory,
+                            childSkillCategory: category.childCategory,
+                        };
+                    }),
+                    fileIdList: currentImageIdList,
+                })
+                .then(response => response.data);
+
+            const createdPostId = response.id;
+            navigate(`/qnas/${createdPostId}`, { replace: true });
+        } catch (error) {
+            //TODO
+            // 에러처리
+        }
     };
 
     return (
@@ -60,7 +103,7 @@ export default function QnAWriteForm() {
                         updateSelectedCategories={updateSelectedCategories}
                         selectedCategories={selectedCategories}
                     />
-                    <TextEditor />
+                    <TextEditor postId={postId} />
                 </div>
                 <div className={'mb-10 flex w-full justify-end gap-x-4'}>
                     <button
