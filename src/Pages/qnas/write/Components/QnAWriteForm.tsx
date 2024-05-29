@@ -15,7 +15,6 @@ interface Props {
 interface FormData {
     title: string;
     bodyContent: string;
-    keywords: string[];
 }
 
 export default function QnAWriteForm({ postId }: Props) {
