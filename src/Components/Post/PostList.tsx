@@ -1,5 +1,6 @@
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import { FaQuestion } from 'react-icons/fa6';
 import PostListItem from '@/Components/Post/PostListItem.tsx';
 import PostListPagination from '@/Components/Post/PostListPagination.tsx';
 import getPostList from '@/Utils/getPostList.ts';
@@ -31,14 +32,32 @@ export default function PostList() {
 
     return (
         <>
-            <ul className={'grid grid-cols-4 gap-x-3.5 gap-y-5'}>
-                {postList.map(post => {
-                    return <PostListItem key={post.id} post={post} postType={postType === '' ? 'qnas' : postType} />;
-                })}
-            </ul>
-            <div className={'my-10'}>
-                <PostListPagination numberOfPosts={160} />
-            </div>
+            {postList.length === 0 ? (
+                <div className={'my-20 flex flex-col items-center gap-y-10'}>
+                    <FaQuestion className={'size-32 text-violet-700'} />
+                    <p className={'text-lg font-bold text-gray-600'}>
+                        검색된 게시글이 존재하지 않습니다. 위 <span className={'text-violet-700'}>글작성</span> 버튼을
+                        눌러 관련 게시글을 작성해주세요.
+                    </p>
+                </div>
+            ) : (
+                <>
+                    <ul className={'grid grid-cols-4 gap-x-3.5 gap-y-5'}>
+                        {postList.map(post => {
+                            return (
+                                <PostListItem
+                                    key={post.id}
+                                    post={post}
+                                    postType={postType === '' ? 'qnas' : postType}
+                                />
+                            );
+                        })}
+                    </ul>
+                    <div className={'my-10'}>
+                        <PostListPagination numberOfPosts={160} />
+                    </div>
+                </>
+            )}
         </>
     );
 }
