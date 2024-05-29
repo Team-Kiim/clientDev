@@ -7,9 +7,10 @@ import type { Post } from '@/Types/Post.ts';
 
 interface Props {
     post: Post;
+    postType: string;
 }
 
-export default function PostListItem({ post }: Props) {
+export default function PostListItem({ post, postType }: Props) {
     const {
         id,
         title,
@@ -30,7 +31,7 @@ export default function PostListItem({ post }: Props) {
                 'h-[26rem] rounded-md border border-gray-100 shadow-lg transition-all hover:-translate-y-2 hover:shadow-xl'
             }
         >
-            <Link to={`/qnas/${id}`}>
+            <Link to={`${postType === 'qnas' ? '/qnas' : '/community'}/${id}`}>
                 <div className={'flex h-full flex-col'}>
                     <div className={'w-full'}>
                         <img className={'h-[11rem] w-full rounded-t-md object-cover'} src={imagePath} alt={imageName} />
