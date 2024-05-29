@@ -63,7 +63,7 @@ export default function CommentForm() {
             <div className={'my-3.5 flex w-full justify-end'}>
                 <button
                     className={
-                        'rounded-md bg-violet-700 px-4 py-2.5 text-[0.9rem] font-bold text-white disabled:opacity-75'
+                        'rounded-xl bg-violet-600 px-5 py-2.5 text-[0.9rem] font-bold text-white transition-all hover:bg-violet-700 active:scale-95 disabled:opacity-75'
                     }
                     type={'submit'}
                     disabled={isSubmitting}
