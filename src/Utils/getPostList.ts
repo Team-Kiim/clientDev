@@ -241,11 +241,12 @@ const testData: Post[] = [
     },
 ];
 
-const getPostList: QueryFunction<Post[], [_1: string, _3: { postType: string; title: string; keywords: string[] }]> = ({
-    queryKey,
-}) => {
-    const { postType, title, keywords } = queryKey[1];
-    console.log(postType, title, keywords);
+const getPostList: QueryFunction<
+    Post[],
+    [_1: string, _3: { postType: string; title: string; keywords: string[]; currentPage }]
+> = ({ queryKey }) => {
+    const { postType, title, keywords, currentPage } = queryKey[1];
+    console.log(postType, title, keywords, currentPage);
 
     // return axios.get('/api/dev-posts').then(response => response.data);
     return Promise.resolve(testData);

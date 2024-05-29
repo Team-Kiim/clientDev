@@ -12,13 +12,14 @@ export default function PostList() {
     const postType = pathname.split('/')[1];
     const title = searchParams.get('post_title') ?? '';
     const keywords = searchParams.getAll('keyword') ?? [];
+    const currentPage = Number(searchParams.get('page') ?? '1');
 
     const {
         data: postList,
         isLoading,
         isPending,
     } = useQuery({
-        queryKey: ['posts', { postType, title, keywords }],
+        queryKey: ['posts', { postType, title, keywords, currentPage }],
         queryFn: getPostList,
         gcTime: 0,
         throwOnError: true,
@@ -32,7 +33,7 @@ export default function PostList() {
         <>
             <ul className={'grid grid-cols-4 gap-x-3.5 gap-y-5'}>
                 {postList.map(post => {
-                    return <PostListItem key={post.id} post={post} />;
+                    return <PostListItem key={post.id} post={post} postType={postType === '' ? 'qnas' : postType} />;
                 })}
             </ul>
             <div className={'my-10'}>
