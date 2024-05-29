@@ -74,7 +74,7 @@ export const CATEGORIES: Category[] = [
             { value: 'ORACLE', label: 'Oracle' },
             { value: 'MONGODB', label: 'MongoDB' },
             { value: 'POSTGRE_SQL', label: 'PostgreSQL' },
-            { value: 'MARIADB', label: 'MariaDB' },
+            { value: 'MARIA_DB', label: 'MariaDB' },
             { value: 'MS_SQL', label: 'MSSQL' },
             { value: 'REDIS', label: 'Redis' },
             { value: 'NEO4J', label: 'Neo4j' },
