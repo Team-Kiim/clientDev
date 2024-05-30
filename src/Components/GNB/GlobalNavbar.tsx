@@ -13,11 +13,11 @@ export default function GlobalNavbar() {
                     KoffeeChat
                 </Link>
                 <div className={'flex items-center justify-center gap-x-6'}>
-                    <Link to={'/notice'} className={'font-bold hover:text-violet-700'}>
-                        공지사항
-                    </Link>
                     <Link to={'/qnas'} className={'font-bold hover:text-violet-700'}>
                         {'Q&A'}
+                    </Link>
+                    <Link to={'/community'} className={'font-bold hover:text-violet-700'}>
+                        커뮤니티
                     </Link>
                 </div>
                 <PostSearch />
