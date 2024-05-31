@@ -1,16 +1,24 @@
+import axios from 'axios';
 import dompurify from 'dompurify';
+import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import TitleInput from '@/Pages/Components/PostInputs/TitleInput.tsx';
 import TextEditor from '@/Pages/Components/PostInputs/TextEditor.tsx';
+
+interface Props {
+    postId: number;
+}
 
 interface FormData {
     title: string;
     bodyContent: string;
 }
 
-export default function CommunityPostWriteForm() {
+export default function CommunityPostWriteForm({ postId }: Props) {
     const navigate = useNavigate();
+
+    const isFormSubmittedRef = useRef<boolean>(false);
 
     const formMethods = useForm<FormData>({
         mode: 'onBlur',
@@ -20,8 +28,40 @@ export default function CommunityPostWriteForm() {
         },
     });
 
-    const onSubmit: SubmitHandler<FormData> = data => {
-        console.log(dompurify.sanitize(data.bodyContent));
+    useEffect(() => {
+        return () => {
+            if (isFormSubmittedRef.current) {
+                return;
+            }
+            axios.delete(`/api/community-post/cancel/${postId}`).then().catch();
+        };
+    }, []);
+
+    const onSubmit: SubmitHandler<FormData> = async data => {
+        const currentImages = document.querySelectorAll('img');
+        const currentImageIdList: number[] = [];
+        for (const $currentImage of currentImages) {
+            const currentImageId = Number($currentImage.src.split('#')[1]);
+            currentImageIdList.push(currentImageId);
+        }
+
+        try {
+            const result = await axios
+                .post('/api/community-post/post', {
+                    id: postId,
+                    title: data.title,
+                    bodyContent: dompurify.sanitize(data.bodyContent),
+                    fileIdList: currentImageIdList,
+                })
+                .then(response => response.data);
+
+            const createdPostId = result.id;
+            isFormSubmittedRef.current = true;
+            navigate(`/community/${createdPostId}`, { replace: true });
+        } catch (error) {
+            //TODO
+            // 에러처리
+        }
     };
 
     return (
@@ -29,7 +69,7 @@ export default function CommunityPostWriteForm() {
             <form className={'mt-3 flex flex-col gap-y-4'} onSubmit={formMethods.handleSubmit(onSubmit)}>
                 <div className={'flex flex-col gap-y-10'}>
                     <TitleInput />
-                    <TextEditor />
+                    <TextEditor postId={postId} />
                 </div>
                 <div className={'mb-10 flex w-full justify-end gap-x-4'}>
                     <button
