@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { faker } from '@faker-js/faker';
 import { QueryFunction } from '@tanstack/react-query';
 import type { CommunityPostInfo } from '@/Types/PostInfo.ts';
@@ -46,9 +47,9 @@ const testData: CommunityPostInfo = {
 
 const getSingleCommunityPostInfo: QueryFunction<CommunityPostInfo, [_1: string, _2: string]> = ({ queryKey }) => {
     const postId = queryKey[1];
-    console.log(postId);
 
-    return Promise.resolve(testData);
+    return axios.get(`/api/community-post/${postId}`).then(response => response.data);
+    // return Promise.resolve(testData);
 };
 
 export default getSingleCommunityPostInfo;
