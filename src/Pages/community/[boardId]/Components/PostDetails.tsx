@@ -13,6 +13,7 @@ export default function PostDetails({
     title,
     nickname,
     profileImagePath,
+    profileImageName,
     bodyContent,
     viewCount,
     createdTime,
@@ -23,7 +24,8 @@ export default function PostDetails({
                 createdTime={createdTime}
                 title={title}
                 nickname={nickname}
-                profileImgPath={profileImagePath}
+                profileImagePath={profileImagePath}
+                profileImageName={profileImageName}
                 viewCount={viewCount}
             />
             <PostControl postId={id} />
