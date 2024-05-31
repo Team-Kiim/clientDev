@@ -1,36 +1,45 @@
-import { useMutation } from '@tanstack/react-query';
+import axios from 'axios';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+
+interface Props {
+    postId: string;
+}
 
 interface FormData {
     commentValue: string;
 }
 
-export default function CommentForm() {
-    const { mutate: commentPostMutate } = useMutation({
-        mutationFn: (commentValue: string) => {
-            console.log(commentValue);
-            return Promise.resolve(1);
-        },
-
-        onSettled: () => {
-            //TODO
-            // 성공하든 실패하든 쿼리 무효화
-        },
-
-        onError: error => {
-            console.error(error);
-        },
-    });
+export default function CommentForm({ postId }: Props) {
+    const queryClient = useQueryClient();
 
     const {
         handleSubmit,
         register,
+        resetField,
         formState: { errors, isSubmitting },
     } = useForm<FormData>({
         mode: 'onBlur',
         defaultValues: {
             commentValue: '',
+        },
+    });
+
+    const { mutate: commentPostMutate } = useMutation({
+        mutationFn: (commentValue: string) => {
+            return axios.post(`/api/comment/${postId}/comments`, {
+                content: commentValue,
+            });
+        },
+
+        onError: error => {
+            console.error(error);
+        },
+
+        onSettled: () => {
+            resetField('commentValue');
+            return queryClient.invalidateQueries({ queryKey: ['post', postId] });
         },
     });
 
@@ -41,9 +50,9 @@ export default function CommentForm() {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className={'flex flex-col gap-y-2'}>
-                <div className={'rounded-lg border border-gray-300 focus-within:border-violet-700'}>
+                <div className={'rounded-xl border border-gray-300 shadow-md focus-within:border-violet-700'}>
                     <textarea
-                        className={'h-40 w-full resize-none rounded-lg p-3 text-sm focus:outline-none'}
+                        className={'h-36 w-full resize-none rounded-xl p-3 text-sm focus:outline-none'}
                         placeholder={'댓글 내용을 입력해주세요.'}
                         {...register('commentValue', {
                             required: {
