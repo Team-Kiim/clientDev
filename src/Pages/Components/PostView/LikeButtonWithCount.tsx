@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { debounce } from 'lodash';
 import { useCallback, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -19,10 +20,8 @@ export default function LikeButtonWithCount({ isMemberLiked, likeCount, postId }
 
     const { mutate } = useMutation({
         mutationFn() {
-            const { isMemberLiked: likeStateToUpdate, likeCount: likeCountToUpdate } =
-                queryClient.getQueryData<PostInfo>(['post', postId]);
-            console.log(likeStateToUpdate, likeCountToUpdate);
-            return Promise.resolve(true);
+            const { isMemberLiked: likeStateToUpdate } = queryClient.getQueryData<PostInfo>(['post', postId]);
+            return axios.post(`/api/post/${likeStateToUpdate ? 'like' : 'cancel-like'}/${postId}`);
         },
 
         onSuccess() {
