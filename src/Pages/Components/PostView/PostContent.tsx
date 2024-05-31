@@ -45,9 +45,29 @@ const changeToMermaidClass = (htmlString: string): string => {
     return htmlString.replaceAll('<code class="language-mermaid">', '<code class="mermaid">');
 };
 
+const changeImageSrc = (htmlString: string): string => {
+    const { VITE_SERVER_URL } = import.meta.env;
+    const srcArray: string[] = [];
+    const regex = /<img[^>]+src="([^">]+)"/g;
+    let match;
+
+    while ((match = regex.exec(htmlString)) !== null) {
+        console.log(match);
+        srcArray.push(match[1]);
+    }
+
+    if (srcArray.length === 0) {
+        return htmlString;
+    }
+
+    const domain = srcArray[0].split('/')[2];
+    const domainToChange = VITE_SERVER_URL.split('/')[2];
+    return htmlString.replaceAll(domain, domainToChange);
+};
+
 export default function PostContent({ bodyContent }: Props) {
     const safeHtmlString = dompurify.sanitize(bodyContent);
-    const htmlContent = changeToMermaidClass(safeHtmlString);
+    const htmlContent = changeToMermaidClass(changeImageSrc(safeHtmlString));
 
     useEffect(() => {
         mermaid.contentLoaded();
