@@ -39,13 +39,7 @@ const editorConfiguration = {
     },
     language: 'ko',
     image: {
-        toolbar: [
-            'imageTextAlternative',
-            'toggleImageCaption',
-            'imageStyle:inline',
-            'imageStyle:block',
-            'imageStyle:side',
-        ],
+        toolbar: ['imageTextAlternative'],
     },
     table: {
         contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells'],
@@ -89,6 +83,8 @@ const editorConfiguration = {
 };
 
 export default function TextEditor({ postId }: Props) {
+    const { VITE_SERVER_URL } = import.meta.env;
+
     const {
         control,
         formState: { errors },
@@ -118,7 +114,7 @@ export default function TextEditor({ postId }: Props) {
                                 const imgName = res.data.name;
                                 const postType = res.data.path;
                                 resolve({
-                                    default: `http://192.168.219.103:8080/image/${postType}/${imgName}`,
+                                    default: `${VITE_SERVER_URL}/image/${postType}/${imgName}`,
                                 });
                             })
                             .catch(err => reject(err));
