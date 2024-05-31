@@ -28,7 +28,7 @@ export default function PostView() {
             />
             <PostInteraction {...pick(data, ['isMemberLiked', 'likeCount', 'isMemberBookmarked'])} postId={postId} />
             <div className={'my-5'}>
-                <CommentForm />
+                <CommentForm postId={postId} />
                 <CommentList commentInfoDtoList={data.commentInfoDtoList} />
             </div>
         </div>
