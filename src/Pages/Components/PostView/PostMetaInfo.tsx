@@ -9,11 +9,21 @@ interface Props {
     createdTime: number[];
     title: string;
     nickname: string;
-    profileImgPath: string;
+    profileImageName: string;
+    profileImagePath: string;
     viewCount: number;
 }
 
-export default function PostMetaInfo({ createdTime, title, nickname, profileImgPath, viewCount }: Props) {
+export default function PostMetaInfo({
+    createdTime,
+    title,
+    nickname,
+    profileImagePath,
+    profileImageName,
+    viewCount,
+}: Props) {
+    const { VITE_SERVER_URL } = import.meta.env;
+
     const createdDate = new Date(createdTime[0], createdTime[1] - 1, createdTime[2]);
     const createdWeekDay = dayjs(createdDate).format('dddd');
 
@@ -30,7 +40,10 @@ export default function PostMetaInfo({ createdTime, title, nickname, profileImgP
                 <div className={'flex items-center gap-x-3'}>
                     <div className={'avatar'}>
                         <div className={'size-8 rounded-full'}>
-                            <img src={profileImgPath} alt={'profileImage'} />
+                            <img
+                                src={`${VITE_SERVER_URL}/image/${profileImagePath}/${profileImageName}`}
+                                alt={profileImageName}
+                            />
                         </div>
                     </div>
                     <span className={'text-[0.9rem] font-bold tracking-wider'}>{nickname}</span>
