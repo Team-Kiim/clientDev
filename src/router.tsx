@@ -13,6 +13,7 @@ import QnAWritePage from '@/Pages/qnas/write/page.tsx';
 import QnAEditPage from '@/Pages/qnas/edit/[postId]/page.tsx';
 
 import CommunityPostWritePage from '@/Pages/community/write/page.tsx';
+import ChatRoomPage from '@/Pages/chats/[roomId]/page.tsx';
 import UserPageLayout from '@/Pages/user/Components/UserPageLayout.tsx';
 import UserProfilePage from '@/Pages/user/page.tsx';
 
@@ -35,6 +36,7 @@ const router = createBrowserRouter(
                 <Route element={<QnAEditPage />} path={'/qnas/edit/:postId'} />
                 <Route element={<CommunityPostPage />} path={'/community/:postId'} />
                 <Route element={<CommunityPostWritePage />} path={'/community/write'} />
+                <Route element={<ChatRoomPage />} path={'/chats/:roomId'} />
                 <Route element={<UserPageLayout />} path={'/user/:nickname?'}>
                     <Route element={<UserProfilePage />} index />
                     <Route element={<UserProfilePage />} path={'profile'} />
