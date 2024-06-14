@@ -32,10 +32,10 @@ export type PostInfo = {
 };
 
 export type QnAPostInfo = PostInfo & {
-    skillCategories:
+    skillCategoryList:
         | {
-              parentCategory: string;
-              childCategory: string;
+              parentSkillCategory: string;
+              childSkillCategory: string;
           }[]
         | null;
 };
