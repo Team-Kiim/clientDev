@@ -7,27 +7,27 @@ import formatNumber from '@/Utils/formatNumber.ts';
 import type { PostInfo } from '@/Types/PostInfo.ts';
 
 interface Props {
-    isMemberLiked: boolean;
+    memberLiked: boolean;
     likeCount: number;
     postId: string;
 }
 
-export default function LikeButtonWithCount({ isMemberLiked, likeCount, postId }: Props) {
+export default function LikeButtonWithCount({ memberLiked, likeCount, postId }: Props) {
     const queryClient = useQueryClient();
 
-    const [previousLikeState, setPreviousLikeState] = useState(isMemberLiked);
+    const [previousLikeState, setPreviousLikeState] = useState(memberLiked);
     const [previousLikeCount, setPreviousLikeCount] = useState(likeCount);
 
     const { mutate } = useMutation({
         mutationFn() {
-            const { isMemberLiked: likeStateToUpdate } = queryClient.getQueryData<PostInfo>(['post', postId]);
-            return axios.post(`/api/post/${likeStateToUpdate ? 'like' : 'cancel-like'}/${postId}`);
+            return axios.post(`/api/post/like/${postId}`);
         },
 
         onSuccess() {
-            const { isMemberLiked: updatedLikeState, likeCount: updatedLikeCount } = queryClient.getQueryData<PostInfo>(
-                ['post', postId],
-            );
+            const { memberLiked: updatedLikeState, likeCount: updatedLikeCount } = queryClient.getQueryData<PostInfo>([
+                'post',
+                postId,
+            ]);
 
             setPreviousLikeState(updatedLikeState);
             setPreviousLikeCount(updatedLikeCount);
@@ -37,7 +37,7 @@ export default function LikeButtonWithCount({ isMemberLiked, likeCount, postId }
             const postData = queryClient.getQueryData<PostInfo>(['post', postId]);
             queryClient.setQueryData(['post', postId], {
                 ...postData,
-                isMemberLiked: previousLikeState,
+                memberLiked: previousLikeState,
                 likeCount: previousLikeCount,
             });
         },
@@ -55,8 +55,8 @@ export default function LikeButtonWithCount({ isMemberLiked, likeCount, postId }
         const postData = queryClient.getQueryData<PostInfo>(['post', postId]);
         queryClient.setQueryData(['post', postId], {
             ...postData,
-            isMemberLiked: !postData.isMemberLiked,
-            likeCount: isMemberLiked ? likeCount - 1 : likeCount + 1,
+            memberLiked: !postData.memberLiked,
+            likeCount: memberLiked ? likeCount - 1 : likeCount + 1,
         });
 
         debouncedMutate();
@@ -73,7 +73,7 @@ export default function LikeButtonWithCount({ isMemberLiked, likeCount, postId }
                 type={'button'}
                 onClick={handleLikeButtonClick}
             >
-                {isMemberLiked ? <BiSolidLike className={'size-7'} /> : <BiLike className={'size-7'} />}
+                {memberLiked ? <BiSolidLike className={'size-7'} /> : <BiLike className={'size-7'} />}
             </button>
         </div>
     );
