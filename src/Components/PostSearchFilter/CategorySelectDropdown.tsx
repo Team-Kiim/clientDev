@@ -95,6 +95,7 @@ export default function CategorySelectDropdown({ isDropdownOpen, closeCategorySe
             }
             setSearchParams(searchParams);
         }
+        closeCategorySelectDropdown();
     };
 
     const handleCategoryResetButtonClick = () => {
@@ -104,17 +105,18 @@ export default function CategorySelectDropdown({ isDropdownOpen, closeCategorySe
         }
         searchParams.delete('category');
         setSearchParams(searchParams);
+        closeCategorySelectDropdown();
     };
 
     return (
         <div
             className={
-                'absolute top-[3.5rem] z-10 flex h-[17rem] w-[32rem] flex-col justify-between rounded-lg border border-gray-300 bg-white shadow-lg'
+                'absolute top-[3.5rem] z-10 flex h-[17rem] w-[40rem] flex-col justify-between rounded-lg border border-gray-300 bg-white shadow-lg'
             }
             ref={dropdownRef}
         >
-            <div className={'flew-grow w-full flex-shrink-0 basis-0 border-b border-gray-300 p-2'}>
-                <ul className={'flex w-full items-center gap-x-1 overflow-x-auto scrollbar-hide'}>
+            <div className={'w-full border-b border-gray-300 p-2'}>
+                <ul className={'flex w-full items-center gap-x-1'}>
                     {CATEGORIES.map(category => {
                         return (
                             <li
