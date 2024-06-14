@@ -41,7 +41,7 @@ export default function Page() {
                             </div>
                             <div className={'flex flex-col gap-y-1'}>
                                 <h3 className={'font-bold'}>직업</h3>
-                                {memberRole === null ? (
+                                {memberRole === 'TEMP' ? (
                                     <p className={'text-[0.95rem] font-bold text-red-700'}>
                                         선택된 직업이 없습니다. 직업을 설정해주세요.
                                     </p>
