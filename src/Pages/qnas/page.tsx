@@ -1,4 +1,5 @@
 import SearchFilter from '@/Components/PostSearchFilter/SearchFilter.tsx';
+import SelectedCategoryList from '@/Components/SelectedCategoryList.tsx';
 import PostList from '@/Components/Post/PostList.tsx';
 import PostAddButton from '@/Components/Post/PostAddButton.tsx';
 
@@ -8,6 +9,7 @@ export default function Page() {
             <div className={'w-[87.5rem]'}>
                 <div className={'flex items-center justify-between'}>
                     <SearchFilter />
+                    <SelectedCategoryList />
                     <PostAddButton />
                 </div>
                 <main className={'my-8'}>
