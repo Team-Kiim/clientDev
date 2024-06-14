@@ -21,8 +21,9 @@ export type PostInfo = {
     bodyContent: string;
     viewCount: number;
     likeCount: number;
-    isMemberLiked: boolean;
+    memberLiked: boolean;
     isMemberBookmarked: boolean;
+    memberWritten: boolean;
     createdTime: number[];
     modifiedTime?: number[] | null;
     profileImagePath?: string;
