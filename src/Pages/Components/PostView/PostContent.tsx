@@ -2,6 +2,7 @@ import dompurify from 'dompurify';
 import mermaid from 'mermaid';
 import Prism from 'prismjs';
 import { useEffect } from 'react';
+import checkIpAddress from '@/Utils/checkIpAddress.ts';
 import 'prismjs/themes/prism-tomorrow.css';
 import 'prismjs/components/prism-c';
 import 'prismjs/components/prism-cpp';
@@ -52,8 +53,10 @@ const changeImageSrc = (htmlString: string): string => {
     let match;
 
     while ((match = regex.exec(htmlString)) !== null) {
-        console.log(match);
-        srcArray.push(match[1]);
+        const domain = match[1].split('/')[2];
+        if (checkIpAddress(domain.split(':')[0])) {
+            srcArray.push(match[1]);
+        }
     }
 
     if (srcArray.length === 0) {
