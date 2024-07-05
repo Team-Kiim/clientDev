@@ -16,13 +16,13 @@ export default function GlobalNavbar() {
                 <div className={'flex items-center justify-center gap-x-2'}>
                     <Link
                         to={'/qnas'}
-                        className={'rounded-md px-2 py-1 text-[0.93rem] font-bold transition-all hover:bg-slate-100'}
+                        className={'rounded-lg px-2 py-2.5 text-[0.93rem] font-bold transition-all hover:bg-slate-100'}
                     >
                         {'Q&A'}
                     </Link>
                     <Link
                         to={'/community'}
-                        className={'rounded-md px-2 py-1 text-[0.93rem] font-bold transition-all hover:bg-slate-100'}
+                        className={'rounded-lg px-2 py-2.5 text-[0.93rem] font-bold transition-all hover:bg-slate-100'}
                     >
                         커뮤니티
                     </Link>
