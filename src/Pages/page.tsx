@@ -6,11 +6,13 @@ export default function Page() {
     return (
         <div className={'mt-8 flex w-full min-w-[1500px] justify-center'}>
             <div className={'w-[87.5rem]'}>
-                <SearchFilter />
+                <div className={'flex items-center justify-between'}>
+                    <SearchFilter />
+                    <PostAddButton />
+                </div>
                 <main className={'my-8'}>
                     <PostList />
                 </main>
-                <PostAddButton />
             </div>
         </div>
     );
