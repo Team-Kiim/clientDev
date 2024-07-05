@@ -20,13 +20,13 @@ export default function PostView() {
             <PostDetails
                 {...omit(data, [
                     'likeCount',
-                    'isMemberLiked',
+                    'memberLiked',
                     'isMemberBookmarked',
                     'imageFileInfoDtoList',
                     'commentInfoDtoList',
                 ])}
             />
-            <PostInteraction {...pick(data, ['isMemberLiked', 'likeCount', 'isMemberBookmarked'])} postId={postId} />
+            <PostInteraction {...pick(data, ['memberLiked', 'likeCount', 'isMemberBookmarked'])} postId={postId} />
             <div className={'my-5'}>
                 <CommentForm postId={postId} />
                 <CommentList commentInfoDtoList={data.commentInfoDtoList} />
