@@ -24,7 +24,7 @@ export default function Layout() {
             {!shouldHideGNB(pathname) && (
                 <div
                     className={
-                        'sticky top-0 z-50 flex h-[5rem] w-full min-w-[1500px] items-center justify-center border-b border-gray-300 bg-white'
+                        'sticky top-0 z-50 flex h-[4.5rem] w-full min-w-[1500px] items-center justify-center border-b border-gray-200 bg-white'
                     }
                 >
                     <div className={'w-[80rem]'}>
