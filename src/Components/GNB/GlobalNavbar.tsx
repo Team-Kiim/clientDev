@@ -9,15 +9,21 @@ export default function GlobalNavbar() {
 
     return (
         <nav className={'flex w-full items-center justify-between'}>
-            <div className={'flex h-full items-center gap-x-10'}>
+            <div className={'flex h-full items-center gap-x-8'}>
                 <Link className={'logo text-2xl text-violet-600 '} to={'/'} replace>
                     KoffeeChat
                 </Link>
-                <div className={'flex items-center justify-center gap-x-6'}>
-                    <Link to={'/qnas'} className={'font-bold hover:text-violet-700'}>
+                <div className={'flex items-center justify-center gap-x-2'}>
+                    <Link
+                        to={'/qnas'}
+                        className={'rounded-md px-2 py-1 text-[0.93rem] font-bold transition-all hover:bg-slate-100'}
+                    >
                         {'Q&A'}
                     </Link>
-                    <Link to={'/community'} className={'font-bold hover:text-violet-700'}>
+                    <Link
+                        to={'/community'}
+                        className={'rounded-md px-2 py-1 text-[0.93rem] font-bold transition-all hover:bg-slate-100'}
+                    >
                         커뮤니티
                     </Link>
                 </div>
