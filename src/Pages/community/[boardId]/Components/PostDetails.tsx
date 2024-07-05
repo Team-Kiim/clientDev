@@ -29,7 +29,7 @@ export default function PostDetails({
                 profileImageName={profileImageName}
                 viewCount={viewCount}
             />
-            <PostControl postId={id} />
+            {memberWritten && <PostControl postId={id} />}
             <hr />
             <PostContent bodyContent={bodyContent} />
         </article>
