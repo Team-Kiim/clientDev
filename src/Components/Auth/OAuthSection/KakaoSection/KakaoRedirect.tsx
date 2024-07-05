@@ -1,14 +1,17 @@
 import axios from 'axios';
-import { useMutation } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Navigate, useSearchParams } from 'react-router-dom';
 
 export default function KakaoRedirect() {
+    const queryClient = useQueryClient();
+
     const [searchParams] = useSearchParams();
     const code = searchParams.get('code');
     const { VITE_DEV_URL, VITE_KAKAO_CLIENT_SECRET, VITE_KAKAO_REST_API_KEY } = import.meta.env;
 
-    const { mutate, isSuccess, isError } = useMutation({
-        mutationFn: () => {
+    const { isSuccess, isError } = useQuery({
+        queryKey: ['oauth', 'kakao'],
+        queryFn: () => {
             return axios
                 .post('/api/oauth/get-kakao-code', {
                     clientId: VITE_KAKAO_REST_API_KEY,
@@ -42,11 +45,13 @@ export default function KakaoRedirect() {
                         });
                 });
         },
+        gcTime: 0,
     });
 
-    mutate();
-
     if (isSuccess) {
+        queryClient.invalidateQueries({
+            queryKey: ['loggedIn user'],
+        });
         return <Navigate to={'/'} replace={true} />;
     }
 
