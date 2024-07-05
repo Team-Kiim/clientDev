@@ -27,7 +27,7 @@ export default function Layout() {
                         'sticky top-0 z-50 flex h-[5rem] w-full min-w-[1500px] items-center justify-center border-b border-gray-300 bg-white'
                     }
                 >
-                    <div className={'w-[87.5rem]'}>
+                    <div className={'w-[83rem]'}>
                         <GlobalNavbar />
                     </div>
                 </div>
