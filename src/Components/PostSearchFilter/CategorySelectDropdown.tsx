@@ -111,17 +111,17 @@ export default function CategorySelectDropdown({ isDropdownOpen, closeCategorySe
     return (
         <div
             className={
-                'absolute top-[3.5rem] z-10 flex h-[17rem] w-[40rem] flex-col justify-between rounded-lg border border-gray-300 bg-white shadow-lg'
+                'absolute top-[3.5rem] z-10 flex h-[17rem] w-[40rem] flex-col justify-between rounded-lg border border-slate-200 bg-white shadow-lg'
             }
             ref={dropdownRef}
         >
-            <div className={'w-full border-b border-gray-300 p-2'}>
+            <div className={'w-full border-b border-slate-200 p-2'}>
                 <ul className={'flex w-full items-center gap-x-1'}>
                     {CATEGORIES.map(category => {
                         return (
                             <li
                                 key={category.value}
-                                className={`shrink-0 cursor-pointer rounded-lg px-2.5 py-1.5 text-[0.85rem] ${category.value === selectedParentCategory ? 'bg-gray-100 font-bold' : 'bg-white font-normal'}`}
+                                className={`shrink-0 cursor-pointer rounded-lg px-2.5 py-1.5 text-[0.85rem] ${category.value === selectedParentCategory ? 'bg-slate-100 font-bold' : 'bg-white font-normal'}`}
                                 onClick={() => {
                                     setSelectedParentCategory(category.value);
                                 }}
@@ -137,7 +137,7 @@ export default function CategorySelectDropdown({ isDropdownOpen, closeCategorySe
                 selectedCategories={selectedCategories}
                 updateSelectedCategories={updateSelectedCategories}
             />
-            <div className={'flex items-center justify-between border-t border-gray-300 p-2'}>
+            <div className={'flex items-center justify-between border-t border-slate-200 p-2'}>
                 <button
                     className={
                         'flex items-center gap-x-1.5 rounded-lg px-3 py-2.5 text-[0.85rem] transition-all hover:bg-gray-100'
