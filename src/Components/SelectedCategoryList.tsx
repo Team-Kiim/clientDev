@@ -8,10 +8,10 @@ export default function SelectedCategoryList() {
 
     return (
         <div className={'mx-6 shrink-0 flex-grow basis-0 overflow-x-auto'}>
-            <ul className={'flex w-full items-center gap-x-3 overflow-x-auto'}>
+            <ul className={'flex w-full items-center gap-x-2.5 overflow-x-auto'}>
                 {selectedChildCategories.map(selectedChildCategory => {
                     return (
-                        <li className={'rounded-2xl bg-slate-100 px-4 py-2.5 text-[0.95rem] font-extrabold'}>
+                        <li className={'rounded-xl border border-slate-300 px-4 py-2 text-[0.85rem] font-bold'}>
                             {childCategories.find(childCategory => childCategory.value === selectedChildCategory).label}
                         </li>
                     );
