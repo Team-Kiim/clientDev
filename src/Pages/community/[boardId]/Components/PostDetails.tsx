@@ -5,7 +5,7 @@ import type { CommunityPostInfo } from '@/Types/PostInfo.ts';
 
 type Props = Omit<
     CommunityPostInfo,
-    'isMemberLiked' | 'likeCount' | 'isMemberBookmarked' | 'imageFileInfoDtoList' | 'commentInfoDtoList'
+    'memberLiked' | 'likeCount' | 'isMemberBookmarked' | 'imageFileInfoDtoList' | 'commentInfoDtoList'
 >;
 
 export default function PostDetails({
@@ -17,6 +17,7 @@ export default function PostDetails({
     bodyContent,
     viewCount,
     createdTime,
+    memberWritten,
 }: Props) {
     return (
         <article className={'flex max-w-full flex-col gap-y-2.5'}>
