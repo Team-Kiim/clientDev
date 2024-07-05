@@ -2,9 +2,10 @@ import { Link } from 'react-router-dom';
 import PostSearch from '@/Components/PostSearch/PostSearch.tsx';
 import LogOutSection from '@/Components/Auth/LogOutSection.tsx';
 import LogInSection from '@/Components/Auth/LogInSection.tsx';
+import useLoggedInUserData from '@/Hooks/useLoggedInUserData.ts';
 
 export default function GlobalNavbar() {
-    const isLoggedIn = false;
+    const loggedInUserData = useLoggedInUserData();
 
     return (
         <nav className={'flex w-full items-center justify-between'}>
@@ -22,7 +23,7 @@ export default function GlobalNavbar() {
                 </div>
                 <PostSearch />
             </div>
-            {isLoggedIn ? <LogInSection /> : <LogOutSection />}
+            {!!loggedInUserData ? <LogInSection /> : <LogOutSection />}
         </nav>
     );
 }
