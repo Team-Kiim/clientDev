@@ -1,7 +1,7 @@
 import axios from 'axios';
 import dompurify from 'dompurify';
 import { isEqual } from 'lodash';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import TitleInput from '@/Pages/Components/PostInputs/TitleInput.tsx';
@@ -20,6 +20,8 @@ interface FormData {
 export default function QnAWriteForm({ postId }: Props) {
     const navigate = useNavigate();
 
+    const isFormSubmittedRef = useRef(false);
+
     const [selectedCategories, setSelectedCategories] = useState<
         {
             parentCategory: string;
@@ -36,13 +38,11 @@ export default function QnAWriteForm({ postId }: Props) {
     });
 
     useEffect(() => {
-        console.log(formMethods.formState);
         return () => {
-            console.log(formMethods.formState);
-            if (formMethods.formState.isSubmitSuccessful) {
+            if (isFormSubmittedRef.current) {
                 return;
             }
-            // axios.delete(`/api/dev-post/cancel/${postId}`).then().catch();
+            axios.delete(`/api/dev-post/cancel/${postId}`).then().catch();
         };
     }, []);
 
@@ -86,6 +86,7 @@ export default function QnAWriteForm({ postId }: Props) {
                 .then(response => response.data);
 
             const createdPostId = response.id;
+            isFormSubmittedRef.current = true;
             navigate(`/qnas/${createdPostId}`, { replace: true });
         } catch (error) {
             //TODO
