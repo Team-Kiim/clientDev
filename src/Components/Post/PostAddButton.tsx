@@ -25,7 +25,7 @@ export default function PostAddButton() {
             type={'button'}
         >
             <GoPencil className={'size-5'} />
-            <span className={'text-[0.9rem] font-bold'}>글작성</span>
+            <span className={'text-[0.85rem] font-bold'}>글작성</span>
         </button>
     );
 }
