@@ -1,5 +1,7 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import GlobalNavbar from '@/Components/GNB/GlobalNavbar.tsx';
+import MyChatButton from '@/Components/MyChat/MyChatButton.tsx';
+import useLoggedInStatus from '@/Hooks/useLoggedInStatus.ts';
 
 const shouldHideGNB = (pathname: string): boolean => {
     if (
@@ -18,6 +20,7 @@ const shouldHideGNB = (pathname: string): boolean => {
 
 export default function Layout() {
     const { pathname } = useLocation();
+    const isLoggedIn = useLoggedInStatus();
 
     return (
         <div>
@@ -34,6 +37,7 @@ export default function Layout() {
             )}
             <div>
                 <Outlet />
+                {isLoggedIn && <MyChatButton />}
             </div>
         </div>
     );
