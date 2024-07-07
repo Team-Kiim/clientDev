@@ -66,23 +66,27 @@ export default function CommunityPostWriteForm({ postId }: Props) {
 
     return (
         <FormProvider {...formMethods}>
-            <form className={'mt-3 flex flex-col gap-y-4'} onSubmit={formMethods.handleSubmit(onSubmit)}>
+            <form className={'mt-3 flex flex-col gap-y-10'} onSubmit={formMethods.handleSubmit(onSubmit)}>
                 <div className={'flex flex-col gap-y-10'}>
                     <TitleInput />
                     <TextEditor postId={postId} />
                 </div>
-                <div className={'mb-10 flex w-full justify-end gap-x-4'}>
+                <div className={'mb-10 flex w-full justify-end gap-x-5'}>
                     <button
-                        className={'rounded-lg px-6 py-2.5 transition-all hover:bg-violet-50'}
+                        className={'rounded-lg bg-slate-100 px-5 py-3 text-[0.95rem] transition-all hover:bg-slate-200'}
                         type={'button'}
                         onClick={() => {
                             navigate('/community');
                         }}
                     >
-                        <span className={'text-[0.95rem] font-bold text-violet-600'}>취소</span>
+                        <span className={'font-bold'}>취소</span>
                     </button>
-                    <button className={'rounded-lg bg-violet-600 px-6 py-2.5 transition-all hover:bg-violet-700'}>
-                        <span className={'text-[0.95rem] font-bold text-white'}>작성</span>
+                    <button
+                        className={
+                            'rounded-lg bg-violet-600 px-5 py-3 text-[0.95rem] transition-all hover:bg-violet-700'
+                        }
+                    >
+                        <span className={'font-bold text-white'}>작성</span>
                     </button>
                 </div>
             </form>
