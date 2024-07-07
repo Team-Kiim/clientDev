@@ -11,7 +11,9 @@ export default function SelectedCategoryList() {
             <ul className={'flex w-full items-center gap-x-2.5 overflow-x-auto'}>
                 {selectedChildCategories.map(selectedChildCategory => {
                     return (
-                        <li className={'rounded-xl border border-slate-300 px-4 py-2 text-[0.85rem] font-bold'}>
+                        <li
+                            className={'shrink-0 rounded-xl border border-slate-300 px-4 py-2 text-[0.85rem] font-bold'}
+                        >
                             {childCategories.find(childCategory => childCategory.value === selectedChildCategory).label}
                         </li>
                     );
