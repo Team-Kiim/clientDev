@@ -25,7 +25,7 @@ export default function TitleInput() {
                             <div className={'flex items-center gap-x-3'}>
                                 <input
                                     className={
-                                        'flex-1 py-2 text-[1.7rem] font-bold placeholder:text-gray-400 focus:outline-none'
+                                        'flex-1 py-2 text-[1.65rem] font-bold placeholder:text-slate-400 focus:outline-none'
                                     }
                                     value={field.value}
                                     type={'text'}
@@ -35,7 +35,7 @@ export default function TitleInput() {
                                     onBlur={field.onBlur}
                                     onChange={field.onChange}
                                 />
-                                <div className={'text-[0.95rem] text-gray-600'}>
+                                <div className={'text-[0.95rem] font-extrabold text-slate-400'}>
                                     <span>{`${field.value.length} / 100`}</span>
                                 </div>
                             </div>
