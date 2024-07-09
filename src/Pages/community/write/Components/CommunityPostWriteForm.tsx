@@ -1,10 +1,11 @@
 import axios from 'axios';
 import dompurify from 'dompurify';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import TitleInput from '@/Pages/Components/PostInputs/TitleInput.tsx';
 import TextEditor from '@/Pages/Components/PostInputs/TextEditor.tsx';
+import VoteSection from '@/Pages/community/Components/Vote/VoteSection.tsx';
 
 interface Props {
     postId: number;
@@ -13,10 +14,18 @@ interface Props {
 interface FormData {
     title: string;
     bodyContent: string;
+    voteTopic?: string;
+    firstVoteItem?: string;
+    secondVoteItem?: string;
+    additionalVoteItems?: {
+        label: string;
+    }[];
 }
 
 export default function CommunityPostWriteForm({ postId }: Props) {
     const navigate = useNavigate();
+
+    const [isVoteActive, setIsVoteActive] = useState(false);
 
     const isFormSubmittedRef = useRef<boolean>(false);
 
@@ -27,6 +36,22 @@ export default function CommunityPostWriteForm({ postId }: Props) {
             bodyContent: '',
         },
     });
+
+    console.log(formMethods.formState.errors);
+
+    useEffect(() => {
+        if (isVoteActive) {
+            formMethods.register('voteTopic');
+            formMethods.register('firstVoteItem');
+            formMethods.register('secondVoteItem');
+            formMethods.register('additionalVoteItems');
+        } else {
+            formMethods.unregister('voteTopic');
+            formMethods.unregister('firstVoteItem');
+            formMethods.unregister('secondVoteItem');
+            formMethods.unregister('additionalVoteItems');
+        }
+    }, [isVoteActive]);
 
     useEffect(() => {
         return () => {
@@ -70,6 +95,20 @@ export default function CommunityPostWriteForm({ postId }: Props) {
                 <div className={'flex flex-col gap-y-10'}>
                     <TitleInput />
                     <TextEditor postId={postId} />
+                    <div className={'flex w-full flex-col gap-y-2'}>
+                        <div className={'flex w-full gap-x-2'}>
+                            <h3 className={'mx-1 text-[0.95rem] font-bold'}>투표</h3>
+                            <input
+                                className={'toggle'}
+                                type={'checkbox'}
+                                checked={isVoteActive}
+                                onChange={() => {
+                                    setIsVoteActive(!isVoteActive);
+                                }}
+                            />
+                        </div>
+                        {isVoteActive && <VoteSection />}
+                    </div>
                 </div>
                 <div className={'mb-10 flex w-full justify-end gap-x-5'}>
                     <button
