@@ -34,6 +34,7 @@ export default function TitleInput() {
                                     autoCapitalize={'off'}
                                     onBlur={field.onBlur}
                                     onChange={field.onChange}
+                                    ref={formMethods.register('title').ref}
                                 />
                                 <div className={'text-[0.95rem] font-extrabold text-slate-400'}>
                                     <span>{`${field.value.length} / 100`}</span>
