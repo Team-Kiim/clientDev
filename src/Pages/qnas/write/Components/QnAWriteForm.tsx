@@ -7,6 +7,8 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import TitleInput from '@/Pages/Components/PostInputs/TitleInput.tsx';
 import TextEditor from '@/Pages/Components/PostInputs/TextEditor.tsx';
 import CategorySelector from '@/Pages/qnas/write/Components/Category/CategorySelector.tsx';
+import WhiteboardViewer from '@/Pages/qnas/Components/Whiteboard/WhiteboardViewer.tsx';
+import WhiteboardEditorModal from '@/Pages/qnas/Components/Whiteboard/WhiteboardEditorModal.tsx';
 
 interface Props {
     postId: number;
@@ -19,6 +21,10 @@ interface FormData {
 
 export default function QnAWriteForm({ postId }: Props) {
     const navigate = useNavigate();
+
+    const [canvasDataJSONString, setCanvasDataJSONString] = useState(JSON.stringify([]));
+
+    const [isWhiteboardEditorModalOpen, setIsWhiteboardEditorModalOpen] = useState(false);
 
     const isFormSubmittedRef = useRef(false);
 
@@ -95,36 +101,56 @@ export default function QnAWriteForm({ postId }: Props) {
     };
 
     return (
-        <FormProvider {...formMethods}>
-            <form className={'mt-3 flex flex-col gap-y-10'} onSubmit={formMethods.handleSubmit(onSubmit)}>
-                <div className={'flex flex-col gap-y-10'}>
-                    <TitleInput />
-                    <CategorySelector
-                        updateSelectedCategories={updateSelectedCategories}
-                        selectedCategories={selectedCategories}
-                    />
-                    <TextEditor postId={postId} />
-                </div>
-                <div className={'mb-10 flex w-full justify-end gap-x-5'}>
-                    <button
-                        className={'rounded-lg bg-slate-100 px-5 py-3 text-[0.95rem] transition-all hover:bg-slate-200'}
-                        type={'button'}
-                        onClick={() => {
-                            navigate('/');
-                        }}
-                    >
-                        <span className={'font-bold'}>취소</span>
-                    </button>
-                    <button
-                        className={
-                            'rounded-lg bg-violet-600 px-5 py-3 text-[0.95rem] transition-all hover:bg-violet-700'
-                        }
-                        type={'submit'}
-                    >
-                        <span className={'font-bold text-white'}>작성</span>
-                    </button>
-                </div>
-            </form>
-        </FormProvider>
+        <>
+            <FormProvider {...formMethods}>
+                <form className={'mt-3 flex flex-col gap-y-10'} onSubmit={formMethods.handleSubmit(onSubmit)}>
+                    <div className={'flex flex-col gap-y-10'}>
+                        <TitleInput />
+                        <CategorySelector
+                            updateSelectedCategories={updateSelectedCategories}
+                            selectedCategories={selectedCategories}
+                        />
+                        <TextEditor postId={postId} />
+                        <WhiteboardViewer
+                            canvasData={JSON.parse(canvasDataJSONString)}
+                            openWhiteboardEditorModal={() => {
+                                setIsWhiteboardEditorModalOpen(true);
+                            }}
+                        />
+                    </div>
+                    <div className={'mb-10 flex w-full justify-end gap-x-5'}>
+                        <button
+                            className={
+                                'rounded-lg bg-slate-100 px-5 py-3 text-[0.95rem] transition-all hover:bg-slate-200'
+                            }
+                            type={'button'}
+                            onClick={() => {
+                                navigate('/');
+                            }}
+                        >
+                            <span className={'font-bold'}>취소</span>
+                        </button>
+                        <button
+                            className={
+                                'rounded-lg bg-violet-600 px-5 py-3 text-[0.95rem] transition-all hover:bg-violet-700'
+                            }
+                            type={'submit'}
+                        >
+                            <span className={'font-bold text-white'}>작성</span>
+                        </button>
+                    </div>
+                </form>
+            </FormProvider>
+            <WhiteboardEditorModal
+                isWhiteboardEditorModalOpen={isWhiteboardEditorModalOpen}
+                closeWhiteboardEditorModal={() => {
+                    setIsWhiteboardEditorModalOpen(false);
+                }}
+                canvasDataJSONString={canvasDataJSONString}
+                updateCanvasDataJSONString={(newCanvasDataJSONString: string) => {
+                    setCanvasDataJSONString(newCanvasDataJSONString);
+                }}
+            />
+        </>
     );
 }
