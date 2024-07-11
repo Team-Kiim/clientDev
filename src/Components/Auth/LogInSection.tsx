@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
-import { BellIcon, ChatBubbleOvalLeftEllipsisIcon } from '@heroicons/react/24/outline';
+import { ChatBubbleOvalLeftEllipsisIcon } from '@heroicons/react/24/outline';
+import NotificationSection from '@/Components/Notification/NotificationSection.tsx';
 import type { User } from '@/Types/User.ts';
 
 export default function LogInSection() {
@@ -12,9 +13,7 @@ export default function LogInSection() {
     return (
         <div>
             <div className={'flex items-center gap-x-6 justify-self-end'}>
-                <Link className={'rounded-full p-1 transition-all hover:bg-gray-100'} to={'/notification'}>
-                    <BellIcon className={'size-7'} />
-                </Link>
+                <NotificationSection />
                 <Link className={'rounded-full p-1 transition-all hover:bg-gray-100'} to={'/chat'}>
                     <ChatBubbleOvalLeftEllipsisIcon className={'size-7'} />
                 </Link>
