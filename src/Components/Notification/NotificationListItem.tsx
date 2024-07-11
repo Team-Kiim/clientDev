@@ -29,7 +29,3 @@ export default function NotificationListItem() {
         </li>
     );
 }
-
-// 알림 관련한거 커밋하셈.
-//
-// 낼은 로그인, 회원가입 디자인 수정 (오늘)
