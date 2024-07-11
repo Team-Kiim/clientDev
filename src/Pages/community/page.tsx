@@ -1,5 +1,6 @@
 import PostList from '@/Components/Post/PostList.tsx';
 import PostAddButton from '@/Components/Post/PostAddButton.tsx';
+import PostSortOptions from '@/Components/PostSearchFilter/PostSortOptions.tsx';
 
 export default function Page() {
     return (
@@ -7,6 +8,9 @@ export default function Page() {
             <div className={'w-[80rem]'}>
                 <div className={'flex items-center justify-end'}>
                     <PostAddButton />
+                </div>
+                <div className={'mx-2 mt-8'}>
+                    <PostSortOptions />
                 </div>
                 <main className={'my-8'}>
                     <PostList />
