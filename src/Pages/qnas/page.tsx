@@ -2,6 +2,7 @@ import SearchFilter from '@/Components/PostSearchFilter/SearchFilter.tsx';
 import SelectedCategoryList from '@/Components/SelectedCategoryList.tsx';
 import PostList from '@/Components/Post/PostList.tsx';
 import PostAddButton from '@/Components/Post/PostAddButton.tsx';
+import PostSortOptions from '@/Components/PostSearchFilter/PostSortOptions.tsx';
 
 export default function Page() {
     return (
@@ -11,6 +12,9 @@ export default function Page() {
                     <SearchFilter />
                     <SelectedCategoryList />
                     <PostAddButton />
+                </div>
+                <div className={'mx-2 mt-8'}>
+                    <PostSortOptions />
                 </div>
                 <main className={'my-8'}>
                     <PostList />
