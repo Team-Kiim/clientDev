@@ -7,7 +7,7 @@ dayjs.extend(relativeTime);
 
 export default function NotificationListItem() {
     return (
-        <li className={'flex h-20 w-full shrink-0 rounded-lg bg-white'}>
+        <li className={'flex h-20 w-full shrink-0 cursor-pointer rounded-lg bg-white'}>
             <div className={'p-3'}>
                 <div className={'avatar'}>
                     <div className={'size-8 rounded-full'}>
