@@ -2,7 +2,7 @@ import axios from 'axios';
 import { debounce } from 'lodash';
 import { useCallback, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { BiLike, BiSolidLike } from 'react-icons/bi';
+import { HeartIcon } from '@heroicons/react/24/outline';
 import formatNumber from '@/Utils/formatNumber.ts';
 import type { PostInfo } from '@/Types/PostInfo.ts';
 
@@ -63,18 +63,17 @@ export default function LikeButtonWithCount({ memberLiked, likeCount, postId }: 
     };
 
     return (
-        <div className={'flex items-center gap-x-2'}>
-            <div className={'text-[0.9rem] text-gray-600'}>
-                {'좋아요 '}
+        <div className={'flex gap-x-1'}>
+            <button className={'transition-all active:scale-95'} type={'button'} onClick={handleLikeButtonClick}>
+                {memberLiked ? (
+                    <HeartIcon className={'size-6 text-rose-500 '} />
+                ) : (
+                    <HeartIcon className={'size-6 text-slate-500'} />
+                )}
+            </button>
+            <div className={'self-center text-[0.8rem] font-bold text-slate-500'}>
                 <span className={'font-bold'}>{formatNumber(likeCount, 0)}</span>
             </div>
-            <button
-                className={'text-gray-700 transition-all active:scale-95'}
-                type={'button'}
-                onClick={handleLikeButtonClick}
-            >
-                {memberLiked ? <BiSolidLike className={'size-7'} /> : <BiLike className={'size-7'} />}
-            </button>
         </div>
     );
 }
