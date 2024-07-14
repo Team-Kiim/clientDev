@@ -2,7 +2,8 @@ import axios from 'axios';
 import { debounce } from 'lodash';
 import { useCallback, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { HiBookmark, HiOutlineBookmark } from 'react-icons/hi2';
+import { BookmarkIcon } from '@heroicons/react/24/outline';
+import { BookmarkIcon as BookmarkSolidIcon } from '@heroicons/react/24/solid';
 import type { PostInfo } from '@/Types/PostInfo.ts';
 
 interface Props {
@@ -49,18 +50,18 @@ export default function PostBookmarkButton({ isBookmarked, postId }: Props) {
         const postData = queryClient.getQueryData<PostInfo>(['post', postId]);
         queryClient.setQueryData(['post', postId], {
             ...postData,
-            isBookmarked: !postData.isMemberBookmarked,
+            isMemberBookmarked: !postData.isMemberBookmarked,
         });
         debouncedMutate();
     };
 
     return (
-        <button
-            className={'text-gray-700 transition-all active:scale-95'}
-            type={'button'}
-            onClick={handleBookmarkButtonClick}
-        >
-            {isBookmarked ? <HiBookmark className={'size-7'} /> : <HiOutlineBookmark className={'size-7'} />}
+        <button className={'transition-all active:scale-95'} type={'button'} onClick={handleBookmarkButtonClick}>
+            {isBookmarked ? (
+                <BookmarkSolidIcon className={'size-6'} />
+            ) : (
+                <BookmarkIcon className={'size-6 text-slate-500'} />
+            )}
         </button>
     );
 }
