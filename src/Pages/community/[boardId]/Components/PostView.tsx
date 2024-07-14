@@ -16,7 +16,7 @@ export default function PostView() {
     });
 
     return (
-        <div className={'col-span-7 col-start-2'}>
+        <div>
             <PostDetails
                 {...omit(data, [
                     'likeCount',
@@ -27,7 +27,7 @@ export default function PostView() {
                 ])}
             />
             <PostInteraction {...pick(data, ['memberLiked', 'likeCount', 'isMemberBookmarked'])} postId={postId} />
-            <div className={'my-5'}>
+            <div className={'my-5 flex flex-col gap-y-5'}>
                 <CommentWriteForm postId={postId} />
                 <CommentList commentInfoDtoList={data.commentInfoDtoList} />
             </div>
