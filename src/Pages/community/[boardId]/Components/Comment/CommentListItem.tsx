@@ -1,3 +1,4 @@
+import dompurify from 'dompurify';
 import type { CommentInfo } from '@/Types/PostInfo.ts';
 
 interface Props {
@@ -25,7 +26,10 @@ export default function CommentListItem({ commentInfo }: Props) {
                             {commentInfo.createdTime[0]}년 {commentInfo.createdTime[1]}월 {commentInfo.createdTime[2]}일
                         </span>
                     </div>
-                    <div className={'prose prose-sm max-w-full text-[0.87rem] text-black'}>{commentInfo.content}</div>
+                    <div
+                        className={'prose prose-sm max-w-full text-[0.87rem] text-black'}
+                        dangerouslySetInnerHTML={{ __html: dompurify.sanitize(commentInfo.content) }}
+                    />
                 </div>
             </div>
         </li>
