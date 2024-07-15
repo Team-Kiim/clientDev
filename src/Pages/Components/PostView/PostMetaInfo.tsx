@@ -47,8 +47,8 @@ export default function PostMetaInfo({
                     </div>
                     <span className={'text-[0.9rem] font-bold'}>{nickname}</span>
                 </div>
-                <div className={'text-[0.85rem] font-bold text-slate-400'}>
-                    조회수 : <span className={'font-bold'}>{viewCount.toLocaleString()}</span>
+                <div className={'text-[0.85rem] text-slate-500'}>
+                    조회수 : <span>{viewCount.toLocaleString()}</span>
                 </div>
             </div>
         </header>
