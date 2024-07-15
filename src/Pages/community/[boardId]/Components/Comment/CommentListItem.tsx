@@ -9,7 +9,7 @@ export default function CommentListItem({ commentInfo }: Props) {
     const { profileImagePath, profileImageName } = commentInfo;
 
     return (
-        <li className={'flex flex-col border-b border-gray-300 py-3.5 last:border-none'}>
+        <li className={'flex flex-col border-b border-slate-300 py-3.5 last:border-none'}>
             <div className={'flex gap-x-4'}>
                 <div className={'avatar my-1 size-7'}>
                     <img
@@ -21,11 +21,11 @@ export default function CommentListItem({ commentInfo }: Props) {
                 <div className={'flex flex-col gap-y-3'}>
                     <div className={'flex flex-col gap-y-0.5'}>
                         <span className={'text-[0.9rem] font-bold'}>{commentInfo.nickname}</span>
-                        <span className={'text-[0.8rem] text-gray-500'}>
+                        <span className={'text-[0.7rem] font-bold text-slate-400'}>
                             {commentInfo.createdTime[0]}년 {commentInfo.createdTime[1]}월 {commentInfo.createdTime[2]}일
                         </span>
                     </div>
-                    <div className={'text-[0.93rem]'}>{commentInfo.content}</div>
+                    <div className={'prose prose-sm max-w-full text-[0.87rem] text-black'}>{commentInfo.content}</div>
                 </div>
             </div>
         </li>
