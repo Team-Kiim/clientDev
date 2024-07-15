@@ -1,5 +1,6 @@
 import PostMetaInfo from '@/Pages/Components/PostView/PostMetaInfo.tsx';
 import PostContent from '@/Pages/Components/PostView/PostContent.tsx';
+import VoteSection from '@/Pages/community/[boardId]/Components/Vote/VoteSection.tsx';
 import PostControl from '@/Pages/Components/PostView/PostControl.tsx';
 import type { CommunityPostInfo } from '@/Types/PostInfo.ts';
 
@@ -32,6 +33,7 @@ export default function PostDetails({
             {memberWritten && <PostControl postId={id} />}
             <hr />
             <PostContent bodyContent={bodyContent} />
+            <VoteSection />
         </article>
     );
 }
