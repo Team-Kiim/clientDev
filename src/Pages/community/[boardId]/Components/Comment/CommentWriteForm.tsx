@@ -3,6 +3,7 @@ import dompurify from 'dompurify';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { SubmitHandler, useController, useForm } from 'react-hook-form';
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
+import { RiArrowUpLine } from 'react-icons/ri';
 import CommentEditor from '@/Pages/community/[boardId]/Components/Comment/CommentEditor/CommentEditor.tsx';
 
 interface Props {
@@ -63,7 +64,7 @@ export default function CommentWriteForm({ postId }: Props) {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <div className={'flex h-56 flex-col rounded-xl border border-slate-100 shadow-lg'}>
+            <div className={'flex h-56 flex-col rounded-xl border border-slate-200'}>
                 <CommentEditor isSubmitSuccessful={isSubmitSuccessful} onChange={onChange} onBlur={onBlur} />
                 <div className={'flex items-center p-2.5'}>
                     {errors?.commentValue?.message && errors?.commentValue.type === 'required' && (
@@ -72,14 +73,11 @@ export default function CommentWriteForm({ postId }: Props) {
                             <p className={'text-[0.8rem] font-bold'}>{errors.commentValue.message}</p>
                         </div>
                     )}
-                    <button
-                        className={
-                            'ml-auto rounded-2xl bg-violet-600 px-4 py-2.5 text-[0.9rem] font-bold text-white transition-all hover:bg-violet-700'
-                        }
-                        type={'submit'}
-                    >
-                        작성
-                    </button>
+                    <div className={'tooltip tooltip-bottom ml-auto'} data-tip={'댓글 작성'}>
+                        <button className={'rounded-full p-1.5 transition-all hover:bg-slate-100'} type={'submit'}>
+                            <RiArrowUpLine className={'size-7'} />
+                        </button>
+                    </div>
                 </div>
             </div>
         </form>
