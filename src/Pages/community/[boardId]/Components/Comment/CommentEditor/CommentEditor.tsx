@@ -68,7 +68,7 @@ export default function CommentEditor({ isSubmitSuccessful, onChange, onBlur }: 
             <CommentEditorToolbar editor={editor} />
             <div
                 className={
-                    'prose max-w-full shrink-0 flex-grow basis-0 overflow-y-auto overscroll-y-contain px-2.5 py-1 text-[0.9rem] text-black prose-p:my-1.5 prose-a:text-violet-700'
+                    'prose max-w-full shrink-0 flex-grow basis-0 overflow-y-auto overscroll-y-contain px-2.5 pb-1 pt-2 text-[0.9rem] text-black prose-p:my-1.5 prose-p:mt-0 prose-a:text-violet-700 [&>div]:h-full'
                 }
             >
                 <EditorContent editor={editor} />
