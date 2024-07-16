@@ -32,10 +32,10 @@ export default function UserPageLayout() {
                         profileImagePath={`${VITE_SERVER_URL}/image/${data.profileImagePath}/${data.profileImageName}`}
                     />
                     <div className={'flex h-[144px] flex-1 flex-col justify-center gap-y-3'}>
-                        <span className={'text-4xl font-extrabold'}>{data.nickname}</span>
+                        <span className={'text-3xl font-extrabold'}>{data.nickname}</span>
                         <div className={'flex items-center gap-x-2'}>
-                            <MdOutlineEmail className={'size-7 text-gray-500'} />
-                            <span className={'text-lg font-bold text-gray-500'}>{data.email}</span>
+                            <MdOutlineEmail className={'size-6 text-slate-500'} />
+                            <span className={'text-md font-bold text-slate-500'}>{data.email}</span>
                         </div>
                     </div>
                 </div>
