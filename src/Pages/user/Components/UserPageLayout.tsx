@@ -2,6 +2,7 @@ import { Outlet, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { MdOutlineEmail } from 'react-icons/md';
 import EditableProfileImage from '@/Pages/user/Components/EditableProfileImage.tsx';
+import SubscriptionSection from '@/Pages/user/Components/Subscription/SubscriptionSection.tsx';
 import SideNavbar from '@/Pages/user/Components/SideNavbar.tsx';
 import getUserData from '@/Pages/user/Utils/getUserData.ts';
 
@@ -37,6 +38,7 @@ export default function UserPageLayout() {
                             <MdOutlineEmail className={'size-6 text-slate-500'} />
                             <span className={'text-md font-bold text-slate-500'}>{data.email}</span>
                         </div>
+                        <SubscriptionSection isMemberSubscribed={true} />
                     </div>
                 </div>
                 <div className={'flex gap-x-10 p-2'}>
