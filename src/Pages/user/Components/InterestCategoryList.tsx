@@ -32,7 +32,7 @@ export default function InterestCategoryList({ interestSkillCategories }: Props)
                         return (
                             <li
                                 key={interestChildCategory}
-                                className={'mb-2 rounded-2xl bg-gray-100 px-2.5 py-2 text-[0.9rem] font-bold'}
+                                className={'mb-2 rounded-3xl bg-slate-100 px-3 py-2 text-[0.9rem] font-bold'}
                             >
                                 {interestChildCategory}
                             </li>
