@@ -63,3 +63,7 @@ pre:has(code[class='mermaid']) {
     pointer-events: none;
     height: 0;
 }
+
+.tiptap.ProseMirror{
+    height: 100%;
+}
