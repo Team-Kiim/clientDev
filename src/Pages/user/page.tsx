@@ -27,26 +27,26 @@ export default function Page() {
     return (
         <>
             <div className={'flex flex-col gap-y-6'}>
-                <h1 className={'flex text-2xl font-extrabold'}>프로필 정보</h1>
+                <h1 className={'flex text-xl font-extrabold'}>프로필 정보</h1>
                 <div className={'flex flex-col gap-y-4'}>
                     <div className={'flex flex-col'}>
-                        <div className={'flex flex-col gap-y-4'}>
+                        <div className={'flex flex-col gap-y-6'}>
                             <div className={'flex flex-col gap-y-1'}>
-                                <h3 className={'font-bold'}>이메일</h3>
-                                <span className={'text-[0.95rem] font-bold text-gray-500'}>{email}</span>
+                                <h3 className={'text-[0.95rem] font-bold'}>이메일</h3>
+                                <span className={'text-[0.9rem] font-bold text-slate-500'}>{email}</span>
                             </div>
                             <div className={'flex flex-col gap-y-1'}>
-                                <h3 className={'font-bold'}>닉네임</h3>
-                                <span className={'text-[0.95rem] font-bold text-gray-500'}>{nickname}</span>
+                                <h3 className={'text-[0.95rem] font-bold'}>닉네임</h3>
+                                <span className={'text-[0.9rem] font-bold text-slate-500'}>{nickname}</span>
                             </div>
                             <div className={'flex flex-col gap-y-1'}>
-                                <h3 className={'font-bold'}>직업</h3>
+                                <h3 className={'text-[0.95rem] font-bold'}>직업</h3>
                                 {memberRole === 'TEMP' ? (
-                                    <p className={'text-[0.95rem] font-bold text-red-700'}>
+                                    <p className={'text-[0.9rem] font-bold text-rose-600'}>
                                         선택된 직업이 없습니다. 직업을 설정해주세요.
                                     </p>
                                 ) : (
-                                    <span className={'text-[0.95rem] font-bold text-gray-500'}>
+                                    <span className={'text-[0.9rem] font-bold text-slate-500'}>
                                         {jobs.find(job => job.value === memberRole).label}
                                     </span>
                                 )}
@@ -55,7 +55,7 @@ export default function Page() {
                         <div className={'flex items-center justify-end'}>
                             <button
                                 className={
-                                    'rounded-lg px-3 py-1.5 text-[0.95rem] font-bold text-violet-700 transition-all hover:bg-violet-50'
+                                    'rounded-3xl border border-slate-300 bg-white px-3.5 py-2 text-[0.85rem] font-bold text-black transition-all hover:bg-slate-50'
                                 }
                                 type={'button'}
                                 onClick={() => {
@@ -69,13 +69,13 @@ export default function Page() {
                     <hr />
                     <div className={'flex flex-col gap-y-3'}>
                         <div className={'flex flex-col gap-y-4'}>
-                            <h3 className={'font-bold'}>관심 카테고리</h3>
+                            <h3 className={'text-[0.95rem] font-bold'}>관심 카테고리</h3>
                             <InterestCategoryList interestSkillCategories={interestSkillCategoryList} />
                         </div>
                         <div className={'flex items-center justify-end'}>
                             <button
                                 className={
-                                    'rounded-lg px-3 py-1.5 text-[0.95rem] font-bold text-violet-700 transition-all hover:bg-violet-50'
+                                    'rounded-3xl border border-slate-300 px-3.5 py-2 text-[0.85rem] font-bold text-black transition-all hover:bg-slate-50'
                                 }
                                 type={'button'}
                                 onClick={() => {
