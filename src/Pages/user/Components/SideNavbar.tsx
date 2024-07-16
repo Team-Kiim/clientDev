@@ -36,7 +36,7 @@ export default function SideNavbar() {
         <nav className={'w-[10rem] py-4'}>
             <ul className={'flex flex-col gap-y-3'}>
                 <li
-                    className={`rounded-md px-3 py-1.5 text-[0.95rem] font-bold transition-all hover:bg-violet-50 hover:text-violet-700 ${currentSideNavItem === 'profile' ? 'bg-violet-50 text-violet-700' : 'bg-white text-gray-700'}`}
+                    className={`rounded-md px-3 py-1.5 text-[0.95rem] font-bold transition-all hover:bg-slate-100 ${currentSideNavItem === 'profile' ? 'bg-slate-100' : 'bg-white text-gray-700'}`}
                 >
                     <Link to={`/user${nickname === '' ? '/' : `/${nickname}/`}profile`}>
                         <div className={'flex items-center gap-x-4'}>
@@ -46,7 +46,7 @@ export default function SideNavbar() {
                     </Link>
                 </li>
                 <li
-                    className={`rounded-md px-3 py-1.5 text-[0.95rem] font-bold transition-all hover:bg-violet-50 hover:text-violet-700 ${currentSideNavItem === 'post' ? 'bg-violet-50 text-violet-700' : 'bg-white text-gray-700'}`}
+                    className={`rounded-md px-3 py-1.5 text-[0.95rem] font-bold transition-all hover:bg-slate-100 ${currentSideNavItem === 'post' ? 'bg-slate-100' : 'bg-white text-gray-700'}`}
                 >
                     <Link to={`/user${nickname === '' ? '/' : `/${nickname}/`}post`}>
                         <div className={'flex items-center gap-x-4'}>
@@ -56,7 +56,7 @@ export default function SideNavbar() {
                     </Link>
                 </li>
                 <li
-                    className={`rounded-md px-3 py-1.5 text-[0.95rem] font-bold transition-all hover:bg-violet-50 hover:text-violet-700 ${currentSideNavItem === 'chat' ? 'bg-violet-50 text-violet-700' : 'bg-white text-gray-700'}`}
+                    className={`rounded-md px-3 py-1.5 text-[0.95rem] font-bold transition-all hover:bg-slate-100 ${currentSideNavItem === 'chat' ? 'bg-slate-100' : 'bg-white text-gray-700'}`}
                 >
                     <Link to={`/user${nickname === '' ? '/' : `/${nickname}/`}chat`}>
                         <div className={'flex items-center gap-x-4'}>
@@ -66,7 +66,7 @@ export default function SideNavbar() {
                     </Link>
                 </li>
                 <li
-                    className={`rounded-md px-3 py-1.5 text-[0.95rem] font-bold transition-all hover:bg-violet-50 hover:text-violet-700 ${currentSideNavItem === 'account' ? 'bg-violet-50 text-violet-700' : 'bg-white text-gray-700'}`}
+                    className={`rounded-md px-3 py-1.5 text-[0.95rem] font-bold transition-all hover:bg-slate-100 ${currentSideNavItem === 'account' ? 'bg-slate-100' : 'bg-white text-gray-700'}`}
                 >
                     <Link to={`/user${nickname === '' ? '/' : `/${nickname}/`}account`}>
                         <div className={'flex items-center gap-x-4'}>
