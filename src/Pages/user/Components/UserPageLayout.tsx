@@ -47,7 +47,12 @@ export default function UserPageLayout() {
                                 <MdOutlineEmail className={'size-6 text-slate-500'} />
                                 <span className={'text-md font-bold text-slate-500'}>{data.email}</span>
                             </div>
-                            <SubscriptionSection isMemberSubscribed={true} />
+                            {!data.loginMember && (
+                                <SubscriptionSection
+                                    profileMemberId={profileMemberId}
+                                    isFollowingMember={data.isFollowingMember}
+                                />
+                            )}
                         </div>
                     </div>
                 </div>
