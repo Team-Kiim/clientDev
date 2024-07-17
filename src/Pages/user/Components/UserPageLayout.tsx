@@ -9,10 +9,10 @@ import getUserData from '@/Pages/user/Utils/getUserData.ts';
 export default function UserPageLayout() {
     const { VITE_SERVER_URL } = import.meta.env;
 
-    const nickname = useParams().nickname ?? '';
+    const profileMemberId = useParams().profileMemberId ?? null;
 
     const { data, isLoading, isPending } = useQuery({
-        queryKey: ['user'],
+        queryKey: ['user', profileMemberId],
         queryFn: getUserData,
         throwOnError: true,
         gcTime: 0,
@@ -21,8 +21,6 @@ export default function UserPageLayout() {
     if (isLoading || isPending) {
         return null;
     }
-
-    console.log(data);
 
     return (
         <div className={'mt-7 flex w-full min-w-[1500px] justify-center'}>
