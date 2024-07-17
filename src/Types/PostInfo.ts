@@ -22,7 +22,8 @@ export type PostInfo = {
     viewCount: number;
     likeCount: number;
     memberLiked: boolean;
-    isMemberBookmarked: boolean;
+    bookmarkCount: number;
+    memberBookmarked: boolean;
     memberWritten: boolean;
     createdTime: number[];
     modifiedTime?: number[] | null;
