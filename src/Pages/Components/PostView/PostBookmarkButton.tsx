@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { debounce } from 'lodash';
+import formatNumber from '@/Utils/formatNumber.ts';
 import { useCallback, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { BookmarkIcon } from '@heroicons/react/24/outline';
@@ -7,38 +8,40 @@ import { BookmarkIcon as BookmarkSolidIcon } from '@heroicons/react/24/solid';
 import type { PostInfo } from '@/Types/PostInfo.ts';
 
 interface Props {
-    isBookmarked: boolean;
+    memberBookmarked: boolean;
+    bookmarkCount: number;
     postId: string;
 }
 
-export default function PostBookmarkButton({ isBookmarked, postId }: Props) {
+export default function PostBookmarkButton({ memberBookmarked, bookmarkCount, postId }: Props) {
     const queryClient = useQueryClient();
 
-    const [previousBookmarkState, setPreviousBookmarkState] = useState(isBookmarked);
+    const [previousBookmarkState, setPreviousBookmarkState] = useState(memberBookmarked);
+    const [previousBookmarkCount, setPreviousBookmarkCount] = useState(bookmarkCount);
 
     const { mutate } = useMutation({
         mutationFn() {
-            const bookmarkStateToUpdate = queryClient.getQueryData<PostInfo>(['post', postId]);
-            return axios.patch('http://localhost:3001/tasks/2nRGVWLfaHWsq4VtPEsHp', {
-                isBookmarked: bookmarkStateToUpdate,
-            });
+            return axios.post(`/api/post/bookmark/${postId}`);
         },
 
         onSuccess() {
-            const updatedBookmarkState = queryClient.getQueryData<PostInfo>(['post', postId]).isMemberBookmarked;
+            const { memberBookmarked: updatedBookmarkState, bookmarkCount: updatedBookmarkCount } =
+                queryClient.getQueryData<PostInfo>(['post', postId]);
             setPreviousBookmarkState(updatedBookmarkState);
+            setPreviousBookmarkCount(updatedBookmarkCount);
         },
 
         onError() {
             const postData = queryClient.getQueryData<PostInfo>(['post', postId]);
             queryClient.setQueryData(['post', postId], {
                 ...postData,
-                isBookmarked: previousBookmarkState,
+                memberBookmarked: previousBookmarkState,
+                bookmarkCount: previousBookmarkCount,
             });
         },
 
         onSettled() {
-            console.log('settled');
+            return queryClient.invalidateQueries({ queryKey: ['post', postId] });
         },
     });
 
@@ -50,18 +53,24 @@ export default function PostBookmarkButton({ isBookmarked, postId }: Props) {
         const postData = queryClient.getQueryData<PostInfo>(['post', postId]);
         queryClient.setQueryData(['post', postId], {
             ...postData,
-            isMemberBookmarked: !postData.isMemberBookmarked,
+            memberBookmarked: !postData.memberBookmarked,
+            bookmarkCount: memberBookmarked ? bookmarkCount - 1 : bookmarkCount + 1,
         });
         debouncedMutate();
     };
 
     return (
-        <button className={'transition-all active:scale-95'} type={'button'} onClick={handleBookmarkButtonClick}>
-            {isBookmarked ? (
-                <BookmarkSolidIcon className={'size-6'} />
-            ) : (
-                <BookmarkIcon className={'size-6 text-slate-500'} />
-            )}
-        </button>
+        <div className={'flex gap-x-1'}>
+            <button className={'transition-all active:scale-95'} type={'button'} onClick={handleBookmarkButtonClick}>
+                {memberBookmarked ? (
+                    <BookmarkSolidIcon className={'size-6'} />
+                ) : (
+                    <BookmarkIcon className={'size-6 text-slate-500'} />
+                )}
+            </button>
+            <div className={'self-center text-[0.8rem] font-bold text-slate-500'}>
+                <span className={'font-bold'}>{formatNumber(bookmarkCount, 0)}</span>
+            </div>
+        </div>
     );
 }
