@@ -37,7 +37,7 @@ const router = createBrowserRouter(
                 <Route element={<CommunityPostPage />} path={'/community/:postId'} />
                 <Route element={<CommunityPostWritePage />} path={'/community/write'} />
                 <Route element={<ChatRoomPage />} path={'/chats/:roomId'} />
-                <Route element={<UserPageLayout />} path={'/user/:nickname?'}>
+                <Route element={<UserPageLayout />} path={'/user/:profileMemberId?'}>
                     <Route element={<UserProfilePage />} index />
                     <Route element={<UserProfilePage />} path={'profile'} />
                     <Route element={<>게시글</>} path={'post'} />
