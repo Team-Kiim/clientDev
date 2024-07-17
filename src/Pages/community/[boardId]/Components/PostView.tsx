@@ -26,7 +26,10 @@ export default function PostView() {
                     'commentInfoDtoList',
                 ])}
             />
-            <PostInteraction {...pick(data, ['memberLiked', 'likeCount', 'isMemberBookmarked'])} postId={postId} />
+            <PostInteraction
+                {...pick(data, ['memberLiked', 'likeCount', 'memberBookmarked', 'bookmarkCount'])}
+                postId={postId}
+            />
             <div className={'my-5 flex flex-col gap-y-5'}>
                 <CommentWriteForm postId={postId} />
                 <CommentList commentInfoDtoList={data.commentInfoDtoList} />
