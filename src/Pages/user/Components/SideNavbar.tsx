@@ -38,7 +38,7 @@ export default function SideNavbar() {
                 <li
                     className={`rounded-md px-3 py-1.5 text-[0.95rem] font-bold transition-all hover:bg-slate-100 ${currentSideNavItem === 'profile' ? 'bg-slate-100' : 'bg-white text-gray-700'}`}
                 >
-                    <Link to={`/user${nickname === '' ? '/' : `/${nickname}/`}profile`}>
+                    <Link to={`/user/profile`}>
                         <div className={'flex items-center gap-x-4'}>
                             <LiaUser className={'size-7'} />
                             <span>프로필 정보</span>
