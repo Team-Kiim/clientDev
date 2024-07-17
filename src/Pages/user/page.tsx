@@ -22,7 +22,7 @@ export default function Page() {
 
     const { userData } = useOutletContext<UserDataContext>();
 
-    const { email, nickname, memberRole, interestSkillCategoryList } = userData;
+    const { email, nickname, memberRole, interestSkillCategoryList, loginMember } = userData;
 
     return (
         <>
@@ -52,19 +52,21 @@ export default function Page() {
                                 )}
                             </div>
                         </div>
-                        <div className={'flex items-center justify-end'}>
-                            <button
-                                className={
-                                    'rounded-3xl border border-slate-300 bg-white px-3.5 py-2 text-[0.85rem] font-bold text-black transition-all hover:bg-slate-50'
-                                }
-                                type={'button'}
-                                onClick={() => {
-                                    setIsProfileUpdateModalOpen(true);
-                                }}
-                            >
-                                정보 수정
-                            </button>
-                        </div>
+                        {loginMember && (
+                            <div className={'flex items-center justify-end'}>
+                                <button
+                                    className={
+                                        'rounded-3xl border border-slate-300 bg-white px-3.5 py-2 text-[0.85rem] font-bold text-black transition-all hover:bg-slate-50'
+                                    }
+                                    type={'button'}
+                                    onClick={() => {
+                                        setIsProfileUpdateModalOpen(true);
+                                    }}
+                                >
+                                    정보 수정
+                                </button>
+                            </div>
+                        )}
                     </div>
                     <hr />
                     <div className={'flex flex-col gap-y-3'}>
@@ -72,19 +74,21 @@ export default function Page() {
                             <h3 className={'text-[0.95rem] font-bold'}>관심 카테고리</h3>
                             <InterestCategoryList interestSkillCategories={interestSkillCategoryList} />
                         </div>
-                        <div className={'flex items-center justify-end'}>
-                            <button
-                                className={
-                                    'rounded-3xl border border-slate-300 px-3.5 py-2 text-[0.85rem] font-bold text-black transition-all hover:bg-slate-50'
-                                }
-                                type={'button'}
-                                onClick={() => {
-                                    setIsCategoryUpdateModalOpen(true);
-                                }}
-                            >
-                                카테고리 설정
-                            </button>
-                        </div>
+                        {loginMember && (
+                            <div className={'flex items-center justify-end'}>
+                                <button
+                                    className={
+                                        'rounded-3xl border border-slate-300 px-3.5 py-2 text-[0.85rem] font-bold text-black transition-all hover:bg-slate-50'
+                                    }
+                                    type={'button'}
+                                    onClick={() => {
+                                        setIsCategoryUpdateModalOpen(true);
+                                    }}
+                                >
+                                    카테고리 설정
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
