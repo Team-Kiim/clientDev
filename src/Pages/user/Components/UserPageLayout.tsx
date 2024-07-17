@@ -5,6 +5,7 @@ import EditableProfileImage from '@/Pages/user/Components/EditableProfileImage.t
 import SubscriptionSection from '@/Pages/user/Components/Subscription/SubscriptionSection.tsx';
 import SideNavbar from '@/Pages/user/Components/SideNavbar.tsx';
 import getUserData from '@/Pages/user/Utils/getUserData.ts';
+import { LiaUser } from 'react-icons/lia';
 
 export default function UserPageLayout() {
     const { VITE_SERVER_URL } = import.meta.env;
@@ -57,7 +58,16 @@ export default function UserPageLayout() {
                     </div>
                 </div>
                 <div className={'flex gap-x-10 p-2'}>
-                    <SideNavbar />
+                    {data.loginMember ? (
+                        <SideNavbar />
+                    ) : (
+                        <div className={'w-[10rem]'}>
+                            <div className={'flex items-center gap-x-4'}>
+                                <LiaUser className={'size-7'} />
+                                <span>프로필 정보</span>
+                            </div>
+                        </div>
+                    )}
                     <div className={'flex-1 py-4'}>
                         <Outlet context={{ userData: data }} />
                     </div>
