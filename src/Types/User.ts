@@ -3,13 +3,14 @@ export type User = {
     email: string;
     nickname: string;
     memberRole: string | null;
+    isFollowingMember: boolean;
     interestSkillCategoryList:
         | {
               parentSkillCategory: string;
               childSkillCategory: string;
           }[]
         | null;
-    isLoginMember: boolean;
+    loginMember: boolean;
     profileImagePath: string;
     profileImageName: string;
 };
