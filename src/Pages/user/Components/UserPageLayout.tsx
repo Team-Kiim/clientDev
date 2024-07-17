@@ -26,10 +26,20 @@ export default function UserPageLayout() {
         <div className={'mt-7 flex w-full min-w-[1500px] justify-center'}>
             <div className={'w-[60rem]'}>
                 <div className={'flex gap-x-10 border-b border-gray-200 p-2 pb-6'}>
-                    <EditableProfileImage
-                        profileImageName={data.profileImageName}
-                        profileImagePath={`${VITE_SERVER_URL}/image/${data.profileImagePath}/${data.profileImageName}`}
-                    />
+                    {data.loginMember ? (
+                        <EditableProfileImage
+                            profileImageName={data.profileImageName}
+                            profileImagePath={`${VITE_SERVER_URL}/image/${data.profileImagePath}/${data.profileImageName}`}
+                        />
+                    ) : (
+                        <div className={'w-[10rem]'}>
+                            <img
+                                className={'size-36 rounded-full object-cover'}
+                                src={data.profileImagePath}
+                                alt={data.profileImageName}
+                            />
+                        </div>
+                    )}
                     <div className={'flex h-[144px] flex-1 flex-col justify-center gap-y-2'}>
                         <span className={'text-3xl font-extrabold'}>{data.nickname}</span>
                         <div className={'flex items-center justify-between'}>
