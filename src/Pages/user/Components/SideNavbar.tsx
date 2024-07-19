@@ -1,6 +1,6 @@
 import { Link, useLocation, useParams } from 'react-router-dom';
 import { HiOutlineChatBubbleOvalLeftEllipsis } from 'react-icons/hi2';
-import { LiaUser, LiaUserLockSolid } from 'react-icons/lia';
+import { LiaUser, LiaUserCogSolid, LiaUserLockSolid } from 'react-icons/lia';
 import { PiClipboardTextLight } from 'react-icons/pi';
 
 const getCurrentSideNavItem = (pathname: string): string => {
@@ -11,6 +11,7 @@ const getCurrentSideNavItem = (pathname: string): string => {
         const lastElementOfSplitPathname = splitPathname.at(-1);
         if (
             lastElementOfSplitPathname === 'profile' ||
+            lastElementOfSplitPathname === 'social' ||
             lastElementOfSplitPathname === 'account' ||
             lastElementOfSplitPathname === 'post' ||
             lastElementOfSplitPathname === 'chat'
@@ -42,6 +43,16 @@ export default function SideNavbar() {
                         <div className={'flex items-center gap-x-4'}>
                             <LiaUser className={'size-7'} />
                             <span>프로필 정보</span>
+                        </div>
+                    </Link>
+                </li>
+                <li
+                    className={`rounded-md px-3 py-1.5 text-[0.95rem] font-bold transition-all hover:bg-slate-100 ${currentSideNavItem === 'social' ? 'bg-slate-100' : 'bg-white text-gray-700'}`}
+                >
+                    <Link to={'/user/social'}>
+                        <div className={'flex items-center gap-x-4'}>
+                            <LiaUserCogSolid className={'size-7'} />
+                            <span>소셜 관리</span>
                         </div>
                     </Link>
                 </li>
