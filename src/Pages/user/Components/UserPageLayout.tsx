@@ -2,7 +2,7 @@ import { Outlet, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { MdOutlineEmail } from 'react-icons/md';
 import EditableProfileImage from '@/Pages/user/Components/EditableProfileImage.tsx';
-import SubscriptionSection from '@/Pages/user/Components/Subscription/SubscriptionSection.tsx';
+import FollowToggleButton from '@/Pages/user/Components/FollowToggleButton.tsx';
 import SideNavbar from '@/Pages/user/Components/SideNavbar.tsx';
 import getUserData from '@/Pages/user/Utils/getUserData.ts';
 import { LiaUser } from 'react-icons/lia';
@@ -49,7 +49,7 @@ export default function UserPageLayout() {
                                 <span className={'text-md font-bold text-slate-500'}>{data.email}</span>
                             </div>
                             {!data.loginMember && (
-                                <SubscriptionSection
+                                <FollowToggleButton
                                     profileMemberId={profileMemberId}
                                     isFollowingMember={data.isFollowingMember}
                                 />
