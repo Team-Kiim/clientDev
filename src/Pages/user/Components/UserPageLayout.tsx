@@ -61,10 +61,12 @@ export default function UserPageLayout() {
                     {data.loginMember ? (
                         <SideNavbar />
                     ) : (
-                        <div className={'w-[10rem]'}>
-                            <div className={'flex items-center gap-x-4'}>
-                                <LiaUser className={'size-7'} />
-                                <span>프로필 정보</span>
+                        <div className={'w-[10rem] py-4'}>
+                            <div className={'rounded-md bg-slate-100 px-3 py-1.5 text-[0.95rem] font-bold'}>
+                                <div className={'flex items-center gap-x-4'}>
+                                    <LiaUser className={'size-7'} />
+                                    <span>프로필 정보</span>
+                                </div>
                             </div>
                         </div>
                     )}
