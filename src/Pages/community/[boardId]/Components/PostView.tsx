@@ -21,7 +21,7 @@ export default function PostView() {
                 {...omit(data, [
                     'likeCount',
                     'memberLiked',
-                    'isMemberBookmarked',
+                    'memberBookmarked',
                     'imageFileInfoDtoList',
                     'commentInfoDtoList',
                 ])}

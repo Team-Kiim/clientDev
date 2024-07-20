@@ -6,7 +6,7 @@ import type { CommunityPostInfo } from '@/Types/PostInfo.ts';
 
 type Props = Omit<
     CommunityPostInfo,
-    'memberLiked' | 'likeCount' | 'isMemberBookmarked' | 'imageFileInfoDtoList' | 'commentInfoDtoList'
+    'memberLiked' | 'likeCount' | 'memberBookmarked' | 'imageFileInfoDtoList' | 'commentInfoDtoList'
 >;
 
 export default function PostDetails({
