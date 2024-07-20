@@ -1,7 +1,7 @@
 import PostMetaInfo from '@/Pages/Components/PostView/PostMetaInfo.tsx';
 import PostContent from '@/Pages/Components/PostView/PostContent.tsx';
 import PostControl from '@/Pages/Components/PostView/PostControl.tsx';
-import PostKeywordList from '@/Pages/qnas/[boardId]/Components/PostKeywordList.tsx';
+import PostSkillCategoryList from '@/Pages/qnas/[boardId]/Components/PostSkillCategoryList.tsx';
 import type { QnAPostInfo } from '@/Types/PostInfo.ts';
 
 type Props = Omit<QnAPostInfo, 'isMemberLiked' | 'likeCount' | 'isMemberBookmarked' | 'imageFileInfoDtoList'>;
@@ -14,7 +14,7 @@ export default function PostDetails({
     bodyContent,
     viewCount,
     createdTime,
-    skillCategories,
+    skillCategoryList,
     memberWritten,
 }: Props) {
     return (
@@ -29,7 +29,7 @@ export default function PostDetails({
             {memberWritten && <PostControl postId={id} />}
             <hr />
             <PostContent bodyContent={bodyContent} />
-            <PostKeywordList categories={skillCategories} />
+            <PostSkillCategoryList categories={skillCategoryList} />
         </article>
     );
 }
