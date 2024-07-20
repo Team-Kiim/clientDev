@@ -15,6 +15,7 @@ export default function PostDetails({
     viewCount,
     createdTime,
     skillCategories,
+    memberWritten,
 }: Props) {
     return (
         <article className={'flex max-w-full flex-col gap-y-2.5'}>
@@ -25,7 +26,7 @@ export default function PostDetails({
                 profileImgPath={profileImagePath}
                 viewCount={viewCount}
             />
-            <PostControl postId={id} />
+            {memberWritten && <PostControl postId={id} />}
             <hr />
             <PostContent bodyContent={bodyContent} />
             <PostKeywordList categories={skillCategories} />
