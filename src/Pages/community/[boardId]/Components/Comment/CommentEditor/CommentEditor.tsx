@@ -9,12 +9,12 @@ import { Placeholder } from '@tiptap/extension-placeholder';
 import CommentEditorToolbar from '@/Pages/community/[boardId]/Components/Comment/CommentEditor/CommentEditorToolbar.tsx';
 
 interface Props {
-    isSubmitSuccessful: boolean;
+    submitCount: number;
     onChange: (...args: any) => any;
     onBlur: (...args: any) => any;
 }
 
-export default function CommentEditor({ isSubmitSuccessful, onChange, onBlur }: Props) {
+export default function CommentEditor({ submitCount, onChange, onBlur }: Props) {
     const editor = useEditor({
         onUpdate: ({ editor }) => {
             const commentValue = editor.getHTML();
@@ -57,11 +57,11 @@ export default function CommentEditor({ isSubmitSuccessful, onChange, onBlur }: 
 
     useEffect(() => {
         if (editor) {
-            if (isSubmitSuccessful) {
+            if (submitCount !== 0) {
                 editor.commands.clearContent();
             }
         }
-    }, [isSubmitSuccessful, editor]);
+    }, [submitCount, editor]);
 
     return (
         <>

@@ -21,7 +21,7 @@ export default function CommentWriteForm({ postId }: Props) {
         control,
         handleSubmit,
         resetField,
-        formState: { errors, isSubmitSuccessful },
+        formState: { errors, submitCount },
     } = useForm<FormData>({
         defaultValues: {
             commentValue: '',
@@ -65,7 +65,7 @@ export default function CommentWriteForm({ postId }: Props) {
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className={'flex h-56 flex-col rounded-xl border border-slate-200'}>
-                <CommentEditor isSubmitSuccessful={isSubmitSuccessful} onChange={onChange} onBlur={onBlur} />
+                <CommentEditor submitCount={submitCount} onChange={onChange} onBlur={onBlur} />
                 <div className={'flex items-center p-2.5'}>
                     {errors?.commentValue?.message && errors?.commentValue.type === 'required' && (
                         <div className={'m-0.5 mr-auto flex items-center gap-x-1 justify-self-start text-rose-700'}>
