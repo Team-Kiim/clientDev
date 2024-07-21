@@ -44,7 +44,6 @@ const router = createBrowserRouter(
                     <Route element={<UserProfilePage />} path={'profile'} />
                     <Route element={<UserSocialPage />} path={'social'} />
                     <Route element={<UserPostsPage />} path={'post'} />
-                    <Route element={<>채팅</>} path={'chat'} />
                     <Route element={<>계정</>} path={'account'} />
                 </Route>
             </Route>
