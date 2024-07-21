@@ -17,6 +17,7 @@ import ChatRoomPage from '@/Pages/chats/[roomId]/page.tsx';
 import UserPageLayout from '@/Pages/user/Components/UserPageLayout.tsx';
 import UserProfilePage from '@/Pages/user/page.tsx';
 import UserSocialPage from '@/Pages/user/social/page.tsx';
+import UserPostsPage from '@/Pages/user/posts/page.tsx';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -42,7 +43,7 @@ const router = createBrowserRouter(
                     <Route element={<UserProfilePage />} index />
                     <Route element={<UserProfilePage />} path={'profile'} />
                     <Route element={<UserSocialPage />} path={'social'} />
-                    <Route element={<>게시글</>} path={'post'} />
+                    <Route element={<UserPostsPage />} path={'post'} />
                     <Route element={<>채팅</>} path={'chat'} />
                     <Route element={<>계정</>} path={'account'} />
                 </Route>
