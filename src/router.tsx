@@ -18,6 +18,7 @@ import UserPageLayout from '@/Pages/user/Components/UserPageLayout.tsx';
 import UserProfilePage from '@/Pages/user/page.tsx';
 import UserSocialPage from '@/Pages/user/social/page.tsx';
 import UserPostsPage from '@/Pages/user/posts/page.tsx';
+import UserAccountPage from '@/Pages/user/account/page.tsx';
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -44,7 +45,7 @@ const router = createBrowserRouter(
                     <Route element={<UserProfilePage />} path={'profile'} />
                     <Route element={<UserSocialPage />} path={'social'} />
                     <Route element={<UserPostsPage />} path={'post'} />
-                    <Route element={<>계정</>} path={'account'} />
+                    <Route element={<UserAccountPage />} path={'account'} />
                 </Route>
             </Route>
         </Route>,
