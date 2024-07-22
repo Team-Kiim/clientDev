@@ -67,7 +67,7 @@ export default function SideNavbar() {
                 <li
                     className={`rounded-md px-3 py-1.5 text-[0.95rem] font-bold transition-all hover:bg-slate-100 ${currentSideNavItem === 'account' ? 'bg-slate-100' : 'bg-white text-gray-700'}`}
                 >
-                    <Link to={`/user${nickname === '' ? '/' : `/${nickname}/`}account`}>
+                    <Link to={`/user/account`}>
                         <div className={'flex items-center gap-x-4'}>
                             <LiaUserLockSolid className={'size-7'} />
                             <span>계정 관리</span>
