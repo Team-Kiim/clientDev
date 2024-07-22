@@ -70,7 +70,7 @@ export default function SideNavbar() {
                     <Link to={`/user${nickname === '' ? '/' : `/${nickname}/`}account`}>
                         <div className={'flex items-center gap-x-4'}>
                             <LiaUserLockSolid className={'size-7'} />
-                            <span>계정 정보</span>
+                            <span>계정 관리</span>
                         </div>
                     </Link>
                 </li>
