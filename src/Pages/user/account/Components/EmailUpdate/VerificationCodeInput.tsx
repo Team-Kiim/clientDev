@@ -50,7 +50,7 @@ export default function VerificationCodeInput({
     return (
         <>
             <div className={'flex w-full flex-col gap-y-2'}>
-                <div className={'flex gap-x-2'}>
+                <div className={'flex items-center gap-x-2'}>
                     <div
                         className={`relative flex w-full justify-between rounded-xl border px-4 py-3 ${errors?.verificationCode?.message ? 'border-red-500 focus-within:border-red-500' : 'border-slate-300 focus-within:border-violet-700'} transition-all`}
                     >
@@ -72,7 +72,7 @@ export default function VerificationCodeInput({
                             })}
                         />
                         <label
-                            className={`absolute top-0 w-fit -translate-y-1/2 bg-white px-1 text-[0.8rem] ${errors?.verificationCode?.message ? 'text-red-500' : 'text-slate-500'} duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-[0.9rem] peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-[0.8rem] ${errors?.email?.message ? 'peer-focus:text-red-500' : 'peer-focus:text-violet-700'}`}
+                            className={`absolute top-0 w-fit -translate-y-1/2 bg-white px-0.5 text-[0.8rem] ${errors?.verificationCode?.message ? 'text-red-500' : 'text-slate-500'} duration-300 peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-[0.9rem] peer-focus:top-0 peer-focus:-translate-y-1/2 peer-focus:text-[0.8rem] ${errors?.email?.message ? 'peer-focus:text-red-500' : 'peer-focus:text-violet-700'}`}
                             htmlFor={'verificationCodeInput'}
                         >
                             인증 코드
@@ -83,7 +83,7 @@ export default function VerificationCodeInput({
                         onMouseDown={handleVerificationConfirmButtonClick}
                         disabled={!isVerificationRequested || isEmailVerified}
                         className={
-                            'shrink-0 rounded-xl border border-slate-300 bg-white px-5 text-[0.9rem] font-bold text-black transition-all hover:bg-slate-50 disabled:opacity-50'
+                            'shrink-0 rounded-xl border border-slate-300 bg-white px-5 py-3 text-[0.9rem] font-bold text-black transition-all hover:bg-slate-50 disabled:opacity-50'
                         }
                     >
                         확인
