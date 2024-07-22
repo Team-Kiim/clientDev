@@ -33,7 +33,7 @@ export default function EmailUpdateForm() {
     return (
         <FormProvider {...formMethods}>
             <form className={'flex flex-col gap-y-8'} onSubmit={formMethods.handleSubmit(onSubmit)}>
-                <div className={'flex w-full flex-col gap-y-6'}>
+                <div className={'flex w-full flex-col gap-y-4'}>
                     <EmailInputWithVerificationButton
                         isVerificationRequested={isVerificationRequested}
                         setVerificationRequestedTrue={() => {
@@ -51,7 +51,7 @@ export default function EmailUpdateForm() {
                 <div className={'flex w-full justify-end'}>
                     <button
                         className={
-                            'rounded-xl border border-violet-600 bg-violet-600 px-5 py-3 text-[0.9rem] font-bold text-white transition-all hover:bg-violet-700'
+                            'rounded-xl border border-violet-600 bg-violet-600 px-5 py-2.5 text-[0.9rem] font-bold text-white transition-all hover:bg-violet-700'
                         }
                         type={'submit'}
                     >
