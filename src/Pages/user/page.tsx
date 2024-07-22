@@ -56,7 +56,7 @@ export default function Page() {
                             <div className={'flex items-center justify-end'}>
                                 <button
                                     className={
-                                        'rounded-3xl border border-slate-300 bg-white px-3.5 py-2 text-[0.85rem] font-bold text-black transition-all hover:bg-slate-50'
+                                        'rounded-3xl border border-slate-300 bg-white px-3.5 py-2 text-[0.9rem] font-bold text-black transition-all hover:bg-slate-50'
                                     }
                                     type={'button'}
                                     onClick={() => {
@@ -78,7 +78,7 @@ export default function Page() {
                             <div className={'flex items-center justify-end'}>
                                 <button
                                     className={
-                                        'rounded-3xl border border-slate-300 px-3.5 py-2 text-[0.85rem] font-bold text-black transition-all hover:bg-slate-50'
+                                        'rounded-3xl border border-slate-300 px-3.5 py-2 text-[0.9rem] font-bold text-black transition-all hover:bg-slate-50'
                                     }
                                     type={'button'}
                                     onClick={() => {
