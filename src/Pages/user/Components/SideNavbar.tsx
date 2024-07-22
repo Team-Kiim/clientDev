@@ -57,7 +57,7 @@ export default function SideNavbar() {
                 <li
                     className={`rounded-md px-3 py-1.5 text-[0.95rem] font-bold transition-all hover:bg-slate-100 ${currentSideNavItem === 'post' ? 'bg-slate-100' : 'bg-white text-gray-700'}`}
                 >
-                    <Link to={`/user${nickname === '' ? '/' : `/${nickname}/`}post`}>
+                    <Link to={`/user/post`}>
                         <div className={'flex items-center gap-x-4'}>
                             <PiClipboardTextLight className={'size-7'} />
                             <span>게시글 관리</span>
