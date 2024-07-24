@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import SignInForm from '@/Pages/sign_in/Component/SignInForm.tsx';
+import PasswordResetSection from '@/Pages/sign_in/Component/PasswordReset/PasswordResetSection.tsx';
 import OAuthSection from '@/Components/Auth/OAuthSection/OAuthSection.tsx';
 
 export default function Page() {
@@ -13,6 +14,7 @@ export default function Page() {
                     <SignInForm />
                 </div>
                 <div className={'flex w-full justify-between px-1'}>
+                    <PasswordResetSection />
                     <Link className={'text-[0.85rem] font-bold text-violet-700 transition-all'} to={'/sign_up'}>
                         회원가입
                     </Link>
