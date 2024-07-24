@@ -86,7 +86,7 @@ export default function SignInForm() {
                         <input
                             className={'w-full flex-1 text-[0.9rem] focus:outline-none'}
                             type={isPasswordVisible ? 'text' : 'password'}
-                            placeholder={'비밀번호 입력'}
+                            placeholder={'비밀번호'}
                             autoComplete={'off'}
                             autoCapitalize={'off'}
                             {...register('password', {
