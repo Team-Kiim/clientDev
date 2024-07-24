@@ -2,7 +2,13 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { ExclamationTriangleIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
+import {
+    HiOutlineEye,
+    HiOutlineEnvelope,
+    HiOutlineEyeSlash,
+    HiOutlineLockClosed,
+    HiOutlineExclamationTriangle,
+} from 'react-icons/hi2';
 
 interface FormData {
     email: string;
@@ -43,22 +49,19 @@ export default function SignInForm() {
     };
 
     return (
-        <form className={'flex w-full flex-col gap-y-8'} onSubmit={handleSubmit(onSubmit)}>
-            <div className={'flex w-full flex-col gap-y-7'}>
+        <form className={'flex w-full flex-col gap-y-10'} onSubmit={handleSubmit(onSubmit)}>
+            <div className={'flex w-full flex-col gap-y-5'}>
                 <div className={'flex w-full flex-col gap-y-2'}>
-                    <label className={'mx-2 w-fit text-[0.9rem] font-bold'} htmlFor={'emailInput'}>
-                        이메일
-                    </label>
                     <div
                         className={
-                            'flex items-center rounded-md border border-gray-300 px-3.5 py-3 focus-within:border-violet-700'
+                            'flex items-center gap-x-2 rounded-xl border border-slate-300 px-2 py-3.5 focus-within:border-violet-700'
                         }
                     >
+                        <HiOutlineEnvelope className={'size-6 text-slate-500'} />
                         <input
-                            id={'emailInput'}
-                            className={'w-full text-[0.9rem] focus:outline-none'}
+                            className={'flex-1 text-[0.9rem] focus:outline-none'}
                             type={'text'}
-                            placeholder={'가입한 이메일 주소 입력'}
+                            placeholder={'이메일'}
                             autoComplete={'off'}
                             autoCapitalize={'off'}
                             {...register('email', {
@@ -67,23 +70,20 @@ export default function SignInForm() {
                         />
                     </div>
                     {errors?.email?.message && errors?.email.type === 'required' && (
-                        <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
-                            <ExclamationTriangleIcon className={'size-5'} />
+                        <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
+                            <HiOutlineExclamationTriangle className={'size-5'} />
                             <p className={'text-[0.8rem] font-bold'}>{errors.email.message}</p>
                         </div>
                     )}
                 </div>
                 <div className={'flex w-full flex-col gap-y-2'}>
-                    <label className={'mx-2 w-fit text-[0.9rem] font-bold'} htmlFor={'passwordInput'}>
-                        비밀번호
-                    </label>
                     <div
                         className={
-                            'flex items-center rounded-md border border-gray-300 px-3.5 py-3 focus-within:border-violet-700'
+                            'flex items-center gap-x-2 rounded-xl border border-slate-300 px-2 py-3.5 focus-within:border-violet-700'
                         }
                     >
+                        <HiOutlineLockClosed className={'size-6 text-slate-500'} />
                         <input
-                            id={'passwordInput'}
                             className={'w-full flex-1 text-[0.9rem] focus:outline-none'}
                             type={isPasswordVisible ? 'text' : 'password'}
                             placeholder={'비밀번호 입력'}
@@ -103,15 +103,15 @@ export default function SignInForm() {
                             }}
                         >
                             {isPasswordVisible ? (
-                                <EyeSlashIcon className={'size-5 scale-110'} />
+                                <HiOutlineEyeSlash className={'size-6 text-slate-500'} />
                             ) : (
-                                <EyeIcon className={'size-5 scale-110'} />
+                                <HiOutlineEye className={'size-6 text-slate-500'} />
                             )}
                         </button>
                     </div>
                     {errors?.password?.message && errors?.password.type === 'required' && (
-                        <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
-                            <ExclamationTriangleIcon className={'size-5'} />
+                        <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
+                            <HiOutlineExclamationTriangle className={'size-5'} />
                             <p className={'text-[0.8rem] font-bold'}>{errors.password.message}</p>
                         </div>
                     )}
@@ -119,7 +119,7 @@ export default function SignInForm() {
             </div>
             <button
                 className={
-                    'flex w-full items-center justify-center rounded-lg bg-violet-600 py-3 transition-all hover:bg-violet-700 disabled:opacity-50'
+                    'flex w-full items-center justify-center rounded-xl bg-violet-600 py-3.5 text-[0.9rem] transition-all hover:bg-violet-700 disabled:opacity-50'
                 }
                 type={'submit'}
                 disabled={isSubmitting}
