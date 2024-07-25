@@ -12,11 +12,6 @@ export default function Page() {
                     </Link>
                     <SignUpForm />
                 </div>
-                <div className={'flex w-full justify-end px-1'}>
-                    <Link className={'text-[0.85rem] font-bold transition-all hover:text-violet-700'} to={'/sign_in'}>
-                        로그인
-                    </Link>
-                </div>
             </div>
             <div className={'divider text-[0.8rem] text-gray-600'}>소셜로 회원가입</div>
             <OAuthSection />
