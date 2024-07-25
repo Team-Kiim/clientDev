@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { HiOutlineEnvelope, HiOutlineExclamationTriangle } from 'react-icons/hi2';
+import { MdOutlinePassword } from 'react-icons/md';
 import { emailRegexp } from '@/Constants/regexps.ts';
 
 interface Props {
@@ -68,23 +69,20 @@ export default function EmailVerificationInputs({ updateEmailVerification }: Pro
     };
 
     return (
-        <>
+        <div className={'flex flex-col gap-y-5'}>
             <div className={'flex w-full flex-col gap-y-2'}>
-                <label className={'mx-2 w-fit text-[0.9rem] font-bold'} htmlFor={'emailInput'}>
-                    이메일
-                </label>
                 <div
                     className={
-                        'flex items-center rounded-md border border-gray-300 px-3.5 py-3 focus-within:border-violet-700'
+                        'flex items-center gap-x-2 rounded-xl border border-slate-300 px-2 py-3.5 focus-within:border-violet-700'
                     }
                 >
+                    <HiOutlineEnvelope className={'size-6 text-slate-500'} />
                     <input
-                        id={'emailInput'}
                         className={
                             'w-full flex-1 text-[0.9rem] focus:outline-none disabled:bg-white disabled:opacity-75'
                         }
                         type={'text'}
-                        placeholder={'유효한 이메일 주소를 입력해주세요.'}
+                        placeholder={'이메일'}
                         autoComplete={'off'}
                         autoCapitalize={'off'}
                         disabled={isVerificationRequested}
@@ -109,34 +107,31 @@ export default function EmailVerificationInputs({ updateEmailVerification }: Pro
                     </button>
                 </div>
                 {errors?.email?.message && errors?.email.type === 'required' && (
-                    <div className={'m-0.5 flex items-center gap-x-1 text-red-700 '}>
-                        <ExclamationTriangleIcon className={'size-5'} />
-                        <p className={'text-[0.8rem] font-bold'}>{errors.email.message}</p>
+                    <div className={'m-0.5 flex items-center gap-x-1 text-red-500 '}>
+                        <HiOutlineExclamationTriangle className={'size-5'} />
+                        <p className={'text-[0.8rem]'}>{errors.email.message}</p>
                     </div>
                 )}
                 {errors?.email?.message && errors?.email.type === 'pattern' && (
-                    <div className={'m-0.5 flex items-center gap-x-1 text-red-700 '}>
-                        <ExclamationTriangleIcon className={'size-5'} />
-                        <p className={'text-[0.8rem] font-bold'}>{errors.email.message}</p>
+                    <div className={'m-0.5 flex items-center gap-x-1 text-red-500 '}>
+                        <HiOutlineExclamationTriangle className={'size-5'} />
+                        <p className={'text-[0.8rem]'}>{errors.email.message}</p>
                     </div>
                 )}
             </div>
             <div className={'flex w-full flex-col gap-y-2'}>
-                <label className={'mx-2 w-fit text-[0.9rem] font-bold'} htmlFor={'verificationCodeInput'}>
-                    인증 코드
-                </label>
                 <div
                     className={
-                        'flex items-center rounded-md border border-gray-300 px-3.5 py-3 focus-within:border-violet-700'
+                        'flex items-center gap-x-2 rounded-xl border border-slate-300 bg-slate-100 px-2 py-3.5 focus-within:border-violet-700'
                     }
                 >
+                    <MdOutlinePassword className={'size-6 text-slate-500'} />
                     <input
-                        id={'verificationCodeInput'}
                         className={
-                            'w-full flex-1 text-[0.9rem] focus:outline-none disabled:bg-white disabled:opacity-75'
+                            'w-full flex-1 text-[0.9rem] focus:outline-none disabled:bg-slate-100 disabled:opacity-75'
                         }
                         type={'text'}
-                        placeholder={'인증 코드를 입력해주세요.'}
+                        placeholder={'인증 코드'}
                         autoComplete={'off'}
                         autoCapitalize={'off'}
                         disabled={!isVerificationRequested || isEmailVerified}
@@ -158,12 +153,12 @@ export default function EmailVerificationInputs({ updateEmailVerification }: Pro
                     </button>
                 </div>
                 {errors?.verificationCode?.message && errors?.verificationCode.type === 'required' && (
-                    <div className={'m-0.5 flex items-center gap-x-1 text-red-700 '}>
-                        <ExclamationTriangleIcon className={'size-5'} />
-                        <p className={'text-[0.8rem] font-bold'}>{errors.verificationCode.message}</p>
+                    <div className={'m-0.5 flex items-center gap-x-1 text-red-500 '}>
+                        <HiOutlineExclamationTriangle className={'size-5'} />
+                        <p className={'text-[0.8rem]'}>{errors.verificationCode.message}</p>
                     </div>
                 )}
             </div>
-        </>
+        </div>
     );
 }
