@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { ExclamationTriangleIcon, EyeIcon, EyeSlashIcon } from '@heroicons/react/24/outline';
+import { HiOutlineEye, HiOutlineEyeSlash, HiOutlineLockClosed, HiOutlineExclamationTriangle } from 'react-icons/hi2';
 import { passwordRegexp } from '@/Constants/regexps.ts';
 
 interface FormData {
@@ -17,20 +17,19 @@ export default function PasswordInputs() {
     } = useFormContext<FormData>();
 
     return (
-        <>
+        <div className={'flex flex-col gap-y-5'}>
             <div className={'flex w-full flex-col gap-y-2'}>
-                <label className={'mx-2 w-fit text-[0.9rem] font-bold'} htmlFor={'passwordInput'}>
-                    비밀번호
-                </label>
                 <div
                     className={
-                        'flex items-center rounded-md border border-gray-300 px-3.5 py-3 focus-within:border-violet-700'
+                        'flex items-center gap-x-2 rounded-xl border border-slate-300 px-2 py-3.5 focus-within:border-violet-700'
                     }
                 >
+                    <HiOutlineLockClosed className={'size-6 text-slate-500'} />
                     <input
-                        id={'passwordInput'}
-                        className={'w-full flex-1 text-[0.9rem] focus:outline-none'}
-                        placeholder={'7~20자의 알파벳, 숫자, 특수문자 포함'}
+                        className={
+                            'w-full flex-1 text-[0.9rem] focus:outline-none disabled:bg-white disabled:opacity-75'
+                        }
+                        placeholder={'비밀번호'}
                         type={isPasswordVisible ? 'text' : 'password'}
                         autoComplete={'off'}
                         autoCapitalize={'off'}
@@ -52,38 +51,37 @@ export default function PasswordInputs() {
                         }}
                     >
                         {isPasswordVisible ? (
-                            <EyeSlashIcon className={'size-5 scale-110'} />
+                            <HiOutlineEyeSlash className={'size-6 text-slate-500'} />
                         ) : (
-                            <EyeIcon className={'size-5 scale-110'} />
+                            <HiOutlineEye className={'size-6 text-slate-500'} />
                         )}
                     </button>
                 </div>
                 {errors?.password?.message && errors?.password.type === 'required' && (
-                    <div className={'m-0.5 flex items-center gap-x-1 text-red-700 '}>
-                        <ExclamationTriangleIcon className={'size-5'} />
-                        <p className={'text-[0.8rem] font-bold'}>{errors.password.message}</p>
+                    <div className={'m-0.5 flex items-center gap-x-1 text-red-500 '}>
+                        <HiOutlineExclamationTriangle className={'size-5'} />
+                        <p className={'text-[0.8rem]'}>{errors.password.message}</p>
                     </div>
                 )}
                 {errors?.password?.message && errors?.password.type === 'pattern' && (
-                    <div className={'m-0.5 flex items-center gap-x-1 text-red-700 '}>
-                        <ExclamationTriangleIcon className={'size-5'} />
-                        <p className={'text-[0.8rem] font-bold'}>{errors.password.message}</p>
+                    <div className={'m-0.5 flex items-center gap-x-1 text-red-500 '}>
+                        <HiOutlineExclamationTriangle className={'size-5'} />
+                        <p className={'text-[0.8rem]'}>{errors.password.message}</p>
                     </div>
                 )}
             </div>
             <div className={'flex w-full flex-col gap-y-2'}>
-                <label className={'mx-2 w-fit text-[0.9rem] font-bold'} htmlFor={'confirmPasswordInput'}>
-                    비밀번호 확인
-                </label>
                 <div
                     className={
-                        'flex items-center rounded-md border border-gray-300 px-3.5 py-3 focus-within:border-violet-700'
+                        'flex items-center gap-x-2 rounded-xl border border-slate-300 px-2 py-3.5 focus-within:border-violet-700'
                     }
                 >
+                    <HiOutlineLockClosed className={'size-6 text-slate-500'} />
                     <input
-                        id={'confirmPasswordInput'}
-                        className={'w-full text-[0.9rem] focus:outline-none'}
-                        placeholder={'위와 동일한 비밀번호'}
+                        className={
+                            'w-full flex-1 text-[0.9rem] focus:outline-none disabled:bg-white disabled:opacity-75'
+                        }
+                        placeholder={'비밀번호 확인'}
                         type={'password'}
                         autoComplete={'off'}
                         autoCapitalize={'off'}
@@ -102,18 +100,18 @@ export default function PasswordInputs() {
                     />
                 </div>
                 {errors?.confirmPassword?.message && errors?.confirmPassword.type === 'required' && (
-                    <div className={'m-0.5 flex items-center gap-x-1 text-red-700 '}>
-                        <ExclamationTriangleIcon className={'size-5'} />
-                        <p className={'text-[0.8rem] font-bold'}>{errors.confirmPassword.message}</p>
+                    <div className={'m-0.5 flex items-center gap-x-1 text-red-500 '}>
+                        <HiOutlineExclamationTriangle className={'size-5'} />
+                        <p className={'text-[0.8rem]'}>{errors.confirmPassword.message}</p>
                     </div>
                 )}
                 {errors?.confirmPassword?.message && errors?.confirmPassword.type === 'isNotMatched' && (
-                    <div className={'m-0.5 flex items-center gap-x-1 text-red-700 '}>
-                        <ExclamationTriangleIcon className={'size-5'} />
-                        <p className={'text-[0.8rem] font-bold'}>{errors.confirmPassword.message}</p>
+                    <div className={'m-0.5 flex items-center gap-x-1 text-red-500 '}>
+                        <HiOutlineExclamationTriangle className={'size-5'} />
+                        <p className={'text-[0.8rem]'}>{errors.confirmPassword.message}</p>
                     </div>
                 )}
             </div>
-        </>
+        </div>
     );
 }
