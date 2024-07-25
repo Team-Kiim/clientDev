@@ -35,13 +35,15 @@ export default function PostListItem({ post, postType }: Props) {
         >
             <Link to={`${postType === 'qnas' ? '/qnas' : '/community'}/${id}`}>
                 <div className={'flex h-full flex-col'}>
-                    <div className={'w-full'}>
-                        <img
-                            className={'h-[11rem] w-full rounded-t-md object-cover'}
-                            src={`${VITE_SERVER_URL}/image/${imagePath}/${imageName}`}
-                            alt={imageName}
-                        />
-                    </div>
+                    {imagePath !== null && (
+                        <div className={'w-full'}>
+                            <img
+                                className={'h-[11rem] w-full rounded-t-md object-cover'}
+                                src={`${VITE_SERVER_URL}/image/${imagePath}/${imageName}`}
+                                alt={imageName}
+                            />
+                        </div>
+                    )}
                     <div className={'mb-1 mt-2.5 flex gap-x-1.5 px-3.5 text-gray-600'}>
                         <CalendarIcon className={'size-4'} />
                         <span
