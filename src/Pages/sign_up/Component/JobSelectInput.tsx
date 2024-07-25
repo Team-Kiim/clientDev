@@ -1,6 +1,6 @@
 import { Controller, useFormContext } from 'react-hook-form';
 import Select from 'react-select';
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { HiOutlineExclamationTriangle, HiOutlineIdentification } from 'react-icons/hi2';
 
 interface FormData {
     job: string;
@@ -21,44 +21,68 @@ export default function JobSelectInput() {
 
     return (
         <div className={'flex w-full flex-col gap-y-2'}>
-            <label className={'mx-2 w-fit text-[0.9rem] font-bold'} htmlFor={'jobSelectInput'}>
-                직업
-            </label>
-            <Controller
-                control={control}
-                name={'job'}
-                rules={{
-                    validate: {
-                        isNotSelected(value) {
-                            return value.length !== 0 || '직업을 선택해주세요.';
+            <div
+                className={
+                    'flex h-[54px] items-center gap-x-2 rounded-xl border border-slate-300 px-2 py-3.5 focus-within:border-violet-700'
+                }
+            >
+                <HiOutlineIdentification className={'size-6 text-slate-500'} />
+                <Controller
+                    control={control}
+                    name={'job'}
+                    rules={{
+                        validate: {
+                            isNotSelected(value) {
+                                return value.length !== 0 || '직업을 선택해주세요.';
+                            },
                         },
-                    },
-                }}
-                render={({ field }) => {
-                    return (
-                        <Select
-                            inputId={'jobSelectInput'}
-                            placeholder={'직업 선택'}
-                            options={jobOptions}
-                            onChange={option => field.onChange(option.value)}
-                            onBlur={field.onBlur}
-                            classNames={{
-                                control({ isFocused }) {
-                                    return `!rounded-md !h-[47.59px] !border !border-gray-300 !bg-white !border !text-[0.9rem] !shadow-none ${isFocused ? '!border-violet-700' : '!border-gray-300'}`;
-                                },
+                    }}
+                    render={({ field }) => {
+                        return (
+                            <Select
+                                placeholder={'직업'}
+                                options={jobOptions}
+                                onChange={option => field.onChange(option.value)}
+                                onBlur={field.onBlur}
+                                styles={{
+                                    container: base => {
+                                        return {
+                                            ...base,
+                                            flex: 1,
+                                        };
+                                    },
+                                    valueContainer: base => {
+                                        return {
+                                            ...base,
+                                            padding: 0,
+                                        };
+                                    },
 
-                                option() {
-                                    return '!text-[0.9rem]';
-                                },
-                            }}
-                        />
-                    );
-                }}
-            />
+                                    placeholder: base => {
+                                        return {
+                                            ...base,
+                                            color: '#9ca3af',
+                                        };
+                                    },
+                                }}
+                                classNames={{
+                                    control() {
+                                        return `!bg-white !text-[0.9rem] !border-none !shadow-none`;
+                                    },
+
+                                    option() {
+                                        return '!text-[0.9rem]';
+                                    },
+                                }}
+                            />
+                        );
+                    }}
+                />
+            </div>
             {errors?.job?.message && errors?.job.type === 'isNotSelected' && (
-                <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
-                    <ExclamationTriangleIcon className={'size-5'} />
-                    <p className={'text-[0.8rem] font-bold'}>{errors.job.message}</p>
+                <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
+                    <HiOutlineExclamationTriangle className={'size-5'} />
+                    <p className={'text-[0.8rem]'}>{errors.job.message}</p>
                 </div>
             )}
         </div>
