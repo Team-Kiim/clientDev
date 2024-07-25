@@ -11,6 +11,8 @@ interface Props {
 }
 
 export default function PostListItem({ post, postType }: Props) {
+    const { VITE_SERVER_URL } = import.meta.env;
+
     const {
         id,
         title,
@@ -34,7 +36,11 @@ export default function PostListItem({ post, postType }: Props) {
             <Link to={`${postType === 'qnas' ? '/qnas' : '/community'}/${id}`}>
                 <div className={'flex h-full flex-col'}>
                     <div className={'w-full'}>
-                        <img className={'h-[11rem] w-full rounded-t-md object-cover'} src={imagePath} alt={imageName} />
+                        <img
+                            className={'h-[11rem] w-full rounded-t-md object-cover'}
+                            src={`${VITE_SERVER_URL}/image/${imagePath}/${imageName}`}
+                            alt={imageName}
+                        />
                     </div>
                     <div className={'mb-1 mt-2.5 flex gap-x-1.5 px-3.5 text-gray-600'}>
                         <CalendarIcon className={'size-4'} />
@@ -55,7 +61,11 @@ export default function PostListItem({ post, postType }: Props) {
                     >
                         <div className={'flex items-center gap-x-2'}>
                             <div className={'avatar size-7'}>
-                                <img className={'rounded-full'} src={profileImagePath} alt={profileImageName} />
+                                <img
+                                    className={'rounded-full'}
+                                    src={`${VITE_SERVER_URL}/image/${profileImagePath}/${profileImageName}`}
+                                    alt={profileImageName}
+                                />
                             </div>
                             <span className={'line-clamp-1 text-[0.82rem] font-bold'}>{nickname}</span>
                         </div>
