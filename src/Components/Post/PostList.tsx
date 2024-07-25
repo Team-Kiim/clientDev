@@ -10,9 +10,9 @@ export default function PostList() {
 
     const { pathname } = useLocation();
 
-    const postType = pathname.split('/')[1];
+    const postType = pathname.split('/')[1] || 'qnas';
     const title = searchParams.get('post_title') ?? '';
-    const keywords = searchParams.getAll('keyword') ?? [];
+    const categories = searchParams.getAll('category') ?? [];
     const currentPage = Number(searchParams.get('page') ?? '1');
 
     const {
@@ -20,7 +20,7 @@ export default function PostList() {
         isLoading,
         isPending,
     } = useQuery({
-        queryKey: ['posts', { postType, title, keywords, currentPage }],
+        queryKey: ['posts', { postType, title, categories, currentPage }],
         queryFn: getPostList,
         gcTime: 0,
         throwOnError: true,
@@ -54,7 +54,7 @@ export default function PostList() {
                         })}
                     </ul>
                     <div className={'my-10'}>
-                        <PostListPagination numberOfPosts={160} />
+                        <PostListPagination numberOfPosts={postList.length} />
                     </div>
                 </>
             )}
