@@ -20,6 +20,8 @@ import UserSocialPage from '@/Pages/user/social/page.tsx';
 import UserPostsPage from '@/Pages/user/posts/page.tsx';
 import UserAccountPage from '@/Pages/user/account/page.tsx';
 
+import NotFoundErrorPage from '@/Pages/ErrorPages/NotFoundErrorPage.tsx';
+
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route element={<AppLayout />}>
@@ -48,6 +50,7 @@ const router = createBrowserRouter(
                     <Route element={<UserAccountPage />} path={'account'} />
                 </Route>
             </Route>
+            <Route element={<NotFoundErrorPage />} path={'*'} />
         </Route>,
     ),
 );
