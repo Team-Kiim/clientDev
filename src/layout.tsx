@@ -2,6 +2,7 @@ import { Outlet, useLocation } from 'react-router-dom';
 import GlobalNavbar from '@/Components/GNB/GlobalNavbar.tsx';
 import MyChatButton from '@/Components/MyChat/MyChatButton.tsx';
 import useLoggedInStatus from '@/Hooks/useLoggedInStatus.ts';
+import AppErrorBoundary from '@/Components/Error/AppErrorBoundary.tsx';
 
 const shouldHideGNB = (pathname: string): boolean => {
     if (
@@ -36,7 +37,9 @@ export default function Layout() {
                 </div>
             )}
             <div>
-                <Outlet />
+                <AppErrorBoundary>
+                    <Outlet />
+                </AppErrorBoundary>
                 {isLoggedIn && <MyChatButton />}
             </div>
         </div>
