@@ -32,7 +32,7 @@ export default function PostView() {
             />
             <div className={'my-5 flex flex-col gap-y-5'}>
                 <CommentWriteForm postId={postId} />
-                <CommentList commentInfoDtoList={data.commentInfoDtoList} />
+                <CommentList postId={postId} commentInfoDtoList={data.commentInfoDtoList} />
             </div>
         </div>
     );
