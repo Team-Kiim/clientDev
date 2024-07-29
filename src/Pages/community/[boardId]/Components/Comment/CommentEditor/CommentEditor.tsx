@@ -58,6 +58,14 @@ export default function CommentEditor({ value, submitCount, onChange, onBlur }: 
 
     useEffect(() => {
         if (editor) {
+            if (value !== undefined) {
+                editor.commands.setContent(value);
+            }
+        }
+    }, [editor]);
+
+    useEffect(() => {
+        if (editor) {
             if (submitCount !== 0 && submitCount !== undefined) {
                 editor.commands.clearContent();
             }
