@@ -9,7 +9,7 @@ import { Placeholder } from '@tiptap/extension-placeholder';
 import CommentEditorToolbar from '@/Pages/community/[boardId]/Components/Comment/CommentEditor/CommentEditorToolbar.tsx';
 
 interface Props {
-    submitCount: number;
+    submitCount?: number;
     onChange: (...args: any) => any;
     onBlur: (...args: any) => any;
 }
