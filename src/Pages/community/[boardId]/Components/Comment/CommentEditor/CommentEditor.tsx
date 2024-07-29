@@ -57,7 +57,7 @@ export default function CommentEditor({ submitCount, onChange, onBlur }: Props) 
 
     useEffect(() => {
         if (editor) {
-            if (submitCount !== 0) {
+            if (submitCount !== 0 && submitCount !== undefined) {
                 editor.commands.clearContent();
             }
         }
