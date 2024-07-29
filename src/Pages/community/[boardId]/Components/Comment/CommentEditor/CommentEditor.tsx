@@ -10,11 +10,12 @@ import CommentEditorToolbar from '@/Pages/community/[boardId]/Components/Comment
 
 interface Props {
     submitCount?: number;
+    value?: string;
     onChange: (...args: any) => any;
     onBlur: (...args: any) => any;
 }
 
-export default function CommentEditor({ submitCount, onChange, onBlur }: Props) {
+export default function CommentEditor({ value, submitCount, onChange, onBlur }: Props) {
     const editor = useEditor({
         onUpdate: ({ editor }) => {
             const commentValue = editor.getHTML();
