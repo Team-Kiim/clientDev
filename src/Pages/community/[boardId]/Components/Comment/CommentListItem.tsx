@@ -1,15 +1,30 @@
 import dompurify from 'dompurify';
+import CommentEditForm from '@/Pages/community/[boardId]/Components/Comment/CommentEditForm.tsx';
 import type { CommentInfo } from '@/Types/PostInfo.ts';
 
 interface Props {
+    postId: string;
     commentInfo: CommentInfo;
+    isCommentEditFormOpen: boolean;
+    idOfCommentToEdit: number;
+    closeCommentEditForm(): void;
+    onCommentEditButtonClick(commentId: number): void;
     onCommentDeleteButtonClick(commentId: number): void;
 }
 
-export default function CommentListItem({ commentInfo, onCommentDeleteButtonClick }: Props) {
+export default function CommentListItem({
+    postId,
+    commentInfo,
+    isCommentEditFormOpen,
+    idOfCommentToEdit,
+    closeCommentEditForm,
+    onCommentEditButtonClick,
+    onCommentDeleteButtonClick,
+}: Props) {
     const { VITE_SERVER_URL } = import.meta.env;
     const { profileImagePath, profileImageName } = commentInfo;
 
+    console.log(5);
     return (
         <li className={'flex flex-col border-b border-slate-300 py-3.5 last:border-none'}>
             <div className={'flex gap-x-4'}>
@@ -29,7 +44,17 @@ export default function CommentListItem({ commentInfo, onCommentDeleteButtonClic
                                 {commentInfo.createdTime[2]}일
                             </span>
                         </div>
-                        <div className={'gap-x-2'}>
+                        <div className={'flex gap-x-1'}>
+                            <button
+                                className={'text-[0.8rem] font-bold text-slate-500'}
+                                type={'button'}
+                                onClick={() => {
+                                    onCommentEditButtonClick(commentInfo.id);
+                                }}
+                            >
+                                수정
+                            </button>
+                            <span>·</span>
                             <button
                                 className={'text-[0.8rem] font-bold text-slate-500'}
                                 type={'button'}
@@ -41,10 +66,19 @@ export default function CommentListItem({ commentInfo, onCommentDeleteButtonClic
                             </button>
                         </div>
                     </div>
-                    <div
-                        className={'prose prose-sm max-w-full text-[0.87rem] text-black'}
-                        dangerouslySetInnerHTML={{ __html: dompurify.sanitize(commentInfo.content) }}
-                    />
+                    {isCommentEditFormOpen && idOfCommentToEdit === commentInfo.id ? (
+                        <CommentEditForm
+                            postId={postId}
+                            commentId={commentInfo.id}
+                            originalCommentValue={commentInfo.content}
+                            closeCommentEditForm={closeCommentEditForm}
+                        />
+                    ) : (
+                        <div
+                            className={'prose prose-sm max-w-full text-[0.87rem] text-black'}
+                            dangerouslySetInnerHTML={{ __html: dompurify.sanitize(commentInfo.content) }}
+                        />
+                    )}
                 </div>
             </div>
         </li>

@@ -15,7 +15,24 @@ interface Props {
 export default function CommentList({ postId, commentInfoDtoList }: Props) {
     const queryClient = useQueryClient();
 
+    const [isCommentEditFormOpen, setIsCommentEditFormOpen] = useState(false);
+    const [idOfCommentToEdit, setIdOfCommentToEdit] = useState(0);
+
     const [previousCommentList, setPreviousCommentList] = useState(commentInfoDtoList);
+
+    const handleCommentEditButtonClick = (commentId: number) => {
+        if (isCommentEditFormOpen) {
+            if (commentId === idOfCommentToEdit) {
+                setIsCommentEditFormOpen(false);
+            } else {
+                setIdOfCommentToEdit(commentId);
+            }
+            return;
+        }
+
+        setIdOfCommentToEdit(commentId);
+        setIsCommentEditFormOpen(true);
+    };
 
     const { mutate: mutateDeleteComment } = useMutation({
         mutationFn(commentId: number) {
@@ -68,7 +85,14 @@ export default function CommentList({ postId, commentInfoDtoList }: Props) {
                 return (
                     <CommentListItem
                         key={commentInfo.id}
+                        postId={postId}
                         commentInfo={commentInfo}
+                        isCommentEditFormOpen={isCommentEditFormOpen}
+                        idOfCommentToEdit={idOfCommentToEdit}
+                        closeCommentEditForm={() => {
+                            setIsCommentEditFormOpen(false);
+                        }}
+                        onCommentEditButtonClick={handleCommentEditButtonClick}
                         onCommentDeleteButtonClick={handleCommentDeleteButtonClick}
                     />
                 );
