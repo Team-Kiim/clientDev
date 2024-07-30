@@ -4,6 +4,8 @@ import Prism from 'prismjs';
 import { useEffect } from 'react';
 import checkIpAddress from '@/Utils/checkIpAddress.ts';
 import 'prismjs/themes/prism-tomorrow.css';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
+import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import 'prismjs/components/prism-c';
 import 'prismjs/components/prism-cpp';
 import 'prismjs/components/prism-csp';
@@ -71,6 +73,12 @@ const changeImageSrc = (htmlString: string): string => {
 export default function PostContent({ bodyContent }: Props) {
     const safeHtmlString = dompurify.sanitize(bodyContent);
     const htmlContent = changeToMermaidClass(changeImageSrc(safeHtmlString));
+
+    useEffect(() => {
+        Array.from(document.getElementsByTagName('pre')).forEach($preElement => {
+            $preElement.className += 'line-numbers';
+        });
+    }, []);
 
     useEffect(() => {
         mermaid.contentLoaded();
