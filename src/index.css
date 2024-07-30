@@ -48,6 +48,11 @@ blockquote p {
     color: black !important;
 }
 
+pre[class*="language-"] > code {
+    position: relative;
+    display: block;
+}
+
 pre:has(code[class='mermaid']) {
     background-color: white !important;
 }
