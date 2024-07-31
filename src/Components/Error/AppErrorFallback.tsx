@@ -1,6 +1,7 @@
 import { AxiosError } from 'axios';
 import UnauthorizedErrorPage from '@/Pages/ErrorPages/UnauthorizedErrorPage.tsx';
 import ForbiddenErrorPage from '@/Pages/ErrorPages/ForbiddenErrorPage.tsx';
+import NotFoundErrorPage from '@/Pages/ErrorPages/NotFoundErrorPage.tsx';
 import InternalServerErrorPage from '@/Pages/ErrorPages/InternalServerErrorPage.tsx';
 
 interface Props {
@@ -17,6 +18,9 @@ export default function AppErrorFallback({ error, resetErrorBoundary }: Props) {
 
         case 403:
             return <ForbiddenErrorPage />;
+
+        case 404:
+            return <NotFoundErrorPage />;
 
         case 500:
             return (
