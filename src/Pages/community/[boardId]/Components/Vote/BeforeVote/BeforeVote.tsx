@@ -1,26 +1,52 @@
+import axios from 'axios';
 import { useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import { MdOutlineHowToVote } from 'react-icons/md';
 import BeforeVoteList from '@/Pages/community/[boardId]/Components/Vote/BeforeVote/BeforeVoteList.tsx';
 
-export default function BeforeVote() {
-    const [selectedVoteItem, setSelectedVoteItem] = useState('');
+interface Props {
+    postId: string;
+    voteItems: {
+        voteItemId: number;
+        voteItem: string;
+        voteCount: number;
+    }[];
+}
 
-    const updateSelectedVoteItem = (voteItem: string) => {
-        setSelectedVoteItem(voteItem);
+export default function BeforeVote({ postId, voteItems }: Props) {
+    const queryClient = useQueryClient();
+
+    const [selectedVoteItemId, setSelectedVoteItemId] = useState(-1);
+
+    const updateSelectedVoteItem = (voteItemId: number) => {
+        setSelectedVoteItemId(voteItemId);
     };
 
-    const handleVoteButtonClick = () => {
-        if (selectedVoteItem === '') {
+    const handleVoteButtonClick = async () => {
+        if (selectedVoteItemId === -1) {
             window.alert('투표 항목을 선택해주세요.');
         } else {
-            window.alert(selectedVoteItem);
+            try {
+                await axios.post(`/api/vote/${postId}/votes`, {
+                    items: [selectedVoteItemId],
+                });
+                await queryClient.invalidateQueries({
+                    queryKey: ['post', postId],
+                });
+            } catch (error) {
+                //에러처리
+            }
         }
     };
 
     return (
         <>
             <div>
-                <BeforeVoteList selectedVoteItem={selectedVoteItem} updateSelectedVoteItem={updateSelectedVoteItem} />
+                <BeforeVoteList
+                    selectedVoteItemId={selectedVoteItemId}
+                    updateSelectedVoteItem={updateSelectedVoteItem}
+                    voteItems={voteItems}
+                />
             </div>
             <div className={'flex justify-end'}>
                 <div className={'tooltip tooltip-bottom'} data-tip={'투표하기'}>

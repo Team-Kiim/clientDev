@@ -19,6 +19,7 @@ export default function PostDetails({
     viewCount,
     createdTime,
     memberWritten,
+    voteResponse,
 }: Props) {
     return (
         <article className={'flex max-w-full flex-col gap-y-2.5'}>
@@ -33,7 +34,13 @@ export default function PostDetails({
             {memberWritten && <PostControl postId={id} />}
             <hr />
             <PostContent bodyContent={bodyContent} />
-            <VoteSection />
+            {voteResponse && (
+                <VoteSection
+                    voteTopic={voteResponse.title}
+                    voteItems={voteResponse.voteItemResponseList}
+                    memberVoted={voteResponse.memberVoted}
+                />
+            )}
         </article>
     );
 }
