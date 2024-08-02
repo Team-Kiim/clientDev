@@ -73,10 +73,20 @@ export default function CommunityPostWriteForm({ postId }: Props) {
         try {
             const result = await axios
                 .post('/api/community-post/post', {
-                    id: postId,
-                    title: data.title,
-                    bodyContent: dompurify.sanitize(data.bodyContent),
-                    fileIdList: currentImageIdList,
+                    saveCommunityPostInfoRequest: {
+                        id: postId,
+                        title: data.title,
+                        bodyContent: dompurify.sanitize(data.bodyContent),
+                        fileIdList: currentImageIdList,
+                    },
+                    saveVoteRequest: {
+                        title: data.voteTopic,
+                        items: [
+                            data.firstVoteItem,
+                            data.secondVoteItem,
+                            ...data.additionalVoteItems.map(voteItem => voteItem.label),
+                        ],
+                    },
                 })
                 .then(response => response.data);
 
