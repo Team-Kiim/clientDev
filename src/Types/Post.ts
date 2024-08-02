@@ -9,5 +9,6 @@ export type Post = {
     bodyContent: string;
     viewCount: number;
     likeCount: number;
+    bookmarkCount: number;
     createdTime: number[];
 };
