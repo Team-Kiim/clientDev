@@ -128,7 +128,7 @@ export default function EmailVerificationInputs({ updateEmailVerification }: Pro
                     <MdOutlinePassword className={'size-6 text-slate-500'} />
                     <input
                         className={
-                            'w-full flex-1 text-[0.9rem] focus:outline-none disabled:bg-slate-100 disabled:opacity-75'
+                            'w-full flex-1 bg-slate-100 text-[0.9rem] focus:outline-none disabled:bg-slate-100 disabled:opacity-75'
                         }
                         type={'text'}
                         placeholder={'인증 코드'}
