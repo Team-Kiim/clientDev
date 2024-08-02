@@ -53,4 +53,5 @@ export type QnAPostInfo = PostInfo & {
 
 export type CommunityPostInfo = PostInfo & {
     commentInfoDtoList: CommentInfo[] | null;
+    voteResponse?: VoteInfo;
 };
