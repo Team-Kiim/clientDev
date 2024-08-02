@@ -14,6 +14,16 @@ export type CommentInfo = {
     profileImageName?: string;
 };
 
+export type VoteInfo = {
+    title: string;
+    voteItemResponseList: {
+        voteItemId: number;
+        voteItem: string;
+        voteCount: number;
+    }[];
+    memberVoted: boolean;
+};
+
 export type PostInfo = {
     id: number;
     title: string;
