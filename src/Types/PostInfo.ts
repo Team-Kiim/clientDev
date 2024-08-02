@@ -40,6 +40,7 @@ export type PostInfo = {
     profileImagePath?: string;
     profileImageName?: string;
     imageFileInfoDtoList: ImageInfo[] | null;
+    commentInfoDtoList: CommentInfo[] | null;
 };
 
 export type QnAPostInfo = PostInfo & {
@@ -52,6 +53,5 @@ export type QnAPostInfo = PostInfo & {
 };
 
 export type CommunityPostInfo = PostInfo & {
-    commentInfoDtoList: CommentInfo[] | null;
     voteResponse?: VoteInfo;
 };
