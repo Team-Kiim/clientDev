@@ -40,7 +40,7 @@ export type PostInfo = {
     profileImagePath?: string;
     profileImageName?: string;
     imageFileInfoDtoList: ImageInfo[] | null;
-    commentInfoDtoList: CommentInfo[];
+    commentInfoDtoList?: CommentInfo[];
 };
 
 export type QnAPostInfo = PostInfo & {
