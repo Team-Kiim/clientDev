@@ -1,23 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useDropdown } from '@/Hooks/useDropdown.ts';
 import NotificationOpenButton from '@/Components/Notification/NotificationOpenButton.tsx';
 import NotificationDropdown from '@/Components/Notification/NotificationDropdown.tsx';
 
 export default function NotificationSection() {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const dropdownRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-                setIsDropdownOpen(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [dropdownRef]);
+    const { dropdownRef, isDropdownOpen, setIsDropdownOpen } = useDropdown<HTMLDivElement>();
 
     const handleNotificationButtonClick = () => {
         setIsDropdownOpen(!isDropdownOpen);

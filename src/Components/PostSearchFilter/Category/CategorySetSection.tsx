@@ -1,23 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useDropdown } from '@/Hooks/useDropdown.ts';
 import CategorySetButton from '@/Components/PostSearchFilter/Category/CategorySetButton.tsx';
 import CategorySetDropdown from '@/Components/PostSearchFilter/Category/CategorySetDropdown.tsx';
 
 export default function CategorySetSection() {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const dropdownRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-                setIsDropdownOpen(false);
-            }
-        };
-
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [dropdownRef]);
+    const { dropdownRef, isDropdownOpen, setIsDropdownOpen } = useDropdown<HTMLDivElement>();
 
     const handleCategorySetButtonClick = () => {
         setIsDropdownOpen(!isDropdownOpen);
