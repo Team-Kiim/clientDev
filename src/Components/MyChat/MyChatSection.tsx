@@ -3,7 +3,9 @@ import MyChatButton from '@/Components/MyChat/MyChatButton.tsx';
 import MyChatModal from '@/Components/MyChat/MyChatModal/MyChatModal.tsx';
 
 export default function MyChatSection() {
-    const { modalRef, isModalOpen, setIsModalOpen } = useModal<HTMLDivElement>();
+    const { modalRef, isModalOpen, setIsModalOpen } = useModal<HTMLDivElement>({
+        canCloseOnOutsideClick: false,
+    });
 
     const handleMyChatButtonClick = () => {
         setIsModalOpen(!isModalOpen);
