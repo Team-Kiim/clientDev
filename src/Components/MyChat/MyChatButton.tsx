@@ -2,11 +2,11 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { PiChatsTeardrop, PiX } from 'react-icons/pi';
 
 interface Props {
-    isDropdownOpen: boolean;
+    isModalOpen: boolean;
     onMyChatButtonClick(): void;
 }
 
-export default function MyChatButton({ isDropdownOpen, onMyChatButtonClick }: Props) {
+export default function MyChatButton({ isModalOpen, onMyChatButtonClick }: Props) {
     return (
         <div className={'tooltip tooltip-bottom rounded-full shadow-2xl'} data-tip={'나의 채팅'}>
             <button
@@ -17,7 +17,7 @@ export default function MyChatButton({ isDropdownOpen, onMyChatButtonClick }: Pr
                 onClick={onMyChatButtonClick}
             >
                 <AnimatePresence initial={false} mode={'popLayout'}>
-                    {isDropdownOpen ? (
+                    {isModalOpen ? (
                         <motion.div
                             key={'open'}
                             initial={{ opacity: 0 }}
