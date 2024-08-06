@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import GlobalNavbar from '@/Components/GNB/GlobalNavbar.tsx';
-import MyChatButton from '@/Components/MyChat/MyChatButton.tsx';
+import MyChatSection from '@/Components/MyChat/MyChatSection.tsx';
 import useLoggedInStatus from '@/Hooks/useLoggedInStatus.ts';
 import AppErrorBoundary from '@/Components/Error/AppErrorBoundary.tsx';
 
@@ -40,8 +40,8 @@ export default function Layout() {
                 <AppErrorBoundary>
                     <Outlet />
                 </AppErrorBoundary>
-                {isLoggedIn && <MyChatButton />}
             </div>
+            {isLoggedIn && <MyChatSection />}
         </div>
     );
 }
