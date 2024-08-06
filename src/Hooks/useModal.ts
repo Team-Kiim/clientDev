@@ -1,6 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 
-export const useModal = <T extends HTMLElement>() => {
+interface ModalOptions {
+    canCloseOnOutsideClick: boolean;
+}
+
+export const useModal = <T extends HTMLElement>({ canCloseOnOutsideClick }: ModalOptions) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const modalRef = useRef<T>(null);
