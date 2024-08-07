@@ -13,7 +13,7 @@ export default function MyChatModal() {
     return (
         <div
             className={
-                'absolute bottom-20 right-0 z-50 flex h-[38rem] w-[23rem] flex-col gap-y-7 rounded-[2.5rem] bg-white py-5 shadow-2xl'
+                'myChatModal absolute bottom-20 right-0 z-50 flex h-[38rem] w-[23rem] flex-col gap-y-7 rounded-[2.5rem] bg-white py-5 shadow-2xl'
             }
         >
             <MyChatModalTop currentViewName={currentViewName} updateCurrentViewName={updateCurrentViewName} />
