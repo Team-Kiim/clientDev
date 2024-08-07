@@ -15,6 +15,9 @@ export default function ChatRoomListItem({ updateCurrentViewName }: Props) {
             className={
                 'flex cursor-pointer items-center gap-x-3.5 border-b border-slate-200 px-4 py-3.5 transition-all last:border-none hover:bg-slate-50'
             }
+            onClick={() => {
+                updateCurrentViewName('chatRoom15');
+            }}
         >
             <div className={'avatar size-10 rounded-full'}>
                 <img className={'size-10 rounded-full'} src={faker.image.avatarGitHub()} alt={'thumbNailImg'} />
