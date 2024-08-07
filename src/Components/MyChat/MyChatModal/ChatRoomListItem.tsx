@@ -5,7 +5,11 @@ import { faker } from '@faker-js/faker';
 
 dayjs.extend(relativeTime);
 
-export default function ChatRoomListItem() {
+interface Props {
+    updateCurrentViewName(viewName: string): void;
+}
+
+export default function ChatRoomListItem({ updateCurrentViewName }: Props) {
     return (
         <li
             className={
