@@ -19,7 +19,7 @@ export default function MyChatModal() {
             <MyChatModalTop currentViewName={currentViewName} updateCurrentViewName={updateCurrentViewName} />
             {
                 {
-                    home: <HomeView />,
+                    home: <HomeView updateCurrentViewName={updateCurrentViewName} />,
                     chatSearch: <ChatSearchView />,
                 }[currentViewName]
             }
