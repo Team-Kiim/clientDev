@@ -18,7 +18,7 @@ const initNaverLogin = () => {
     naverLogin.init();
 };
 
-export default function NaverSection() {
+export default function NaverOAuthButton() {
     const naverIdLoginRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
