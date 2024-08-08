@@ -2,6 +2,7 @@ import { useState } from 'react';
 import MyChatModalTop from '@/Components/MyChat/MyChatModal/MyChatModalTop.tsx';
 import HomeView from '@/Components/MyChat/MyChatModal/Home/HomeView.tsx';
 import ChatSearchView from '@/Components/MyChat/MyChatModal/ChatSearch/ChatSearchView.tsx';
+import ChatRoom from '@/Components/MyChat/MyChatModal/ChatRoom/ChatRoom.tsx';
 
 export default function MyChatModal() {
     const [currentViewName, setCurrentViewName] = useState('home');
@@ -17,12 +18,12 @@ export default function MyChatModal() {
             }
         >
             <MyChatModalTop currentViewName={currentViewName} updateCurrentViewName={updateCurrentViewName} />
-            {
-                {
-                    home: <HomeView updateCurrentViewName={updateCurrentViewName} />,
-                    chatSearch: <ChatSearchView />,
-                }[currentViewName]
-            }
+            {{
+                home: <HomeView updateCurrentViewName={updateCurrentViewName} />,
+                chatSearch: <ChatSearchView />,
+            }[currentViewName] ?? (
+                <ChatRoom chatRoomId={currentViewName.slice(8)} updateCurrentViewName={updateCurrentViewName} />
+            )}
         </div>
     );
 }
