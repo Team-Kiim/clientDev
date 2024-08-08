@@ -1,4 +1,4 @@
-export default function KakaoSection() {
+export default function KakaoOAuthButton() {
     const { VITE_DEV_URL, VITE_KAKAO_REST_API_KEY } = import.meta.env;
 
     const redirectURL = `${VITE_DEV_URL}/oauth/kakao`;
