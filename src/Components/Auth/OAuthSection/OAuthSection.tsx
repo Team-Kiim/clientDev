@@ -4,7 +4,7 @@ import GoogleOAuthButton from '@/Components/Auth/OAuthSection/GoogleSection/Goog
 
 export default function OAuthSection() {
     return (
-        <div className={'flex w-full items-center justify-center gap-x-9'}>
+        <div className={'flex w-full flex-col items-center justify-center gap-y-2'}>
             <KakaoOAuthButton />
             <NaverOAuthButton />
             <GoogleOAuthButton />
