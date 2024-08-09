@@ -10,7 +10,7 @@ export default function ChatBubbleList() {
     return (
         <div
             className={
-                'chatBubbleList flex shrink-0 flex-grow basis-0 flex-col gap-y-3 overflow-y-auto p-2 scrollbar-hide'
+                'chatBubbleList flex shrink-0 flex-grow basis-0 flex-col gap-y-3 overflow-y-auto overscroll-y-contain p-2 scrollbar-hide'
             }
         >
             <ChatBubbleListItem memberSent={true} messageType={''} />
