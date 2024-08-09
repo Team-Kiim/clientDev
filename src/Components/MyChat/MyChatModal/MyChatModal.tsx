@@ -22,7 +22,7 @@ export default function MyChatModal() {
             )}
             {{
                 home: <HomeView updateCurrentViewName={updateCurrentViewName} />,
-                chatSearch: <ChatSearchView />,
+                chatSearch: <ChatSearchView updateCurrentViewName={updateCurrentViewName} />,
             }[currentViewName] ?? (
                 <ChatRoom chatRoomId={currentViewName.slice(8)} updateCurrentViewName={updateCurrentViewName} />
             )}
