@@ -1,3 +1,5 @@
+import { throttle } from 'lodash';
+import { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import GlobalNavbar from '@/Components/GNB/GlobalNavbar.tsx';
 import MyChatSection from '@/Components/MyChat/MyChatSection.tsx';
@@ -23,13 +25,25 @@ export default function Layout() {
     const { pathname } = useLocation();
     const isLoggedIn = useLoggedInStatus();
 
+    const [isScrolled, setIsScrolled] = useState(false);
+
+    const handleScroll = throttle(() => {
+        const scrollTop = window.scrollY;
+        setIsScrolled(scrollTop > 0);
+    }, 200);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
         <div>
             {!shouldHideGNB(pathname) && (
                 <div
-                    className={
-                        'sticky top-0 z-50 flex h-[4.5rem] w-full min-w-[1500px] items-center justify-center border-b border-slate-200 bg-white'
-                    }
+                    className={`sticky top-0 z-50 flex h-[4.5rem] w-full min-w-[1500px] items-center justify-center ${isScrolled && 'border-b border-slate-200'} bg-white`}
                 >
                     <div className={'w-[80rem]'}>
                         <GlobalNavbar />
