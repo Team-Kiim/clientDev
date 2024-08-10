@@ -2,6 +2,7 @@ import { useState } from 'react';
 import MyChatModalTop from '@/Components/MyChat/MyChatModal/MyChatModalTop.tsx';
 import HomeView from '@/Components/MyChat/MyChatModal/Home/HomeView.tsx';
 import ChatSearchView from '@/Components/MyChat/MyChatModal/ChatSearch/ChatSearchView.tsx';
+import ChatPlusVIew from '@/Components/MyChat/MyChatModal/ChatPlus/ChatPlusVIew.tsx';
 import ChatRoom from '@/Components/MyChat/MyChatModal/ChatRoom/ChatRoom.tsx';
 
 export default function MyChatModal() {
@@ -23,6 +24,7 @@ export default function MyChatModal() {
             {{
                 home: <HomeView updateCurrentViewName={updateCurrentViewName} />,
                 chatSearch: <ChatSearchView updateCurrentViewName={updateCurrentViewName} />,
+                chatPlus: <ChatPlusVIew updateCurrentViewName={updateCurrentViewName} />,
             }[currentViewName] ?? (
                 <ChatRoom chatRoomId={currentViewName.slice(8)} updateCurrentViewName={updateCurrentViewName} />
             )}
