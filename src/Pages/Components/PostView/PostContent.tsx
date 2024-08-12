@@ -89,7 +89,9 @@ export default function PostContent({ bodyContent }: Props) {
 
     return (
         <div
-            className={'prose prose-sm min-h-56 max-w-full text-[0.9rem] text-[#020617] prose-strong:text-inherit'}
+            className={
+                'prose prose-sm min-h-56 max-w-full !text-[0.9rem] text-[#020617] prose-strong:text-inherit [&_code]:bg-neutral-800 [&_code]:text-[0.9rem] [&_pre]:bg-neutral-800'
+            }
             dangerouslySetInnerHTML={{ __html: htmlContent }}
         />
     );
