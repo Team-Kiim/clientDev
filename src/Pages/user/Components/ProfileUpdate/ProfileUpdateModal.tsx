@@ -43,8 +43,10 @@ export default function ProfileUpdateModal({ isModalOpen, closeModal, profileDat
                     <HiXMark className={'size-7'} />
                 </button>
             </div>
-            <h1 className={'mx-2 mb-5 text-[1.1rem] font-bold'}>프로필 정보 수정</h1>
-            <ProfileUpdateForm closeModal={closeModal} profileData={{ ...profileData }} />
+            <div className={'flex flex-col gap-y-6'}>
+                <h1 className={'mx-1 text-lg font-extrabold'}>프로필 정보 수정</h1>
+                <ProfileUpdateForm closeModal={closeModal} profileData={{ ...profileData }} />
+            </div>
         </Modal>
     );
 }
