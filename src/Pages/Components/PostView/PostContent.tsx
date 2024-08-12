@@ -3,7 +3,7 @@ import mermaid from 'mermaid';
 import Prism from 'prismjs';
 import { useEffect } from 'react';
 import checkIpAddress from '@/Utils/checkIpAddress.ts';
-import 'prismjs/themes/prism-tomorrow.css';
+import 'prism-themes/themes/prism-one-dark.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import 'prismjs/components/prism-c';
