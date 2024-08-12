@@ -6,7 +6,7 @@ import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
 import { useSearchParams } from 'react-router-dom';
 
 interface Props {
-    postId: number;
+    postId: number | string;
 }
 
 interface FormData {
