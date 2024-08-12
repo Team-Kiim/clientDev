@@ -72,7 +72,7 @@ export default function SignInForm() {
                     {errors?.email?.message && errors?.email.type === 'required' && (
                         <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
                             <HiOutlineExclamationTriangle className={'size-5'} />
-                            <p className={'text-[0.8rem] font-bold'}>{errors.email.message}</p>
+                            <p className={'text-[0.8rem]'}>{errors.email.message}</p>
                         </div>
                     )}
                 </div>
@@ -112,7 +112,7 @@ export default function SignInForm() {
                     {errors?.password?.message && errors?.password.type === 'required' && (
                         <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
                             <HiOutlineExclamationTriangle className={'size-5'} />
-                            <p className={'text-[0.8rem] font-bold'}>{errors.password.message}</p>
+                            <p className={'text-[0.8rem]'}>{errors.password.message}</p>
                         </div>
                     )}
                 </div>
