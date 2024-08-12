@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Select from 'react-select';
-import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import { HiOutlineExclamationTriangle } from 'react-icons/hi2';
 
 interface Props {
     closeModal(): void;
@@ -68,22 +68,22 @@ export default function ProfileUpdateForm({ closeModal, profileData }: Props) {
     };
 
     return (
-        <form className={'flex flex-col gap-y-14'} onSubmit={handleSubmit(onSubmit)}>
-            <div className={'flex flex-col gap-y-3'}>
+        <form className={'flex flex-col gap-y-12'} onSubmit={handleSubmit(onSubmit)}>
+            <div className={'flex flex-col gap-y-5'}>
                 <div className={'flex w-full flex-col gap-y-2'}>
                     <label className={'mx-1.5 w-fit text-[0.9rem] font-bold'} htmlFor={'nicknameInput'}>
                         닉네임
                     </label>
                     <div
                         className={
-                            'flex items-center rounded-md border border-gray-300 px-3.5 py-3 focus-within:border-violet-700'
+                            'flex items-center rounded-xl border border-slate-300 p-3 focus-within:border-violet-700'
                         }
                     >
                         <input
                             id={'nicknameInput'}
-                            className={'w-full text-[0.9rem] focus:outline-none'}
+                            className={'w-full flex-1 text-[0.9rem] focus:outline-none'}
                             type={'text'}
-                            placeholder={'최대 20자'}
+                            placeholder={'닉네임 (최대 20자)'}
                             autoComplete={'off'}
                             autoCapitalize={'off'}
                             {...register('nickname', {
@@ -99,14 +99,14 @@ export default function ProfileUpdateForm({ closeModal, profileData }: Props) {
                         />
                     </div>
                     {errors?.nickname?.message && errors?.nickname.type === 'required' && (
-                        <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
-                            <ExclamationTriangleIcon className={'size-5'} />
-                            <p className={'text-[0.8rem] font-bold'}>{errors.nickname.message}</p>
+                        <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
+                            <HiOutlineExclamationTriangle className={'size-5'} />
+                            <p className={'text-[0.8rem]'}>{errors.nickname.message}</p>
                         </div>
                     )}
                     {errors?.nickname?.message && errors?.nickname.type === 'maxLength' && (
-                        <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
-                            <ExclamationTriangleIcon className={'size-5'} />
+                        <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
+                            <HiOutlineExclamationTriangle className={'size-5'} />
                             <p className={'text-[0.8rem] font-bold'}>{errors.nickname.message}</p>
                         </div>
                     )}
@@ -115,50 +115,77 @@ export default function ProfileUpdateForm({ closeModal, profileData }: Props) {
                     <label className={'mx-1.5 w-fit text-[0.9rem] font-bold'} htmlFor={'jobSelectInput'}>
                         직업
                     </label>
-                    <Controller
-                        control={control}
-                        name={'job'}
-                        rules={{
-                            validate: {
-                                isNotSelected(value) {
-                                    return value.length !== 0 || '직업을 선택해주세요.';
+                    <div
+                        className={
+                            'flex h-[47.59px] items-center rounded-xl border border-slate-300 px-3 focus-within:border-violet-700'
+                        }
+                    >
+                        <Controller
+                            control={control}
+                            name={'job'}
+                            rules={{
+                                validate: {
+                                    isNotSelected(value) {
+                                        return value.length !== 0 || '직업을 선택해주세요.';
+                                    },
                                 },
-                            },
-                        }}
-                        render={({ field }) => {
-                            return (
-                                <Select
-                                    inputId={'jobSelectInput'}
-                                    placeholder={'직업 선택'}
-                                    options={jobOptions}
-                                    onChange={option => field.onChange(option.value)}
-                                    onBlur={field.onBlur}
-                                    defaultValue={jobOptions.find(option => option.value === field.value)}
-                                    classNames={{
-                                        control({ isFocused }) {
-                                            return `!rounded-md !h-[47.59px] !border !border-gray-300 !bg-white !border !text-[0.9rem] !shadow-none ${isFocused ? '!border-violet-700' : '!border-gray-300'}`;
-                                        },
+                            }}
+                            render={({ field }) => {
+                                return (
+                                    <Select
+                                        inputId={'jobSelectInput'}
+                                        placeholder={'직업 선택'}
+                                        options={jobOptions}
+                                        onChange={option => field.onChange(option.value)}
+                                        onBlur={field.onBlur}
+                                        defaultValue={jobOptions.find(option => option.value === field.value)}
+                                        styles={{
+                                            container: base => {
+                                                return {
+                                                    ...base,
+                                                    flex: 1,
+                                                };
+                                            },
+                                            valueContainer: base => {
+                                                return {
+                                                    ...base,
+                                                    padding: 0,
+                                                };
+                                            },
 
-                                        option() {
-                                            return '!text-[0.9rem]';
-                                        },
-                                    }}
-                                />
-                            );
-                        }}
-                    />
+                                            placeholder: base => {
+                                                return {
+                                                    ...base,
+                                                    color: '#9ca3af',
+                                                };
+                                            },
+                                        }}
+                                        classNames={{
+                                            control() {
+                                                return `!bg-white !text-[0.9rem] !border-none !shadow-none`;
+                                            },
+
+                                            option() {
+                                                return '!text-[0.9rem]';
+                                            },
+                                        }}
+                                    />
+                                );
+                            }}
+                        />
+                    </div>
                     {errors?.job?.message && errors?.job.type === 'isNotSelected' && (
-                        <div className={'m-0.5 flex items-center gap-x-1 text-red-700'}>
-                            <ExclamationTriangleIcon className={'size-5'} />
-                            <p className={'text-[0.8rem] font-bold'}>{errors.job.message}</p>
+                        <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
+                            <HiOutlineExclamationTriangle className={'size-5'} />
+                            <p className={'text-[0.8rem]'}>{errors.job.message}</p>
                         </div>
                     )}
                 </div>
             </div>
-            <div className={'mb-1.5 flex justify-end gap-x-1'}>
+            <div className={'mb-1.5 flex justify-end gap-x-3'}>
                 <button
                     className={
-                        'rounded-md px-3 py-1.5 text-[0.93rem] font-bold transition-all hover:bg-gray-100 disabled:cursor-default disabled:opacity-75'
+                        'rounded-lg bg-slate-100 px-4 py-2.5 text-[0.9rem] font-bold transition-all hover:bg-slate-200 disabled:cursor-default disabled:opacity-75'
                     }
                     type={'button'}
                     onClick={closeModal}
@@ -168,7 +195,7 @@ export default function ProfileUpdateForm({ closeModal, profileData }: Props) {
                 </button>
                 <button
                     className={
-                        'rounded-md px-3 py-1.5 text-[0.93rem] font-bold text-violet-700 transition-all hover:bg-violet-50 disabled:cursor-default disabled:opacity-75'
+                        'rounded-lg bg-violet-600 px-4 py-2.5 text-[0.9rem] font-bold text-white transition-all hover:bg-violet-700 disabled:cursor-default disabled:opacity-75'
                     }
                     disabled={isSubmitting}
                 >
