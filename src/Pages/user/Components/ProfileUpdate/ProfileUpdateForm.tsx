@@ -126,7 +126,7 @@ export default function ProfileUpdateForm({ closeModal, profileData }: Props) {
                             rules={{
                                 validate: {
                                     isNotSelected(value) {
-                                        return value.length !== 0 || '직업을 선택해주세요.';
+                                        return value !== 'TEMP' || '직업을 선택해주세요.';
                                     },
                                 },
                             }}
