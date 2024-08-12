@@ -2,6 +2,7 @@ import { Editor } from '@tiptap/react';
 // @ts-ignore
 import { StarterKit } from '@tiptap/starter-kit';
 import { FiBold, FiItalic, FiLink } from 'react-icons/fi';
+import { HiOutlineCodeBracketSquare } from 'react-icons/hi2';
 import { PiListBullets, PiListNumbers } from 'react-icons/pi';
 import { TbStrikethrough } from 'react-icons/tb';
 
@@ -70,6 +71,15 @@ export default function CommentEditorToolbar({ editor }: Props) {
                         className={`rounded-md p-1 ${editor.isActive('link') ? 'bg-black text-white' : 'bg-white text-black'} transition-all`}
                     >
                         <FiLink className={'size-5'} />
+                    </button>
+                </div>
+                <div className={'tooltip tooltip-bottom'} data-tip={'코드 블럭'}>
+                    <button
+                        onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+                        type={'button'}
+                        className={`rounded-md p-1 ${editor.isActive('link') ? 'bg-black text-white' : 'bg-white text-black'} transition-all`}
+                    >
+                        <HiOutlineCodeBracketSquare className={'size-5'} />
                     </button>
                 </div>
             </div>
