@@ -20,6 +20,7 @@ export default function PostDetails({
     createdTime,
     memberWritten,
     voteResponse,
+    memberId,
 }: Props) {
     return (
         <article className={'flex max-w-full flex-col gap-y-2.5'}>
@@ -30,6 +31,7 @@ export default function PostDetails({
                 profileImagePath={profileImagePath}
                 profileImageName={profileImageName}
                 viewCount={viewCount}
+                memberId={memberId}
             />
             {memberWritten && <PostControl postId={id} />}
             <hr />
