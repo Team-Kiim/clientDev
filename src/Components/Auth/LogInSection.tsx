@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import axios, { AxiosError } from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
 import { ChatBubbleOvalLeftEllipsisIcon } from '@heroicons/react/24/outline';
 import NotificationSection from '@/Components/Notification/NotificationSection.tsx';
@@ -7,8 +8,22 @@ import type { User } from '@/Types/User.ts';
 export default function LogInSection() {
     const queryClient = useQueryClient();
 
+    const navigate = useNavigate();
+
     const { VITE_SERVER_URL } = import.meta.env;
     const { profileImageName, profileImagePath } = queryClient.getQueryData<User>(['loggedIn user']);
+
+    const handleLogoutButtonClick = async () => {
+        try {
+            await axios.get('/api/auth/logout');
+            await queryClient.invalidateQueries({ queryKey: ['loggedIn user'] });
+            await queryClient.invalidateQueries({ queryKey: ['loggedIn status'] });
+            navigate('/');
+        } catch (err) {
+            const error = err as AxiosError;
+            console.error(error);
+        }
+    };
 
     return (
         <div>
@@ -32,6 +47,7 @@ export default function LogInSection() {
                         'rounded-lg bg-slate-100 px-4 py-2.5 text-[0.9rem] font-bold transition-all hover:bg-slate-200'
                     }
                     type={'button'}
+                    onClick={handleLogoutButtonClick}
                 >
                     로그아웃
                 </button>
