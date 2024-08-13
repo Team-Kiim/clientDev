@@ -10,7 +10,7 @@ export type User = {
               childSkillCategory: string;
           }[]
         | null;
-    loginMember: boolean;
+    isLoginMember: boolean;
     profileImagePath: string;
     profileImageName: string;
 };
