@@ -27,7 +27,7 @@ export default function UserPageLayout() {
         <div className={'mt-7 flex w-full min-w-[1500px] justify-center'}>
             <div className={'w-[60rem]'}>
                 <div className={'flex gap-x-10 border-b border-gray-200 p-2 pb-6'}>
-                    {data.loginMember ? (
+                    {data.isLoginMember ? (
                         <EditableProfileImage
                             profileImageName={data.profileImageName}
                             profileImagePath={`${VITE_SERVER_URL}/image/${data.profileImagePath}/${data.profileImageName}`}
@@ -48,7 +48,7 @@ export default function UserPageLayout() {
                                 <MdOutlineEmail className={'size-6 text-slate-500'} />
                                 <span className={'text-md font-bold text-slate-500'}>{data.email}</span>
                             </div>
-                            {!data.loginMember && (
+                            {!data.isLoginMember && (
                                 <FollowToggleButton
                                     profileMemberId={profileMemberId}
                                     isFollowingMember={data.isFollowingMember}
@@ -58,7 +58,7 @@ export default function UserPageLayout() {
                     </div>
                 </div>
                 <div className={'flex gap-x-10 p-2'}>
-                    {data.loginMember ? (
+                    {data.isLoginMember ? (
                         <SideNavbar />
                     ) : (
                         <div className={'w-[10rem] py-4'}>
