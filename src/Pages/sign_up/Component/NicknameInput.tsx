@@ -22,12 +22,13 @@ export default function NicknameInput() {
                 <input
                     className={'flex-1 text-[0.9rem] focus:outline-none'}
                     type={'text'}
-                    placeholder={'닉네임 (최대 20자)'}
+                    placeholder={'닉네임 (3자 이상 20자 이하)'}
                     autoComplete={'off'}
                     autoCapitalize={'off'}
                     {...register('nickname', {
                         required: { value: true, message: '닉네임을 입력해주세요.' },
-                        maxLength: { value: 20, message: '최대 20자까지 입력 가능합니다.' },
+                        maxLength: { value: 20, message: '3자 이상 20자 이하로 입력해주세요.' },
+                        minLength: { value: 3, message: '3자 이상 20자 이하로 입력해주세요.' },
                     })}
                 />
             </div>
@@ -38,6 +39,12 @@ export default function NicknameInput() {
                 </div>
             )}
             {errors?.nickname?.message && errors?.nickname.type === 'maxLength' && (
+                <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
+                    <HiOutlineExclamationTriangle className={'size-5'} />
+                    <p className={'text-[0.8rem]'}>{errors.nickname.message}</p>
+                </div>
+            )}
+            {errors?.nickname?.message && errors?.nickname.type === 'minLength' && (
                 <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
                     <HiOutlineExclamationTriangle className={'size-5'} />
                     <p className={'text-[0.8rem]'}>{errors.nickname.message}</p>
