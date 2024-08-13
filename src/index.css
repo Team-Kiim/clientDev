@@ -58,6 +58,7 @@ pre:has(code[class='mermaid']) {
 
 .ck-editor__main code {
     color: black !important;
+    text-shadow: none !important;
 }
 
 .ProseMirror p.is-editor-empty:first-child::before {
