@@ -36,7 +36,7 @@ export default function UserPageLayout() {
                         <div className={'w-[10rem]'}>
                             <img
                                 className={'size-36 rounded-full object-cover'}
-                                src={data.profileImagePath}
+                                src={`${VITE_SERVER_URL}/image/${data.profileImagePath}/${data.profileImageName}`}
                                 alt={data.profileImageName}
                             />
                         </div>
