@@ -32,6 +32,7 @@ export type PostInfo = {
     viewCount: number;
     likeCount: number;
     memberLiked: boolean;
+    memberId: number;
     bookmarkCount: number;
     memberBookmarked: boolean;
     memberWritten: boolean;
