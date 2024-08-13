@@ -111,13 +111,13 @@ export default function ProfileUpdateForm({ closeModal, profileData }: Props) {
                     {errors?.nickname?.message && errors?.nickname.type === 'maxLength' && (
                         <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
                             <HiOutlineExclamationTriangle className={'size-5'} />
-                            <p className={'text-[0.8rem] font-bold'}>{errors.nickname.message}</p>
+                            <p className={'text-[0.8rem]'}>{errors.nickname.message}</p>
                         </div>
                     )}
                     {errors?.nickname?.message && errors?.nickname.type === 'minLength' && (
                         <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
                             <HiOutlineExclamationTriangle className={'size-5'} />
-                            <p className={'text-[0.8rem] font-bold'}>{errors.nickname.message}</p>
+                            <p className={'text-[0.8rem]'}>{errors.nickname.message}</p>
                         </div>
                     )}
                 </div>
