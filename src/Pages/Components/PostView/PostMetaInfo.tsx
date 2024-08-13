@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko.js';
 import { CalendarIcon } from '@heroicons/react/24/outline';
+import { useNavigate } from 'react-router-dom';
 
 dayjs.locale('ko');
 
@@ -11,6 +12,7 @@ interface Props {
     profileImageName: string;
     profileImagePath: string;
     viewCount: number;
+    memberId: number;
 }
 
 export default function PostMetaInfo({
@@ -20,8 +22,10 @@ export default function PostMetaInfo({
     profileImagePath,
     profileImageName,
     viewCount,
+    memberId,
 }: Props) {
     const { VITE_SERVER_URL } = import.meta.env;
+    const navigate = useNavigate();
 
     const createdDate = new Date(createdTime[0], createdTime[1] - 1, createdTime[2]);
     const createdWeekDay = dayjs(createdDate).format('dddd');
@@ -36,7 +40,12 @@ export default function PostMetaInfo({
             </div>
             <h1 className={'line-clamp-1 text-[1.7rem] font-extrabold'}>{title}</h1>
             <div className={'flex items-center justify-between'}>
-                <div className={'flex items-center gap-x-3'}>
+                <div
+                    className={'flex cursor-pointer items-center gap-x-3'}
+                    onClick={() => {
+                        navigate(`/user/${memberId}`);
+                    }}
+                >
                     <div className={'avatar'}>
                         <div className={'size-8 rounded-full'}>
                             <img
