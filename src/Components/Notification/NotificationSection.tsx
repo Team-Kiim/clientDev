@@ -1,21 +1,23 @@
-import { useDropdown } from '@/Hooks/useDropdown.ts';
+import { useModal } from '@/Hooks/useModal.ts';
 import NotificationOpenButton from '@/Components/Notification/NotificationOpenButton.tsx';
 import NotificationModal from '@/Components/Notification/NotificationModal.tsx';
 
 export default function NotificationSection() {
-    const { dropdownRef, isDropdownOpen, setIsDropdownOpen } = useDropdown<HTMLDivElement>();
+    const { modalRef, isModalOpen, setIsModalOpen } = useModal<HTMLDivElement>({
+        canCloseOnOutsideClick: true,
+    });
 
     const handleNotificationButtonClick = () => {
-        setIsDropdownOpen(!isDropdownOpen);
+        setIsModalOpen(!isModalOpen);
     };
 
     return (
-        <div className={'relative flex items-center justify-center'} ref={dropdownRef}>
+        <div className={'relative flex items-center justify-center'} ref={modalRef}>
             <NotificationOpenButton
                 hasNewNotification={true}
                 onNotificationButtonClick={handleNotificationButtonClick}
             />
-            {isDropdownOpen && <NotificationModal numberOfNotifications={100} />}
+            {isModalOpen && <NotificationModal numberOfNotifications={100} />}
         </div>
     );
 }
