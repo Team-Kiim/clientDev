@@ -5,7 +5,7 @@ interface Props {
     numberOfNotifications: number;
 }
 
-export default function NotificationDropdown({ numberOfNotifications }: Props) {
+export default function NotificationModal({ numberOfNotifications }: Props) {
     return (
         <div
             className={'absolute -left-1 top-12 z-10 flex h-[30rem] w-[24rem] flex-col rounded-lg bg-white shadow-2xl'}
