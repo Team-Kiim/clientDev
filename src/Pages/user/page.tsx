@@ -22,7 +22,7 @@ export default function Page() {
 
     const { userData } = useOutletContext<UserDataContext>();
 
-    const { email, nickname, memberRole, interestSkillCategoryList, loginMember } = userData;
+    const { email, nickname, memberRole, interestSkillCategoryList, isLoginMember } = userData;
 
     return (
         <>
@@ -52,7 +52,7 @@ export default function Page() {
                                 )}
                             </div>
                         </div>
-                        {loginMember && (
+                        {isLoginMember && (
                             <div className={'flex items-center justify-end'}>
                                 <button
                                     className={
@@ -74,7 +74,7 @@ export default function Page() {
                             <h3 className={'text-[0.95rem] font-bold'}>관심 카테고리</h3>
                             <InterestCategoryList interestSkillCategories={interestSkillCategoryList} />
                         </div>
-                        {loginMember && (
+                        {isLoginMember && (
                             <div className={'flex items-center justify-end'}>
                                 <button
                                     className={
