@@ -1,6 +1,6 @@
 import { useDropdown } from '@/Hooks/useDropdown.ts';
 import NotificationOpenButton from '@/Components/Notification/NotificationOpenButton.tsx';
-import NotificationDropdown from '@/Components/Notification/NotificationDropdown.tsx';
+import NotificationModal from '@/Components/Notification/NotificationModal.tsx';
 
 export default function NotificationSection() {
     const { dropdownRef, isDropdownOpen, setIsDropdownOpen } = useDropdown<HTMLDivElement>();
@@ -15,7 +15,7 @@ export default function NotificationSection() {
                 hasNewNotification={true}
                 onNotificationButtonClick={handleNotificationButtonClick}
             />
-            {isDropdownOpen && <NotificationDropdown numberOfNotifications={100} />}
+            {isDropdownOpen && <NotificationModal numberOfNotifications={100} />}
         </div>
     );
 }
