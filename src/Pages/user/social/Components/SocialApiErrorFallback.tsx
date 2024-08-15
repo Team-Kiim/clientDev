@@ -10,7 +10,7 @@ export default function SocialApiErrorFallback({ relationshipType, resetErrorBou
     const queryClient = useQueryClient();
     useEffect(() => {
         return () => {
-            queryClient.removeQueries({ queryKey: ['social', relationshipType] });
+            queryClient.resetQueries({ queryKey: ['social', relationshipType] });
         };
     }, []);
 
