@@ -48,7 +48,14 @@ export default function BeforeVote({ postId, voteItems }: Props) {
             return;
         }
         if (selectedVoteItemId === -1) {
-            window.alert('투표 항목을 선택해주세요.');
+            Swal.fire({
+                icon: 'question',
+                text: '투표 항목을 선택해주세요.',
+                confirmButtonText: '확인',
+                customClass: {
+                    confirmButton: 'text-white font-bold bg-violet-600',
+                },
+            }).then(() => {});
         } else {
             try {
                 await axios.post(`/api/vote/${postId}/votes`, {
