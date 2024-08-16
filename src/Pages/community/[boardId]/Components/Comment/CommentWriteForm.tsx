@@ -1,5 +1,7 @@
 import axios from 'axios';
 import dompurify from 'dompurify';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { SubmitHandler, useController, useForm } from 'react-hook-form';
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
@@ -14,7 +16,11 @@ interface FormData {
 }
 
 export default function CommentWriteForm({ postId }: Props) {
+    const navigate = useNavigate();
+
     const queryClient = useQueryClient();
+
+    const isLoggedIn = !!queryClient.getQueryData(['loggedIn user']);
 
     const {
         control,
@@ -58,7 +64,25 @@ export default function CommentWriteForm({ postId }: Props) {
     });
 
     const onSubmit: SubmitHandler<FormData> = data => {
-        commentPostMutate(dompurify.sanitize(data.commentValue));
+        if (!isLoggedIn) {
+            Swal.fire({
+                icon: 'warning',
+                html: '<p class="leading-relaxed">로그인 후 댓글을 작성할 수 있습니다.<br />로그인 하시겠습니까?</p>',
+                showCancelButton: true,
+                confirmButtonText: '로그인',
+                cancelButtonText: '취소',
+                customClass: {
+                    cancelButton: 'text-black font-bold bg-slate-100',
+                    confirmButton: 'text-white font-bold bg-violet-600',
+                },
+            }).then(result => {
+                if (result.isConfirmed) {
+                    navigate('/sign_in');
+                }
+            });
+        } else {
+            commentPostMutate(dompurify.sanitize(data.commentValue));
+        }
     };
 
     return (
