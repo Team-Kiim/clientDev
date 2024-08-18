@@ -5,9 +5,10 @@ import Swal from 'sweetalert2';
 
 interface Props {
     postId: number;
+    postType: string;
 }
 
-export default function PostControl({ postId }: Props) {
+export default function PostControl({ postId, postType }: Props) {
     const navigate = useNavigate();
 
     const { mutate: deleteMutate } = useMutation({
@@ -65,7 +66,7 @@ export default function PostControl({ postId }: Props) {
                 className={'flex items-center gap-x-1'}
                 type={'button'}
                 onClick={() => {
-                    navigate(`/qnas/edit/${postId}`);
+                    navigate(`/${postType}/edit/${postId}`);
                 }}
             >
                 <span className={'hover:underline hover:underline-offset-4'}>수정</span>
