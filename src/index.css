@@ -37,10 +37,37 @@ code {
 
 .ck-editor__editable {
     height: 35rem;
+    border-radius:  0 0 0.5rem 0.5rem !important;
+    border-color: #cbd5e1 !important;
+}
+
+.ck-editor__editable:focus {
+    box-shadow: none !important;
+}
+
+.ck.ck-editor__editable.ck-focused:not(.ck-editor__nested-editable) {
+    box-shadow: none !important;
 }
 
 .ck.ck-sticky-panel .ck-sticky-panel__content_sticky {
     position: absolute !important;
+}
+
+.ck.ck-button:active {
+    box-shadow: none !important;
+}
+
+.ck.ck-sticky-panel__content {
+    border-color: #cbd5e1 !important;
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+}
+
+.ck.ck-toolbar {
+    border-radius: 0.5rem 0.5rem 0 0 !important;
+}
+
+.ck-placeholder::before {
+    color: #94a3b8 !important;
 }
 
 blockquote p {
