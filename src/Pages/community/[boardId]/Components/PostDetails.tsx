@@ -33,7 +33,7 @@ export default function PostDetails({
                 viewCount={viewCount}
                 memberId={memberId}
             />
-            {memberWritten && <PostControl postId={id} />}
+            {memberWritten && <PostControl postType={'community'} postId={id} />}
             <hr />
             <PostContent bodyContent={bodyContent} />
             {voteResponse && (

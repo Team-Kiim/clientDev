@@ -30,7 +30,7 @@ export default function PostDetails({
                 viewCount={viewCount}
                 memberId={memberId}
             />
-            {memberWritten && <PostControl postId={id} />}
+            {memberWritten && <PostControl postType={'qnas'} postId={id} />}
             <hr />
             <PostContent bodyContent={bodyContent} />
             <PostSkillCategoryList categories={skillCategoryList} />
