@@ -11,7 +11,7 @@ import KakaoRedirect from '@/Components/Auth/OAuthSection/KakaoSection/KakaoRedi
 import GoogleRedirect from '@/Components/Auth/OAuthSection/GoogleSection/GoogleRedirect.tsx';
 import QnAPostPage from '@/Pages/qnas/[boardId]/page.tsx';
 import QnAWritePage from '@/Pages/qnas/write/page.tsx';
-import QnAEditPage from '@/Pages/qnas/edit/[postId]/page.tsx';
+import QnAEditPage from '@/Pages/qnas/edit/page.tsx';
 
 import CommunityPostWritePage from '@/Pages/community/write/page.tsx';
 import UserPageLayout from '@/Pages/user/Components/UserPageLayout.tsx';
