@@ -12,7 +12,6 @@ import GoogleRedirect from '@/Components/Auth/OAuthSection/GoogleSection/GoogleR
 import QnAPostPage from '@/Pages/qnas/[boardId]/page.tsx';
 import QnAWritePage from '@/Pages/qnas/write/page.tsx';
 import QnAEditPage from '@/Pages/qnas/edit/page.tsx';
-
 import CommunityPostWritePage from '@/Pages/community/write/page.tsx';
 import CommunityPostEditPage from '@/Pages/community/edit/page.tsx';
 import UserPageLayout from '@/Pages/user/Components/UserPageLayout.tsx';
@@ -20,7 +19,7 @@ import UserProfilePage from '@/Pages/user/page.tsx';
 import UserSocialPage from '@/Pages/user/social/page.tsx';
 import UserPostsPage from '@/Pages/user/posts/page.tsx';
 import UserAccountPage from '@/Pages/user/account/page.tsx';
-
+import ChatPage from '@/Pages/chats/[skillCategory]/page.tsx';
 import NotFoundErrorPage from '@/Pages/ErrorPages/NotFoundErrorPage.tsx';
 
 const router = createBrowserRouter(
@@ -44,6 +43,7 @@ const router = createBrowserRouter(
                 <Route element={<CommunityPostPage />} path={'/community/:postId'} />
                 <Route element={<CommunityPostWritePage />} path={'/community/write'} />
                 <Route element={<CommunityPostEditPage />} path={'/community/edit/:postId'} />
+                <Route element={<ChatPage />} path={'/chats/:skillCategory'} />
                 <Route element={<UserPageLayout />} path={'/user/:profileMemberId?'}>
                     <Route element={<UserProfilePage />} index />
                     <Route element={<UserProfilePage />} path={'profile'} />
