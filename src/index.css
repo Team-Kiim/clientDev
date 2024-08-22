@@ -99,3 +99,9 @@ pre:has(code[class='mermaid']) {
 .tiptap.ProseMirror{
     height: 100%;
 }
+
+
+.react-syntax-highlighter-line-number{
+    color: rgb(171, 178, 191) !important;
+    font-style: normal !important;
+}
