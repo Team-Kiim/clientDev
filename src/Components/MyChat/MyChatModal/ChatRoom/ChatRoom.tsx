@@ -11,7 +11,7 @@ export default function ChatRoom({ chatRoomId, updateCurrentViewName }: Props) {
     console.log(chatRoomId);
 
     return (
-        <div className={'flex h-full flex-col gap-y-3 overflow-y-auto'}>
+        <div className={'flex h-full flex-col overflow-y-auto'}>
             <ChatRoomTop otherUserNickname={'kkangasdf'} updateCurrentViewName={updateCurrentViewName} />
             <ChatBubbleList />
             <ChatSendSection chatRoomId={chatRoomId} />
