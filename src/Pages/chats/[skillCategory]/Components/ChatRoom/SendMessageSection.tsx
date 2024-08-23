@@ -1,12 +1,18 @@
 import { KeyboardEventHandler, useEffect, useRef, useState } from 'react';
 import { GoCodeSquare, GoImage } from 'react-icons/go';
 import SendCodeModal from '@/Components/ChatRelated/SendCode/SendCodeModal.tsx';
+import SendImageModal from '@/Components/ChatRelated/SendImage/SendImageModal.tsx';
 
 export default function SendMessageSection() {
     const [isSendCodeModalOpen, setIsSendCodeModalOpen] = useState(false);
+    const [isSendImageModalOpen, setIsSendImageModalOpen] = useState(false);
 
     const handleSendCodeButtonClick = () => {
         setIsSendCodeModalOpen(true);
+    };
+
+    const handleSendImageButtonClick = () => {
+        setIsSendImageModalOpen(true);
     };
 
     const textAreaRef = useRef<HTMLTextAreaElement>(null);
@@ -36,7 +42,11 @@ export default function SendMessageSection() {
         <>
             <div className={'flex items-center gap-x-2 border-t border-slate-200 px-3 py-3'}>
                 <div className={'flex items-center gap-x-2'}>
-                    <button className={'rounded-full p-1 transition-all hover:bg-slate-100'} type={'button'}>
+                    <button
+                        className={'rounded-full p-1 transition-all hover:bg-slate-100'}
+                        type={'button'}
+                        onClick={handleSendImageButtonClick}
+                    >
                         <GoImage className={'size-6 text-slate-500'} />
                     </button>
                     <button
@@ -63,6 +73,12 @@ export default function SendMessageSection() {
                 isSendCodeModalOpen={isSendCodeModalOpen}
                 closeSendCodeModal={() => {
                     setIsSendCodeModalOpen(false);
+                }}
+            />
+            <SendImageModal
+                isSendImageModalOpen={isSendImageModalOpen}
+                closeSendImageModal={() => {
+                    setIsSendImageModalOpen(false);
                 }}
             />
         </>
