@@ -1,4 +1,4 @@
-import { HiArrowRightStartOnRectangle, HiChevronLeft } from 'react-icons/hi2';
+import { GoChevronLeft, GoSignOut } from 'react-icons/go';
 import Swal from 'sweetalert2';
 
 interface Props {
@@ -30,7 +30,7 @@ export default function ChatRoomTop({ otherUserNickname, updateCurrentViewName }
     };
 
     return (
-        <div className={'flex items-center px-6'}>
+        <div className={'flex items-center border-b border-slate-200 px-4 pb-2'}>
             <button
                 className={'rounded-full p-1 hover:bg-slate-100'}
                 onClick={() => {
@@ -38,17 +38,24 @@ export default function ChatRoomTop({ otherUserNickname, updateCurrentViewName }
                 }}
                 type={'button'}
             >
-                <HiChevronLeft className={'size-6'} />
+                <GoChevronLeft className={'size-6 text-slate-500'} />
             </button>
-            <div className={'flex-1'}>
-                <span className={'line-clamp-1 px-3 font-extrabold'}>{otherUserNickname}</span>
+            <div className={'flex flex-1 flex-col text-center'}>
+                <span className={'line-clamp-1 font-extrabold'}>{otherUserNickname}</span>
+                <span
+                    className={
+                        'line-clamp-1 text-[0.7rem] font-bold text-slate-500 underline decoration-slate-500 decoration-1 underline-offset-2'
+                    }
+                >
+                    kkangasdf12@gmail.com
+                </span>
             </div>
             <button
                 className={'rounded-full p-1 hover:bg-slate-100'}
                 onClick={handleLeaveChatButtonClick}
                 type={'button'}
             >
-                <HiArrowRightStartOnRectangle className={'size-6'} />
+                <GoSignOut className={'size-6 text-slate-500'} />
             </button>
         </div>
     );
