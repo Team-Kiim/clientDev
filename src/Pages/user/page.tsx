@@ -33,18 +33,16 @@ export default function Page() {
                         <div className={'flex flex-col gap-y-6'}>
                             <div className={'flex flex-col gap-y-1'}>
                                 <h3 className={'text-[0.95rem] font-bold'}>이메일</h3>
-                                <span className={'text-[0.9rem] font-bold text-slate-500'}>{email}</span>
+                                <span className={'text-[0.9rem] text-neutral-800'}>{email}</span>
                             </div>
                             <div className={'flex flex-col gap-y-1'}>
                                 <h3 className={'text-[0.95rem] font-bold'}>닉네임</h3>
-                                <span className={'text-[0.9rem] font-bold text-slate-500'}>{nickname}</span>
+                                <span className={'text-[0.9rem] text-neutral-800'}>{nickname}</span>
                             </div>
                             <div className={'flex flex-col gap-y-1'}>
                                 <h3 className={'text-[0.95rem] font-bold'}>직업</h3>
                                 {memberRole === 'TEMP' ? (
-                                    <p className={'text-[0.9rem] font-bold text-rose-600'}>
-                                        선택된 직업이 없습니다. 직업을 설정해주세요.
-                                    </p>
+                                    <p className={'text-[0.9rem] text-red-500'}>선택된 직업이 없습니다.</p>
                                 ) : (
                                     <span className={'text-[0.9rem] font-bold text-slate-500'}>
                                         {jobs.find(job => job.value === memberRole).label}
@@ -56,7 +54,7 @@ export default function Page() {
                             <div className={'flex items-center justify-end'}>
                                 <button
                                     className={
-                                        'rounded-xl border border-violet-300 bg-violet-50 px-3.5 py-1.5 text-[0.85rem] font-bold text-violet-700'
+                                        'rounded-3xl bg-neutral-800 px-3.5 py-2 text-[0.85rem] font-bold text-white transition-all hover:bg-neutral-800/85'
                                     }
                                     type={'button'}
                                     onClick={() => {
@@ -78,7 +76,7 @@ export default function Page() {
                             <div className={'flex items-center justify-end'}>
                                 <button
                                     className={
-                                        'rounded-xl border border-violet-300 bg-violet-50 px-3.5 py-1.5 text-[0.85rem] font-bold text-violet-700'
+                                        'rounded-3xl bg-neutral-800 px-3.5 py-2 text-[0.85rem] font-bold text-white transition-all hover:bg-neutral-800/85'
                                     }
                                     type={'button'}
                                     onClick={() => {
