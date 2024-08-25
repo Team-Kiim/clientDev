@@ -44,9 +44,15 @@ export default function UserPageLayout() {
                     <div className={'flex h-[144px] flex-1 flex-col justify-center gap-y-2'}>
                         <span className={'text-3xl font-extrabold'}>{data.nickname}</span>
                         <div className={'flex items-center justify-between'}>
-                            <div className={'flex items-center gap-x-2'}>
-                                <MdOutlineEmail className={'size-6 text-slate-500'} />
-                                <span className={'text-md font-bold text-slate-500'}>{data.email}</span>
+                            <div className={'flex items-center gap-x-1'}>
+                                <MdOutlineEmail className={'size-6 text-neutral-800'} />
+                                <span
+                                    className={
+                                        'text-md font-bold text-neutral-800 underline decoration-neutral-800 decoration-2 underline-offset-4'
+                                    }
+                                >
+                                    {data.email}
+                                </span>
                             </div>
                             {!data.isLoginMember && (
                                 <FollowToggleButton
