@@ -79,7 +79,7 @@ export default function CommentListItem({
                         alt={profileImageName}
                     />
                 </div>
-                <div className={'flex flex-1 flex-col gap-y-4'}>
+                <div className={'flex min-w-0 flex-1 flex-col gap-y-4'}>
                     <div className={'flex items-center'}>
                         <div className={'flex flex-1 flex-col gap-y-0.5'}>
                             <span className={'text-[0.9rem] font-bold'}>{commentInfo.nickname}</span>
