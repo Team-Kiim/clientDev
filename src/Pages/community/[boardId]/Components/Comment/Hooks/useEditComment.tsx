@@ -9,15 +9,9 @@ export const useEditComment = (postId: string) => {
 
     return useMutation({
         mutationFn: ({ newCommentValue, commentId }: { newCommentValue: string; commentId: number }) => {
-            return axios.post(
-                `/api/comment/modify/${commentId}`,
-                {
-                    content: newCommentValue,
-                },
-                {
-                    timeout: 5000,
-                },
-            );
+            return axios.patch(`/api/comment`, {
+                content: newCommentValue,
+            });
         },
 
         onMutate: async ({ newCommentValue, commentId }: { newCommentValue: string; commentId: number }) => {
