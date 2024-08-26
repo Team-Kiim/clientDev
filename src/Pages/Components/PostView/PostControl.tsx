@@ -25,7 +25,7 @@ export default function PostControl({ postId, postType }: Props) {
                     confirmButton: 'text-white font-bold bg-violet-600',
                 },
             });
-            navigate('/');
+            navigate(`/${postType}`);
         },
 
         onError: async () => {
