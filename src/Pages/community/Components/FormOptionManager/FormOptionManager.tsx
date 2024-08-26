@@ -3,11 +3,17 @@ import { HiOutlineMinus, HiOutlinePlus } from 'react-icons/hi2';
 
 interface Props {
     isVoteAdded: boolean;
+    isVoteDeletable: boolean;
     toggleIsVoteAdded(): void;
     makeVoteEditable?(): void;
 }
 
-export default function FormOptionManager({ isVoteAdded, toggleIsVoteAdded, makeVoteEditable }: Props) {
+export default function FormOptionManager({
+    isVoteAdded,
+    isVoteDeletable,
+    toggleIsVoteAdded,
+    makeVoteEditable,
+}: Props) {
     const handleToggleIsVoteAddedButtonClick = () => {
         if (isVoteAdded) {
             Swal.fire({
@@ -39,11 +45,21 @@ export default function FormOptionManager({ isVoteAdded, toggleIsVoteAdded, make
             <div className={'flex flex-col gap-y-2.5'}>
                 <div className={'flex items-center justify-between '}>
                     <span className={'text-[0.93rem] font-bold'}>투표</span>
-                    <div className={'tooltip tooltip-bottom'} data-tip={isVoteAdded ? '투표 삭제' : '투표 추가'}>
+                    <div
+                        className={`tooltip tooltip-bottom ${!isVoteDeletable && 'before:text-[0.8rem]'}`}
+                        data-tip={
+                            isVoteDeletable
+                                ? isVoteAdded
+                                    ? '투표 삭제'
+                                    : '투표 추가'
+                                : '이미 업로드 된 투표는 삭제할 수 없어요.'
+                        }
+                    >
                         <button
-                            className={'rounded-full p-1 transition-all hover:bg-slate-100'}
+                            className={'rounded-full p-1 transition-all enabled:hover:bg-slate-100 disabled:opacity-50'}
                             type={'button'}
                             onClick={handleToggleIsVoteAddedButtonClick}
+                            disabled={!isVoteDeletable}
                         >
                             {isVoteAdded ? (
                                 <HiOutlineMinus className={'size-6'} />

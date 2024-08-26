@@ -37,6 +37,8 @@ export default function CommunityPostEditForm({ postId }: Props) {
 
     const { title, bodyContent, voteResponse } = communityPostData;
 
+    const isVoteDeletable = !voteResponse;
+
     const [isVoteAttached, toggleIsVoteAttached] = useReducer(state => !state, !!voteResponse);
 
     const [isVoteEditable, setIsVoteEditable] = useState(!voteResponse);
@@ -71,7 +73,7 @@ export default function CommunityPostEditForm({ postId }: Props) {
     }, [isVoteAttached]);
 
     useEffect(() => {
-        if (isVoteAttached) {
+        if (isVoteAttached && isVoteDeletable) {
             window.scrollTo({
                 top: document.body.scrollHeight,
                 behavior: 'smooth',
@@ -139,6 +141,7 @@ export default function CommunityPostEditForm({ postId }: Props) {
                 <div className={'sticky top-16 flex w-[22rem] flex-col gap-y-10 self-start'}>
                     <FormOptionManager
                         isVoteAdded={isVoteAttached}
+                        isVoteDeletable={isVoteDeletable}
                         toggleIsVoteAdded={toggleIsVoteAttached}
                         makeVoteEditable={() => {
                             setIsVoteEditable(true);
