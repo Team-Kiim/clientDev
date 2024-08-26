@@ -10,6 +10,7 @@ export const useEditComment = (postId: string) => {
     return useMutation({
         mutationFn: ({ newCommentValue, commentId }: { newCommentValue: string; commentId: number }) => {
             return axios.patch(`/api/comment`, {
+                id: commentId,
                 content: newCommentValue,
             });
         },
