@@ -78,7 +78,7 @@ export default function CommunityPostWriteForm({ postId }: Props) {
         for (const $postImage of $postImageList) {
             const postImageId = Number($postImage.src.split('#').at(-1));
             if (postImageId) {
-                postImageIdList.push(postId);
+                postImageIdList.push(postImageId);
             }
         }
 
