@@ -9,6 +9,7 @@ import PostContentField from '@/Pages/Components/PostInputs/PostContentField.tsx
 import VoteSection from '@/Pages/community/Components/Vote/VoteSection.tsx';
 import FormOptionManager from '@/Pages/community/Components/FormOptionManager/FormOptionManager.tsx';
 import getSingleCommunityPostInfo from '@/Pages/community/Utils/getSingleCommunityPostInfo.ts';
+import Swal from 'sweetalert2';
 
 interface Props {
     postId: string;
@@ -79,10 +80,52 @@ export default function CommunityPostEditForm({ postId }: Props) {
     }, [isVoteAttached]);
 
     const onSubmit: SubmitHandler<FormData> = async data => {
-        console.log(data);
-        navigate(`/community/${postId}`, {
-            replace: true,
-        });
+        const { title, bodyContent, voteTopic, firstVoteItem, secondVoteItem, additionalVoteItems } = data;
+
+        const $postImageList = document.querySelectorAll('img');
+        const postImageIdList: number[] = [];
+
+        for (const $postImage of $postImageList) {
+            const postImageId = Number($postImage.src.split('#').at(-1));
+            if (postImageId) {
+                postImageIdList.push(postImageId);
+            }
+        }
+
+        try {
+            const result = await axios
+                .patch('/api/community-post/modify', {
+                    modifyCommunityPostInfoRequest: {
+                        id: postId,
+                        title,
+                        bodyContent: dompurify.sanitize(bodyContent),
+                        fileIdList: postImageIdList,
+                    },
+                    modifyVoteRequest: {
+                        title: voteTopic,
+                        items: [
+                            firstVoteItem,
+                            secondVoteItem,
+                            ...additionalVoteItems
+                                .map(voteItem => voteItem.label)
+                                .filter(voteItem => voteItem.length !== 0),
+                        ],
+                    },
+                })
+                .then(response => response.data);
+
+            const createdCommunityPostId = result.id;
+            navigate(`/community/${createdCommunityPostId}`, { replace: true });
+        } catch (error) {
+            Swal.fire({
+                icon: 'error',
+                html: '<p class="leading-relaxed">게시글 수정에 실패하였습니다.<br/>잠시 후 다시 시도해주세요.</p>',
+                confirmButtonText: '확인',
+                customClass: {
+                    confirmButton: 'text-white font-bold bg-violet-600',
+                },
+            }).then(() => {});
+        }
     };
 
     return (
