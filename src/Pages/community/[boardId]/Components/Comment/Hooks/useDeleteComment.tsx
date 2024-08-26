@@ -9,7 +9,7 @@ export const useDeleteComment = (postId: string) => {
 
     return useMutation({
         mutationFn: (commentId: number) => {
-            return axios.delete(`/api/comment/delete/${commentId}`, { timeout: 5000 });
+            return axios.delete(`/api/comment/${commentId}`);
         },
 
         onMutate: async (commendId: number) => {
