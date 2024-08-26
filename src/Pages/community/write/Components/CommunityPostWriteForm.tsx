@@ -130,7 +130,11 @@ export default function CommunityPostWriteForm({ postId }: Props) {
                     {isVoteAdded && <VoteSection isVoteEditable={true} />}
                 </div>
                 <div className={'sticky top-16 flex w-[22rem] flex-col gap-y-10 self-start'}>
-                    <FormOptionManager isVoteAdded={isVoteAdded} toggleIsVoteAdded={toggleIsVoteAdded} />
+                    <FormOptionManager
+                        isVoteAdded={isVoteAdded}
+                        isVoteDeletable={true}
+                        toggleIsVoteAdded={toggleIsVoteAdded}
+                    />
                     <div className={'flex w-full justify-end gap-x-4'}>
                         <button
                             className={
