@@ -15,11 +15,12 @@ import 'highlight.js/styles/atom-one-dark.css';
 interface Props {
     submitCount?: number;
     value?: string;
+    isSubmitSuccessful?: boolean;
     onChange: (...args: any) => any;
     onBlur: (...args: any) => any;
 }
 
-export default function CommentEditor({ value, submitCount, onChange, onBlur }: Props) {
+export default function CommentEditor({ value, isSubmitSuccessful, onChange, onBlur }: Props) {
     const editor = useEditor({
         onUpdate: ({ editor }) => {
             const commentValue = editor.getHTML();
@@ -80,11 +81,11 @@ export default function CommentEditor({ value, submitCount, onChange, onBlur }: 
 
     useEffect(() => {
         if (editor) {
-            if (submitCount !== 0 && submitCount !== undefined) {
+            if (isSubmitSuccessful) {
                 editor.commands.clearContent();
             }
         }
-    }, [submitCount, editor]);
+    }, [isSubmitSuccessful, editor]);
 
     return (
         <>

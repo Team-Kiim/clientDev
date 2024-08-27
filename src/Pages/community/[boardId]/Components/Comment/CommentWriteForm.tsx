@@ -25,8 +25,7 @@ export default function CommentWriteForm({ postId }: Props) {
     const {
         control,
         handleSubmit,
-        resetField,
-        formState: { errors, submitCount },
+        formState: { errors, submitCount, isSubmitSuccessful },
     } = useForm<FormData>({
         defaultValues: {
             commentValue: '',
@@ -46,7 +45,7 @@ export default function CommentWriteForm({ postId }: Props) {
         },
     });
 
-    const { mutate: commentPostMutate } = useMutation({
+    const { mutateAsync: commentPostMutate } = useMutation({
         mutationFn: (commentValue: string) => {
             return axios.post(`/api/comment/${postId}/comments`, {
                 content: commentValue,
@@ -58,12 +57,11 @@ export default function CommentWriteForm({ postId }: Props) {
         },
 
         onSettled: () => {
-            resetField('commentValue');
             return queryClient.invalidateQueries({ queryKey: ['post', postId] });
         },
     });
 
-    const onSubmit: SubmitHandler<FormData> = data => {
+    const onSubmit: SubmitHandler<FormData> = async data => {
         if (!isLoggedIn) {
             Swal.fire({
                 icon: 'warning',
@@ -83,12 +81,18 @@ export default function CommentWriteForm({ postId }: Props) {
         } else {
             commentPostMutate(dompurify.sanitize(data.commentValue));
         }
+        await commentPostMutate(dompurify.sanitize(data.commentValue));
     };
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className={'flex flex-col gap-y-4'}>
             <div className={'flex h-60 flex-col rounded-xl border border-slate-200'}>
-                <CommentEditor submitCount={submitCount} onChange={onChange} onBlur={onBlur} />
+                <CommentEditor
+                    submitCount={submitCount}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    isSubmitSuccessful={isSubmitSuccessful}
+                />
             </div>
             <div className={'flex items-center'}>
                 {errors?.commentValue?.message && errors?.commentValue.type === 'required' && (
