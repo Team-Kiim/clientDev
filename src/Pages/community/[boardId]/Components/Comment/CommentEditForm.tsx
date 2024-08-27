@@ -20,7 +20,7 @@ export default function CommentEditForm({ postId, commentId, originalCommentValu
     const {
         control,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isSubmitSuccessful },
     } = useForm<FormData>({
         defaultValues: {
             commentValue: originalCommentValue,
@@ -40,11 +40,11 @@ export default function CommentEditForm({ postId, commentId, originalCommentValu
         },
     });
 
-    const { mutate } = useEditComment(postId);
+    const { mutateAsync } = useEditComment(postId);
 
-    const onSubmit: SubmitHandler<FormData> = data => {
+    const onSubmit: SubmitHandler<FormData> = async data => {
         const commentValue = dompurify.sanitize(data.commentValue);
-        mutate({
+        await mutateAsync({
             newCommentValue: commentValue,
             commentId,
         });
@@ -54,7 +54,12 @@ export default function CommentEditForm({ postId, commentId, originalCommentValu
     return (
         <form className={'w-full'} onSubmit={handleSubmit(onSubmit)}>
             <div className={'flex h-48 flex-col rounded-xl border border-slate-200'}>
-                <CommentEditor value={value} onChange={onChange} onBlur={onBlur} />
+                <CommentEditor
+                    value={value}
+                    isSubmitSuccessful={isSubmitSuccessful}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                />
                 <div className={'flex items-center p-2.5'}>
                     {errors?.commentValue?.message && errors?.commentValue.type === 'required' && (
                         <div className={'m-0.5 mr-auto flex items-center gap-x-1 justify-self-start text-rose-700'}>
