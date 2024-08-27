@@ -4,8 +4,11 @@ import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { SubmitHandler, useController, useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
+import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
 import CommentEditor from '@/Pages/community/[boardId]/Components/Comment/CommentEditor/CommentEditor.tsx';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Props {
     postId: string;
@@ -54,7 +57,15 @@ export default function CommentWriteForm({ postId }: Props) {
         },
 
         onError: error => {
-            console.log(error);
+            console.error(error);
+            toast.error(
+                <div className={'text-[0.85rem]'}>
+                    댓글을 작성할 수 없습니다.
+                    <br />
+                    잠시 후 다시 시도해주세요.
+                </div>,
+                TOAST_OPTIONS,
+            );
         },
 
         onSettled: () => {
