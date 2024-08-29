@@ -30,7 +30,7 @@ export default function PostSearchInput() {
     };
 
     return (
-        <div className={'flex w-72 gap-x-2 rounded-lg border border-slate-200 px-3 py-2'}>
+        <div className={'flex w-72 gap-x-2 rounded-xl border border-slate-200 px-3 py-2 shadow-inner'}>
             <input
                 className={'flex-1 text-[0.8rem] focus:outline-none'}
                 type={'text'}
@@ -41,7 +41,7 @@ export default function PostSearchInput() {
                 ref={inputRef}
             />
             <button type={'button'} onClick={handleSearchButtonClick}>
-                <HiMagnifyingGlass className={'size-5 text-neutral-800'} />
+                <HiMagnifyingGlass className={'size-5 text-neutral-800 drop-shadow-[0px_1px_1px]'} />
             </button>
         </div>
     );
