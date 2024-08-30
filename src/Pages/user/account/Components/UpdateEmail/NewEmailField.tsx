@@ -61,7 +61,7 @@ export default function NewEmailField({
     const handleVerificationRequestButtonClick = async () => {
         const newEmail = getValues().newEmail.replace(/\s/gi, '');
 
-        if (getFieldState('newEmail').invalid) {
+        if (!getFieldState('newEmail').isTouched || getFieldState('newEmail').invalid) {
             return;
         }
 
