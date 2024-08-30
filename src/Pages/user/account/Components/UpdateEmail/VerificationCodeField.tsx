@@ -63,7 +63,7 @@ export default function VerificationCodeField({
     const handleConfirmCodeButtonClick = async () => {
         const verificationCode = getValues().verificationCode.replace(/\s/gi, '');
         const newEmail = getValues().newEmail.replace(/\s/gi, '');
-        if (getFieldState('verificationCode').invalid) {
+        if (!getFieldState('verificationCode').isTouched || getFieldState('verificationCode').invalid) {
             return;
         }
 
