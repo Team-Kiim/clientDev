@@ -71,7 +71,7 @@ export default function VerificationCodeField({
     };
 
     return (
-        <>
+        <div className={'flex flex-col gap-y-3'}>
             <div className={'flex w-1/2 flex-col gap-y-2'}>
                 <label className={'w-fit text-[0.9rem] font-bold text-neutral-800'} htmlFor={'verificationCodeInput'}>
                     인증 코드
@@ -129,6 +129,6 @@ export default function VerificationCodeField({
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
