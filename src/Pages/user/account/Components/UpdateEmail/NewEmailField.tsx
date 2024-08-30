@@ -84,7 +84,7 @@ export default function NewEmailField({
     };
 
     return (
-        <>
+        <div className={'flex flex-col gap-y-3'}>
             <div className={'flex w-1/2 flex-col gap-y-2'}>
                 <label className={'w-fit text-[0.9rem] font-bold text-neutral-800'} htmlFor={'newEmailInput'}>
                     새 이메일
@@ -147,6 +147,6 @@ export default function NewEmailField({
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
