@@ -1,4 +1,5 @@
 import UpdateEmailForm from '@/Pages/user/account/Components/UpdateEmail/UpdateEmailForm.tsx';
+import UpdatePasswordForm from '@/Pages/user/account/Components/UpdatePassword/UpdatePasswordForm.tsx';
 
 export default function Page() {
     return (
@@ -12,6 +13,7 @@ export default function Page() {
                 <hr />
                 <div className={'flex flex-col gap-y-5'}>
                     <h3 className={'text-[0.95rem] font-bold'}>비밀번호 변경</h3>
+                    <UpdatePasswordForm />
                 </div>
             </div>
         </>
