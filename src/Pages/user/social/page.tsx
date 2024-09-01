@@ -3,6 +3,7 @@ import UserSearchInput from '@/Pages/user/social/Components/UserSearchInput.tsx'
 import SocialFilters from '@/Pages/user/social/Components/SocialFilters.tsx';
 import SocialMediaUserList from '@/Pages/user/social/Components/SocialMediaUserList.tsx';
 import SocialMediaUserListLoading from '@/Pages/user/social/Components/SocialMediaUserListLoading.tsx';
+import SocialApiErrorBoundary from '@/Pages/user/social/Components/SocialApiErrorBoundary.tsx';
 
 export default function Page() {
     return (
@@ -14,9 +15,11 @@ export default function Page() {
                     <UserSearchInput />
                 </div>
                 <div>
-                    <Suspense fallback={<SocialMediaUserListLoading />}>
-                        <SocialMediaUserList />
-                    </Suspense>
+                    <SocialApiErrorBoundary>
+                        <Suspense fallback={<SocialMediaUserListLoading />}>
+                            <SocialMediaUserList />
+                        </Suspense>
+                    </SocialApiErrorBoundary>
                 </div>
             </div>
         </div>
