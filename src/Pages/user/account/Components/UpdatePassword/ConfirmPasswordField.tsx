@@ -31,8 +31,8 @@ export default function ConfirmPasswordField({ isPasswordVerified }: Props) {
                     위에서 입력한 비밀번호를 다시 한 번 입력해주세요.
                 </p>
                 <div className={'flex w-1/2 flex-col gap-y-2'}>
-                    <div className={'flex gap-x-2 rounded-xl border border-slate-200 px-3 py-2.5 shadow-inner'}>
-                        <HiOutlineLockClosed className={'size-5 text-neutral-800 drop-shadow-[0px_1px_1px]'} />
+                    <div className={'flex gap-x-2 rounded-xl border border-slate-300 px-3 py-2.5'}>
+                        <HiOutlineLockClosed className={'size-5 text-neutral-800'} />
                         <input
                             id={'confirmPasswordInput'}
                             className={
@@ -66,9 +66,9 @@ export default function ConfirmPasswordField({ isPasswordVerified }: Props) {
                             }}
                         >
                             {isPasswordVisible ? (
-                                <HiOutlineEyeSlash className={'size-5 text-neutral-800 drop-shadow-[0px_1px_1px]'} />
+                                <HiOutlineEyeSlash className={'size-5 text-neutral-800'} />
                             ) : (
-                                <HiOutlineEye className={'size-5 text-neutral-800 drop-shadow-[0px_1px_1px]'} />
+                                <HiOutlineEye className={'size-5 text-neutral-800'} />
                             )}
                         </button>
                     </div>
