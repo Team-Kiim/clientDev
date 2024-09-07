@@ -92,8 +92,8 @@ export default function CurrentPasswordField({
                 </p>
                 <div className={'flex w-1/2 flex-col gap-y-4'}>
                     <div className={'flex flex-col gap-y-2'}>
-                        <div className={'flex gap-x-2 rounded-xl border border-slate-200 px-3 py-2.5 shadow-inner'}>
-                            <HiOutlineLockClosed className={'size-5 text-neutral-800 drop-shadow-[0px_1px_1px]'} />
+                        <div className={'flex gap-x-2 rounded-xl border border-slate-300 px-3 py-2.5'}>
+                            <HiOutlineLockClosed className={'size-5 text-neutral-800'} />
                             <input
                                 id={'currentPasswordInput'}
                                 className={
@@ -118,11 +118,9 @@ export default function CurrentPasswordField({
                                 }}
                             >
                                 {isPasswordVisible ? (
-                                    <HiOutlineEyeSlash
-                                        className={'size-5 text-neutral-800 drop-shadow-[0px_1px_1px]'}
-                                    />
+                                    <HiOutlineEyeSlash className={'size-5 text-neutral-800'} />
                                 ) : (
-                                    <HiOutlineEye className={'size-5 text-neutral-800 drop-shadow-[0px_1px_1px]'} />
+                                    <HiOutlineEye className={'size-5 text-neutral-800'} />
                                 )}
                             </button>
                         </div>
@@ -136,7 +134,7 @@ export default function CurrentPasswordField({
                     <div className={'flex justify-end'}>
                         <button
                             className={
-                                'rounded-2xl bg-neutral-800 px-4 py-2 text-[0.85rem] font-bold text-white transition-all enabled:hover:bg-neutral-800/80 disabled:opacity-50'
+                                'rounded-2xl border border-slate-300 px-4 py-2 text-[0.85rem] font-bold transition-all enabled:hover:bg-slate-50 disabled:opacity-50'
                             }
                             type={'button'}
                             onClick={handleVerificationRequestButtonClick}
