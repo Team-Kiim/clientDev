@@ -55,7 +55,7 @@ export default function UpdateEmailForm() {
                 <div className={'flex w-full justify-end'}>
                     <button
                         className={
-                            'rounded-2xl bg-neutral-800 px-4 py-2 text-[0.85rem] font-bold text-white transition-all enabled:hover:bg-neutral-800/80  disabled:opacity-50'
+                            'rounded-2xl border border-slate-300 px-4 py-2 text-[0.85rem] font-bold transition-all enabled:hover:bg-slate-50  disabled:opacity-50'
                         }
                         type={'submit'}
                         disabled={!isEmailVerified}
