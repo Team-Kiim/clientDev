@@ -33,8 +33,8 @@ export default function NewPasswordField({ isPasswordVerified }: Props) {
                     7자 이상 20자 이하, 알파벳, 숫자, 특수문자를 포함해야 합니다.
                 </p>
                 <div className={'flex w-1/2 flex-col gap-y-2'}>
-                    <div className={'flex gap-x-2 rounded-xl border border-slate-200 px-3 py-2.5 shadow-inner'}>
-                        <HiOutlineLockClosed className={'size-5 text-neutral-800 drop-shadow-[0px_1px_1px]'} />
+                    <div className={'flex gap-x-2 rounded-xl border border-slate-300 px-3 py-2.5'}>
+                        <HiOutlineLockClosed className={'size-5 text-neutral-800'} />
                         <input
                             id={'newPasswordInput'}
                             className={
@@ -63,9 +63,9 @@ export default function NewPasswordField({ isPasswordVerified }: Props) {
                             }}
                         >
                             {isPasswordVisible ? (
-                                <HiOutlineEyeSlash className={'size-5 text-neutral-800 drop-shadow-[0px_1px_1px]'} />
+                                <HiOutlineEyeSlash className={'size-5 text-neutral-800'} />
                             ) : (
-                                <HiOutlineEye className={'size-5 text-neutral-800 drop-shadow-[0px_1px_1px]'} />
+                                <HiOutlineEye className={'size-5 text-neutral-800'} />
                             )}
                         </button>
                     </div>
