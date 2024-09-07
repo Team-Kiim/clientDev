@@ -1,4 +1,5 @@
 import { throttle } from 'lodash';
+import Swal from 'sweetalert2';
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import GlobalNavbar from '@/Components/GNB/GlobalNavbar.tsx';
@@ -22,7 +23,7 @@ const shouldHideGNB = (pathname: string): boolean => {
 };
 
 export default function Layout() {
-    const { pathname } = useLocation();
+    const { pathname, search } = useLocation();
     const isLoggedIn = useLoggedInStatus();
 
     const [isScrolled, setIsScrolled] = useState(false);
@@ -38,6 +39,12 @@ export default function Layout() {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
+
+    useEffect(() => {
+        if (Swal.isVisible()) {
+            Swal.close();
+        }
+    }, [pathname, search]);
 
     return (
         <div>
