@@ -7,8 +7,11 @@ export default function useScrollToTop(): void {
     const [searchParams] = useSearchParams();
 
     useEffect(() => {
+        if (location.state) {
+            return;
+        }
         window.requestAnimationFrame(() => {
             window.scrollTo({ top: 0, left: 0 });
         });
-    }, [location.pathname, searchParams]);
+    }, [location.pathname, searchParams, location.state]);
 }
