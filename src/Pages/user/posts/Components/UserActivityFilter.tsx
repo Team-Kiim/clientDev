@@ -1,4 +1,5 @@
 import { useSearchParams } from 'react-router-dom';
+import getCurrentPostFilter from '@/Pages/user/posts/Utils/getCurrentPostFilter.tsx';
 
 const activityFilters = [
     { value: 'write', label: '작성한' },
@@ -15,9 +16,7 @@ const postTypeFilters = [
 export default function UserActivityFilter() {
     const [searchParams, setSearchParams] = useSearchParams();
 
-    const currentActivity = searchParams.get('activity') ?? 'write';
-
-    const currentPostType = searchParams.get('post-type') ?? 'qnas';
+    const { activity, postType } = getCurrentPostFilter(searchParams);
 
     const handleFilterButtonClick = (filterValue: string, filterType: string) => {
         searchParams.set(filterType, filterValue);
@@ -30,7 +29,7 @@ export default function UserActivityFilter() {
                 return (
                     <li>
                         <button
-                            className={`px-3.5 py-1.5 text-[0.8rem] ${currentActivity === filter.value ? 'border-neutral-800 bg-neutral-800 text-white' : 'border-slate-200 bg-white text-black hover:bg-slate-100'} rounded-3xl border font-bold transition-all`}
+                            className={`px-3.5 py-1.5 text-[0.8rem] ${activity === filter.value ? 'border-neutral-800 bg-neutral-800 text-white' : 'border-slate-200 bg-white text-black hover:bg-slate-100'} rounded-3xl border font-bold transition-all`}
                             onClick={() => {
                                 handleFilterButtonClick(filter.value, 'activity');
                             }}
@@ -46,7 +45,7 @@ export default function UserActivityFilter() {
                 return (
                     <li>
                         <button
-                            className={`px-3.5 py-1.5 text-[0.8rem] ${currentPostType === filter.value ? 'border-neutral-800 bg-neutral-800 text-white' : 'border-slate-200 bg-white text-black hover:bg-slate-100'} rounded-3xl border font-bold transition-all`}
+                            className={`px-3.5 py-1.5 text-[0.8rem] ${postType === filter.value ? 'border-neutral-800 bg-neutral-800 text-white' : 'border-slate-200 bg-white text-black hover:bg-slate-100'} rounded-3xl border font-bold transition-all`}
                             onClick={() => {
                                 handleFilterButtonClick(filter.value, 'post-type');
                             }}
