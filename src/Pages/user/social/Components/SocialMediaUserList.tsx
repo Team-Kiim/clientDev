@@ -1,9 +1,8 @@
 import { useSearchParams } from 'react-router-dom';
-import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useUnfollowMember } from '@/Pages/user/social/Hooks/useUnfollowMember.tsx';
 import SocialMediaUserListItem from '@/Pages/user/social/Components/SocialMediaUserListItem.tsx';
-import getSocialMediaUserList from '@/Utils/getSocialMediaUserList.ts';
+import useSocialMediaUserListQuery from '@/Pages/user/social/Hooks/useSocialMediaUserListQuery.ts';
 import { getCurrentSocialType } from '@/Pages/user/social/Utils/getCurrentSocialType.ts';
 
 export default function SocialMediaUserList() {
@@ -13,25 +12,15 @@ export default function SocialMediaUserList() {
 
     const userNicknameToSearch = searchParams.get('search');
 
-    const { data, fetchNextPage, hasNextPage } = useSuspenseInfiniteQuery({
-        queryKey: ['social', currentSocialType],
-        queryFn: getSocialMediaUserList,
-        initialPageParam: 0,
-        getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.length < 16) {
-                return undefined;
-            }
-            return allPages.length;
-        },
-    });
-
-    const socialMediaUserList = data.pages.flat();
+    const { data, fetchNextPage, hasNextPage } = useSocialMediaUserListQuery({ socialType: currentSocialType });
 
     const { mutate: unfollowMember } = useUnfollowMember();
 
     const handleUnFollowButtonClick = (memberId: number) => {
         unfollowMember(memberId);
     };
+
+    const socialMediaUserList = data.pages.flat();
 
     return (
         <div className={'flex flex-col gap-y-3'}>
