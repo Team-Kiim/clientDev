@@ -27,7 +27,7 @@ export default function UserActivityFilter() {
         <ul className={'flex gap-x-2'}>
             {activityFilters.map(filter => {
                 return (
-                    <li>
+                    <li key={filter.value}>
                         <button
                             className={`px-3.5 py-1.5 text-[0.8rem] ${activity === filter.value ? 'border-neutral-800 bg-neutral-800 text-white' : 'border-slate-200 bg-white text-black hover:bg-slate-100'} rounded-3xl border font-bold transition-all`}
                             onClick={() => {
@@ -43,7 +43,7 @@ export default function UserActivityFilter() {
             <div className={'divider divider-horizontal m-0'} />
             {postTypeFilters.map(filter => {
                 return (
-                    <li>
+                    <li key={filter.value}>
                         <button
                             className={`px-3.5 py-1.5 text-[0.8rem] ${postType === filter.value ? 'border-neutral-800 bg-neutral-800 text-white' : 'border-slate-200 bg-white text-black hover:bg-slate-100'} rounded-3xl border font-bold transition-all`}
                             onClick={() => {
