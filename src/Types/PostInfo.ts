@@ -51,6 +51,7 @@ export type QnAPostInfo = PostInfo & {
               childSkillCategory: string;
           }[]
         | null;
+    visualData?: string;
 };
 
 export type CommunityPostInfo = PostInfo & {
