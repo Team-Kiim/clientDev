@@ -7,7 +7,7 @@ import {
     HiOutlineEnvelope,
     HiOutlineEyeSlash,
     HiOutlineLockClosed,
-    HiOutlineExclamationTriangle,
+    HiOutlineExclamationCircle,
 } from 'react-icons/hi2';
 
 interface FormData {
@@ -54,12 +54,12 @@ export default function SignInForm() {
                 <div className={'flex w-full flex-col gap-y-2'}>
                     <div
                         className={
-                            'flex items-center gap-x-2 rounded-xl border border-slate-300 px-2 py-3.5 focus-within:border-violet-700'
+                            'flex items-center gap-x-2 rounded-2xl border border-slate-300 px-3 py-3.5 transition-all focus-within:border-violet-500'
                         }
                     >
-                        <HiOutlineEnvelope className={'size-6 text-slate-500'} />
+                        <HiOutlineEnvelope className={'size-5 text-slate-800'} />
                         <input
-                            className={'flex-1 text-[0.9rem] focus:outline-none'}
+                            className={'flex-1 text-[0.9rem] placeholder:text-slate-400 focus:outline-none'}
                             type={'text'}
                             placeholder={'이메일'}
                             autoComplete={'off'}
@@ -70,8 +70,8 @@ export default function SignInForm() {
                         />
                     </div>
                     {errors?.email?.message && errors?.email.type === 'required' && (
-                        <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
-                            <HiOutlineExclamationTriangle className={'size-5'} />
+                        <div className={'m-0.5 flex items-center gap-x-1 text-rose-600'}>
+                            <HiOutlineExclamationCircle className={'size-5'} />
                             <p className={'text-[0.8rem]'}>{errors.email.message}</p>
                         </div>
                     )}
@@ -79,12 +79,12 @@ export default function SignInForm() {
                 <div className={'flex w-full flex-col gap-y-2'}>
                     <div
                         className={
-                            'flex items-center gap-x-2 rounded-xl border border-slate-300 px-2 py-3.5 focus-within:border-violet-700'
+                            'flex items-center gap-x-2 rounded-2xl border border-slate-300 px-3 py-3.5 transition-all focus-within:border-violet-500'
                         }
                     >
-                        <HiOutlineLockClosed className={'size-6 text-slate-500'} />
+                        <HiOutlineLockClosed className={'size-5 text-slate-800'} />
                         <input
-                            className={'w-full flex-1 text-[0.9rem] focus:outline-none'}
+                            className={'w-full flex-1 text-[0.9rem] placeholder:text-slate-400 focus:outline-none'}
                             type={isPasswordVisible ? 'text' : 'password'}
                             placeholder={'비밀번호'}
                             autoComplete={'off'}
@@ -103,15 +103,15 @@ export default function SignInForm() {
                             }}
                         >
                             {isPasswordVisible ? (
-                                <HiOutlineEyeSlash className={'size-6 text-slate-500'} />
+                                <HiOutlineEyeSlash className={'size-5 text-slate-800'} />
                             ) : (
-                                <HiOutlineEye className={'size-6 text-slate-500'} />
+                                <HiOutlineEye className={'size-5 text-slate-800'} />
                             )}
                         </button>
                     </div>
                     {errors?.password?.message && errors?.password.type === 'required' && (
-                        <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
-                            <HiOutlineExclamationTriangle className={'size-5'} />
+                        <div className={'m-0.5 flex items-center gap-x-1 text-rose-500'}>
+                            <HiOutlineExclamationCircle className={'size-5'} />
                             <p className={'text-[0.8rem]'}>{errors.password.message}</p>
                         </div>
                     )}
@@ -119,7 +119,7 @@ export default function SignInForm() {
             </div>
             <button
                 className={
-                    'flex w-full items-center justify-center rounded-xl bg-violet-600 py-3.5 text-[0.9rem] transition-all hover:bg-violet-700 disabled:opacity-50'
+                    'flex w-full items-center justify-center rounded-2xl bg-violet-500 py-3.5 text-[0.9rem] transition-all hover:bg-violet-600 disabled:opacity-50'
                 }
                 type={'submit'}
                 disabled={isSubmitting}
