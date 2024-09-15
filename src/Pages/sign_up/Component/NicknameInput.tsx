@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form';
-import { HiOutlineExclamationTriangle, HiOutlineIdentification } from 'react-icons/hi2';
+import { HiOutlineExclamationCircle, HiOutlineIdentification } from 'react-icons/hi2';
 
 interface FormData {
     nickname: string;
@@ -15,12 +15,12 @@ export default function NicknameInput() {
         <div className={'flex w-full flex-col gap-y-2'}>
             <div
                 className={
-                    'flex items-center gap-x-2 rounded-xl border border-slate-300 px-2 py-3.5 focus-within:border-violet-700'
+                    'flex items-center gap-x-2 rounded-2xl border border-slate-300 px-3 py-3.5 transition-all focus-within:border-violet-500'
                 }
             >
-                <HiOutlineIdentification className={'size-6 text-slate-500'} />
+                <HiOutlineIdentification className={'size-5 text-slate-800'} />
                 <input
-                    className={'flex-1 text-[0.9rem] focus:outline-none'}
+                    className={'flex-1 text-[0.9rem] placeholder:text-slate-400 focus:outline-none'}
                     type={'text'}
                     placeholder={'닉네임 (3자 이상 20자 이하)'}
                     autoComplete={'off'}
@@ -33,20 +33,20 @@ export default function NicknameInput() {
                 />
             </div>
             {errors?.nickname?.message && errors?.nickname.type === 'required' && (
-                <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
-                    <HiOutlineExclamationTriangle className={'size-5'} />
+                <div className={'m-0.5 flex items-center gap-x-1 text-rose-500'}>
+                    <HiOutlineExclamationCircle className={'size-5'} />
                     <p className={'text-[0.8rem]'}>{errors.nickname.message}</p>
                 </div>
             )}
             {errors?.nickname?.message && errors?.nickname.type === 'maxLength' && (
-                <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
-                    <HiOutlineExclamationTriangle className={'size-5'} />
+                <div className={'m-0.5 flex items-center gap-x-1 text-rose-500'}>
+                    <HiOutlineExclamationCircle className={'size-5'} />
                     <p className={'text-[0.8rem]'}>{errors.nickname.message}</p>
                 </div>
             )}
             {errors?.nickname?.message && errors?.nickname.type === 'minLength' && (
-                <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
-                    <HiOutlineExclamationTriangle className={'size-5'} />
+                <div className={'m-0.5 flex items-center gap-x-1 text-rose-500'}>
+                    <HiOutlineExclamationCircle className={'size-5'} />
                     <p className={'text-[0.8rem]'}>{errors.nickname.message}</p>
                 </div>
             )}
