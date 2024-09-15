@@ -65,7 +65,7 @@ export default function SignUpForm() {
     return (
         <FormProvider {...formMethods}>
             <form className={'flex w-full flex-col gap-y-10'} onSubmit={formMethods.handleSubmit(onSubmit)}>
-                <div className={'flex w-full flex-col gap-y-8'}>
+                <div className={'flex w-full flex-col gap-y-7'}>
                     <EmailVerificationInputs updateEmailVerification={updateEmailVerification} />
                     <PasswordInputs />
                     <NicknameInput />
@@ -73,7 +73,7 @@ export default function SignUpForm() {
                 </div>
                 <button
                     className={
-                        'flex w-full items-center justify-center rounded-xl bg-violet-600 py-3.5 text-[0.9rem] transition-all hover:bg-violet-700 disabled:opacity-50'
+                        'flex w-full items-center justify-center rounded-2xl bg-violet-500 py-3.5 text-[0.9rem] transition-all hover:bg-violet-600 disabled:opacity-50'
                     }
                     type={'submit'}
                     disabled={formMethods.formState.isSubmitting}
