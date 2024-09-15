@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { HiOutlineEnvelope, HiOutlineExclamationTriangle } from 'react-icons/hi2';
+import { HiOutlineEnvelope, HiOutlineExclamationCircle } from 'react-icons/hi2';
 import { MdOutlinePassword } from 'react-icons/md';
 import { emailRegexp } from '@/Constants/regexps.ts';
 
@@ -73,13 +73,13 @@ export default function EmailVerificationInputs({ updateEmailVerification }: Pro
             <div className={'flex w-full flex-col gap-y-2'}>
                 <div
                     className={
-                        'flex items-center gap-x-2 rounded-xl border border-slate-300 px-2 py-3.5 focus-within:border-violet-700'
+                        'flex items-center gap-x-2 rounded-2xl border border-slate-300 px-3 py-3.5 transition-all focus-within:border-violet-500'
                     }
                 >
-                    <HiOutlineEnvelope className={'size-6 text-slate-500'} />
+                    <HiOutlineEnvelope className={'size-5 text-slate-800'} />
                     <input
                         className={
-                            'w-full flex-1 text-[0.9rem] focus:outline-none disabled:bg-white disabled:opacity-75'
+                            'w-full flex-1 text-[0.9rem] placeholder:text-slate-400 focus:outline-none disabled:bg-white disabled:opacity-75'
                         }
                         type={'text'}
                         placeholder={'이메일'}
@@ -98,7 +98,9 @@ export default function EmailVerificationInputs({ updateEmailVerification }: Pro
                         })}
                     />
                     <button
-                        className={'mr-1 text-[0.9rem] font-bold text-violet-700'}
+                        className={
+                            'mr-1 text-[0.9rem] font-bold text-violet-500 hover:underline hover:underline-offset-4 disabled:opacity-75'
+                        }
                         type={'button'}
                         onClick={handleVerificationRequestButtonClick}
                         disabled={isVerificationRequested}
@@ -107,14 +109,14 @@ export default function EmailVerificationInputs({ updateEmailVerification }: Pro
                     </button>
                 </div>
                 {errors?.email?.message && errors?.email.type === 'required' && (
-                    <div className={'m-0.5 flex items-center gap-x-1 text-red-500 '}>
-                        <HiOutlineExclamationTriangle className={'size-5'} />
+                    <div className={'m-0.5 flex items-center gap-x-1 text-rose-500 '}>
+                        <HiOutlineExclamationCircle className={'size-5'} />
                         <p className={'text-[0.8rem]'}>{errors.email.message}</p>
                     </div>
                 )}
                 {errors?.email?.message && errors?.email.type === 'pattern' && (
-                    <div className={'m-0.5 flex items-center gap-x-1 text-red-500 '}>
-                        <HiOutlineExclamationTriangle className={'size-5'} />
+                    <div className={'m-0.5 flex items-center gap-x-1 text-rose-500 '}>
+                        <HiOutlineExclamationCircle className={'size-5'} />
                         <p className={'text-[0.8rem]'}>{errors.email.message}</p>
                     </div>
                 )}
@@ -122,13 +124,13 @@ export default function EmailVerificationInputs({ updateEmailVerification }: Pro
             <div className={'flex w-full flex-col gap-y-2'}>
                 <div
                     className={
-                        'flex items-center gap-x-2 rounded-xl border border-slate-300 bg-slate-100 px-2 py-3.5 focus-within:border-violet-700'
+                        'flex items-center gap-x-2 rounded-2xl border border-slate-300 bg-slate-100 px-3 py-3.5 transition-all focus-within:border-violet-500'
                     }
                 >
-                    <MdOutlinePassword className={'size-6 text-slate-500'} />
+                    <MdOutlinePassword className={'size-5 text-slate-800'} />
                     <input
                         className={
-                            'w-full flex-1 bg-slate-100 text-[0.9rem] focus:outline-none disabled:bg-slate-100 disabled:opacity-75'
+                            'w-full flex-1 bg-slate-100 text-[0.9rem] placeholder:text-slate-400 focus:outline-none disabled:bg-slate-100 disabled:opacity-75'
                         }
                         type={'text'}
                         placeholder={'인증 코드'}
@@ -144,7 +146,9 @@ export default function EmailVerificationInputs({ updateEmailVerification }: Pro
                         })}
                     />
                     <button
-                        className={'mr-1 text-[0.9rem] font-bold text-violet-700'}
+                        className={
+                            'mr-1 text-[0.9rem] font-bold text-violet-500 hover:underline hover:underline-offset-4 disabled:opacity-75'
+                        }
                         type={'button'}
                         onClick={handleVerificationConfirmButtonClick}
                         disabled={isEmailVerified}
@@ -153,8 +157,8 @@ export default function EmailVerificationInputs({ updateEmailVerification }: Pro
                     </button>
                 </div>
                 {errors?.verificationCode?.message && errors?.verificationCode.type === 'required' && (
-                    <div className={'m-0.5 flex items-center gap-x-1 text-red-500 '}>
-                        <HiOutlineExclamationTriangle className={'size-5'} />
+                    <div className={'m-0.5 flex items-center gap-x-1 text-rose-500 '}>
+                        <HiOutlineExclamationCircle className={'size-5'} />
                         <p className={'text-[0.8rem]'}>{errors.verificationCode.message}</p>
                     </div>
                 )}
