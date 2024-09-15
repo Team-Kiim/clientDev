@@ -1,6 +1,6 @@
 import { Controller, useFormContext } from 'react-hook-form';
 import Select from 'react-select';
-import { HiOutlineExclamationTriangle, HiOutlineIdentification } from 'react-icons/hi2';
+import { HiOutlineExclamationCircle, HiOutlineIdentification } from 'react-icons/hi2';
 
 interface FormData {
     job: string;
@@ -23,10 +23,10 @@ export default function JobSelectInput() {
         <div className={'flex w-full flex-col gap-y-2'}>
             <div
                 className={
-                    'flex h-[54px] items-center gap-x-2 rounded-xl border border-slate-300 px-2 py-3.5 focus-within:border-violet-700'
+                    'flex h-[54px] items-center gap-x-2 rounded-2xl border border-slate-300 px-3 py-3.5 transition-all focus-within:border-violet-500'
                 }
             >
-                <HiOutlineIdentification className={'size-6 text-slate-500'} />
+                <HiOutlineIdentification className={'size-5 text-slate-800'} />
                 <Controller
                     control={control}
                     name={'job'}
@@ -70,8 +70,8 @@ export default function JobSelectInput() {
                                         return `!bg-white !text-[0.9rem] !border-none !shadow-none`;
                                     },
 
-                                    option() {
-                                        return '!text-[0.9rem]';
+                                    option({ isFocused, isSelected }) {
+                                        return `!text-[0.9rem] ${isFocused ? '!bg-violet-50' : '!bg-white'} ${isSelected ? '!bg-violet-500' : '!bg-white'}`;
                                     },
                                 }}
                             />
@@ -80,8 +80,8 @@ export default function JobSelectInput() {
                 />
             </div>
             {errors?.job?.message && errors?.job.type === 'isNotSelected' && (
-                <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
-                    <HiOutlineExclamationTriangle className={'size-5'} />
+                <div className={'m-0.5 flex items-center gap-x-1 text-rose-500'}>
+                    <HiOutlineExclamationCircle className={'size-5'} />
                     <p className={'text-[0.8rem]'}>{errors.job.message}</p>
                 </div>
             )}
