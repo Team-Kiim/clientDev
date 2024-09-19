@@ -10,7 +10,6 @@ interface Props {
 
 export default function EditableProfileImage({ profileImageName, profileImagePath }: Props) {
     const [profileImagePathToChange, setProfileImagePathToChange] = useState('');
-    console.log(profileImagePath);
 
     const inputRef = useRef<HTMLInputElement>(null);
 
