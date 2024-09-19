@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Select from 'react-select';
-import { HiOutlineExclamationTriangle } from 'react-icons/hi2';
+import { HiOutlineExclamationCircle, HiOutlineIdentification } from 'react-icons/hi2';
 
 interface Props {
     closeModal(): void;
@@ -76,12 +76,13 @@ export default function ProfileUpdateForm({ closeModal, profileData }: Props) {
                     </label>
                     <div
                         className={
-                            'flex items-center rounded-xl border border-slate-300 p-3 focus-within:border-violet-700'
+                            'flex items-center gap-x-2 rounded-2xl border border-slate-300 px-3 py-3.5 transition-all focus-within:border-plump-purple-600'
                         }
                     >
+                        <HiOutlineIdentification className={'size-5 text-slate-800'} />
                         <input
                             id={'nicknameInput'}
-                            className={'w-full flex-1 text-[0.9rem] focus:outline-none'}
+                            className={'flex-1 text-[0.9rem] placeholder:text-slate-400 focus:outline-none'}
                             type={'text'}
                             placeholder={'닉네임 (3자 이상 20자 이하)'}
                             autoComplete={'off'}
@@ -103,20 +104,20 @@ export default function ProfileUpdateForm({ closeModal, profileData }: Props) {
                         />
                     </div>
                     {errors?.nickname?.message && errors?.nickname.type === 'required' && (
-                        <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
-                            <HiOutlineExclamationTriangle className={'size-5'} />
+                        <div className={'m-0.5 flex items-center gap-x-1 text-rose-500'}>
+                            <HiOutlineExclamationCircle className={'size-5'} />
                             <p className={'text-[0.8rem]'}>{errors.nickname.message}</p>
                         </div>
                     )}
                     {errors?.nickname?.message && errors?.nickname.type === 'maxLength' && (
-                        <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
-                            <HiOutlineExclamationTriangle className={'size-5'} />
+                        <div className={'m-0.5 flex items-center gap-x-1 text-rose-500'}>
+                            <HiOutlineExclamationCircle className={'size-5'} />
                             <p className={'text-[0.8rem]'}>{errors.nickname.message}</p>
                         </div>
                     )}
                     {errors?.nickname?.message && errors?.nickname.type === 'minLength' && (
-                        <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
-                            <HiOutlineExclamationTriangle className={'size-5'} />
+                        <div className={'m-0.5 flex items-center gap-x-1 text-rose-500'}>
+                            <HiOutlineExclamationCircle className={'size-5'} />
                             <p className={'text-[0.8rem]'}>{errors.nickname.message}</p>
                         </div>
                     )}
@@ -127,9 +128,10 @@ export default function ProfileUpdateForm({ closeModal, profileData }: Props) {
                     </label>
                     <div
                         className={
-                            'flex h-[47.59px] items-center rounded-xl border border-slate-300 px-3 focus-within:border-violet-700'
+                            'flex h-[51.59px] items-center gap-x-2 rounded-2xl border border-slate-300 px-3 transition-all focus-within:border-plump-purple-600'
                         }
                     >
+                        <HiOutlineIdentification className={'size-5 text-slate-800'} />
                         <Controller
                             control={control}
                             name={'job'}
@@ -149,6 +151,7 @@ export default function ProfileUpdateForm({ closeModal, profileData }: Props) {
                                         onChange={option => field.onChange(option.value)}
                                         onBlur={field.onBlur}
                                         defaultValue={jobOptions.find(option => option.value === field.value)}
+                                        isSearchable={false}
                                         styles={{
                                             container: base => {
                                                 return {
@@ -175,8 +178,8 @@ export default function ProfileUpdateForm({ closeModal, profileData }: Props) {
                                                 return `!bg-white !text-[0.9rem] !border-none !shadow-none`;
                                             },
 
-                                            option() {
-                                                return '!text-[0.9rem]';
+                                            option({ isFocused, isSelected }) {
+                                                return `!text-[0.9rem] ${isSelected ? '!text-white !bg-plump-purple-600' : isFocused ? '!text-black !bg-plump-purple-50' : '!text-black !bg-white'}`;
                                             },
                                         }}
                                     />
@@ -185,14 +188,14 @@ export default function ProfileUpdateForm({ closeModal, profileData }: Props) {
                         />
                     </div>
                     {errors?.job?.message && errors?.job.type === 'isNotSelected' && (
-                        <div className={'m-0.5 flex items-center gap-x-1 text-red-500'}>
-                            <HiOutlineExclamationTriangle className={'size-5'} />
+                        <div className={'m-0.5 flex items-center gap-x-1 text-rose-500'}>
+                            <HiOutlineExclamationCircle className={'size-5'} />
                             <p className={'text-[0.8rem]'}>{errors.job.message}</p>
                         </div>
                     )}
                 </div>
             </div>
-            <div className={'mb-1.5 flex justify-end gap-x-3'}>
+            <div className={'mb-1.5 flex justify-end gap-x-3.5'}>
                 <button
                     className={
                         'rounded-lg bg-slate-100 px-4 py-2.5 text-[0.9rem] font-bold transition-all hover:bg-slate-200 disabled:cursor-default disabled:opacity-75'
@@ -205,7 +208,7 @@ export default function ProfileUpdateForm({ closeModal, profileData }: Props) {
                 </button>
                 <button
                     className={
-                        'rounded-lg bg-violet-600 px-4 py-2.5 text-[0.9rem] font-bold text-white transition-all hover:bg-violet-700 disabled:cursor-default disabled:opacity-75'
+                        'rounded-lg bg-plump-purple-600 px-4 py-2.5 text-[0.9rem] font-bold text-white transition-all hover:bg-plump-purple-700 disabled:cursor-default disabled:opacity-75'
                     }
                     disabled={isSubmitting}
                 >
