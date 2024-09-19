@@ -73,7 +73,7 @@ export default function EmailVerificationInputs({ updateEmailVerification }: Pro
             <div className={'flex w-full flex-col gap-y-2'}>
                 <div
                     className={
-                        'flex items-center gap-x-2 rounded-2xl border border-slate-300 px-3 py-3.5 transition-all focus-within:border-violet-500'
+                        'flex items-center gap-x-2 rounded-2xl border border-slate-300 px-3 py-3.5 transition-all focus-within:border-plump-purple-600'
                     }
                 >
                     <HiOutlineEnvelope className={'size-5 text-slate-800'} />
@@ -99,7 +99,7 @@ export default function EmailVerificationInputs({ updateEmailVerification }: Pro
                     />
                     <button
                         className={
-                            'mr-1 text-[0.9rem] font-bold text-violet-500 hover:underline hover:underline-offset-4 disabled:opacity-75'
+                            'mr-1 text-[0.9rem] font-bold text-plump-purple-600 hover:underline hover:underline-offset-4 disabled:opacity-75'
                         }
                         type={'button'}
                         onClick={handleVerificationRequestButtonClick}
@@ -124,13 +124,13 @@ export default function EmailVerificationInputs({ updateEmailVerification }: Pro
             <div className={'flex w-full flex-col gap-y-2'}>
                 <div
                     className={
-                        'flex items-center gap-x-2 rounded-2xl border border-slate-300 bg-slate-100 px-3 py-3.5 transition-all focus-within:border-violet-500'
+                        'flex items-center gap-x-2 rounded-2xl border border-slate-300 bg-slate-50 px-3 py-3.5 transition-all focus-within:bg-plump-purple-600'
                     }
                 >
                     <MdOutlinePassword className={'size-5 text-slate-800'} />
                     <input
                         className={
-                            'w-full flex-1 bg-slate-100 text-[0.9rem] placeholder:text-slate-400 focus:outline-none disabled:bg-slate-100 disabled:opacity-75'
+                            'w-full flex-1 bg-slate-50 text-[0.9rem] placeholder:text-slate-400 focus:outline-none disabled:bg-slate-50 disabled:opacity-75'
                         }
                         type={'text'}
                         placeholder={'인증 코드'}
@@ -147,7 +147,7 @@ export default function EmailVerificationInputs({ updateEmailVerification }: Pro
                     />
                     <button
                         className={
-                            'mr-1 text-[0.9rem] font-bold text-violet-500 hover:underline hover:underline-offset-4 disabled:opacity-75'
+                            'mr-1 text-[0.9rem] font-bold text-plump-purple-600 hover:underline hover:underline-offset-4 disabled:opacity-75'
                         }
                         type={'button'}
                         onClick={handleVerificationConfirmButtonClick}
