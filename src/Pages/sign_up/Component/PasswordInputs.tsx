@@ -21,7 +21,7 @@ export default function PasswordInputs() {
             <div className={'flex w-full flex-col gap-y-2'}>
                 <div
                     className={
-                        'flex items-center gap-x-2 rounded-2xl border border-slate-300 px-3 py-3.5 transition-all focus-within:border-violet-500'
+                        'flex items-center gap-x-2 rounded-2xl border border-slate-300 px-3 py-3.5 transition-all focus-within:border-plump-purple-600'
                     }
                 >
                     <HiOutlineLockClosed className={'size-5 text-slate-800'} />
@@ -73,7 +73,7 @@ export default function PasswordInputs() {
             <div className={'flex w-full flex-col gap-y-2'}>
                 <div
                     className={
-                        'flex items-center gap-x-2 rounded-2xl border border-slate-300 px-3 py-3.5 transition-all focus-within:border-violet-500'
+                        'flex items-center gap-x-2 rounded-2xl border border-slate-300 px-3 py-3.5 transition-all focus-within:border-plump-purple-600'
                     }
                 >
                     <HiOutlineLockClosed className={'size-5 text-slate-800'} />
