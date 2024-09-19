@@ -54,7 +54,7 @@ export default function SignInForm() {
                 <div className={'flex w-full flex-col gap-y-2'}>
                     <div
                         className={
-                            'flex items-center gap-x-2 rounded-2xl border border-slate-300 px-3 py-3.5 transition-all focus-within:border-violet-500'
+                            'flex items-center gap-x-2 rounded-2xl border border-slate-300 px-3 py-3.5 transition-all focus-within:border-plump-purple-600'
                         }
                     >
                         <HiOutlineEnvelope className={'size-5 text-slate-800'} />
@@ -79,7 +79,7 @@ export default function SignInForm() {
                 <div className={'flex w-full flex-col gap-y-2'}>
                     <div
                         className={
-                            'flex items-center gap-x-2 rounded-2xl border border-slate-300 px-3 py-3.5 transition-all focus-within:border-violet-500'
+                            'flex items-center gap-x-2 rounded-2xl border border-slate-300 px-3 py-3.5 transition-all focus-within:border-plump-purple-600'
                         }
                     >
                         <HiOutlineLockClosed className={'size-5 text-slate-800'} />
@@ -119,7 +119,7 @@ export default function SignInForm() {
             </div>
             <button
                 className={
-                    'flex w-full items-center justify-center rounded-2xl bg-violet-500 py-3.5 text-[0.9rem] transition-all hover:bg-violet-600 disabled:opacity-50'
+                    'flex w-full items-center justify-center rounded-2xl bg-plump-purple-600 py-3.5 text-[0.9rem] transition-all hover:bg-violet-600 disabled:opacity-50'
                 }
                 type={'submit'}
                 disabled={isSubmitting}
