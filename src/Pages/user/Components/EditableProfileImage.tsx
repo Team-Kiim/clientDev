@@ -48,7 +48,7 @@ export default function EditableProfileImage({ profileImageName, profileImagePat
     });
 
     return (
-        <div className={'flex w-[10rem] flex-col gap-y-3'}>
+        <div className={'flex w-[10rem] flex-col items-center gap-y-3'}>
             <div className={'relative'}>
                 <input
                     className={'hidden'}
@@ -74,7 +74,7 @@ export default function EditableProfileImage({ profileImageName, profileImagePat
                 />
                 <button
                     className={
-                        'absolute -bottom-1 -right-1 rounded-full border-4 border-white bg-gray-800 p-2 text-white transition-all active:scale-95'
+                        'absolute -bottom-1 -right-1 rounded-full border-[3px] border-white bg-plump-purple-600 p-2 text-white transition-all active:scale-95'
                     }
                     type={'button'}
                     onClick={() => {
@@ -86,24 +86,28 @@ export default function EditableProfileImage({ profileImageName, profileImagePat
                 </button>
             </div>
             {profileImagePathToChange !== '' && (
-                <div className={'flex justify-center gap-x-2'}>
+                <div className={'flex justify-center gap-x-1'}>
                     <button
-                        className={'rounded-lg px-2 py-1.5 transition-all hover:bg-violet-50'}
+                        className={
+                            'rounded-xl border border-slate-300 bg-white px-3.5 py-1.5 text-[0.85rem] transition-all hover:bg-slate-100'
+                        }
                         type={'button'}
                         onClick={() => {
                             changeProfileImageMutate();
                         }}
                     >
-                        <span className={'font-bold text-violet-700'}>확인</span>
+                        <span className={'font-bold text-neutral-800'}>변경</span>
                     </button>
                     <button
-                        className={'rounded-lg px-2 py-1.5 transition-all hover:bg-gray-100'}
+                        className={
+                            'rounded-xl border border-white bg-white px-3.5 py-1.5 text-[0.85rem] text-neutral-800 transition-all hover:bg-slate-100'
+                        }
                         type={'button'}
                         onClick={() => {
                             setProfileImagePathToChange('');
                         }}
                     >
-                        <span className={'font-bold'}>취소</span>
+                        <span className={'font-bold text-neutral-800'}>취소</span>
                     </button>
                 </div>
             )}
