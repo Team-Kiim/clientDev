@@ -5,6 +5,8 @@ export type Chat = {
     senderId: number;
     senderNickname: string;
     content: string;
-    messageType: 'ENTER' | 'EXIT' | 'TALK' | 'IMAGE' | 'CODE';
-    createdTime: number[];
+    messageType: 'ENTER' | 'EXIT' | 'IMAGE' | 'CODE' | 'CHAT';
+    createdTime: string;
+    profileImagePath: string;
+    profileImageName: string;
 };
