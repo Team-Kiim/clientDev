@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import Modal from 'react-modal';
 import { HiXMark } from 'react-icons/hi2';
 import ProfileUpdateForm from '@/Pages/user/Components/ProfileUpdate/ProfileUpdateForm.tsx';
@@ -13,13 +12,6 @@ interface Props {
 }
 
 export default function ProfileUpdateModal({ isModalOpen, closeModal, profileData }: Props) {
-    useEffect(() => {
-        document.body.style.overflowX = 'hidden';
-        return () => {
-            document.body.style.overflowX = 'auto';
-        };
-    }, []);
-
     return (
         <Modal
             isOpen={isModalOpen}
@@ -33,6 +25,12 @@ export default function ProfileUpdateModal({ isModalOpen, closeModal, profileDat
                 },
             }}
             closeTimeoutMS={280}
+            onAfterOpen={() => {
+                document.body.style.overflowY = 'hidden';
+            }}
+            onAfterClose={() => {
+                document.body.style.overflowY = 'auto';
+            }}
         >
             <div className={'flex justify-end'}>
                 <button
