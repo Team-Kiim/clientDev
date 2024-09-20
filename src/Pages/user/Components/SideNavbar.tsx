@@ -1,4 +1,4 @@
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { LiaUser, LiaUserCogSolid, LiaUserLockSolid } from 'react-icons/lia';
 import { PiClipboardTextLight } from 'react-icons/pi';
 
@@ -24,12 +24,9 @@ const getCurrentSideNavItem = (pathname: string): string => {
 };
 
 export default function SideNavbar() {
-    const nickname = useParams().nickname ?? '';
-
     const { pathname } = useLocation();
 
     const currentSideNavItem = getCurrentSideNavItem(pathname);
-    console.log(currentSideNavItem);
 
     return (
         <nav className={'w-[10rem] py-4'}>
