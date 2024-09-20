@@ -14,6 +14,7 @@ const jobs = [
     { value: 'FREELANCER', label: '프리랜서' },
     { value: 'STUDENT', label: '학생' },
     { value: 'GENERAL', label: '일반' },
+    { value: 'ADMIN', label: '관리자' },
 ];
 
 export default function Page() {
