@@ -4,8 +4,8 @@ import { MdOutlineEmail } from 'react-icons/md';
 import EditableProfileImage from '@/Pages/user/Components/EditableProfileImage.tsx';
 import FollowToggleButton from '@/Pages/user/Components/FollowToggleButton.tsx';
 import SideNavbar from '@/Pages/user/Components/SideNavbar.tsx';
+import VisitorSideNavbar from '@/Pages/user/Components/VisitorSideNavbar.tsx';
 import getUserData from '@/Pages/user/Utils/getUserData.ts';
-import { LiaUser } from 'react-icons/lia';
 
 export default function UserPageLayout() {
     const { VITE_SERVER_URL } = import.meta.env;
@@ -64,18 +64,7 @@ export default function UserPageLayout() {
                     </div>
                 </div>
                 <div className={'flex gap-x-10 p-2'}>
-                    {data.isLoginMember ? (
-                        <SideNavbar />
-                    ) : (
-                        <div className={'w-[10rem] py-4'}>
-                            <div className={'rounded-md bg-slate-100 px-3 py-1.5 text-[0.95rem] font-bold'}>
-                                <div className={'flex items-center gap-x-4'}>
-                                    <LiaUser className={'size-7'} />
-                                    <span>프로필 정보</span>
-                                </div>
-                            </div>
-                        </div>
-                    )}
+                    {data.isLoginMember ? <SideNavbar /> : <VisitorSideNavbar />}
                     <div className={'flex-1 py-4'}>
                         <Outlet context={{ userData: data }} />
                     </div>
