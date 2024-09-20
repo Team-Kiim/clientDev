@@ -33,16 +33,16 @@ export default function Page() {
                         <div className={'flex flex-col gap-y-6'}>
                             <div className={'flex flex-col gap-y-1'}>
                                 <h3 className={'text-[0.95rem] font-bold'}>이메일</h3>
-                                <span className={'text-[0.9rem] text-neutral-800'}>{email}</span>
+                                <span className={'text-[0.9rem] text-slate-600'}>{email}</span>
                             </div>
                             <div className={'flex flex-col gap-y-1'}>
                                 <h3 className={'text-[0.95rem] font-bold'}>닉네임</h3>
-                                <span className={'text-[0.9rem] text-neutral-800'}>{nickname}</span>
+                                <span className={'text-[0.9rem] text-slate-600'}>{nickname}</span>
                             </div>
                             <div className={'flex flex-col gap-y-1'}>
                                 <h3 className={'text-[0.95rem] font-bold'}>직업</h3>
                                 {memberRole === 'TEMP' ? (
-                                    <p className={'text-[0.9rem] text-red-500'}>선택된 직업이 없습니다.</p>
+                                    <p className={'text-[0.9rem] text-rose-500'}>설정된 직업이 없습니다.</p>
                                 ) : (
                                     <span className={'text-[0.9rem] font-bold text-slate-500'}>
                                         {jobs.find(job => job.value === memberRole).label}
@@ -70,7 +70,11 @@ export default function Page() {
                     <div className={'flex flex-col gap-y-3'}>
                         <div className={'flex flex-col gap-y-4'}>
                             <h3 className={'text-[0.95rem] font-bold'}>관심 카테고리</h3>
-                            <InterestCategoryList interestSkillCategories={interestSkillCategoryList} />
+                            {!isLoginMember && interestSkillCategoryList.length === 0 ? (
+                                <p className={'text-[0.9rem] text-rose-500'}>설정된 관심 카테고리가 없어요.</p>
+                            ) : (
+                                <InterestCategoryList interestSkillCategories={interestSkillCategoryList} />
+                            )}
                         </div>
                         {isLoginMember && (
                             <div className={'flex items-center justify-end'}>
