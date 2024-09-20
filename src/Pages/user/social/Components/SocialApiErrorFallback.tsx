@@ -35,7 +35,7 @@ export default function SocialApiErrorFallback({ resetErrorBoundary }: FallbackP
             </p>
             <button
                 className={
-                    'rounded-3xl bg-gradient-to-br from-violet-600 to-fuchsia-600 px-3.5 py-2 text-[0.8rem] font-bold text-white transition-all hover:scale-105'
+                    'rounded-3xl bg-plump-purple-600 px-3.5 py-2 text-[0.8rem] font-bold text-white transition-all hover:bg-plump-purple-700'
                 }
                 type={'button'}
                 onClick={resetErrorBoundary}
