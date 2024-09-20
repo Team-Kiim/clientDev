@@ -17,6 +17,7 @@ export default function SocialFilters() {
 
     const handleFilterButtonClick = (filterValue: string) => {
         searchParams.set('type', filterValue);
+        searchParams.delete('search');
         setSearchParams(searchParams);
     };
 
