@@ -22,7 +22,7 @@ export default function InterestCategoryList({ interestSkillCategories }: Props)
         <>
             {interestChildCategories.length === 0 ? (
                 <div>
-                    <p className={'text-[0.95rem] font-bold text-gray-500'}>
+                    <p className={'text-[0.9rem] text-slate-600'}>
                         관심 카테고리가 없습니다. 관심 카테고리를 설정해보세요.
                     </p>
                 </div>
