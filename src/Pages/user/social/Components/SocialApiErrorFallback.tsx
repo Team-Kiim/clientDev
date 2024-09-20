@@ -13,7 +13,17 @@ export default function SocialApiErrorFallback({ resetErrorBoundary }: FallbackP
 
     useEffect(() => {
         return () => {
-            queryClient.resetQueries({ queryKey: ['social', currentSocialType] }).catch();
+            queryClient
+                .resetQueries({
+                    queryKey: [
+                        'user',
+                        'social',
+                        {
+                            relationshipType: currentSocialType === 'follower' ? 'followers' : 'followings',
+                        },
+                    ],
+                })
+                .catch();
         };
     }, []);
 
