@@ -58,7 +58,7 @@ export default function FollowToggleButton({ profileMemberId, isFollowingMember 
     return (
         <div className={'flex justify-end'}>
             <button
-                className={`rounded-3xl border-2 border-black ${isFollowingMember ? 'bg-white text-black hover:bg-slate-100' : 'bg-black text-white hover:bg-black/70'} px-3.5 py-2 text-[0.85rem] font-extrabold transition-all`}
+                className={`rounded-3xl bg-gradient-to-r from-plump-purple-600 to-rose-500 px-4 py-2.5 text-[0.85rem] font-extrabold text-white`}
                 type={'button'}
                 onClick={() => {
                     followStateToggle();
