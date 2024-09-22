@@ -50,7 +50,7 @@ export default function Layout() {
         <div>
             {!shouldHideGNB(pathname) && (
                 <div
-                    className={`sticky top-0 z-50 flex h-[4.5rem] w-full min-w-[1500px] items-center justify-center ${isScrolled && 'border-b border-slate-200'} bg-white`}
+                    className={`sticky top-0 z-50 flex h-[4.5rem] w-full min-w-[1500px] items-center justify-center backdrop-blur-md ${isScrolled && 'border-b border-slate-200'} bg-white/70`}
                 >
                     <div className={'w-[80rem]'}>
                         <GlobalNavbar />
