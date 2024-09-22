@@ -6,7 +6,7 @@ export default function LogOutSection() {
             <div className={'flex gap-x-4 justify-self-end'}>
                 <Link
                     className={
-                        'rounded-lg bg-slate-100 px-4 py-2.5 text-[0.9rem] font-bold transition-all hover:bg-slate-200'
+                        'flex items-center justify-center rounded-lg bg-slate-100 px-4 py-2.5 text-sm font-bold transition-all hover:bg-slate-200'
                     }
                     to={'/sign_in'}
                 >
@@ -14,7 +14,7 @@ export default function LogOutSection() {
                 </Link>
                 <Link
                     className={
-                        'rounded-lg bg-violet-600 px-4 py-2.5 text-[0.9rem] font-bold text-white transition-all hover:bg-violet-700'
+                        'flex items-center justify-center rounded-lg bg-plump-purple-600 px-4 py-2.5 text-sm font-bold text-white transition-all hover:bg-plump-purple-700'
                     }
                     to={'/sign_up'}
                 >
