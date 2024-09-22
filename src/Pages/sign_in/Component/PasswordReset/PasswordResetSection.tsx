@@ -6,11 +6,9 @@ export default function PasswordResetSection() {
 
     return (
         <>
-            <div>
+            <div className={'flex items-center gap-x-2 text-[0.8rem]'}>
                 <button
-                    className={
-                        'text-[0.85rem] font-bold text-violet-700 transition-all hover:underline hover:decoration-violet-700 hover:underline-offset-4'
-                    }
+                    className={'text-[0.8rem] font-bold text-plump-purple-600 hover:underline hover:underline-offset-4'}
                     type={'button'}
                     onClick={() => {
                         toggleIsModalOpen();
