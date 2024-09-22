@@ -4,10 +4,12 @@ export type Notification = {
     senderNickname: string;
     profileImagePath: string;
     profileImageName: string;
+    postType: string | null;
     title: string;
     content: string;
-    url: string;
-    notificationType: string;
+    commentId: number | null;
+    url: number;
+    notificationType: 'COMMENT' | 'POST' | 'FOLLOW';
     createdTime: number[];
     read: boolean;
 };
