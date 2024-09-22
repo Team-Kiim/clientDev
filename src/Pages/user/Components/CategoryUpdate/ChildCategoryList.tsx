@@ -27,7 +27,7 @@ export default function ChildCategoryList({
                     return (
                         <li
                             key={childCategory.value}
-                            className={`my-1.5 cursor-pointer rounded-2xl bg-slate-100 px-2.5 py-1.5 text-[0.8rem] font-bold ${selectedCategories.find(category => category.parentSkillCategory === selectedParentCategory && category.childSkillCategory === childCategory.value) ? 'bg-violet-600 text-white' : 'text-black'} transition-all`}
+                            className={`my-1.5 cursor-pointer rounded-2xl border px-4 py-1.5 text-[0.8rem] font-bold ${selectedCategories.find(category => category.parentSkillCategory === selectedParentCategory && category.childSkillCategory === childCategory.value) ? 'border-plump-purple-600 bg-plump-purple-50 text-plump-purple-600' : 'border-slate-200 text-slate-800'} transition-all`}
                             onClick={() => {
                                 onChildCategoryListItemClick({
                                     parentSkillCategory: selectedParentCategory,

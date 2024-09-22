@@ -7,12 +7,12 @@ interface Props {
 
 export default function ParentCategoryList({ selectedParentCategory, onParentCategoryListItemClick }: Props) {
     return (
-        <ul className={'flex w-full items-center gap-x-1 overflow-x-auto scrollbar-hide'}>
+        <ul className={'flex w-full flex-wrap items-center gap-x-1 gap-y-2'}>
             {CATEGORIES.map(category => {
                 return (
                     <li
                         key={category.value}
-                        className={`shrink-0 cursor-pointer rounded-xl px-2.5 py-1.5 text-[0.85rem] ${category.value === selectedParentCategory ? 'bg-slate-100 font-bold' : 'bg-white text-slate-400'} font-bold transition-all`}
+                        className={`flex-shrink-0 rounded-3xl border px-4 py-1.5 text-[0.8rem] font-bold ${category.value === selectedParentCategory ? 'border-neutral-800 bg-neutral-800 text-white' : 'border-slate-200 bg-white text-neutral-800 hover:bg-slate-100'} transition-all`}
                         onClick={() => {
                             onParentCategoryListItemClick(category.value);
                         }}

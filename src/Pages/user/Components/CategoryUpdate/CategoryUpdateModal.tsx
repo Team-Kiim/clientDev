@@ -110,7 +110,7 @@ export default function CategoryUpdateModal({ isModalOpen, closeModal, interestS
         <Modal
             isOpen={isModalOpen}
             className={
-                'fixed left-1/2 top-1/2 flex w-[32rem] -translate-x-1/2 -translate-y-1/2 flex-col rounded-xl bg-white p-4'
+                'fixed left-1/2 top-1/2 flex w-[32rem] -translate-x-1/2 -translate-y-1/2 flex-col rounded-xl bg-white'
             }
             style={{
                 overlay: {
@@ -128,7 +128,7 @@ export default function CategoryUpdateModal({ isModalOpen, closeModal, interestS
                 setSelectedParentCategory(CATEGORIES[0].value);
             }}
         >
-            <div className={'flex justify-end'}>
+            <div className={'flex justify-end p-3'}>
                 <button
                     className={'rounded-full p-1.5 transition-all hover:bg-slate-100'}
                     type={'button'}
@@ -140,7 +140,7 @@ export default function CategoryUpdateModal({ isModalOpen, closeModal, interestS
                 </button>
             </div>
             <div className={'flex flex-col gap-y-6'}>
-                <h1 className={'mx-1 text-lg font-extrabold'}>관심 카테고리 설정</h1>
+                <h1 className={'px-5 text-lg font-extrabold'}>관심 카테고리 설정</h1>
                 <div className={'flex flex-col gap-y-3'}>
                     <div className={'w-full border-b border-slate-200 p-2'}>
                         <ParentCategoryList
@@ -161,22 +161,21 @@ export default function CategoryUpdateModal({ isModalOpen, closeModal, interestS
                         />
                     </div>
                 </div>
-                <div className={'mb-2 flex justify-between'}>
+                <div className={'mb-2 flex justify-between p-3'}>
+                    <div className={'tooltip tooltip-bottom flex items-center justify-center'} data-tip={'초기화'}>
+                        <button
+                            className={'rounded-full p-1.5 transition-all hover:bg-gray-100'}
+                            type={'button'}
+                            onClick={() => {
+                                setSelectedCategories([]);
+                            }}
+                        >
+                            <HiOutlineArrowPath className={'size-6'} />
+                        </button>
+                    </div>
                     <button
                         className={
-                            'flex items-center gap-x-1.5 rounded-lg px-4 py-2.5 text-[0.9rem] font-bold transition-all hover:bg-slate-100'
-                        }
-                        type={'button'}
-                        onClick={() => {
-                            setSelectedCategories([]);
-                        }}
-                    >
-                        <HiOutlineArrowPath className={'size-5'} />
-                        초기화
-                    </button>
-                    <button
-                        className={
-                            'rounded-lg bg-violet-600 px-4 py-2.5 text-[0.9rem] font-bold text-white transition-all hover:bg-violet-700 disabled:cursor-default disabled:opacity-75'
+                            'rounded-lg bg-plump-purple-600 px-4 py-2.5 text-[0.9rem] font-bold text-white transition-all hover:bg-plump-purple-700 disabled:cursor-default disabled:opacity-75'
                         }
                         type={'button'}
                         onClick={handleCategoryUpdateButtonClick}

@@ -25,9 +25,7 @@ export default function SelectedCategoryList({ selectedCategories, onSelectedCat
     return (
         <>
             {selectedCategories.length === 0 ? (
-                <p className={'text-[0.8rem] font-bold text-slate-500'}>
-                    선택된 카테고리가 없습니다. 카테고리를 설정해 보세요.
-                </p>
+                <p className={'text-[0.8rem] text-slate-500'}>선택된 카테고리가 없습니다. 카테고리를 설정해 보세요.</p>
             ) : (
                 <ul
                     className={'flex shrink-0 flex-grow basis-0 gap-x-2 overflow-x-auto scrollbar-hide'}
@@ -38,7 +36,7 @@ export default function SelectedCategoryList({ selectedCategories, onSelectedCat
                             <li
                                 key={selectedCategory.childSkillCategory}
                                 className={
-                                    'selectedCategoryList flex shrink-0 items-center justify-between gap-x-2.5 rounded-3xl border border-neutral-800 bg-white px-3 py-1 text-[0.8rem] font-extrabold text-neutral-800'
+                                    'flex shrink-0 items-center justify-between gap-x-2.5 rounded-3xl border border-slate-100 bg-slate-100 px-3 py-1 text-[0.8rem] font-bold text-neutral-800'
                                 }
                             >
                                 <span>
