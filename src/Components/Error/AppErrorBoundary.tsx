@@ -11,7 +11,6 @@ interface Props {
 export default function AppErrorBoundary({ children }: Props) {
     const { pathname } = useLocation();
     const { reset } = useQueryErrorResetBoundary();
-    reset();
 
     return (
         <ErrorBoundary
