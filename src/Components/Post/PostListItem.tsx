@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import { HiOutlineEye, HiOutlineHeart } from 'react-icons/hi2';
 import formatNumber from '@/Utils/formatNumber.ts';
 import type { Post } from '@/Types/Post.ts';
 
@@ -32,7 +31,7 @@ export default function PostListItem({ post, postType }: Props) {
                     {imagePath !== null && (
                         <div className={'w-full'}>
                             <img
-                                className={'h-36 w-full rounded-3xl object-cover'}
+                                className={'h-36 w-full rounded-t-3xl object-cover'}
                                 src={`${VITE_SERVER_URL}/image/${imagePath}/${imageName}`}
                                 // src={imagePath}
                                 alt={imageName}
@@ -65,14 +64,16 @@ export default function PostListItem({ post, postType }: Props) {
                             {bodyContent.replace(/<[^>]+>/g, '')}
                         </p>
                     </div>
-                    <div className={'flex items-center justify-end gap-x-2 px-4 pb-2'}>
-                        <div className={'flex items-center gap-x-2'}>
-                            <HiOutlineHeart className={'size-4'} style={{ stroke: 'url(#icon-gradient)' }} />
-                            <span className={'text-[0.7rem] text-slate-600'}>{formatNumber(likeCount, 0)}</span>
+                    <div className={'flex items-center justify-end gap-x-3 px-4 pb-2'}>
+                        <div className={'flex items-center gap-x-1'}>
+                            <span className={'text-[0.7rem] text-slate-700'}>
+                                조회수 : <span className={'font-bold'}>{formatNumber(likeCount, 0)}</span>
+                            </span>
                         </div>
                         <div className={'flex items-center gap-x-1'}>
-                            <HiOutlineEye className={'size-4'} style={{ stroke: 'url(#icon-gradient)' }} />
-                            <span className={'text-[0.7rem] text-slate-600'}>{formatNumber(viewCount, 0)}</span>
+                            <span className={'text-[0.7rem] text-slate-700'}>
+                                좋아요 : <span className={'font-bold'}>{formatNumber(viewCount, 0)}</span>
+                            </span>
                         </div>
                     </div>
                 </div>
