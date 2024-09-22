@@ -18,17 +18,17 @@ export default function PostSortFilters() {
     };
 
     return (
-        <ul className={'mx-2 flex gap-x-2.5'}>
+        <ul className={'flex gap-x-1 rounded-xl bg-slate-100 p-1'}>
             {postSortFilters.map(filter => (
                 <li key={filter.value}>
                     <button
-                        className={`text-sm font-bold ${currentPostSortFilterValue === filter.value ? 'inline-block bg-gradient-to-br from-[#6a3093] to-[#a044ff] bg-clip-text text-transparent' : 'text-slate-400 hover:text-slate-500'} transition-all`}
+                        className={`inline-block px-3.5 py-1.5 text-[0.8rem] font-bold ${currentPostSortFilterValue === filter.value && 'bg-white text-slate-800 shadow'} rounded-lg`}
                         onClick={() => {
                             handleFilterButtonClick(filter.value);
                         }}
                         type={'button'}
                     >
-                        • {filter.label}
+                        {filter.label}
                     </button>
                 </li>
             ))}
