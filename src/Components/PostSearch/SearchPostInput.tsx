@@ -1,6 +1,7 @@
 import { KeyboardEventHandler, useEffect, useRef, useState } from 'react';
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import { HiMagnifyingGlass } from 'react-icons/hi2';
+import { TbUsers, TbUserQuestion } from 'react-icons/tb';
 
 export default function SearchPostInput() {
     const [postType, setPostType] = useState('qnas');
@@ -57,41 +58,38 @@ export default function SearchPostInput() {
 
     return (
         <>
-            <svg width={'0'} height={'0'}>
-                <linearGradient id={'icon-gradient'} x1={'0%'} y1={'0%'} x2={'100%'} y2={'100%'}>
-                    <stop stopColor='#6a3093' offset='0%' />
-                    <stop stopColor='#a044ff' offset='100%' />
-                </linearGradient>
-            </svg>
-            <div
-                className={
-                    'w-[36rem] gap-x-2.5 rounded-3xl bg-gradient-to-br from-[#6a3093] to-[#a044ff] p-0.5 transition-all focus-within:shadow-lg'
-                }
-            >
-                <div className={'flex items-center gap-x-2.5 rounded-[calc(1.5rem-1px)] bg-white px-5 py-2'}>
-                    <button className={'w-14'} type={'button'} onMouseDown={handleChangePostTypeButtonClick}>
-                        <span
-                            className={
-                                'inline-block bg-gradient-to-br from-[#6a3093] to-[#a044ff] bg-clip-text text-sm font-bold text-transparent'
-                            }
+            <div>
+                <div
+                    className={
+                        'flex w-[40rem] items-center gap-x-2.5 rounded-3xl bg-slate-100 px-4 py-2.5 transition-all'
+                    }
+                >
+                    <div
+                        className={'tooltip tooltip-bottom flex items-center justify-center before:text-[0.8rem]'}
+                        data-tip={`${postType === 'qnas' ? 'QnA 게시글 검색' : '커뮤니티 게시글 검색'}`}
+                    >
+                        <button
+                            type={'button'}
+                            onClick={() => {
+                                handleChangePostTypeButtonClick();
+                            }}
                         >
-                            {postType === 'community' ? '커뮤니티' : 'Q&A'}
-                        </span>
-                    </button>
+                            {postType === 'qnas' ? (
+                                <TbUserQuestion className={'size-6 text-plump-purple-600'} />
+                            ) : (
+                                <TbUsers className={'size-6 text-plump-purple-600'} />
+                            )}
+                        </button>
+                    </div>
                     <input
-                        className={'flex-1 text-sm focus:outline-none'}
+                        className={'flex-1 bg-transparent text-sm focus:outline-none'}
                         onKeyDown={handleKeyDown}
-                        placeholder={`${postType === 'community' ? '커뮤니티' : 'Q&A'} 게시글 검색`}
+                        placeholder={`제목으로 ${postType === 'qnas' ? 'QnA' : '커뮤니티'} 게시글 검색`}
                         autoComplete={'off'}
                         ref={inputRef}
                     />
                     <button type={'button'} onClick={handleSearchPostButtonClick}>
-                        <HiMagnifyingGlass
-                            className={'size-6'}
-                            style={{
-                                fill: 'url(#icon-gradient)',
-                            }}
-                        />
+                        <HiMagnifyingGlass className={'size-6 text-plump-purple-600'} />
                     </button>
                 </div>
             </div>
