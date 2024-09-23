@@ -1,16 +1,18 @@
-import { EventSourcePolyfill } from 'event-source-polyfill';
 import { useEffect, useState } from 'react';
-import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
+import { useQueryClient } from '@tanstack/react-query';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import NotificationModalTop from '@/Components/Notification/NotificationModalTop/NotificationModalTop.tsx';
 import NotificationFilters from '@/Components/Notification/NotificationFilters.tsx';
 import NotificationLoading from '@/Components/Notification/NotificationLoading.tsx';
 import NotificationList from '@/Components/Notification/NotificationList/NotificationList.tsx';
 import NotificationErrorFallback from '@/Components/Notification/NotificationErrorFallback.tsx';
-import { getNotificationList } from '@/Components/Notification/Utils/getNotificationList.tsx';
-
-interface Props {
-    eventSource: EventSourcePolyfill;
-}
+import ModalBackground from '@/Components/UI/Modal/ModalBackground.tsx';
+import DeleteWarningModal from '@/Components/Notification/DeleteAllNotificationsModal/DeleteWarningModal.tsx';
+import DeleteErrorModal from '@/Components/Notification/DeleteAllNotificationsModal/DeleteErrorModal.tsx';
+import useUnreadNotificationCountQuery from '@/Components/Notification/Hooks/useUnreadNotificationCountQuery.ts';
+import useNotificationListQuery from '@/Components/Notification/Hooks/useNotificationListQuery.ts';
+import useDeleteAllNotifications from '@/Components/Notification/Hooks/useDeleteAllNotifications.ts';
+import useEventSourceStore from '@/Stores/useEventSourceStore.ts';
 
 interface NotificationFilter {
     value: string;
@@ -24,8 +26,14 @@ const notificationFilters: NotificationFilter[] = [
     { value: 'follow', label: '팔로우' },
 ];
 
-export default function NotificationModal({ eventSource }: Props) {
+export default function NotificationModal() {
     const queryClient = useQueryClient();
+
+    const { eventSource } = useEventSourceStore(state => state);
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const [isDeleteAllNotificationsErrorOccurred, setIsDeleteAllNotificationsErrorOccurred] = useState(false);
 
     const [notificationFilter, setNotificationFilter] = useState<NotificationFilter>(notificationFilters[0]);
 
@@ -33,41 +41,55 @@ export default function NotificationModal({ eventSource }: Props) {
         setNotificationFilter(filter);
     };
 
-    const { data, isLoading, isError, refetch } = useInfiniteQuery({
-        queryKey: ['user', 'notifications'],
-        queryFn: getNotificationList,
-        initialPageParam: 0,
-        getNextPageParam: (lastPage, allPages) => {
-            if (lastPage.length < 16) {
-                return undefined;
-            }
-            return allPages.length * 16;
+    const { data: unreadNotificationCount } = useUnreadNotificationCountQuery();
+
+    const { notificationList, isLoading, isError, refetch, fetchNextPage, hasNextPage } = useNotificationListQuery({
+        filter: notificationFilter.value,
+    });
+
+    const { mutate: deleteAllNotifications, isPending } = useDeleteAllNotifications({
+        successCallback: () => {
+            queryClient.invalidateQueries({ queryKey: ['user', 'notifications'] }).catch();
         },
-        gcTime: 0,
+
+        errorCallback: () => {
+            setIsModalOpen(true);
+            setIsDeleteAllNotificationsErrorOccurred(true);
+        },
     });
 
     useEffect(() => {
-        if (eventSource) {
-            eventSource.addEventListener('message', () => {
-                return queryClient.invalidateQueries({
-                    queryKey: ['user', 'notifications'],
-                });
+        const invalidateOnMessage = () => {
+            return queryClient.invalidateQueries({
+                queryKey: ['user', 'notifications'],
             });
-        }
-    }, []);
+        };
 
-    const notificationList = data?.pages?.flat();
+        if (eventSource) {
+            eventSource.addEventListener('message', invalidateOnMessage);
+        }
+
+        return () => {
+            if (eventSource) {
+                eventSource.removeEventListener('message', invalidateOnMessage);
+            }
+        };
+    }, []);
 
     return (
         <div
             className={
-                'notificationModal absolute -left-1 top-12 z-10 flex h-[35rem] w-[23rem] flex-col gap-y-3 rounded-xl bg-white shadow-2xl'
+                '[&_div:flex-1] absolute -left-1 top-12 z-10 flex h-[35rem] w-[23rem] flex-col gap-y-3 rounded-xl bg-white shadow-2xl'
             }
         >
             <NotificationModalTop
                 isNotificationListRequestFailed={isError}
                 isNotificationListRequestLoading={isLoading}
-                numberOfNotifications={notificationList?.length ?? null}
+                isDeleteAllNotificationsRequested={isPending}
+                numberOfNotifications={unreadNotificationCount ?? null}
+                openDeleteWarningModal={() => {
+                    setIsModalOpen(true);
+                }}
             />
             <NotificationFilters
                 currentFilter={notificationFilter}
@@ -77,8 +99,44 @@ export default function NotificationModal({ eventSource }: Props) {
                 <NotificationLoading />
             ) : isError ? (
                 <NotificationErrorFallback refetchNotificationList={refetch} />
+            ) : notificationList.length === 0 ? (
+                <div className={'flex flex-1 items-center justify-center'}>
+                    <p className={'text-center text-[0.75rem] font-bold text-slate-400'}>알림이 없습니다.</p>
+                </div>
             ) : (
-                <NotificationList notificationList={notificationList} />
+                <div
+                    id={'scrollableDiv'}
+                    className={'min-h-0 flex-1 overflow-y-auto overscroll-y-contain rounded-b-xl'}
+                >
+                    <InfiniteScroll
+                        next={fetchNextPage}
+                        scrollableTarget={'scrollableDiv'}
+                        hasMore={hasNextPage}
+                        loader={null}
+                        dataLength={notificationList.length}
+                    >
+                        <NotificationList filterValue={notificationFilter.value} notificationList={notificationList} />
+                    </InfiniteScroll>
+                </div>
+            )}
+            {isModalOpen && (
+                <ModalBackground>
+                    {isDeleteAllNotificationsErrorOccurred ? (
+                        <DeleteErrorModal
+                            closeModal={() => {
+                                setIsModalOpen(false);
+                                setIsDeleteAllNotificationsErrorOccurred(false);
+                            }}
+                        />
+                    ) : (
+                        <DeleteWarningModal
+                            closeModal={() => {
+                                setIsModalOpen(false);
+                            }}
+                            deleteAllNotifications={deleteAllNotifications}
+                        />
+                    )}
+                </ModalBackground>
             )}
         </div>
     );
