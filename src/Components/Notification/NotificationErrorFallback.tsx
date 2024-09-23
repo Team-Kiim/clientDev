@@ -10,7 +10,7 @@ export default function NotificationErrorFallback({ refetchNotificationList }: P
             </p>
             <button
                 className={
-                    'rounded-3xl bg-neutral-800 px-3.5 py-2 text-[0.75rem] font-bold text-white transition-all hover:bg-neutral-800/80'
+                    'rounded-3xl bg-plump-purple-600 px-3.5 py-2 text-[0.75rem] font-bold text-white transition-all hover:bg-plump-purple-700'
                 }
                 type={'button'}
                 onClick={refetchNotificationList}
