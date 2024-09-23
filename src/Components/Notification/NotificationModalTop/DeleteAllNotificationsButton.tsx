@@ -1,28 +1,13 @@
-import Swal from 'sweetalert2';
 import { IoTrashBinOutline } from 'react-icons/io5';
 
 interface Props {
     isButtonDisabled: boolean;
+    openDeleteWarningModal(): void;
 }
 
-export default function DeleteAllNotificationsButton({ isButtonDisabled }: Props) {
+export default function DeleteAllNotificationsButton({ isButtonDisabled, openDeleteWarningModal }: Props) {
     const handleDeleteAllNotificationButtonClick = () => {
-        Swal.fire({
-            target: '.notificationModal',
-            text: '알림을 모두 삭제할까요?',
-            showCancelButton: true,
-            confirmButtonText: '삭제',
-            cancelButtonText: '취소',
-            customClass: {
-                popup: 'rounded-3xl w-[240px] text-[0.8rem] py-3',
-                container: 'absolute rounded-xl',
-                cancelButton: 'text-black font-bold bg-slate-100',
-                confirmButton: 'font-bold text-white bg-violet-600',
-            },
-        }).then(result => {
-            if (result.isConfirmed) {
-            }
-        });
+        openDeleteWarningModal();
     };
 
     return (

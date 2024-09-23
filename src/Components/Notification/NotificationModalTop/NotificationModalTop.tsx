@@ -4,13 +4,17 @@ import DeleteAllNotificationsButton from '@/Components/Notification/Notification
 interface Props {
     isNotificationListRequestLoading: boolean;
     isNotificationListRequestFailed: boolean;
+    isDeleteAllNotificationsRequested: boolean;
     numberOfNotifications: number | null;
+    openDeleteWarningModal(): void;
 }
 
 export default function NotificationModalTop({
     isNotificationListRequestLoading,
     isNotificationListRequestFailed,
+    isDeleteAllNotificationsRequested,
     numberOfNotifications,
+    openDeleteWarningModal,
 }: Props) {
     return (
         <div className={'flex items-center justify-between border-b border-slate-200 px-4 pb-2 pt-3'}>
@@ -19,7 +23,7 @@ export default function NotificationModalTop({
                 {numberOfNotifications !== null && (
                     <div
                         className={
-                            'flex items-center justify-center rounded-full bg-gradient-to-br from-violet-600 to-purple-500 px-2 py-0.5 text-[0.7rem] font-bold text-white'
+                            'flex items-center justify-center rounded-full bg-plump-purple-600 px-2 py-0.5 text-[0.7rem] font-bold text-white'
                         }
                     >
                         <span>{numberOfNotifications >= 100 ? '99+' : numberOfNotifications}</span>
@@ -31,7 +35,12 @@ export default function NotificationModalTop({
                     isButtonDisabled={isNotificationListRequestFailed || isNotificationListRequestLoading}
                 />
                 <DeleteAllNotificationsButton
-                    isButtonDisabled={isNotificationListRequestFailed || isNotificationListRequestLoading}
+                    isButtonDisabled={
+                        isNotificationListRequestFailed ||
+                        isNotificationListRequestLoading ||
+                        isDeleteAllNotificationsRequested
+                    }
+                    openDeleteWarningModal={openDeleteWarningModal}
                 />
             </div>
         </div>
