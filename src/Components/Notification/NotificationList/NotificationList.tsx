@@ -1,20 +1,24 @@
 import axios from 'axios';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { InfiniteData, useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
 import NotificationListItem from '@/Components/Notification/NotificationList/NotificationListItem.tsx';
 import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
-import type { Notification } from '@/Types/Notification.ts';
+import type { Notification } from '@/Types/notification.ts';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
     notificationList: Notification[];
+    filterValue: string;
 }
 
-export default function NotificationList({ notificationList }: Props) {
+export default function NotificationList({ notificationList, filterValue }: Props) {
     const queryClient = useQueryClient();
+
+    const navigate = useNavigate();
 
     const { mutate } = useMutation({
         mutationFn: (notificationId: number) => {
-            return axios.delete(`/notifications/${notificationId}`);
+            return axios.delete(`/api/notifications/${notificationId}`);
         },
 
         onMutate: async (notificationId: number) => {
@@ -22,25 +26,43 @@ export default function NotificationList({ notificationList }: Props) {
                 queryKey: ['user', 'notifications'],
             });
 
-            const previousNotificationList = queryClient
-                .getQueryData<{ pages: Notification[]; pageParam: number }>(['user', 'notifications'])
-                .pages.flat();
+            const previousPages = queryClient.getQueryData<InfiniteData<Notification[]>>([
+                'user',
+                'notifications',
+                { filter: filterValue },
+            ]).pages;
 
-            queryClient.setQueryData<{ pages: Notification[][]; pageParam: number }>(
-                ['user', 'notifications'],
+            const previousUnreadNotificationCount = queryClient.getQueryData<number>([
+                'user',
+                'notifications',
+                'unreadCount',
+            ]);
+
+            queryClient.setQueryData<InfiniteData<Notification[]>>(
+                ['user', 'notifications', { filter: filterValue }],
                 oldData => {
                     return {
                         ...oldData,
-                        pages: [previousNotificationList.filter(notification => notification.id !== notificationId)],
+                        pages: previousPages.map(page => {
+                            if (page.find(notification => notification.id === notificationId)) {
+                                return page.filter(notification => notification.id !== notificationId);
+                            } else {
+                                return page;
+                            }
+                        }),
                     };
                 },
             );
 
-            return { previousNotificationList };
+            queryClient.setQueryData<number>(['user', 'notifications', 'unreadCount'], oldData => {
+                const notificationToDelete = notificationList.find(notification => notification.id === notificationId);
+                return notificationToDelete.read ? oldData : oldData - 1;
+            });
+
+            return { previousPages, previousUnreadNotificationCount };
         },
 
-        onError: (error, _, context) => {
-            console.error(error);
+        onError: (_, __, context) => {
             toast.error(
                 <div className={'text-[0.85rem]'}>
                     알림을 삭제할 수 없습니다. <br />
@@ -49,12 +71,17 @@ export default function NotificationList({ notificationList }: Props) {
                 TOAST_OPTIONS,
             );
 
-            queryClient.setQueryData<{ pages: Notification[][]; pageParam: number }>(
-                ['user', 'notifications'],
+            queryClient.setQueryData<InfiniteData<Notification[]>>(
+                ['user', 'notifications', { filter: filterValue }],
                 oldData => ({
                     ...oldData,
-                    pages: [context.previousNotificationList],
+                    pages: context.previousPages,
                 }),
+            );
+
+            queryClient.setQueryData<number>(
+                ['user', 'notifications', 'unreadCount'],
+                context.previousUnreadNotificationCount,
             );
         },
 
@@ -69,8 +96,27 @@ export default function NotificationList({ notificationList }: Props) {
         mutate(id);
     };
 
-    const handleNotificationListItemClick = (id: number) => {
-        return axios.patch(`/notifications/${id}`).catch(error => console.error(error));
+    const handleNotificationListItemClick = (id: number, senderId: number, notification: Notification) => {
+        if (notification.notificationType === 'POST') {
+            navigate(`/${notification.postType === 'DEV' ? 'qnas' : 'community'}/${notification.url}`);
+        } else if (notification.notificationType === 'FOLLOW') {
+            navigate(`/user/${senderId}`);
+        } else {
+            navigate(`/${notification.postType === 'DEV' ? 'qnas' : 'community'}/${notification.url}`, {
+                state: {
+                    notificationType: 'COMMENT',
+                },
+            });
+        }
+
+        return axios
+            .patch(`/api/notifications/${id}`)
+            .then(() => {
+                queryClient.invalidateQueries({
+                    queryKey: ['user', 'notifications'],
+                });
+            })
+            .catch(error => console.error(error));
     };
 
     return (
