@@ -32,7 +32,11 @@ export default function NotificationModalTop({
             </div>
             <div className={'flex items-center gap-x-2'}>
                 <ReadAllNotificationsButton
-                    isButtonDisabled={isNotificationListRequestFailed || isNotificationListRequestLoading}
+                    isButtonDisabled={
+                        isNotificationListRequestFailed ||
+                        isNotificationListRequestLoading ||
+                        isDeleteAllNotificationsRequested
+                    }
                 />
                 <DeleteAllNotificationsButton
                     isButtonDisabled={
