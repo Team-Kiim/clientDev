@@ -10,9 +10,7 @@ export default function MyChatButton({ isModalOpen, onMyChatButtonClick }: Props
     return (
         <div className={'tooltip tooltip-bottom rounded-full shadow-2xl'} data-tip={'나의 채팅'}>
             <button
-                className={
-                    'flex items-center justify-center rounded-full bg-gradient-to-br from-violet-600 to-purple-500 p-3.5 shadow-2xl hover:bg-violet-700 '
-                }
+                className={'flex items-center justify-center rounded-full bg-plump-purple-600 p-3.5 shadow-2xl'}
                 type={'button'}
                 onClick={onMyChatButtonClick}
             >
