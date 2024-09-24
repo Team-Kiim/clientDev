@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import Modal from 'react-modal';
 import { GoX } from 'react-icons/go';
@@ -63,7 +64,29 @@ export default function SendImageModal({ isSendImageModalOpen, closeSendImageMod
             >
                 <GoX className={'size-8'} />
             </button>
-            <div className={'flex w-full flex-col gap-y-5'}>
+            <div
+                className={'flex w-full flex-col gap-y-5'}
+                onPaste={event => {
+                    const pastedDataList = Array.from(event.clipboardData.items);
+
+                    const imageDataList = pastedDataList
+                        .filter(data => data.type.includes('image'))
+                        .filter(
+                            data =>
+                                data.type.includes('png') || data.type.includes('jpg') || data.type.includes('jpeg'),
+                        );
+
+                    const imageInfoToUpload: UploadedImageInfo[] = imageDataList.map(imageData => ({
+                        id: nanoid(),
+                        localImageUrl: URL.createObjectURL(imageData.getAsFile()),
+                        imageFile: imageData.getAsFile(),
+                    }));
+
+                    if (imageDataList.length !== 0) {
+                        setUploadedImageInfoList([...uploadedImageInfoList, ...imageInfoToUpload]);
+                    }
+                }}
+            >
                 <h1 className={'mx-0.95 text-lg font-extrabold'}>이미지 전송</h1>
                 <div className={'flex gap-x-6'}>
                     <div className={'flex w-1/2 flex-shrink-0 flex-col gap-y-10'}>
