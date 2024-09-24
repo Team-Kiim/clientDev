@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
 import type { SocialMediaUser } from '@/Types/SocialMediaUser.ts';
 
-export const useUnfollowMember = () => {
+export const useUnfollowMember = ({ keyword }: { keyword: null | string }) => {
     const queryClient = useQueryClient();
 
     return useMutation({
@@ -15,15 +15,29 @@ export const useUnfollowMember = () => {
 
         onMutate: async (memberId: number) => {
             await queryClient.cancelQueries({
-                queryKey: ['social', 'following'],
+                queryKey: ['user', 'social'],
             });
 
             const previousFollowingList = queryClient
-                .getQueryData<{ pages: SocialMediaUser[]; pageParam: number }>(['social', 'following'])
+                .getQueryData<{ pages: SocialMediaUser[]; pageParam: number }>([
+                    'user',
+                    'social',
+                    {
+                        relationshipType: 'followings',
+                        keyword: keyword,
+                        memberId: null,
+                    },
+                ])
                 .pages.flat();
 
             queryClient.setQueryData<{ pages: SocialMediaUser[][]; pageParam: number }>(
-                ['social', 'following'],
+                [
+                    'user',
+                    'social',
+                    {
+                        relationshipType: 'followings',
+                    },
+                ],
                 oldData => {
                     return {
                         ...oldData,
@@ -37,8 +51,7 @@ export const useUnfollowMember = () => {
             return { previousFollowingList };
         },
 
-        onError: (error, _, context) => {
-            console.error(error);
+        onError: (_, __, context) => {
             toast.error(
                 <p className={'text-[0.85rem] leading-relaxed'}>
                     언팔로우 할 수 없습니다. <br />
@@ -48,7 +61,13 @@ export const useUnfollowMember = () => {
             );
 
             queryClient.setQueryData<{ pages: SocialMediaUser[][]; pageParam: number }>(
-                ['social', 'following'],
+                [
+                    'user',
+                    'social',
+                    {
+                        relationshipType: 'followings',
+                    },
+                ],
                 oldData => {
                     return {
                         ...oldData,
@@ -60,7 +79,13 @@ export const useUnfollowMember = () => {
 
         onSettled: () => {
             return queryClient.invalidateQueries({
-                queryKey: ['social', 'following'],
+                queryKey: [
+                    'user',
+                    'social',
+                    {
+                        relationshipType: 'followings',
+                    },
+                ],
             });
         },
     });
