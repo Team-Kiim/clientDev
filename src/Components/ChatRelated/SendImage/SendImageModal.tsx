@@ -31,7 +31,7 @@ export default function SendImageModal({ isSendImageModalOpen, closeSendImageMod
     };
 
     const handleDeleteImageButtonClick = (imageInfo: UploadedImageInfo) => {
-        if (imageInfo.id === uploadedImageInfoToView.id) {
+        if (uploadedImageInfoToView && imageInfo.id === uploadedImageInfoToView.id) {
             setUploadedImageInfoToView(null);
         }
         setUploadedImageInfoList(
