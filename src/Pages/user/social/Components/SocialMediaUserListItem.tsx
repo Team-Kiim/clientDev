@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import type { SocialMediaUser } from '@/Types/SocialMediaUser.ts';
-import { faker } from '@faker-js/faker';
 
 interface Props {
+    loginMember?: boolean;
     socialMediaUser: SocialMediaUser;
     onUnfollowButtonClick?(memberId: number): void;
 }
 
-export default function SocialMediaUserListItem({ socialMediaUser, onUnfollowButtonClick }: Props) {
+export default function SocialMediaUserListItem({ loginMember, socialMediaUser, onUnfollowButtonClick }: Props) {
     const { email, nickname, profileImagePath, profileImageName, memberId } = socialMediaUser;
 
     const { VITE_SERVER_URL } = import.meta.env;
@@ -15,7 +15,11 @@ export default function SocialMediaUserListItem({ socialMediaUser, onUnfollowBut
     return (
         <li className={'flex gap-x-4 border-b border-slate-200 px-3.5 py-5 last:border-none'}>
             <div className={'avatar size-8'}>
-                <img className={'size-8 rounded-full'} src={faker.image.avatarGitHub()} alt={profileImageName} />
+                <img
+                    className={'size-8 rounded-full'}
+                    src={`${VITE_SERVER_URL}/image/${profileImagePath}/${profileImageName}`}
+                    alt={profileImageName}
+                />
             </div>
             <div className={'flex min-w-0 flex-1 flex-col gap-y-1'}>
                 <Link
@@ -28,7 +32,7 @@ export default function SocialMediaUserListItem({ socialMediaUser, onUnfollowBut
                     {email}
                 </Link>
             </div>
-            {onUnfollowButtonClick && (
+            {onUnfollowButtonClick && loginMember && (
                 <div className={'flex flex-col justify-center'}>
                     <button
                         className={

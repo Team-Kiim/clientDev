@@ -1,20 +1,33 @@
-import { useSearchParams } from 'react-router-dom';
+import { useParams, useSearchParams, useOutletContext } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useUnfollowMember } from '@/Pages/user/social/Hooks/useUnfollowMember.tsx';
 import SocialMediaUserListItem from '@/Pages/user/social/Components/SocialMediaUserListItem.tsx';
 import useSocialMediaUserListQuery from '@/Pages/user/social/Hooks/useSocialMediaUserListQuery.ts';
 import { getCurrentSocialType } from '@/Pages/user/social/Utils/getCurrentSocialType.ts';
+import type { User } from '@/Types/User.ts';
+
+interface UserDataContext {
+    userData: User;
+}
 
 export default function SocialMediaUserList() {
     const [searchParams] = useSearchParams();
 
+    const { profileMemberId } = useParams();
+
     const currentSocialType = getCurrentSocialType(searchParams);
+
+    const { userData } = useOutletContext<UserDataContext>();
 
     const userNicknameToSearch = searchParams.get('search');
 
-    const { data, fetchNextPage, hasNextPage } = useSocialMediaUserListQuery({ socialType: currentSocialType });
+    const { data, fetchNextPage, hasNextPage } = useSocialMediaUserListQuery({
+        relationshipType: currentSocialType === 'following' ? 'followings' : 'followers',
+        memberId: profileMemberId ? Number(profileMemberId) : null,
+        keyword: userNicknameToSearch,
+    });
 
-    const { mutate: unfollowMember } = useUnfollowMember();
+    const { mutate: unfollowMember } = useUnfollowMember({ keyword: userNicknameToSearch });
 
     const handleUnFollowButtonClick = (memberId: number) => {
         unfollowMember(memberId);
@@ -44,6 +57,7 @@ export default function SocialMediaUserList() {
                                 ? socialMediaUserList.map(socialMediaUser => (
                                       <SocialMediaUserListItem
                                           key={socialMediaUser.memberId}
+                                          loginMember={userData.isLoginMember}
                                           socialMediaUser={socialMediaUser}
                                           onUnfollowButtonClick={handleUnFollowButtonClick}
                                       />
@@ -60,7 +74,7 @@ export default function SocialMediaUserList() {
                     <p className={'my-10 text-center text-sm text-slate-400'}>
                         {currentSocialType === 'following'
                             ? '아직 팔로우한 사용자가 없어요'
-                            : '아직 나를 팔로우 하는 사용자가 없어요.'}
+                            : '아직 팔로우 하는 사용자가 없어요.'}
                     </p>
                 )}
             </div>
