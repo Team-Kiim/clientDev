@@ -47,11 +47,11 @@ export default function PostControl({ postId, postType }: Props) {
             showCancelButton: true,
             confirmButtonText: '삭제',
             cancelButtonText: '취소',
-            confirmButtonColor: '#7c3aed',
-            cancelButtonColor: '#f1f5f9',
             customClass: {
-                cancelButton: 'text-black font-bold',
-                confirmButton: 'font-bold',
+                cancelButton: 'text-black font-bold bg-slate-100 rounded-xl text-[0.9rem]',
+                confirmButton: 'font-bold bg-plump-purple-600 rounded-xl text-[0.9rem]',
+                popup: 'rounded-[2rem]',
+                htmlContainer: '!text-slate-500',
             },
         }).then(result => {
             if (result.isConfirmed) {
