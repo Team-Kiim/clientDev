@@ -1,9 +1,17 @@
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
-import fetchSocialMediaUserList from '@/Utils/fetchSocialMediaUserList.ts';
+import fetchSocialMediaUserList from '@/Pages/user/social/Utils/fetchSocialMediaUserList.ts';
 
-const useSocialMediaUserListQuery = ({ socialType }: { socialType: string }) => {
+const useSocialMediaUserListQuery = ({
+    relationshipType,
+    keyword,
+    memberId,
+}: {
+    relationshipType: string;
+    keyword: string;
+    memberId: number | null;
+}) => {
     return useSuspenseInfiniteQuery({
-        queryKey: ['social', socialType],
+        queryKey: ['user', 'social', { relationshipType, keyword, memberId }],
         queryFn: fetchSocialMediaUserList,
         initialPageParam: 0,
         getNextPageParam: (lastPage, _, lastPageParam) => (lastPage.length < 16 ? undefined : lastPageParam + 1),
