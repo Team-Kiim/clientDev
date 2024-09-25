@@ -33,7 +33,7 @@ export default function PostTitleField() {
             </label>
             <div
                 className={
-                    'flex items-center justify-between gap-x-2 rounded-lg border border-slate-300 px-3.5 py-2.5 transition-all focus-within:border-violet-700'
+                    'flex items-center justify-between gap-x-2 rounded-lg border border-slate-300 px-3.5 py-2.5 transition-all focus-within:border-plump-purple-600'
                 }
             >
                 <input
