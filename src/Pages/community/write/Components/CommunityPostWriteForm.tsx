@@ -4,8 +4,8 @@ import Swal from 'sweetalert2';
 import { useEffect, useReducer, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
-import PostTitleField from '@/Pages/Components/PostInputs/PostTitleField.tsx';
-import PostContentField from '@/Pages/Components/PostInputs/PostContentField.tsx';
+import PostTitleField from '@/Components/PostInputFields/PostTitleField.tsx';
+import PostContentField from '@/Components/PostInputFields/PostContentField.tsx';
 import VoteSection from '@/Pages/community/Components/Vote/VoteSection.tsx';
 import FormOptionManager from '@/Pages/community/Components/FormOptionManager/FormOptionManager.tsx';
 
