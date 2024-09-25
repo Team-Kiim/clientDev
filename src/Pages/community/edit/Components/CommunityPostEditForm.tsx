@@ -131,9 +131,7 @@ export default function CommunityPostEditForm({ postId }: Props) {
                         bodyContent: dompurify.sanitize(bodyContent),
                         fileIdList: postImageIdList,
                         tagContentList:
-                            hashTagInfoList.length !== 0
-                                ? hashTagInfoList.map(hashTagInfo => hashTagInfo.content)
-                                : null,
+                            hashTagInfoList.length !== 0 ? hashTagInfoList.map(hashTagInfo => hashTagInfo.content) : [],
                     },
                     modifyVoteRequest: {
                         title: voteTopic,
