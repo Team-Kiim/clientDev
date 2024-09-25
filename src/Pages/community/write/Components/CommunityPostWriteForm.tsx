@@ -119,6 +119,10 @@ export default function CommunityPostWriteForm({ postId }: Props) {
                         title,
                         bodyContent: dompurify.sanitize(bodyContent),
                         fileIdList: postImageIdList,
+                        tagContentList:
+                            hashTagInfoList.length !== 0
+                                ? hashTagInfoList.map(hashTagInfo => hashTagInfo.content)
+                                : null,
                     },
                     saveVoteRequest: isVoteAdded
                         ? {
