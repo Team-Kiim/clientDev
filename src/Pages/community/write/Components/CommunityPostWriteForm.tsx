@@ -174,7 +174,7 @@ export default function CommunityPostWriteForm({ postId }: Props) {
                     <div className={'flex w-full justify-end gap-x-4'}>
                         <button
                             className={
-                                'rounded-lg bg-slate-100 px-5 py-2.5 text-[0.9rem] font-bold transition-all hover:bg-slate-200'
+                                'rounded-lg bg-slate-100 px-4 py-2.5 text-[0.9rem] font-bold transition-all hover:bg-slate-200'
                             }
                             type={'button'}
                             onClick={() => {
@@ -185,7 +185,7 @@ export default function CommunityPostWriteForm({ postId }: Props) {
                         </button>
                         <button
                             className={
-                                'rounded-lg bg-violet-600 px-5 py-2.5 text-[0.9rem] font-bold text-white transition-all hover:bg-violet-700 disabled:cursor-default disabled:opacity-75'
+                                'rounded-lg bg-plump-purple-600 px-4 py-2.5 text-[0.9rem] font-bold text-white transition-all hover:bg-plump-purple-700 disabled:cursor-default disabled:opacity-75'
                             }
                             type={'submit'}
                         >
