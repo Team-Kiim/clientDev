@@ -113,9 +113,8 @@ export default function CommunityPostWriteForm({ postId }: Props) {
 
         try {
             const result = await axios
-                .post('/api/community-post/post', {
+                .post(`/api/community-post/${postId}`, {
                     saveCommunityPostInfoRequest: {
-                        id: postId,
                         title,
                         bodyContent: dompurify.sanitize(bodyContent),
                         fileIdList: postImageIdList,
