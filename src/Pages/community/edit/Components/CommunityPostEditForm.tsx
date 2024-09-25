@@ -125,9 +125,8 @@ export default function CommunityPostEditForm({ postId }: Props) {
 
         try {
             const result = await axios
-                .patch('/api/community-post/modify', {
+                .patch(`/api/community-post/${postId}`, {
                     modifyCommunityPostInfoRequest: {
-                        id: postId,
                         title,
                         bodyContent: dompurify.sanitize(bodyContent),
                         fileIdList: postImageIdList,
