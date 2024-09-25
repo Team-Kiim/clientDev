@@ -25,8 +25,10 @@ export default function SetPostHashtagSection() {
 
         if (event.code === 'Enter') {
             if (inputValue !== '') {
-                searchParams.append('tag', inputValue);
-                setSearchParams(searchParams);
+                if (!hashtagList.includes(inputValue)) {
+                    searchParams.append('tag', inputValue);
+                    setSearchParams(searchParams);
+                }
                 setInputValue('');
             }
         }
