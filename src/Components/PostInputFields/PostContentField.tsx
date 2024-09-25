@@ -3,7 +3,7 @@ import { useRef } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import { HiOutlineExclamationTriangle } from 'react-icons/hi2';
-import Editor from '../../../ckeditor5';
+import Editor from 'ckeditor5-custom-build/build/ckeditor';
 
 interface Props {
     postId: number | string;
