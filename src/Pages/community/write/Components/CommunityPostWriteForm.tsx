@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { nanoid } from 'nanoid';
 import dompurify from 'dompurify';
 import Swal from 'sweetalert2';
-import { useEffect, useReducer, useRef, useState } from 'react';
+import { useEffect, useReducer, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import PostTitleField from '@/Components/PostInputFields/PostTitleField.tsx';
@@ -10,6 +9,7 @@ import PostContentField from '@/Components/PostInputFields/PostContentField.tsx'
 import VoteSection from '@/Pages/community/Components/Vote/VoteSection.tsx';
 import PostHashTagField from '@/Components/PostInputFields/PostHashTagField.tsx';
 import FormOptionManager from '@/Pages/community/Components/FormOptionManager/FormOptionManager.tsx';
+import useHashtagField from '@/Hooks/PostInputFieldHooks/useHashtagField.ts';
 
 interface Props {
     postId: number;
@@ -41,32 +41,7 @@ export default function CommunityPostWriteForm({ postId }: Props) {
         },
     });
 
-    const [hashTagInfoList, setHashTagInfoList] = useState<
-        {
-            id: number | string;
-            content: string;
-        }[]
-    >([]);
-
-    const addHashTag = (hashTagContent: string) => {
-        if (!hashTagInfoList.find(hashTagInfo => hashTagInfo.content === hashTagContent)) {
-            setHashTagInfoList([
-                ...hashTagInfoList,
-                {
-                    id: nanoid(),
-                    content: hashTagContent,
-                },
-            ]);
-        }
-    };
-
-    const deleteHashTag = (hastTagInfoToDelete: { id: number | string; content: string }) => {
-        setHashTagInfoList(hashTagInfoList.filter(hashTagInfo => hashTagInfo.id !== hastTagInfoToDelete.id));
-    };
-
-    const deleteAllHashTags = () => {
-        setHashTagInfoList([]);
-    };
+    const { hashtagInfoList, addHashtag, deleteHashtag, deleteAllHashtags } = useHashtagField([]);
 
     useEffect(() => {
         if (isVoteAdded) {
@@ -119,7 +94,7 @@ export default function CommunityPostWriteForm({ postId }: Props) {
                         bodyContent: dompurify.sanitize(bodyContent),
                         fileIdList: postImageIdList,
                         tagContentList:
-                            hashTagInfoList.length !== 0 ? hashTagInfoList.map(hashTagInfo => hashTagInfo.content) : [],
+                            hashtagInfoList.length !== 0 ? hashtagInfoList.map(hashTagInfo => hashTagInfo.content) : [],
                     },
                     saveVoteRequest: isVoteAdded
                         ? {
@@ -161,10 +136,10 @@ export default function CommunityPostWriteForm({ postId }: Props) {
                 </div>
                 <div className={'sticky top-16 flex w-[22rem] flex-col gap-y-10 self-start'}>
                     <PostHashTagField
-                        hashTagInfoList={hashTagInfoList}
-                        addHashTag={addHashTag}
-                        deleteHashTag={deleteHashTag}
-                        deleteAllHashTags={deleteAllHashTags}
+                        hashTagInfoList={hashtagInfoList}
+                        addHashTag={addHashtag}
+                        deleteHashTag={deleteHashtag}
+                        deleteAllHashTags={deleteAllHashtags}
                     />
                     <FormOptionManager
                         isVoteAdded={isVoteAdded}

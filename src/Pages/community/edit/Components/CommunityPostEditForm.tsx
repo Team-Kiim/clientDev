@@ -1,6 +1,5 @@
 import axios from 'axios';
 import dompurify from 'dompurify';
-import { nanoid } from 'nanoid';
 import { useEffect, useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSuspenseQuery } from '@tanstack/react-query';
@@ -12,6 +11,7 @@ import PostHashTagField from '@/Components/PostInputFields/PostHashTagField.tsx'
 import FormOptionManager from '@/Pages/community/Components/FormOptionManager/FormOptionManager.tsx';
 import getSingleCommunityPostInfo from '@/Pages/community/Utils/getSingleCommunityPostInfo.ts';
 import Swal from 'sweetalert2';
+import useHashtagField from '@/Hooks/PostInputFieldHooks/useHashtagField.ts';
 
 interface Props {
     postId: string;
@@ -45,13 +45,6 @@ export default function CommunityPostEditForm({ postId }: Props) {
 
     const [isVoteEditable, setIsVoteEditable] = useState(!voteResponse);
 
-    const [hashTagInfoList, setHashTagInfoList] = useState<
-        {
-            id: number | string;
-            content: string;
-        }[]
-    >(communityPostData.tagInfoDtoList);
-
     const formMethods = useForm<FormData>({
         mode: 'onBlur',
         defaultValues: {
@@ -70,25 +63,9 @@ export default function CommunityPostEditForm({ postId }: Props) {
         },
     });
 
-    const addHashTag = (hashTagContent: string) => {
-        if (!hashTagInfoList.find(hashTagInfo => hashTagInfo.content === hashTagContent)) {
-            setHashTagInfoList([
-                ...hashTagInfoList,
-                {
-                    id: nanoid(),
-                    content: hashTagContent,
-                },
-            ]);
-        }
-    };
-
-    const deleteHashTag = (hastTagInfoToDelete: { id: number | string; content: string }) => {
-        setHashTagInfoList(hashTagInfoList.filter(hashTagInfo => hashTagInfo.id !== hastTagInfoToDelete.id));
-    };
-
-    const deleteAllHashTags = () => {
-        setHashTagInfoList([]);
-    };
+    const { hashtagInfoList, addHashtag, deleteHashtag, deleteAllHashtags } = useHashtagField(
+        communityPostData.tagInfoDtoList,
+    );
 
     useEffect(() => {
         if (isVoteAttached) {
@@ -131,7 +108,7 @@ export default function CommunityPostEditForm({ postId }: Props) {
                         bodyContent: dompurify.sanitize(bodyContent),
                         fileIdList: postImageIdList,
                         tagContentList:
-                            hashTagInfoList.length !== 0 ? hashTagInfoList.map(hashTagInfo => hashTagInfo.content) : [],
+                            hashtagInfoList.length !== 0 ? hashtagInfoList.map(hashTagInfo => hashTagInfo.content) : [],
                     },
                     modifyVoteRequest: {
                         title: voteTopic,
@@ -170,10 +147,10 @@ export default function CommunityPostEditForm({ postId }: Props) {
                 </div>
                 <div className={'sticky top-16 flex w-[22rem] flex-col gap-y-10 self-start'}>
                     <PostHashTagField
-                        hashTagInfoList={hashTagInfoList}
-                        addHashTag={addHashTag}
-                        deleteHashTag={deleteHashTag}
-                        deleteAllHashTags={deleteAllHashTags}
+                        hashTagInfoList={hashtagInfoList}
+                        addHashTag={addHashtag}
+                        deleteHashTag={deleteHashtag}
+                        deleteAllHashTags={deleteAllHashtags}
                     />
                     <FormOptionManager
                         isVoteAdded={isVoteAttached}
