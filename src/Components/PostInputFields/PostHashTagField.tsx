@@ -49,7 +49,7 @@ export default function PostHashTagField({ hashTagInfoList, addHashTag, deleteHa
                 <PiHashStraight className={'size-6 text-plump-purple-600'} />
                 <ul
                     className={
-                        'flex h-11 min-w-0 flex-1 flex-wrap justify-start gap-2 overflow-y-auto overscroll-y-contain py-2 scrollbar-hide'
+                        'flex h-11 min-w-0 flex-1 flex-wrap justify-start gap-2 overflow-y-auto overscroll-y-contain py-1.5 scrollbar-hide'
                     }
                 >
                     {hashTagInfoList.map(hashTagInfo => (
