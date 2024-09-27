@@ -29,7 +29,7 @@ export default function BeforeVoteList({ voteItems, selectedVoteItemId, updateSe
                             <span className={'text-[0.85rem]'}>{voteInfo.voteItem}</span>
                         </div>
                         <input
-                            className={'radio radio-sm checked:bg-violet-600'}
+                            className={'radio radio-sm checked:bg-plump-purple-600'}
                             type={'radio'}
                             name={'customVote'}
                             value={'자바스크립트'}

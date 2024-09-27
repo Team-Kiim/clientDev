@@ -26,7 +26,7 @@ export default function AfterVoteList({ voteItems, totalVoteCount }: Props) {
                             <div className={'flex items-center gap-x-3.5'}>
                                 <progress
                                     className={
-                                        'progress w-1/2 bg-slate-300 [&::-moz-progress-bar]:bg-violet-600 [&::-webkit-progress-value]:bg-violet-600'
+                                        'progress w-1/2 bg-slate-300 [&::-moz-progress-bar]:bg-plump-purple-600 [&::-webkit-progress-value]:bg-plump-purple-600'
                                     }
                                     value={voteItem.voteCount}
                                     max={totalVoteCount}
