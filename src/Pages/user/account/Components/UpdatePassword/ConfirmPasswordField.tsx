@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
 import { useFormContext } from 'react-hook-form';
-import { HiOutlineExclamationTriangle, HiOutlineEye, HiOutlineEyeSlash, HiOutlineLockClosed } from 'react-icons/hi2';
+import { HiOutlineExclamationCircle, HiOutlineEye, HiOutlineEyeSlash, HiOutlineLockClosed } from 'react-icons/hi2';
 
 interface Props {
     isPasswordVerified: boolean;
@@ -23,7 +23,7 @@ export default function ConfirmPasswordField({ isPasswordVerified }: Props) {
             <div className={'flex w-1/2 flex-col gap-y-2'}>
                 <label className={'w-fit text-[0.9rem] font-bold text-neutral-800'} htmlFor={'confirmPasswordInput'}>
                     비밀번호 확인
-                    <span className={'text-red-500'}>﹡</span>
+                    <span className={'text-rose-500'}>﹡</span>
                 </label>
             </div>
             <div className={'flex w-full gap-x-3'}>
@@ -73,14 +73,14 @@ export default function ConfirmPasswordField({ isPasswordVerified }: Props) {
                         </button>
                     </div>
                     {errors?.confirmPassword?.message && errors?.confirmPassword.type === 'required' && (
-                        <div className={'mx-1 flex items-center gap-x-1 text-red-500'}>
-                            <HiOutlineExclamationTriangle className={'size-4'} />
+                        <div className={'mx-1 flex items-center gap-x-1 text-rose-500'}>
+                            <HiOutlineExclamationCircle className={'size-4'} />
                             <p className={'text-[0.8rem]'}>{errors.confirmPassword.message}</p>
                         </div>
                     )}
                     {errors?.confirmPassword?.message && errors?.confirmPassword.type === 'isNotMatched' && (
-                        <div className={'mx-1 flex items-center gap-x-1 text-red-500'}>
-                            <HiOutlineExclamationTriangle className={'size-4'} />
+                        <div className={'mx-1 flex items-center gap-x-1 text-rose-500'}>
+                            <HiOutlineExclamationCircle className={'size-4'} />
                             <p className={'text-[0.8rem]'}>{errors.confirmPassword.message}</p>
                         </div>
                     )}
