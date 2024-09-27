@@ -116,7 +116,7 @@ export default function PostContentField({ postId }: Props) {
                         data.append('postId', postIdBlob);
 
                         axios
-                            .post('/api/file/image', data, {
+                            .post('/api/file/post', data, {
                                 headers: { 'Content-Type': 'multipart/form-data' },
                             })
                             .then(res => {
