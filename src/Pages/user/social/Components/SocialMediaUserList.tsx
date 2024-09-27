@@ -24,10 +24,13 @@ export default function SocialMediaUserList() {
     const { data, fetchNextPage, hasNextPage } = useSocialMediaUserListQuery({
         relationshipType: currentSocialType === 'following' ? 'followings' : 'followers',
         memberId: profileMemberId ? Number(profileMemberId) : null,
-        keyword: userNicknameToSearch,
+        keyword: userNicknameToSearch ?? null,
     });
 
-    const { mutate: unfollowMember } = useUnfollowMember({ keyword: userNicknameToSearch });
+    const { mutate: unfollowMember } = useUnfollowMember({
+        relationshipType: currentSocialType === 'following' ? 'followings' : 'followers',
+        keyword: userNicknameToSearch,
+    });
 
     const handleUnFollowButtonClick = (memberId: number) => {
         unfollowMember(memberId);
@@ -66,6 +69,7 @@ export default function SocialMediaUserList() {
                                       <SocialMediaUserListItem
                                           key={socialMediaUser.memberId}
                                           socialMediaUser={socialMediaUser}
+                                          onUnfollowButtonClick={handleUnFollowButtonClick}
                                       />
                                   ))}
                         </ul>

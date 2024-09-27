@@ -5,7 +5,13 @@ import 'react-toastify/dist/ReactToastify.css';
 import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
 import type { SocialMediaUser } from '@/Types/SocialMediaUser.ts';
 
-export const useUnfollowMember = ({ keyword }: { keyword: null | string }) => {
+export const useUnfollowMember = ({
+    relationshipType,
+    keyword,
+}: {
+    relationshipType: string;
+    keyword: null | string;
+}) => {
     const queryClient = useQueryClient();
 
     return useMutation({
@@ -23,7 +29,7 @@ export const useUnfollowMember = ({ keyword }: { keyword: null | string }) => {
                     'user',
                     'social',
                     {
-                        relationshipType: 'followings',
+                        relationshipType,
                         keyword: keyword,
                         memberId: null,
                     },
@@ -35,7 +41,7 @@ export const useUnfollowMember = ({ keyword }: { keyword: null | string }) => {
                     'user',
                     'social',
                     {
-                        relationshipType: 'followings',
+                        relationshipType,
                     },
                 ],
                 oldData => {
@@ -65,7 +71,7 @@ export const useUnfollowMember = ({ keyword }: { keyword: null | string }) => {
                     'user',
                     'social',
                     {
-                        relationshipType: 'followings',
+                        relationshipType,
                     },
                 ],
                 oldData => {
@@ -83,7 +89,7 @@ export const useUnfollowMember = ({ keyword }: { keyword: null | string }) => {
                     'user',
                     'social',
                     {
-                        relationshipType: 'followings',
+                        relationshipType,
                     },
                 ],
             });

@@ -4,11 +4,11 @@ import type { SocialMediaUser } from '@/Types/SocialMediaUser.ts';
 interface Props {
     loginMember?: boolean;
     socialMediaUser: SocialMediaUser;
-    onUnfollowButtonClick?(memberId: number): void;
+    onUnfollowButtonClick(memberId: number): void;
 }
 
-export default function SocialMediaUserListItem({ loginMember, socialMediaUser, onUnfollowButtonClick }: Props) {
-    const { email, nickname, profileImagePath, profileImageName, memberId } = socialMediaUser;
+export default function SocialMediaUserListItem({ socialMediaUser, onUnfollowButtonClick }: Props) {
+    const { email, nickname, profileImagePath, profileImageName, memberId, followedByLoginMember } = socialMediaUser;
 
     const { VITE_SERVER_URL } = import.meta.env;
 
@@ -32,7 +32,7 @@ export default function SocialMediaUserListItem({ loginMember, socialMediaUser, 
                     {email}
                 </Link>
             </div>
-            {onUnfollowButtonClick && loginMember && (
+            {onUnfollowButtonClick && followedByLoginMember && (
                 <div className={'flex flex-col justify-center'}>
                     <button
                         className={
