@@ -42,6 +42,10 @@ export type PostInfo = {
     profileImageName?: string;
     imageFileInfoDtoList: ImageInfo[] | null;
     commentInfoDtoList?: CommentInfo[];
+    tagInfoDtoList: {
+        id: number;
+        content: string;
+    }[];
 };
 
 export type QnAPostInfo = PostInfo & {
