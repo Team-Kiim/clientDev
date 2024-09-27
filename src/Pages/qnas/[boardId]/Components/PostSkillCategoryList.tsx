@@ -8,7 +8,6 @@ interface Props {
 }
 
 export default function PostSkillCategoryList({ categories }: Props) {
-    console.log(CATEGORIES.map(category => category.childCategories).flat());
     const childSkillCategories = CATEGORIES.map(category => category.childCategories).flat();
     return (
         <ul className={'mb-5 mt-7 flex items-center gap-x-2.5'}>
