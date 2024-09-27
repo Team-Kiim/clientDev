@@ -20,7 +20,7 @@ interface Props {
     onBlur: (...args: any) => any;
 }
 
-export default function CommentEditor({ value, isSubmitSuccessful, onChange, onBlur }: Props) {
+export default function CommentEditor({ value, isSubmitSuccessful, submitCount, onChange, onBlur }: Props) {
     const editor = useEditor({
         onUpdate: ({ editor }) => {
             const commentValue = editor.getHTML();
@@ -85,7 +85,7 @@ export default function CommentEditor({ value, isSubmitSuccessful, onChange, onB
                 editor.commands.clearContent();
             }
         }
-    }, [isSubmitSuccessful, editor]);
+    }, [isSubmitSuccessful, editor, submitCount]);
 
     return (
         <>
