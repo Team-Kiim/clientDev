@@ -2,7 +2,7 @@ import axios from 'axios';
 import Swal from 'sweetalert2';
 import { useFormContext } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
-import { HiOutlineEnvelope, HiOutlineExclamationTriangle } from 'react-icons/hi2';
+import { HiOutlineEnvelope, HiOutlineExclamationCircle } from 'react-icons/hi2';
 import { emailRegexp } from '@/Constants/regexps.ts';
 
 interface Props {
@@ -28,7 +28,7 @@ export default function NewEmailField({
 
     const { mutate: sendVerificationCode } = useMutation({
         mutationFn: (newEmail: string) => {
-            return axios.post('/api/email/send-auth-code', {
+            return axios.post('/api/member/email', {
                 email: newEmail,
             });
         },
@@ -39,7 +39,7 @@ export default function NewEmailField({
                 html: "<p class='text-base'>인증 코드가 발송되었습니다.</p>",
                 confirmButtonText: '확인',
                 customClass: {
-                    confirmButton: 'text-white bg-neutral-800 rounded-xl',
+                    confirmButton: 'text-white bg-plump-purple-600 rounded-xl',
                 },
             });
             markAsVerificationCodeSent();
@@ -51,7 +51,7 @@ export default function NewEmailField({
                 html: "<p class='leading-relaxed text-base'>인증 코드 발송에 실패하였습니다.<br/> 잠시 후 인증 버튼을 눌러 다시 시도해주세요.,</p>",
                 confirmButtonText: '확인',
                 customClass: {
-                    confirmButton: 'text-white bg-neutral-800 rounded-xl',
+                    confirmButton: 'text-white bg-plump-purple-600 rounded-xl',
                 },
             });
             updateIsRequestingVerification(false);
@@ -73,7 +73,7 @@ export default function NewEmailField({
             cancelButtonText: '취소',
             customClass: {
                 cancelButton: 'text-black bg-slate-100 rounded-xl text-base',
-                confirmButton: 'text-white bg-neutral-800 rounded-xl text-base',
+                confirmButton: 'text-white bg-plump-purple-600 rounded-xl text-base',
             },
         });
 
@@ -88,7 +88,7 @@ export default function NewEmailField({
             <div className={'flex w-1/2 flex-col gap-y-2'}>
                 <label className={'w-fit text-[0.9rem] font-bold text-neutral-800'} htmlFor={'newEmailInput'}>
                     새 이메일
-                    <span className={'text-red-500'}>﹡</span>
+                    <span className={'text-rose-500'}>﹡</span>
                 </label>
             </div>
             <div className={'flex w-full gap-x-3'}>
@@ -121,14 +121,14 @@ export default function NewEmailField({
                             />
                         </div>
                         {errors?.newEmail?.message && errors?.newEmail.type === 'required' && (
-                            <div className={'mx-1 flex items-center gap-x-1 text-red-500'}>
-                                <HiOutlineExclamationTriangle className={'size-4'} />
+                            <div className={'mx-1 flex items-center gap-x-1 text-rose-500'}>
+                                <HiOutlineExclamationCircle className={'size-4'} />
                                 <p className={'text-[0.8rem]'}>{errors.newEmail.message}</p>
                             </div>
                         )}
                         {errors?.newEmail?.message && errors?.newEmail.type === 'pattern' && (
-                            <div className={'mx-1 flex items-center gap-x-1 text-red-500'}>
-                                <HiOutlineExclamationTriangle className={'size-4'} />
+                            <div className={'mx-1 flex items-center gap-x-1 text-rose-500'}>
+                                <HiOutlineExclamationCircle className={'size-4'} />
                                 <p className={'text-[0.8rem]'}>{errors.newEmail.message}</p>
                             </div>
                         )}
