@@ -31,7 +31,7 @@ export default function PostListItem({ post, postType }: Props) {
                     {imagePath !== null && (
                         <div className={'w-full'}>
                             <img
-                                className={'h-36 w-full rounded-t-3xl object-cover'}
+                                className={'h-40 w-full rounded-t-3xl object-cover'}
                                 src={`${VITE_SERVER_URL}/image/${imagePath}/${imageName}`}
                                 // src={imagePath}
                                 alt={imageName}
@@ -67,12 +67,12 @@ export default function PostListItem({ post, postType }: Props) {
                     <div className={'flex items-center justify-end gap-x-3 px-4 pb-2'}>
                         <div className={'flex items-center gap-x-1'}>
                             <span className={'text-[0.7rem] text-slate-700'}>
-                                조회수 : <span className={'font-bold'}>{formatNumber(likeCount, 0)}</span>
+                                조회수 : <span className={'font-bold'}>{formatNumber(viewCount, 0)}</span>
                             </span>
                         </div>
                         <div className={'flex items-center gap-x-1'}>
                             <span className={'text-[0.7rem] text-slate-700'}>
-                                좋아요 : <span className={'font-bold'}>{formatNumber(viewCount, 0)}</span>
+                                좋아요 : <span className={'font-bold'}>{formatNumber(likeCount, 0)}</span>
                             </span>
                         </div>
                     </div>
