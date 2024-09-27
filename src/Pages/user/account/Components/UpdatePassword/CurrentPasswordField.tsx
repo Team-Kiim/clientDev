@@ -3,7 +3,7 @@ import { useReducer } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { useFormContext } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import { HiOutlineExclamationTriangle, HiOutlineEye, HiOutlineEyeSlash, HiOutlineLockClosed } from 'react-icons/hi2';
+import { HiOutlineExclamationCircle, HiOutlineEye, HiOutlineEyeSlash, HiOutlineLockClosed } from 'react-icons/hi2';
 import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
 
 interface Props {
@@ -31,14 +31,8 @@ export default function CurrentPasswordField({
 
     const { mutate: verifyPassword } = useMutation({
         mutationFn: (currentPassword: string) => {
-            return new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    if (Math.trunc(Math.random() * 10000) % 2 === 0) {
-                        resolve(currentPassword);
-                    } else {
-                        reject('failed');
-                    }
-                }, 3000);
+            return axios.post('/api/member/password', {
+                password: currentPassword,
             });
         },
 
@@ -81,7 +75,7 @@ export default function CurrentPasswordField({
             <div className={'flex w-1/2 flex-col gap-y-2'}>
                 <label className={'w-fit text-[0.9rem] font-bold text-neutral-800'} htmlFor={'currentPasswordInput'}>
                     현재 비밀번호
-                    <span className={'text-red-500'}>﹡</span>
+                    <span className={'text-rose-500'}>﹡</span>
                 </label>
             </div>
             <div className={'flex w-full gap-x-3'}>
@@ -125,8 +119,8 @@ export default function CurrentPasswordField({
                             </button>
                         </div>
                         {errors?.currentPassword?.message && errors?.currentPassword.type === 'required' && (
-                            <div className={'mx-1 flex items-center gap-x-1 text-red-500'}>
-                                <HiOutlineExclamationTriangle className={'size-4'} />
+                            <div className={'mx-1 flex items-center gap-x-1 text-rose-500'}>
+                                <HiOutlineExclamationCircle className={'size-4'} />
                                 <p className={'text-[0.8rem]'}>{errors.currentPassword.message}</p>
                             </div>
                         )}

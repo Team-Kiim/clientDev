@@ -1,9 +1,12 @@
+import axios from 'axios';
 import { useState } from 'react';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import CurrentPasswordField from '@/Pages/user/account/Components/UpdatePassword/CurrentPasswordField.tsx';
 import NewPasswordField from '@/Pages/user/account/Components/UpdatePassword/NewPasswordField.tsx';
 import ConfirmPasswordField from '@/Pages/user/account/Components/UpdatePassword/ConfirmPasswordField.tsx';
+import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface FormValues {
     currentPassword: string;
@@ -29,7 +32,27 @@ export default function UpdatePasswordForm() {
 
     const onSubmit: SubmitHandler<FormValues> = async data => {
         const newPassword = data.newPassword.replace(/\s/g, '');
-        console.log(newPassword);
+        const confirmPassword = data.confirmPassword.replace(/\s/g, '');
+
+        try {
+            await axios.patch('/api/member/password', {
+                newPassword,
+                checkPassword: confirmPassword,
+            });
+            toast.success(<p className={'text-[0.85rem]'}>새 비밀번호로 변경되었습니다.</p>, TOAST_OPTIONS);
+            setIsPasswordVerified(false);
+            setIsRequestingVerification(false);
+            formMethods.reset();
+        } catch (error) {
+            toast.error(
+                <p className={'text-[0.85rem] leading-relaxed'}>
+                    비밀번호 변경에 실패하였습니다.
+                    <br />
+                    잠시 후 다시 시도해주세요.
+                </p>,
+                TOAST_OPTIONS,
+            );
+        }
     };
 
     return (
