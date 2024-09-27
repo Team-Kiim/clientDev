@@ -30,7 +30,6 @@ export default function WhiteboardViewer({ canvasData, openWhiteboardEditorModal
                     setExcalidrawAPI(api);
                 }}
                 langCode={'ko-KR'}
-                d
                 viewModeEnabled={true}
                 // 이 코드 작성 이유
                 // 아래 클래스가 가진 버튼의 타입이 button 이 아니어서, 폼에서 사용하면 제출됨.
