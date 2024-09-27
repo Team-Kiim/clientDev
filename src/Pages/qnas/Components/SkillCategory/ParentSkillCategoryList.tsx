@@ -10,12 +10,12 @@ export default function ParentSkillCategoryList({
     onParentSkillCategoryListItemClick,
 }: Props) {
     return (
-        <ul className={'flex w-full items-center gap-x-1 overflow-x-auto'}>
+        <ul className={'flex w-full flex-wrap items-center gap-1.5'}>
             {CATEGORIES.map(category => {
                 return (
                     <li
                         key={category.value}
-                        className={`shrink-0 cursor-pointer rounded-lg px-2.5 py-1.5 text-[0.8rem] ${category.value === selectedParentSkillCategory ? 'bg-slate-100' : 'bg-white text-slate-400'} font-bold transition-all`}
+                        className={`shrink-0 cursor-pointer rounded-3xl border px-2.5 py-1.5 text-[0.8rem] ${category.value === selectedParentSkillCategory ? 'border-slate-800 bg-slate-800 text-white' : 'border-slate-200 bg-white text-slate-800'} font-bold transition-all`}
                         onClick={() => {
                             onParentSkillCategoryListItemClick(category.value);
                         }}

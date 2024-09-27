@@ -28,7 +28,7 @@ export default function ChildSkillCategoryList({
                 return (
                     <li
                         key={childSkillCategory.value}
-                        className={`my-1.5 cursor-pointer rounded-2xl bg-slate-100 px-2.5 py-1.5 text-[0.8rem] font-bold ${selectedSkillCategoryList.find(selectedSkillCategory => selectedSkillCategory.parentSkillCategory === selectedParentSkillCategory && selectedSkillCategory.childSkillCategory === childSkillCategory.value) ? 'bg-violet-600 text-white' : 'text-black'} transition-all`}
+                        className={`my-1.5 cursor-pointer rounded-2xl border px-2.5 py-1.5 text-[0.8rem] font-bold ${selectedSkillCategoryList.find(selectedSkillCategory => selectedSkillCategory.parentSkillCategory === selectedParentSkillCategory && selectedSkillCategory.childSkillCategory === childSkillCategory.value) ? 'border-plump-purple-600 bg-plump-purple-50 text-plump-purple-600' : 'border-slate-300 text-slate-800'} transition-all`}
                         onClick={() => {
                             onChildSkillCategoryListItemClick({
                                 parentSkillCategory: selectedParentSkillCategory,
