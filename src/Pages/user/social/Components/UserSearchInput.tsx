@@ -8,7 +8,13 @@ export default function UserSearchInput() {
     const [searchParams, setSearchParams] = useSearchParams();
 
     const updateSearchParams = (key: string, value: string) => {
-        searchParams.set(key, value);
+        if (value === '') {
+            searchParams.delete(key);
+        } else if (value.trim().length === 0) {
+            return;
+        } else {
+            searchParams.set(key, value);
+        }
         setSearchParams(searchParams);
     };
 
@@ -25,17 +31,13 @@ export default function UserSearchInput() {
 
         if (event.code === 'Enter') {
             const nicknameToSearch = inputRef.current.value;
-            if (nicknameToSearch.trim().length !== 0) {
-                updateSearchParams('search', nicknameToSearch);
-            }
+            updateSearchParams('search', nicknameToSearch);
         }
     };
 
     const handleSearchButtonClick = () => {
         const nicknameToSearch = inputRef.current.value;
-        if (nicknameToSearch.trim().length !== 0) {
-            updateSearchParams('search', nicknameToSearch);
-        }
+        updateSearchParams('search', nicknameToSearch);
     };
 
     return (
