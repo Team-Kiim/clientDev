@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useFormContext } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
-import { HiOutlineExclamationTriangle } from 'react-icons/hi2';
+import { HiOutlineExclamationCircle } from 'react-icons/hi2';
 import { MdOutlinePassword } from 'react-icons/md';
 import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
 import 'react-toastify/dist/ReactToastify.css';
@@ -75,7 +75,7 @@ export default function VerificationCodeField({
             <div className={'flex w-1/2 flex-col gap-y-2'}>
                 <label className={'w-fit text-[0.9rem] font-bold text-neutral-800'} htmlFor={'verificationCodeInput'}>
                     인증 코드
-                    <span className={'text-red-500'}>﹡</span>
+                    <span className={'text-rose-500'}>﹡</span>
                 </label>
             </div>
             <div className={'flex w-full gap-x-3'}>
@@ -107,8 +107,8 @@ export default function VerificationCodeField({
                             />
                         </div>
                         {errors?.verificationCode?.message && errors?.verificationCode.type === 'required' && (
-                            <div className={'mx-1 flex items-center gap-x-1 text-red-500'}>
-                                <HiOutlineExclamationTriangle className={'size-4'} />
+                            <div className={'mx-1 flex items-center gap-x-1 text-rose-500'}>
+                                <HiOutlineExclamationCircle className={'size-4'} />
                                 <p className={'text-[0.8rem]'}>{errors.verificationCode.message}</p>
                             </div>
                         )}
