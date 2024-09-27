@@ -2,6 +2,7 @@ import dompurify from 'dompurify';
 import mermaid from 'mermaid';
 import Prism from 'prismjs';
 import { useEffect } from 'react';
+import WhiteboardViewer from '@/Pages/Components/PostView/WhiteboardViewer.tsx';
 import checkIpAddress from '@/Utils/checkIpAddress.ts';
 import 'prism-themes/themes/prism-one-dark.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
@@ -44,6 +45,7 @@ import 'prismjs/components/prism-typescript';
 
 interface Props {
     bodyContent: string;
+    visualData?: string;
 }
 
 const changeToMermaidClass = (htmlString: string): string => {
@@ -72,7 +74,7 @@ const changeImageSrc = (htmlString: string): string => {
     return htmlString.replaceAll(domain, domainToChange);
 };
 
-export default function PostContent({ bodyContent }: Props) {
+export default function PostContent({ bodyContent, visualData }: Props) {
     const safeHtmlString = dompurify.sanitize(bodyContent);
     const htmlContent = changeToMermaidClass(changeImageSrc(safeHtmlString));
 
@@ -88,11 +90,14 @@ export default function PostContent({ bodyContent }: Props) {
     }, []);
 
     return (
-        <div
-            className={
-                'prose prose-sm min-h-56 max-w-full !text-[0.9rem] text-[#020617] prose-strong:text-inherit [&_code]:bg-neutral-800 [&_code]:text-[0.9rem] [&_pre]:bg-neutral-800'
-            }
-            dangerouslySetInnerHTML={{ __html: htmlContent }}
-        />
+        <div className={'flex w-full flex-col gap-y-5'}>
+            <div
+                className={
+                    'prose prose-sm min-h-56 max-w-full !text-[0.9rem] text-[#020617] prose-strong:text-inherit [&_code]:bg-neutral-800 [&_code]:text-[0.9rem] [&_pre]:bg-neutral-800'
+                }
+                dangerouslySetInnerHTML={{ __html: htmlContent }}
+            />
+            {visualData && <WhiteboardViewer visualData={JSON.parse(visualData)} />}
+        </div>
     );
 }
