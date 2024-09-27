@@ -4,7 +4,7 @@ export type Chat = {
     senderId: number;
     senderNickname: string;
     content: string;
-    messageType: 'ENTER' | 'EXIT' | 'IMAGE' | 'CODE' | 'CHAT';
+    messageType: 'ENTER' | 'EXIT' | 'IMAGE' | 'SOURCE_CODE' | 'TEXT';
     createdTime: number[] | string;
     profileImagePath: string;
     profileImageName: string;
