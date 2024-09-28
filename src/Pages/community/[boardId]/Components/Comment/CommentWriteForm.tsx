@@ -83,14 +83,14 @@ export default function CommentWriteForm({ postId }: Props) {
             </div>
             <div className={'flex items-center'}>
                 {errors?.commentValue?.message && errors?.commentValue.type === 'required' && (
-                    <div className={'m-0.5 mr-auto flex items-center gap-x-1 justify-self-start text-red-500'}>
+                    <div className={'m-0.5 mr-auto flex items-center gap-x-1 justify-self-start text-rose-500'}>
                         <AiOutlineExclamationCircle className={'size-4'} />
                         <p className={'text-[0.8rem]'}>{errors.commentValue.message}</p>
                     </div>
                 )}
                 <button
                     className={
-                        'ml-auto rounded-lg border border-violet-300 bg-violet-50 px-3 py-1.5 text-[0.85rem] font-bold text-violet-700'
+                        'ml-auto rounded-lg bg-plump-purple-600 px-3.5 py-2 text-[0.85rem] font-bold text-white transition-all hover:bg-plump-purple-700'
                     }
                 >
                     등록
