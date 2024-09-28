@@ -6,6 +6,7 @@ import PostInteraction from '@/Pages/Components/PostView/PostInteraction.tsx';
 import CommentWriteForm from '@/Pages/community/[boardId]/Components/Comment/CommentWriteForm.tsx';
 import CommentList from '@/Pages/community/[boardId]/Components/Comment/CommentList.tsx';
 import getSingleCommunityPostInfo from '@/Pages/community/Utils/getSingleCommunityPostInfo.ts';
+import useLoggedInUserData from '@/Hooks/useLoggedInUserData.ts';
 
 export default function PostView() {
     const postId = useParams().postId;
@@ -14,6 +15,8 @@ export default function PostView() {
         queryKey: ['post', postId],
         queryFn: getSingleCommunityPostInfo,
     });
+
+    const isLoggedIn = !!useLoggedInUserData();
 
     return (
         <div>
@@ -31,7 +34,7 @@ export default function PostView() {
                 postId={postId}
             />
             <div className={'my-5 flex flex-col gap-y-5'}>
-                <CommentWriteForm postId={postId} />
+                {isLoggedIn && <CommentWriteForm postId={postId} />}
                 <CommentList postId={postId} commentInfoDtoList={data.commentInfoDtoList} />
             </div>
         </div>
