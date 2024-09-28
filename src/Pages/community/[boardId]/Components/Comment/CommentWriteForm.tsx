@@ -50,6 +50,25 @@ export default function CommentWriteForm({ postId }: Props) {
             });
         },
 
+        onSuccess: () => {
+            toast.success(
+                <div className={'flex flex-col gap-y-2 text-[0.85rem]'}>
+                    <p>댓글을 성공적으로 작성하였습니다.</p>
+                    <div>
+                        <button
+                            className={'rounded-3xl border border-slate-200 px-3 py-1  text-slate-800'}
+                            type={'button'}
+                            onClick={() => {
+                                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+                            }}
+                        >
+                            확인하기
+                        </button>
+                    </div>
+                </div>,
+            );
+        },
+
         onError: error => {
             console.error(error);
             toast.error(
