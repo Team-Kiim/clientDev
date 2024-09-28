@@ -1,5 +1,5 @@
-import PostBookmarkButton from '@/Pages/Components/PostView/PostBookmarkButton.tsx';
-import LikeButtonWithCount from '@/Pages/Components/PostView/LikeButtonWithCount.tsx';
+import PostBookmarkButton from '@/Components/PostInfo/PostView/PostBookmarkButton.tsx';
+import LikeButtonWithCount from '@/Components/PostInfo/PostView/LikeButtonWithCount.tsx';
 
 interface Props {
     memberLiked: boolean;

@@ -2,7 +2,7 @@ import dompurify from 'dompurify';
 import mermaid from 'mermaid';
 import Prism from 'prismjs';
 import { useEffect } from 'react';
-import WhiteboardViewer from '@/Pages/Components/PostView/WhiteboardViewer.tsx';
+import WhiteboardViewer from '@/Components/PostInfo/PostView/WhiteboardViewer.tsx';
 import checkIpAddress from '@/Utils/checkIpAddress.ts';
 import 'prism-themes/themes/prism-one-dark.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
