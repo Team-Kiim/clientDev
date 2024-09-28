@@ -1,6 +1,6 @@
-import PostMetaInfo from '@/Pages/Components/PostView/PostMetaInfo.tsx';
-import PostContent from '@/Pages/Components/PostView/PostContent.tsx';
-import PostControl from '@/Pages/Components/PostView/PostControl.tsx';
+import PostMetaInfo from '@/Components/PostInfo/PostView/PostMetaInfo.tsx';
+import PostContent from '@/Components/PostInfo/PostView/PostContent.tsx';
+import PostControl from '@/Components/PostInfo/PostView/PostControl.tsx';
 import PostSkillCategoryList from '@/Pages/qnas/[boardId]/Components/PostSkillCategoryList.tsx';
 import type { QnAPostInfo } from '@/Types/PostInfo.ts';
 

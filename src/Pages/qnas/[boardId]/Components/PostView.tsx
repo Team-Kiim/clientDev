@@ -2,7 +2,7 @@ import { omit, pick } from 'lodash';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { useParams } from 'react-router-dom';
 import PostDetails from '@/Pages/qnas/[boardId]/Components/PostDetails.tsx';
-import PostInteraction from '@/Pages/Components/PostView/PostInteraction.tsx';
+import PostInteraction from '@/Components/PostInfo/PostView/PostInteraction.tsx';
 import getSingleQnAPostInfo from '@/Pages/qnas/Utils/getSingleQnAPostInfo.ts';
 
 export default function PostView() {

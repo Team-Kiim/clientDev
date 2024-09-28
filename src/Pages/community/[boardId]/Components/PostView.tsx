@@ -2,7 +2,7 @@ import { omit, pick } from 'lodash';
 import { useParams } from 'react-router-dom';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import PostDetails from '@/Pages/community/[boardId]/Components/PostDetails.tsx';
-import PostInteraction from '@/Pages/Components/PostView/PostInteraction.tsx';
+import PostInteraction from '@/Components/PostInfo/PostView/PostInteraction.tsx';
 import CommentWriteForm from '@/Pages/community/[boardId]/Components/Comment/CommentWriteForm.tsx';
 import CommentList from '@/Pages/community/[boardId]/Components/Comment/CommentList.tsx';
 import getSingleCommunityPostInfo from '@/Pages/community/Utils/getSingleCommunityPostInfo.ts';

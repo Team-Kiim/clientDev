@@ -1,7 +1,7 @@
-import PostMetaInfo from '@/Pages/Components/PostView/PostMetaInfo.tsx';
-import PostContent from '@/Pages/Components/PostView/PostContent.tsx';
+import PostMetaInfo from '@/Components/PostInfo/PostView/PostMetaInfo.tsx';
+import PostContent from '@/Components/PostInfo/PostView/PostContent.tsx';
 import VoteSection from '@/Pages/community/[boardId]/Components/Vote/VoteSection.tsx';
-import PostControl from '@/Pages/Components/PostView/PostControl.tsx';
+import PostControl from '@/Components/PostInfo/PostView/PostControl.tsx';
 import type { CommunityPostInfo } from '@/Types/PostInfo.ts';
 
 type Props = Omit<
