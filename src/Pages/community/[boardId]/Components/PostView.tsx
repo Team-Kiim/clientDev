@@ -3,8 +3,8 @@ import { useParams } from 'react-router-dom';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import PostDetails from '@/Pages/community/[boardId]/Components/PostDetails.tsx';
 import PostInteraction from '@/Components/PostInfo/PostView/PostInteraction.tsx';
-import CommentWriteForm from '@/Pages/community/[boardId]/Components/Comment/CommentWriteForm.tsx';
-import CommentList from '@/Pages/community/[boardId]/Components/Comment/CommentList.tsx';
+import CommentWriteForm from '@/Components/PostInfo/Comment/CommentWriteForm.tsx';
+import CommentList from '@/Components/PostInfo/Comment/CommentList.tsx';
 import getSingleCommunityPostInfo from '@/Pages/community/Utils/getSingleCommunityPostInfo.ts';
 import useLoggedInUserData from '@/Hooks/useLoggedInUserData.ts';
 
