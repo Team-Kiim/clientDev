@@ -37,7 +37,7 @@ import 'prismjs/components/prism-typescript';
 import 'prismjs/components/prism-wasm';
 import 'prismjs/components/prism-xml-doc';
 import 'prismjs/components/prism-yaml';
-import CommentEditForm from '@/Pages/community/[boardId]/Components/Comment/CommentEditForm.tsx';
+import CommentEditForm from '@/Components/PostInfo/Comment/CommentEditForm.tsx';
 import type { CommentInfo } from '@/Types/PostInfo.ts';
 
 interface Props {

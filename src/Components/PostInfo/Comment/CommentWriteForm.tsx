@@ -5,7 +5,7 @@ import { SubmitHandler, useController, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
 import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
-import CommentEditor from '@/Pages/community/[boardId]/Components/Comment/CommentEditor/CommentEditor.tsx';
+import CommentEditor from '@/Components/PostInfo/Comment/CommentEditor/CommentEditor.tsx';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface Props {

@@ -2,7 +2,7 @@ import dompurify from 'dompurify';
 import { SubmitHandler, useController, useForm } from 'react-hook-form';
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
 import { HiOutlineReply } from 'react-icons/hi';
-import CommentEditor from '@/Pages/community/[boardId]/Components/Comment/CommentEditor/CommentEditor.tsx';
+import CommentEditor from '@/Components/PostInfo/Comment/CommentEditor/CommentEditor.tsx';
 
 interface Props {
     postId: string;

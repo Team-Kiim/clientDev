@@ -1,4 +1,4 @@
-import ReplyForm from '@/Pages/community/[boardId]/Components/Comment/Reply/ReplyForm.tsx';
+import ReplyForm from '@/Components/PostInfo/Comment/Reply/ReplyForm.tsx';
 
 interface Props {
     postId: string;

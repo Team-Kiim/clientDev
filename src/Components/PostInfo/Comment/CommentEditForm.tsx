@@ -1,8 +1,8 @@
 import dompurify from 'dompurify';
 import { SubmitHandler, useController, useForm } from 'react-hook-form';
 import { HiOutlineExclamationCircle } from 'react-icons/hi2';
-import CommentEditor from '@/Pages/community/[boardId]/Components/Comment/CommentEditor/CommentEditor.tsx';
-import { useEditComment } from '@/Pages/community/[boardId]/Components/Comment/Hooks/useEditComment.tsx';
+import CommentEditor from '@/Components/PostInfo/Comment/CommentEditor/CommentEditor.tsx';
+import { useEditComment } from '@/Components/PostInfo/Comment/Hooks/useEditComment.tsx';
 
 interface Props {
     postId: string;

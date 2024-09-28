@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2';
 import { useState } from 'react';
-import CommentListItem from '@/Pages/community/[boardId]/Components/Comment/CommentListItem.tsx';
-import { useDeleteComment } from '@/Pages/community/[boardId]/Components/Comment/Hooks/useDeleteComment.tsx';
+import CommentListItem from '@/Components/PostInfo/Comment/CommentListItem.tsx';
+import { useDeleteComment } from '@/Components/PostInfo/Comment/Hooks/useDeleteComment.tsx';
 import type { CommentInfo } from '@/Types/PostInfo.ts';
 import 'react-toastify/dist/ReactToastify.css';
 
