@@ -56,7 +56,7 @@ export default function PostHeader({
                 <div className={'flex flex-col gap-y-1'}>
                     <span className={'text-[0.9rem] font-bold'}>{nickname}</span>
                     <span className={'text-[0.8rem] text-slate-500'}>
-                        {`${dayjs(createdDate).fromNow(true)} 전`} • {dayjs(createdDate).format('YYYY년-MM월-DD일')}
+                        {`${dayjs(createdDate).fromNow(true)} 전`} • {dayjs(createdDate).format('YYYY년 MM월 DD일')}
                     </span>
                 </div>
             </div>
