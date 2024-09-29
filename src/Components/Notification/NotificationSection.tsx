@@ -1,5 +1,5 @@
 import { MessageEvent } from 'event-source-polyfill';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useModal } from '@/Hooks/useModal.ts';
 import useEventSourceStore from '@/Stores/useEventSourceStore.ts';
 import NotificationOpenButton from '@/Components/Notification/NotificationOpenButton.tsx';
@@ -12,6 +12,8 @@ export default function NotificationSection() {
         canCloseOnOutsideClick: true,
     });
 
+    const isModalOpenRef = useRef(isModalOpen);
+
     const [isUserChecked, setIsUserChecked] = useState(true);
 
     useEffect(() => {
@@ -19,16 +21,15 @@ export default function NotificationSection() {
             if (event.data === 'connected') {
                 return;
             }
-
-            if (isModalOpen) {
+            if (!isModalOpenRef.current) {
                 setIsUserChecked(false);
-                return;
             }
         });
     }, []);
 
     const handleNotificationButtonClick = () => {
         setIsModalOpen(!isModalOpen);
+        isModalOpenRef.current = !isModalOpen;
         setIsUserChecked(true);
     };
 
