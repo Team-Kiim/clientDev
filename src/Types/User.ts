@@ -13,4 +13,7 @@ export type User = {
     isLoginMember: boolean;
     profileImagePath: string;
     profileImageName: string;
+    followedByLoginMember: boolean;
+    corpName: string;
+    corpVerified: boolean;
 };
