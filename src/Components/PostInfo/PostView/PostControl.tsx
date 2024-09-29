@@ -61,7 +61,7 @@ export default function PostControl({ postId, postType }: Props) {
     };
 
     return (
-        <div className={'flex w-full justify-end gap-x-2 text-[0.9rem]'}>
+        <div className={'flex w-full justify-end gap-x-1.5 text-[0.85rem] font-bold text-slate-500'}>
             <button
                 className={'flex items-center gap-x-1'}
                 type={'button'}
