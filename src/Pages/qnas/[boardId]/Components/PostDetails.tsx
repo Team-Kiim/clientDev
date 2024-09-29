@@ -1,10 +1,9 @@
-import PostMetaInfo from '@/Components/PostInfo/PostView/PostMetaInfo.tsx';
+import PostHeader from '@/Components/PostInfo/PostView/PostHeader.tsx';
 import PostContent from '@/Components/PostInfo/PostView/PostContent.tsx';
-import PostControl from '@/Components/PostInfo/PostView/PostControl.tsx';
 import PostSkillCategoryList from '@/Pages/qnas/[boardId]/Components/PostSkillCategoryList.tsx';
 import type { QnAPostInfo } from '@/Types/PostInfo.ts';
 
-type Props = Omit<QnAPostInfo, 'memberLiked' | 'likeCount' | 'memberBookmarked' | 'imageFileInfoDtoList'>;
+type Props = Omit<QnAPostInfo, 'memberLiked' | 'memberBookmarked' | 'imageFileInfoDtoList'>;
 
 export default function PostDetails({
     id,
@@ -14,6 +13,7 @@ export default function PostDetails({
     profileImagePath,
     bodyContent,
     viewCount,
+    likeCount,
     createdTime,
     skillCategoryList,
     memberWritten,
@@ -22,16 +22,19 @@ export default function PostDetails({
 }: Props) {
     return (
         <article className={'flex max-w-full flex-col gap-y-2.5'}>
-            <PostMetaInfo
+            <PostHeader
                 createdTime={createdTime}
                 title={title}
                 nickname={nickname}
-                profileImagePath={profileImagePath}
                 profileImageName={profileImageName}
+                profileImagePath={profileImagePath}
                 viewCount={viewCount}
+                likeCount={likeCount}
                 memberId={memberId}
+                memberWritten={memberWritten}
+                postId={id}
+                postType={'qnas'}
             />
-            {memberWritten && <PostControl postType={'qnas'} postId={id} />}
             <hr />
             <PostContent bodyContent={bodyContent} visualData={visualData} />
             <PostSkillCategoryList categories={skillCategoryList} />

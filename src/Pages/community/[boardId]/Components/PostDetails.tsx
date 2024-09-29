@@ -1,12 +1,11 @@
-import PostMetaInfo from '@/Components/PostInfo/PostView/PostMetaInfo.tsx';
+import PostHeader from '@/Components/PostInfo/PostView/PostHeader.tsx';
 import PostContent from '@/Components/PostInfo/PostView/PostContent.tsx';
 import VoteSection from '@/Pages/community/[boardId]/Components/Vote/VoteSection.tsx';
-import PostControl from '@/Components/PostInfo/PostView/PostControl.tsx';
 import type { CommunityPostInfo } from '@/Types/PostInfo.ts';
 
 type Props = Omit<
     CommunityPostInfo,
-    'memberLiked' | 'likeCount' | 'memberBookmarked' | 'imageFileInfoDtoList' | 'commentInfoDtoList'
+    'memberLiked' | 'memberBookmarked' | 'imageFileInfoDtoList' | 'commentInfoDtoList'
 >;
 
 export default function PostDetails({
@@ -17,6 +16,7 @@ export default function PostDetails({
     profileImageName,
     bodyContent,
     viewCount,
+    likeCount,
     createdTime,
     memberWritten,
     voteResponse,
@@ -24,16 +24,19 @@ export default function PostDetails({
 }: Props) {
     return (
         <article className={'flex max-w-full flex-col gap-y-2.5'}>
-            <PostMetaInfo
+            <PostHeader
                 createdTime={createdTime}
                 title={title}
                 nickname={nickname}
-                profileImagePath={profileImagePath}
                 profileImageName={profileImageName}
+                profileImagePath={profileImagePath}
                 viewCount={viewCount}
+                likeCount={likeCount}
                 memberId={memberId}
+                memberWritten={memberWritten}
+                postId={id}
+                postType={'community'}
             />
-            {memberWritten && <PostControl postType={'community'} postId={id} />}
             <hr />
             <PostContent bodyContent={bodyContent} />
             {voteResponse && (
