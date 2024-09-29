@@ -15,7 +15,7 @@ export default function PostView() {
 
     return (
         <div className={'col-span-7'}>
-            <PostDetails {...omit(data, ['likeCount', 'memberLiked', 'memberBookmarked', 'imageFileInfoDtoList'])} />
+            <PostDetails {...omit(data, ['memberLiked', 'memberBookmarked', 'imageFileInfoDtoList'])} />
             <PostInteraction
                 {...pick(data, ['memberLiked', 'likeCount', 'memberBookmarked', 'bookmarkCount'])}
                 postId={postId}
