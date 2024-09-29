@@ -1,6 +1,7 @@
 import PostHeader from '@/Components/PostInfo/PostView/PostHeader.tsx';
 import PostContent from '@/Components/PostInfo/PostView/PostContent.tsx';
 import VoteSection from '@/Pages/community/[boardId]/Components/Vote/VoteSection.tsx';
+import PostHashtagList from '@/Components/PostInfo/PostView/PostHashtagList.tsx';
 import type { CommunityPostInfo } from '@/Types/PostInfo.ts';
 
 type Props = Omit<
@@ -21,6 +22,7 @@ export default function PostDetails({
     memberWritten,
     voteResponse,
     memberId,
+    tagInfoDtoList,
 }: Props) {
     return (
         <article className={'flex max-w-full flex-col gap-y-2.5'}>
@@ -46,6 +48,9 @@ export default function PostDetails({
                     memberVoted={voteResponse.memberVoted}
                 />
             )}
+            <div className={'my-2 w-full'}>
+                <PostHashtagList hashtagList={tagInfoDtoList} />
+            </div>
         </article>
     );
 }
