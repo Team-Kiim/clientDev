@@ -28,7 +28,7 @@ export default function SelectedCategoryList() {
             {selectedSkillCategories.map(selectedSkillCategory => (
                 <li
                     className={
-                        'flex flex-shrink-0 items-center justify-between gap-x-2 rounded-lg bg-slate-100 px-3 py-1.5 text-[0.75rem] font-bold'
+                        'flex flex-shrink-0 items-center justify-between gap-x-2 rounded-lg bg-plump-purple-50 px-3 py-1.5 text-[0.75rem] font-bold text-plump-purple-600'
                     }
                 >
                     <span>
@@ -39,7 +39,7 @@ export default function SelectedCategoryList() {
                             handleDeleteSelectedSkillCategoryButtonClick(selectedSkillCategory);
                         }}
                     >
-                        <HiXMark className={'size-4 text-slate-500'} />
+                        <HiXMark className={'size-4 text-plump-purple-600'} />
                     </button>
                 </li>
             ))}

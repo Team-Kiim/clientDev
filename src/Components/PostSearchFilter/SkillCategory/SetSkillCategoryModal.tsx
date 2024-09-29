@@ -167,7 +167,7 @@ export default function SetSkillCategoryModal({ isModalOpen, closeModal }: Props
                     </div>
                     <button
                         className={
-                            'rounded-3xl bg-gradient-to-br from-[#6a3093] to-[#a044ff] px-5 py-2 text-white transition-all hover:scale-105'
+                            'rounded-xl bg-plump-purple-600 px-5 py-2 text-white transition-all hover:bg-plump-purple-700'
                         }
                         type={'button'}
                         onClick={handleApplyButtonClick}

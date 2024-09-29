@@ -19,7 +19,7 @@ export default function ChildSkillCategoryList({
                 childCategory => (
                     <li key={childCategory.value}>
                         <button
-                            className={`rounded-3xl border px-4 py-1.5 text-[0.8rem] font-bold ${selectedSkillCategories.find(category => category.parentSkillCategory === selectedParentSkillCategory && category.childSkillCategory === childCategory.value) ? 'border-violet-700 bg-violet-50 text-violet-700' : 'border-slate-200 text-neutral-800'} transition-all`}
+                            className={`rounded-2xl border px-4 py-1.5 text-[0.8rem] font-bold ${selectedSkillCategories.find(category => category.parentSkillCategory === selectedParentSkillCategory && category.childSkillCategory === childCategory.value) ? 'border-plump-purple-600 bg-plump-purple-50 text-plump-purple-600' : 'border-slate-200 text-neutral-800'} transition-all`}
                             type={'button'}
                             onClick={() => {
                                 onChildSkillCategoryButtonClick({
