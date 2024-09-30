@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import SearchPostInput from '@/Components/PostSearch/SearchPostInput.tsx';
 import LogOutSection from '@/Components/Auth/LogOutSection.tsx';
 import LogInSection from '@/Components/Auth/LogInSection.tsx';
@@ -19,18 +19,22 @@ export default function GlobalNavbar() {
                     KoffeeChat
                 </Link>
                 <div className={'flex items-center justify-center gap-x-2'}>
-                    <Link
+                    <NavLink
                         to={'/qnas'}
-                        className={'rounded-lg px-2 py-2.5 text-[0.93rem] font-bold transition-all hover:bg-slate-100'}
+                        className={({ isActive }) => {
+                            return `rounded-lg px-2 py-2.5 text-[0.93rem] font-bold transition-all ${isActive ? 'bg-plump-purple-50 text-plump-purple-600' : 'text-slate-800 hover:bg-slate-100'}  `;
+                        }}
                     >
                         {'Q&A'}
-                    </Link>
-                    <Link
+                    </NavLink>
+                    <NavLink
                         to={'/community'}
-                        className={'rounded-lg px-2 py-2.5 text-[0.93rem] font-bold transition-all hover:bg-slate-100'}
+                        className={({ isActive }) => {
+                            return `rounded-lg px-2 py-2.5 text-[0.93rem] font-bold transition-all ${isActive ? 'bg-plump-purple-50 text-plump-purple-600' : 'text-slate-800 hover:bg-slate-100'}  `;
+                        }}
                     >
                         커뮤니티
-                    </Link>
+                    </NavLink>
                 </div>
                 <SearchPostInput />
             </div>
