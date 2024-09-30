@@ -1,8 +1,10 @@
 import { Outlet, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { MdOutlineEmail } from 'react-icons/md';
+import { HiCheck } from 'react-icons/hi';
+import { MdCorporateFare, MdOutlineEmail } from 'react-icons/md';
 import EditableProfileImage from '@/Pages/user/Components/EditableProfileImage.tsx';
 import FollowToggleButton from '@/Pages/user/Components/FollowToggleButton.tsx';
+import EmployeeVerificationSection from '@/Pages/user/Components/EmployeeVerification/EmployeeVerificationSection.tsx';
 import SideNavbar from '@/Pages/user/Components/SideNavbar.tsx';
 import VisitorSideNavbar from '@/Pages/user/Components/VisitorSideNavbar.tsx';
 import getUserData from '@/Pages/user/Utils/getUserData.ts';
@@ -41,24 +43,45 @@ export default function UserPageLayout() {
                             />
                         </div>
                     )}
-                    <div className={'flex h-[144px] flex-1 flex-col justify-center gap-y-2'}>
-                        <span className={'text-3xl font-extrabold'}>{data.nickname}</span>
-                        <div className={'flex items-center justify-between'}>
-                            <div className={'flex items-center gap-x-1'}>
-                                <MdOutlineEmail className={'size-6 text-neutral-800'} />
-                                <span
+                    <div className={'flex h-[144px] flex-1 flex-col justify-center gap-y-1'}>
+                        <div className={'flex items-center gap-x-2'}>
+                            <span className={'text-3xl font-extrabold'}>{data.nickname}</span>
+                            {data.corpVerified && (
+                                <div
                                     className={
-                                        'text-md font-bold text-neutral-800 underline decoration-neutral-800 decoration-2 underline-offset-4'
+                                        'flex size-6 items-center justify-center rounded-full bg-gradient-to-r from-plump-purple-600 to-rose-500'
                                     }
                                 >
-                                    {data.email}
-                                </span>
+                                    <HiCheck className={'size-5 text-white'} />
+                                </div>
+                            )}
+                        </div>
+                        <div className={'flex items-center justify-between'}>
+                            <div className={'flex flex-col gap-y-1'}>
+                                <div className={'flex items-center gap-x-1'}>
+                                    <MdOutlineEmail className={'size-6 text-slate-600'} />
+                                    <span
+                                        className={
+                                            'text-base font-bold text-slate-600 underline decoration-slate-600 decoration-2 underline-offset-4'
+                                        }
+                                    >
+                                        {data.email}
+                                    </span>
+                                </div>
+                                {data.corpName && (
+                                    <div className={'flex items-center gap-x-1'}>
+                                        <MdCorporateFare className={'size-6 text-slate-600'} />
+                                        <span className={'text-md font-bold text-slate-600'}>{data.corpName}</span>
+                                    </div>
+                                )}
                             </div>
-                            {!data.isLoginMember && (
+                            {!data.isLoginMember ? (
                                 <FollowToggleButton
                                     profileMemberId={profileMemberId}
                                     isFollowingMember={data.isFollowingMember}
                                 />
+                            ) : (
+                                <EmployeeVerificationSection />
                             )}
                         </div>
                     </div>
