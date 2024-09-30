@@ -7,7 +7,7 @@ interface Props {
 
 export default function WhiteboardViewer({ visualData }: Props) {
     return (
-        <div className={'h-[34rem] rounded-xl border border-slate-200 p-2 shadow-xl'}>
+        <div className={'h-[34rem] rounded-xl border border-slate-200 p-2'}>
             <Excalidraw
                 langCode={'ko-KR'}
                 initialData={{
