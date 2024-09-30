@@ -25,7 +25,7 @@ export default function PostListItem({ post, postType }: Props) {
     } = post;
 
     return (
-        <li className={'h-[21rem] rounded-3xl shadow-lg transition-all hover:-translate-y-2'}>
+        <li className={'h-[22rem] rounded-3xl shadow-lg transition-all hover:-translate-y-2'}>
             <Link to={`/${postType}/${id}`}>
                 <div className={'flex h-full w-full flex-col gap-y-3'}>
                     {imagePath !== null && (
