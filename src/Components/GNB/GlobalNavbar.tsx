@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import PostSearchInput from '@/Components/PostSearch/PostSearchInput.tsx';
+import SearchPostInput from '@/Components/PostSearch/SearchPostInput.tsx';
 import LogOutSection from '@/Components/Auth/LogOutSection.tsx';
 import LogInSection from '@/Components/Auth/LogInSection.tsx';
 import useLoggedInUserData from '@/Hooks/useLoggedInUserData.ts';
@@ -32,7 +32,7 @@ export default function GlobalNavbar() {
                         커뮤니티
                     </Link>
                 </div>
-                <PostSearchInput />
+                <SearchPostInput />
             </div>
             {!!loggedInUserData ? <LogInSection /> : <LogOutSection />}
         </nav>
