@@ -48,9 +48,11 @@ export default function PostDetails({
                     memberVoted={voteResponse.memberVoted}
                 />
             )}
-            <div className={'my-2 w-full'}>
-                <PostHashtagList hashtagList={tagInfoDtoList} />
-            </div>
+            {tagInfoDtoList.length !== 0 && (
+                <div className={'my-2 w-full'}>
+                    <PostHashtagList hashtagList={tagInfoDtoList} />
+                </div>
+            )}
         </article>
     );
 }
