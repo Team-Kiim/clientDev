@@ -5,8 +5,8 @@ export default function PostListLoading() {
         <SkeletonTheme enableAnimation={false}>
             <ul className={'grid grid-cols-4 gap-x-4 gap-y-10 px-6 pb-10 pt-3'}>
                 {Array.from(Array(8).keys()).map(e => (
-                    <li key={e} className={'flex h-[21rem] flex-col gap-y-3 rounded-3xl shadow-lg transition-all'}>
-                        <Skeleton className={'h-36 w-full rounded-t-3xl'} />
+                    <li key={e} className={'flex h-[22rem] flex-col gap-y-3 rounded-3xl shadow-lg transition-all'}>
+                        <Skeleton className={'h-40 w-full rounded-b-none rounded-t-3xl'} />
                         <div className={'flex items-center gap-x-2 px-2'}>
                             <Skeleton className={'size-8'} circle />
                             <div className={'flex flex-col gap-y-1'}>
