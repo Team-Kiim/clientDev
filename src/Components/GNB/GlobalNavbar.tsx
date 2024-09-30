@@ -10,7 +10,12 @@ export default function GlobalNavbar() {
     return (
         <nav className={'flex w-full items-center justify-between'}>
             <div className={'flex h-full items-center gap-x-8'}>
-                <Link className={'logo text-2xl text-violet-600 '} to={'/'}>
+                <Link
+                    className={
+                        'logo inline-block bg-gradient-to-br from-plump-purple-500 to-plump-purple-700 bg-clip-text text-2xl font-bold text-transparent'
+                    }
+                    to={'/'}
+                >
                     KoffeeChat
                 </Link>
                 <div className={'flex items-center justify-center gap-x-2'}>
