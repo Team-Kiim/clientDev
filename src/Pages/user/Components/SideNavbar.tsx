@@ -1,6 +1,4 @@
 import { Link, useLocation } from 'react-router-dom';
-import { LiaUser, LiaUserCogSolid, LiaUserLockSolid } from 'react-icons/lia';
-import { PiClipboardTextLight } from 'react-icons/pi';
 
 const getCurrentSideNavItem = (pathname: string): string => {
     const splitPathname = pathname.split('/');
@@ -27,48 +25,35 @@ export default function SideNavbar() {
     const { pathname } = useLocation();
 
     const currentSideNavItem = getCurrentSideNavItem(pathname);
-
     return (
         <nav className={'w-[10rem] py-4'}>
-            <ul className={'flex flex-col gap-y-3'}>
+            <ul className={'flex flex-col gap-y-2.5'}>
                 <li
-                    className={`rounded-md px-3 py-1.5 text-[0.95rem] font-bold transition-all hover:bg-slate-100 ${currentSideNavItem === 'profile' ? 'bg-slate-100' : 'bg-white text-gray-700'}`}
+                    className={`flex rounded-md text-[0.85rem] font-bold transition-all ${currentSideNavItem === 'profile' ? 'bg-plump-purple-50 text-plump-purple-600' : 'bg-white text-slate-800 hover:bg-plump-purple-50 hover:text-plump-purple-600'} transition-all`}
                 >
-                    <Link to={`/user/profile`}>
-                        <div className={'flex items-center gap-x-4'}>
-                            <LiaUser className={'size-7'} />
-                            <span>프로필 정보</span>
-                        </div>
+                    <Link to={`/user/profile`} className={'w-full px-4 py-2'}>
+                        <span>프로필 정보</span>
                     </Link>
                 </li>
                 <li
-                    className={`rounded-md px-3 py-1.5 text-[0.95rem] font-bold transition-all hover:bg-slate-100 ${currentSideNavItem === 'social' ? 'bg-slate-100' : 'bg-white text-gray-700'}`}
+                    className={`flex rounded-md text-[0.85rem] font-bold transition-all ${currentSideNavItem === 'social' ? 'bg-plump-purple-50 text-plump-purple-600' : 'bg-white text-slate-800 hover:bg-plump-purple-50 hover:text-plump-purple-600'} transition-all`}
                 >
-                    <Link to={'/user/social'}>
-                        <div className={'flex items-center gap-x-4'}>
-                            <LiaUserCogSolid className={'size-7'} />
-                            <span>소셜 관리</span>
-                        </div>
+                    <Link to={'/user/social'} className={'w-full px-4 py-2'}>
+                        <span>소셜 관리</span>
                     </Link>
                 </li>
                 <li
-                    className={`rounded-md px-3 py-1.5 text-[0.95rem] font-bold transition-all hover:bg-slate-100 ${currentSideNavItem === 'post' ? 'bg-slate-100' : 'bg-white text-gray-700'}`}
+                    className={`flex rounded-md text-[0.85rem] font-bold transition-all ${currentSideNavItem === 'post' ? 'bg-plump-purple-50 text-plump-purple-600' : 'bg-white text-slate-800 hover:bg-plump-purple-50 hover:text-plump-purple-600'} transition-all`}
                 >
-                    <Link to={`/user/post`}>
-                        <div className={'flex items-center gap-x-4'}>
-                            <PiClipboardTextLight className={'size-7'} />
-                            <span>게시글 관리</span>
-                        </div>
+                    <Link to={`/user/post`} className={'w-full px-4 py-2'}>
+                        <span>게시글 관리</span>
                     </Link>
                 </li>
                 <li
-                    className={`rounded-md px-3 py-1.5 text-[0.95rem] font-bold transition-all hover:bg-slate-100 ${currentSideNavItem === 'account' ? 'bg-slate-100' : 'bg-white text-gray-700'}`}
+                    className={`flex rounded-md text-[0.85rem] font-bold transition-all ${currentSideNavItem === 'account' ? 'bg-plump-purple-50 text-plump-purple-600' : 'bg-white text-slate-800 hover:bg-plump-purple-50 hover:text-plump-purple-600'} transition-all`}
                 >
-                    <Link to={`/user/account`}>
-                        <div className={'flex items-center gap-x-4'}>
-                            <LiaUserLockSolid className={'size-7'} />
-                            <span>계정 관리</span>
-                        </div>
+                    <Link to={`/user/account`} className={'w-full px-4 py-2'}>
+                        <span>계정 관리</span>
                     </Link>
                 </li>
             </ul>
