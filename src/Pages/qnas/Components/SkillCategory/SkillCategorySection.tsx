@@ -55,6 +55,7 @@ export default function SkillCategorySection({ selectedSkillCategoryList, update
                                         className={
                                             'flex shrink-0 gap-x-2 rounded-lg border border-violet-300 bg-plump-purple-50 px-3 py-1.5 text-[0.75rem] font-bold text-plump-purple-600'
                                         }
+                                        key={selectedSkillCategory.childSkillCategory}
                                     >
                                         {
                                             childCategoryList.find(
