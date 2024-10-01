@@ -19,7 +19,7 @@ export default function FormOptionManager({ isWhiteboardAdded, toggleIsWhiteboar
                 cancelButtonText: '취소',
                 customClass: {
                     cancelButton: 'text-black font-bold bg-slate-100',
-                    confirmButton: 'text-white font-bold bg-violet-600',
+                    confirmButton: 'text-white font-bold bg-plump-purple-600',
                 },
             }).then(result => {
                 if (result.isConfirmed) {
