@@ -18,7 +18,7 @@ export default function BeforeVoteList({ voteItems, selectedVoteItemId, updateSe
                     <li
                         key={voteInfo.voteItemId}
                         className={
-                            'flex cursor-pointer justify-between rounded-lg border border-slate-200 px-2.5 py-3 transition-all hover:bg-slate-50'
+                            'flex cursor-pointer items-center justify-between rounded-lg border border-slate-200 px-2.5 py-3 transition-all hover:bg-slate-50'
                         }
                         onClick={() => {
                             updateSelectedVoteItem(voteInfo.voteItemId);
