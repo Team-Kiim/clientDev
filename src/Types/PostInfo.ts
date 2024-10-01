@@ -12,6 +12,7 @@ export type CommentInfo = {
     modifiedTime?: number[] | null;
     profileImagePath?: string;
     profileImageName?: string;
+    memberWritten: boolean;
 };
 
 export type VoteInfo = {
