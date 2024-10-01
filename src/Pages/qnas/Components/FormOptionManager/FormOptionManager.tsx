@@ -8,9 +8,6 @@ interface Props {
     toggleIsWhiteboardAdded(): void;
 }
 
-// <p>아래</p>
-// <RiMenuLine/>
-// <p>버튼을 눌러, 시각자료를 첨부/수정해 보세요.</p>
 export default function FormOptionManager({ isWhiteboardAdded, toggleIsWhiteboardAdded }: Props) {
     const handleToggleIsWhiteboardAddedButtonClick = () => {
         if (isWhiteboardAdded) {
