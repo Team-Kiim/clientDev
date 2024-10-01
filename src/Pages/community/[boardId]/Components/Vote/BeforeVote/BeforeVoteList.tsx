@@ -28,13 +28,13 @@ export default function BeforeVoteList({ voteItems, selectedVoteItemId, updateSe
                             <GoDotFill className={'size-3 text-slate-400'} />
                             <span className={'text-[0.85rem]'}>{voteInfo.voteItem}</span>
                         </div>
-                        <input
-                            className={'radio radio-sm checked:bg-plump-purple-600'}
-                            type={'radio'}
-                            name={'customVote'}
-                            value={'자바스크립트'}
-                            checked={selectedVoteItemId === voteInfo.voteItemId}
-                        />
+                        <div
+                            className={`flex size-5 items-center justify-center rounded-full border ${voteInfo.voteItemId === selectedVoteItemId ? 'border-plump-purple-600' : 'border-slate-300'}`}
+                        >
+                            {selectedVoteItemId === voteInfo.voteItemId && (
+                                <div className={'size-3 rounded-full bg-plump-purple-600'} />
+                            )}
+                        </div>
                     </li>
                 );
             })}
