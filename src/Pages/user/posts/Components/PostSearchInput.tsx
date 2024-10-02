@@ -14,6 +14,11 @@ export default function PostSearchInput() {
 
         if (event.code === 'Enter') {
             const postTitleToSearch = inputRef.current.value;
+            if (postTitleToSearch === '') {
+                searchParams.delete('post-title');
+                setSearchParams(searchParams);
+            }
+
             if (postTitleToSearch.trim().length !== 0) {
                 searchParams.set('post-title', postTitleToSearch);
                 setSearchParams(searchParams);
@@ -23,6 +28,11 @@ export default function PostSearchInput() {
 
     const handleSearchButtonClick = () => {
         const postTitleToSearch = inputRef.current.value;
+        if (postTitleToSearch === '') {
+            searchParams.delete('post-title');
+            setSearchParams(searchParams);
+        }
+
         if (postTitleToSearch.trim().length !== 0) {
             searchParams.set('post-title', postTitleToSearch);
             setSearchParams(searchParams);
