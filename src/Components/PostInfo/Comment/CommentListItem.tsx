@@ -60,7 +60,7 @@ export default function CommentListItem({
     onCommentDeleteButtonClick,
 }: Props) {
     const { VITE_SERVER_URL } = import.meta.env;
-    const { profileImagePath, profileImageName } = commentInfo;
+    const { profileImagePath, profileImageName, memberWritten } = commentInfo;
 
     useEffect(() => {
         Array.from(document.getElementsByTagName('pre')).forEach($preElement => {
@@ -88,27 +88,29 @@ export default function CommentListItem({
                                 {commentInfo.createdTime[2]}일
                             </span>
                         </div>
-                        <div className={'flex gap-x-1'}>
-                            <button
-                                className={'text-[0.8rem] font-bold text-slate-500'}
-                                type={'button'}
-                                onClick={() => {
-                                    onCommentEditButtonClick(commentInfo.id);
-                                }}
-                            >
-                                수정
-                            </button>
-                            <span>·</span>
-                            <button
-                                className={'text-[0.8rem] font-bold text-slate-500'}
-                                type={'button'}
-                                onClick={() => {
-                                    onCommentDeleteButtonClick(commentInfo.id);
-                                }}
-                            >
-                                삭제
-                            </button>
-                        </div>
+                        {memberWritten && (
+                            <div className={'flex gap-x-1'}>
+                                <button
+                                    className={'text-[0.8rem] font-bold text-slate-500'}
+                                    type={'button'}
+                                    onClick={() => {
+                                        onCommentEditButtonClick(commentInfo.id);
+                                    }}
+                                >
+                                    수정
+                                </button>
+                                <span>·</span>
+                                <button
+                                    className={'text-[0.8rem] font-bold text-slate-500'}
+                                    type={'button'}
+                                    onClick={() => {
+                                        onCommentDeleteButtonClick(commentInfo.id);
+                                    }}
+                                >
+                                    삭제
+                                </button>
+                            </div>
+                        )}
                     </div>
                     {isCommentEditFormOpen && idOfCommentToEdit === commentInfo.id ? (
                         <CommentEditForm
