@@ -50,13 +50,6 @@ export default function SideNavbar() {
                     </Link>
                 </li>
                 <li
-                    className={`flex rounded-md text-[0.85rem] font-bold transition-all ${currentSideNavItem === 'comment' ? 'bg-plump-purple-50 text-plump-purple-600' : 'bg-white text-slate-800 hover:bg-plump-purple-50 hover:text-plump-purple-600'} transition-all`}
-                >
-                    <Link to={`/user/comment`} className={'w-full px-4 py-2'}>
-                        댓글 관리
-                    </Link>
-                </li>
-                <li
                     className={`flex rounded-md text-[0.85rem] font-bold transition-all ${currentSideNavItem === 'account' ? 'bg-plump-purple-50 text-plump-purple-600' : 'bg-white text-slate-800 hover:bg-plump-purple-50 hover:text-plump-purple-600'} transition-all`}
                 >
                     <Link to={`/user/account`} className={'w-full px-4 py-2'}>
