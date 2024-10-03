@@ -30,7 +30,6 @@ export default function VoteItemFields({ isVoteEditable }: Props) {
         if (fields.length === 0) {
             return;
         }
-        console.log(fields.length);
         window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     }, [fields.length]);
 

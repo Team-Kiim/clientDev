@@ -69,8 +69,7 @@ export default function CommentWriteForm({ postId }: Props) {
             );
         },
 
-        onError: error => {
-            console.error(error);
+        onError: () => {
             toast.error(
                 <div className={'text-[0.85rem]'}>
                     댓글을 작성할 수 없습니다.
