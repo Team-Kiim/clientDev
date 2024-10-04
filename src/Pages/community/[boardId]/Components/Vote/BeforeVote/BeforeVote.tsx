@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 import { MdOutlineHowToVote } from 'react-icons/md';
 import BeforeVoteList from '@/Pages/community/[boardId]/Components/Vote/BeforeVote/BeforeVoteList.tsx';
-import { useNavigate } from 'react-router-dom';
+import useRequireLoginAlert from '@/Hooks/Alert/useRequireLoginAlert.tsx';
 
 interface Props {
     postId: string;
@@ -16,11 +16,14 @@ interface Props {
 }
 
 export default function BeforeVote({ postId, voteItems }: Props) {
-    const navigate = useNavigate();
-
     const queryClient = useQueryClient();
 
     const isLoggedIn = !!queryClient.getQueryData(['loggedIn user']);
+
+    const { showRequireLoginAlert } = useRequireLoginAlert({
+        message: '로그인 후 투표에 참여할 수 있습니다.',
+        from: window.location.pathname,
+    });
 
     const [selectedVoteItemId, setSelectedVoteItemId] = useState(-1);
 
@@ -30,21 +33,7 @@ export default function BeforeVote({ postId, voteItems }: Props) {
 
     const handleVoteButtonClick = async () => {
         if (!isLoggedIn) {
-            Swal.fire({
-                icon: 'warning',
-                html: '<p class="leading-relaxed">로그인 후 투표에 참여할 수 있습니다.<br/>로그인 하시겠습니까?</p>',
-                showCancelButton: true,
-                confirmButtonText: '로그인',
-                cancelButtonText: '취소',
-                customClass: {
-                    cancelButton: 'text-black font-bold bg-slate-100',
-                    confirmButton: 'text-white font-bold bg-violet-600',
-                },
-            }).then(result => {
-                if (result.isConfirmed) {
-                    navigate('/sign_in');
-                }
-            });
+            showRequireLoginAlert();
             return;
         }
         if (selectedVoteItemId === -1) {
