@@ -1,10 +1,12 @@
 import axios from 'axios';
-import Swal from 'sweetalert2';
 import { useState } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 import { MdOutlineHowToVote } from 'react-icons/md';
 import BeforeVoteList from '@/Pages/community/[boardId]/Components/Vote/BeforeVote/BeforeVoteList.tsx';
 import useRequireLoginAlert from '@/Hooks/Alert/useRequireLoginAlert.tsx';
+import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Props {
     postId: string;
@@ -32,19 +34,12 @@ export default function BeforeVote({ postId, voteItems }: Props) {
     };
 
     const handleVoteButtonClick = async () => {
-        if (!isLoggedIn) {
+        if (isLoggedIn) {
             showRequireLoginAlert();
             return;
         }
         if (selectedVoteItemId === -1) {
-            Swal.fire({
-                icon: 'question',
-                text: '투표 항목을 선택해주세요.',
-                confirmButtonText: '확인',
-                customClass: {
-                    confirmButton: 'text-white font-bold bg-violet-600',
-                },
-            }).then(() => {});
+            toast.warning(<p className={'text-[0.85rem]'}>투표 항목을 선택해주세요.</p>, TOAST_OPTIONS);
         } else {
             try {
                 await axios.post(`/api/vote/${postId}/votes`, {
