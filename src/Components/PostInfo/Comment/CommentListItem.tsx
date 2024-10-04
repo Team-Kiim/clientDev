@@ -1,6 +1,7 @@
 import dompurify from 'dompurify';
 import Prism from 'prismjs';
 import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import 'prism-themes/themes/prism-one-dark.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
@@ -72,13 +73,15 @@ export default function CommentListItem({
     return (
         <li className={'flex flex-col border-b border-slate-300 py-3.5 last:border-none'}>
             <div className={'flex gap-x-4'}>
-                <div className={'avatar my-1 size-7'}>
-                    <img
-                        className={'size-7 rounded-full'}
-                        src={`${VITE_SERVER_URL}/image/${profileImagePath}/${profileImageName}`}
-                        alt={profileImageName}
-                    />
-                </div>
+                <Link to={`/user/${commentInfo.memberId}`}>
+                    <div className={'avatar my-1 size-7'}>
+                        <img
+                            className={'size-7 rounded-full'}
+                            src={`${VITE_SERVER_URL}/image/${profileImagePath}/${profileImageName}`}
+                            alt={profileImageName}
+                        />
+                    </div>
+                </Link>
                 <div className={'flex min-w-0 flex-1 flex-col gap-y-4'}>
                     <div className={'flex items-center'}>
                         <div className={'flex flex-1 flex-col gap-y-0.5'}>
