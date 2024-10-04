@@ -34,7 +34,7 @@ export default function BeforeVote({ postId, voteItems }: Props) {
     };
 
     const handleVoteButtonClick = async () => {
-        if (isLoggedIn) {
+        if (!isLoggedIn) {
             showRequireLoginAlert();
             return;
         }
