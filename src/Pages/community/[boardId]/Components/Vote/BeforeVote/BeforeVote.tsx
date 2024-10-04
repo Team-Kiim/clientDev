@@ -45,11 +45,18 @@ export default function BeforeVote({ postId, voteItems }: Props) {
                 await axios.post(`/api/vote/${postId}/votes`, {
                     items: [selectedVoteItemId],
                 });
-                await queryClient.invalidateQueries({
-                    queryKey: ['post', postId],
-                });
-            } catch (error) {
-                //에러처리
+                queryClient
+                    .invalidateQueries({
+                        queryKey: ['post', postId],
+                    })
+                    .catch();
+            } catch {
+                toast.error(
+                    <p className={'text-[0.85rem] leading-relaxed'}>
+                        현재 투표를 할 수 없습니다. <br /> 잠시 후 다시 시도해주세요.
+                    </p>,
+                    TOAST_OPTIONS,
+                );
             }
         }
     };
