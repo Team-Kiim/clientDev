@@ -13,6 +13,7 @@ export type CommentInfo = {
     profileImagePath?: string;
     profileImageName?: string;
     memberWritten: boolean;
+    memberId: number;
 };
 
 export type VoteInfo = {
