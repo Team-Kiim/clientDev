@@ -33,12 +33,12 @@ export default function SendCodeForm({ closeSendCodeModal }: Props) {
                         <LanguageSelect />
                         <SourceCodeField />
                     </div>
-                    <div className={'flex w-[calc(33.333333%-1.5rem)] flex-shrink-0 flex-col gap-y-12'}>
+                    <div className={'flex w-[calc(33.333333%-1.5rem)] flex-shrink-0 flex-col gap-y-10'}>
                         <CodeDescriptionField />
                         <div className={'flex justify-end gap-x-3'}>
                             <button
                                 className={
-                                    'rounded-lg bg-slate-100 px-4 py-2.5 text-[0.9rem] font-bold transition-all hover:bg-slate-200'
+                                    'rounded-lg bg-slate-100 px-3.5 py-2 text-[0.9rem] font-bold transition-all hover:bg-slate-200'
                                 }
                                 type={'button'}
                                 onClick={closeSendCodeModal}
@@ -47,7 +47,7 @@ export default function SendCodeForm({ closeSendCodeModal }: Props) {
                             </button>
                             <button
                                 className={
-                                    'rounded-lg bg-violet-600 px-4 py-2.5 text-[0.9rem] font-bold text-white transition-all enabled:hover:bg-violet-700 disabled:cursor-default disabled:opacity-75'
+                                    'rounded-lg bg-plump-purple-600 px-3.5 py-2 text-[0.9rem] font-bold text-white transition-all enabled:hover:bg-plump-purple-700 disabled:opacity-75'
                                 }
                                 disabled={isSubmitting || !isValid}
                             >
