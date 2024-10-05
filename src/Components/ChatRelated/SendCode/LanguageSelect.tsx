@@ -50,7 +50,7 @@ export default function LanguageSelect() {
             </label>
             <div
                 className={
-                    'flex h-11 w-1/3 items-center gap-x-2 rounded-lg border border-slate-200 px-3.5 py-2.5 transition-all focus-within:border-violet-700'
+                    'flex h-11 w-2/3 items-center gap-x-2 rounded-2xl border border-slate-300 px-3.5 py-2.5 transition-all focus-within:border-plump-purple-600'
                 }
             >
                 <GoCode className={'size-5 text-slate-500'} />
@@ -84,7 +84,7 @@ export default function LanguageSelect() {
                     }}
                     classNames={{
                         control() {
-                            return `!bg-white !text-[0.9rem] !border-none !shadow-none`;
+                            return `!bg-white !text-[0.85rem] !border-none !shadow-none`;
                         },
 
                         option() {
