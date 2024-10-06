@@ -33,7 +33,6 @@ export default function PostListItem({ post, postType }: Props) {
                             <img
                                 className={'h-40 w-full rounded-t-3xl object-cover'}
                                 src={`${VITE_SERVER_URL}/image/${imagePath}/${imageName}`}
-                                // src={imagePath}
                                 alt={imageName}
                             />
                         </div>
@@ -43,7 +42,6 @@ export default function PostListItem({ post, postType }: Props) {
                             <img
                                 className={'rounded-full'}
                                 src={`${VITE_SERVER_URL}/image/${profileImagePath}/${profileImageName}`}
-                                // src={profileImagePath}
                                 alt={profileImageName}
                             />
                         </div>
