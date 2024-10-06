@@ -12,7 +12,7 @@ interface Props {
     postId: string;
     voteItems: {
         voteItemId: number;
-        voteItem: string;
+        voteItemText: string;
         voteCount: number;
     }[];
 }

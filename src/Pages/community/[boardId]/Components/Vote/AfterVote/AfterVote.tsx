@@ -4,7 +4,7 @@ import AfterVoteList from '@/Pages/community/[boardId]/Components/Vote/AfterVote
 interface Props {
     voteItems: {
         voteItemId: number;
-        voteItem: string;
+        voteItemText: string;
         voteCount: number;
     }[];
     totalVoteCount: number;

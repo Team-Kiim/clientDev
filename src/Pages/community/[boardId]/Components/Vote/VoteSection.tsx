@@ -9,7 +9,7 @@ interface Props {
     voteTopic: string;
     voteItems: {
         voteItemId: number;
-        voteItem: string;
+        voteItemText: string;
         voteCount: number;
     }[];
     memberVoted: boolean;

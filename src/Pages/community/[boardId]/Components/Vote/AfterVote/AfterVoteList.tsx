@@ -3,7 +3,7 @@ import { GoDotFill } from 'react-icons/go';
 interface Props {
     voteItems: {
         voteItemId: number;
-        voteItem: string;
+        voteItemText: string;
         voteCount: number;
     }[];
     totalVoteCount: number;
@@ -22,7 +22,7 @@ export default function AfterVoteList({ voteItems, totalVoteCount }: Props) {
                     >
                         <GoDotFill className={'size-3 text-slate-400'} />
                         <div className={'flex w-full flex-col'}>
-                            <span className={'text-[0.85rem]'}>자바스크립트</span>
+                            <span className={'text-[0.85rem]'}>{voteItem.voteItemText}</span>
                             <div className={'flex items-center gap-x-3.5'}>
                                 <progress
                                     className={
