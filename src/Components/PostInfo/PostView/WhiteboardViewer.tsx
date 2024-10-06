@@ -1,14 +1,30 @@
 import { Excalidraw, MainMenu } from '@excalidraw/excalidraw';
 import { ExcalidrawElement } from '@excalidraw/excalidraw/types/element/types';
+import { useEffect, useState } from 'react';
+import { ExcalidrawImperativeAPI } from '@excalidraw/excalidraw/types/types';
 
 interface Props {
     visualData: object;
 }
 
 export default function WhiteboardViewer({ visualData }: Props) {
+    const [excalidrawAPI, setExcalidrawAPI] = useState<ExcalidrawImperativeAPI>(null);
+
+    useEffect(() => {
+        console.log('called');
+        if (excalidrawAPI) {
+            excalidrawAPI.scrollToContent(visualData as ExcalidrawElement[], {
+                fitToViewport: true,
+            });
+        }
+    }, [excalidrawAPI]);
+
     return (
         <div className={'h-[34rem] rounded-xl border border-slate-200 p-2'}>
             <Excalidraw
+                excalidrawAPI={api => {
+                    setExcalidrawAPI(api);
+                }}
                 langCode={'ko-KR'}
                 initialData={{
                     elements: visualData as ExcalidrawElement[],
