@@ -1,7 +1,10 @@
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-toastify';
 import { RiImageEditLine } from 'react-icons/ri';
+import 'react-toastify/dist/ReactToastify.css';
+import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
 
 interface Props {
     profileImageName: string;
@@ -42,6 +45,12 @@ export default function EditableProfileImage({ profileImageName, profileImagePat
             });
         },
         onError: () => {
+            toast.error(
+                <p className={'text-[0.85rem] leading-relaxed'}>
+                    프로필 사진 변경에 실패하였습니다. <br /> 잠시 후 다시 시도해주세요.
+                </p>,
+                TOAST_OPTIONS,
+            );
             setProfileImagePathToChange(profileImagePath);
         },
     });
