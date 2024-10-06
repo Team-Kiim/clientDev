@@ -87,7 +87,7 @@ export default function CommunityPostWriteForm({ postId }: Props) {
         }
 
         try {
-            const result = await axios
+            await axios
                 .post(`/api/community-post/${postId}`, {
                     saveCommunityPostInfoRequest: {
                         title,
@@ -111,9 +111,8 @@ export default function CommunityPostWriteForm({ postId }: Props) {
                 })
                 .then(response => response.data);
 
-            const createdCommunityPostId = result.id;
             isFormSubmittedRef.current = true;
-            navigate(`/community/${createdCommunityPostId}`, { replace: true });
+            navigate(`/community/${postId}`, { replace: true });
         } catch (error) {
             Swal.fire({
                 icon: 'error',
