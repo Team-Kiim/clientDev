@@ -12,8 +12,10 @@ export default function CommunityPostList() {
 
     const sortFilterValue = getCurrentPostSortFilter(searchParams).value;
 
+    const hashTags = searchParams.getAll('tag') ?? [];
+
     const { data, fetchNextPage, hasNextPage } = useSuspenseInfiniteQuery({
-        queryKey: ['posts', 'community', { title: postTitle, sort: sortFilterValue }],
+        queryKey: ['posts', 'community', { title: postTitle, sort: sortFilterValue, hashTags }],
         queryFn: fetchCommunityPostList,
         initialPageParam: 0,
         getNextPageParam: (lastPage, _, lastPageParam) => (lastPage.length < 16 ? undefined : lastPageParam + 1),
