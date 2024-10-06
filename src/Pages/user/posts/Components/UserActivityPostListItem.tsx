@@ -32,14 +32,18 @@ export default function UserActivityPostListItem({ post, postType }: Props) {
                         <div className={'w-full'}>
                             <img
                                 className={'h-[8.5rem] w-full rounded-t-[calc(1.5rem-1px)] object-cover'}
-                                src={`${VITE_SERVER_URL}/image/${profileImagePath}/${profileImageName}`}
+                                src={`${VITE_SERVER_URL}/image/${imagePath}/${imageName}`}
                                 alt={imageName}
                             />
                         </div>
                     )}
                     <div className={`flex w-full items-center gap-x-2 px-2 ${imagePath === null ? 'mt-2' : ''}`}>
                         <div className={'avatar size-6'}>
-                            <img className={'rounded-full'} src={profileImagePath} alt={profileImageName} />
+                            <img
+                                className={'rounded-full'}
+                                src={`${VITE_SERVER_URL}/image/${profileImagePath}/${profileImageName}`}
+                                alt={profileImageName}
+                            />
                         </div>
                         <div className={'flex min-w-0 flex-1 flex-col'}>
                             <span className={'line-clamp-1 w-fit text-[0.73rem] font-bold text-neutral-800'}>
