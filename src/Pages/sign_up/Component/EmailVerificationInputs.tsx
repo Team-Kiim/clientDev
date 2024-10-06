@@ -124,7 +124,7 @@ export default function EmailVerificationInputs({ updateEmailVerification }: Pro
             <div className={'flex w-full flex-col gap-y-2'}>
                 <div
                     className={
-                        'flex items-center gap-x-2 rounded-2xl border border-slate-300 bg-slate-50 px-3 py-3.5 transition-all focus-within:bg-plump-purple-600'
+                        'flex items-center gap-x-2 rounded-2xl border border-slate-300 bg-slate-50 px-3 py-3.5 transition-all focus-within:border-plump-purple-600'
                     }
                 >
                     <MdOutlinePassword className={'size-5 text-slate-800'} />
