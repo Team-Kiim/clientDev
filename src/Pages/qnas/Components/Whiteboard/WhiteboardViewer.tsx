@@ -29,6 +29,10 @@ export default function WhiteboardViewer({ canvasData, openWhiteboardEditorModal
                 excalidrawAPI={api => {
                     setExcalidrawAPI(api);
                 }}
+                initialData={{
+                    elements: canvasData as ExcalidrawElement[],
+                    scrollToContent: true,
+                }}
                 langCode={'ko-KR'}
                 viewModeEnabled={true}
                 // 이 코드 작성 이유
