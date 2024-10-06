@@ -1,14 +1,19 @@
 import axios from 'axios';
 import dompurify from 'dompurify';
 import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
 import { useEffect, useReducer, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
-import PostTitleField from '@/Pages/Components/PostInputs/PostTitleField.tsx';
-import PostContentField from '@/Pages/Components/PostInputs/PostContentField.tsx';
+import PostTitleField from '@/Components/PostInputFields/PostTitleField.tsx';
+import PostContentField from '@/Components/PostInputFields/PostContentField.tsx';
 import WhiteboardSection from '@/Pages/qnas/Components/Whiteboard/WhiteboardSection.tsx';
 import SkillCategorySection from '@/Pages/qnas/Components/SkillCategory/SkillCategorySection.tsx';
+import PostHashTagField from '@/Components/PostInputFields/PostHashTagField.tsx';
 import FormOptionManager from '@/Pages/qnas/Components/FormOptionManager/FormOptionManager.tsx';
+import useHashtagField from '@/Hooks/PostInputFieldHooks/useHashtagField.ts';
+import 'react-toastify/dist/ReactToastify.css';
+import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
 
 interface Props {
     postId: number;
@@ -40,6 +45,8 @@ export default function QnAPostWriteForm({ postId }: Props) {
         },
     });
 
+    const { hashtagInfoList, addHashtag, deleteHashtag, deleteAllHashtags } = useHashtagField([]);
+
     useEffect(() => {
         return () => {
             if (isFormSubmittedRef.current) {
@@ -60,6 +67,11 @@ export default function QnAPostWriteForm({ postId }: Props) {
     }, [isWhiteboardAdded]);
 
     const onSubmit: SubmitHandler<FormData> = async data => {
+        if (selectedSkillCategoryList.length === 0) {
+            toast.error(<p className={'text-[0.9rem]'}>카테고리를 선택해주세요.</p>, TOAST_OPTIONS);
+            return;
+        }
+
         const { title, bodyContent } = data;
 
         const $postImageList = document.querySelectorAll('img');
@@ -73,33 +85,32 @@ export default function QnAPostWriteForm({ postId }: Props) {
         }
 
         try {
-            const result = await axios
-                .post('/api/dev-post/post', {
-                    id: postId,
-                    title,
-                    bodyContent: dompurify.sanitize(bodyContent),
-                    skillCategoryList: selectedSkillCategoryList.map(skillCategory => {
-                        const { parentSkillCategory, childSkillCategory } = skillCategory;
+            await axios.post(`/api/dev-post/${postId}`, {
+                title,
+                bodyContent: dompurify.sanitize(bodyContent),
+                skillCategoryList: selectedSkillCategoryList.map(skillCategory => {
+                    const { parentSkillCategory, childSkillCategory } = skillCategory;
 
-                        return {
-                            parentSkillCategory,
-                            childSkillCategory,
-                        };
-                    }),
-                    fileIdList: postImageIdList,
-                })
-                .then(response => response.data);
+                    return {
+                        parentSkillCategory,
+                        childSkillCategory,
+                    };
+                }),
+                fileIdList: postImageIdList,
+                visualData: canvasDataJSONString === '[]' ? null : canvasDataJSONString,
+                tagContentList:
+                    hashtagInfoList.length !== 0 ? hashtagInfoList.map(hashTagInfo => hashTagInfo.content) : [],
+            });
 
-            const createdQnAPostId = result.id;
             isFormSubmittedRef.current = true;
-            navigate(`/qnas/${createdQnAPostId}`, { replace: true });
+            navigate(`/qnas/${postId}`, { replace: true });
         } catch (error) {
             Swal.fire({
                 icon: 'error',
                 html: '<p class="leading-relaxed">게시글 작성에 실패하였습니다.<br/>잠시 후 다시 시도해주세요.</p>',
                 confirmButtonText: '확인',
                 customClass: {
-                    confirmButton: 'text-white font-bold bg-violet-600',
+                    confirmButton: 'text-white font-bold bg-plump-purple-600',
                 },
             }).then(() => {});
         }
@@ -107,7 +118,7 @@ export default function QnAPostWriteForm({ postId }: Props) {
 
     return (
         <FormProvider {...formMethods}>
-            <form className={'relative flex w-full gap-x-10'} onSubmit={formMethods.handleSubmit(onSubmit)}>
+            <form className={'flex w-full gap-x-10'} onSubmit={formMethods.handleSubmit(onSubmit)}>
                 <div className={'flex w-[46rem] flex-col gap-y-10'}>
                     <PostTitleField />
                     <PostContentField postId={postId} />
@@ -121,12 +132,20 @@ export default function QnAPostWriteForm({ postId }: Props) {
                     )}
                 </div>
                 <div className={'sticky top-16 flex w-[22rem] flex-col gap-y-10 self-start'}>
-                    <SkillCategorySection
-                        selectedSkillCategoryList={selectedSkillCategoryList}
-                        updateSelectedSkillCategoryList={newSkillCategoryList => {
-                            setSelectedSkillCategoryList(newSkillCategoryList);
-                        }}
-                    />
+                    <div className={'flex flex-col gap-y-5'}>
+                        <SkillCategorySection
+                            selectedSkillCategoryList={selectedSkillCategoryList}
+                            updateSelectedSkillCategoryList={newSkillCategoryList => {
+                                setSelectedSkillCategoryList(newSkillCategoryList);
+                            }}
+                        />
+                        <PostHashTagField
+                            hashTagInfoList={hashtagInfoList}
+                            addHashTag={addHashtag}
+                            deleteHashTag={deleteHashtag}
+                            deleteAllHashTags={deleteAllHashtags}
+                        />
+                    </div>
                     <FormOptionManager
                         isWhiteboardAdded={isWhiteboardAdded}
                         toggleIsWhiteboardAdded={toggleIsWhiteboardAdded}
@@ -134,7 +153,7 @@ export default function QnAPostWriteForm({ postId }: Props) {
                     <div className={'flex w-full justify-end gap-x-4'}>
                         <button
                             className={
-                                'rounded-lg bg-slate-100 px-5 py-2.5 text-[0.9rem] font-bold transition-all hover:bg-slate-200'
+                                'rounded-lg bg-slate-100 px-4 py-2.5 text-[0.9rem] font-bold transition-all hover:bg-slate-200'
                             }
                             type={'button'}
                             onClick={() => {
@@ -145,7 +164,7 @@ export default function QnAPostWriteForm({ postId }: Props) {
                         </button>
                         <button
                             className={
-                                'rounded-lg bg-violet-600 px-5 py-2.5 text-[0.9rem] font-bold text-white transition-all hover:bg-violet-700 disabled:cursor-default disabled:opacity-75'
+                                'rounded-lg bg-plump-purple-600 px-4 py-2.5 text-[0.9rem] font-bold text-white transition-all hover:bg-plump-purple-700 disabled:cursor-default disabled:opacity-75'
                             }
                             type={'submit'}
                         >
