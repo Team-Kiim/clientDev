@@ -51,13 +51,13 @@ export default function CommunityPostEditForm({ postId }: Props) {
             title,
             bodyContent,
             voteTopic: voteResponse?.title,
-            firstVoteItem: voteResponse?.voteItemResponseList[0].voteItem,
-            secondVoteItem: voteResponse?.voteItemResponseList[1].voteItem,
+            firstVoteItem: voteResponse?.voteItemResponseList[0].voteItemText,
+            secondVoteItem: voteResponse?.voteItemResponseList[1].voteItemText,
             additionalVoteItems:
                 voteResponse && voteResponse.voteItemResponseList.length !== 2
                     ? voteResponse.voteItemResponseList.map(voteItemResponse => {
-                          const { voteItem } = voteItemResponse;
-                          return { label: voteItem };
+                          const { voteItemText } = voteItemResponse;
+                          return { label: voteItemText };
                       })
                     : [],
         },
@@ -101,7 +101,7 @@ export default function CommunityPostEditForm({ postId }: Props) {
         }
 
         try {
-            const result = await axios
+            await axios
                 .patch(`/api/community-post/${postId}`, {
                     modifyCommunityPostInfoRequest: {
                         title,
@@ -122,9 +122,7 @@ export default function CommunityPostEditForm({ postId }: Props) {
                     },
                 })
                 .then(response => response.data);
-
-            const createdCommunityPostId = result.id;
-            navigate(`/community/${createdCommunityPostId}`, { replace: true });
+            navigate(`/community/${postId}`, { replace: true });
         } catch (error) {
             Swal.fire({
                 icon: 'error',
