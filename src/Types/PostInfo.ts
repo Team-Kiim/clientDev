@@ -20,7 +20,7 @@ export type VoteInfo = {
     title: string;
     voteItemResponseList: {
         voteItemId: number;
-        voteItem: string;
+        voteItemText: string;
         voteCount: number;
     }[];
     memberVoted: boolean;
