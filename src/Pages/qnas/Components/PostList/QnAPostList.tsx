@@ -12,10 +12,12 @@ export default function QnAPostList() {
 
     const categories = searchParams.getAll('category') ?? [];
 
+    const hashTags = searchParams.getAll('tag') ?? [];
+
     const sortFilterValue = getCurrentPostSortFilter(searchParams).value;
 
     const { data, fetchNextPage, hasNextPage } = useSuspenseInfiniteQuery({
-        queryKey: ['posts', 'qnas', { title: postTitle, categories, sort: sortFilterValue }],
+        queryKey: ['posts', 'qnas', { title: postTitle, categories, hashTags, sort: sortFilterValue }],
         queryFn: fetchQnAPostList,
         initialPageParam: 0,
         getNextPageParam: (lastPage, _, lastPageParam) => (lastPage.length < 16 ? undefined : lastPageParam + 1),
