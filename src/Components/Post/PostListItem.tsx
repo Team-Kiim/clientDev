@@ -56,7 +56,7 @@ export default function PostListItem({ post, postType }: Props) {
                             </span>
                         </div>
                     </div>
-                    <h2 className={'px-2 font-bold text-neutral-800'}>{title}</h2>
+                    <h2 className={'line-clamp-1 w-full px-2 text-[0.95rem] font-bold text-neutral-800'}>{title}</h2>
                     <div className={'flex-1 px-2'}>
                         <p
                             className={`${imagePath === null ? 'line-clamp-5' : 'line-clamp-3'} text-[0.75rem] leading-relaxed text-slate-500`}
