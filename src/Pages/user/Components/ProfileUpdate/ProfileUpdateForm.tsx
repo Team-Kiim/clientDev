@@ -22,6 +22,7 @@ const jobOptions = [
     { value: 'FREELANCER', label: '프리랜서' },
     { value: 'STUDENT', label: '학생' },
     { value: 'GENERAL', label: '일반' },
+    { value: 'ADMIN', label: '관리자' },
 ];
 
 export default function ProfileUpdateForm({ closeModal, profileData }: Props) {
@@ -145,9 +146,14 @@ export default function ProfileUpdateForm({ closeModal, profileData }: Props) {
                             render={({ field }) => {
                                 return (
                                     <Select
+                                        isDisabled={field.value === 'ADMIN'}
                                         inputId={'jobSelectInput'}
                                         placeholder={'직업 선택'}
-                                        options={jobOptions}
+                                        options={
+                                            field.value === 'ADMIN'
+                                                ? jobOptions
+                                                : jobOptions.filter(jobOption => jobOption.value !== 'ADMIN')
+                                        }
                                         onChange={option => field.onChange(option.value)}
                                         onBlur={field.onBlur}
                                         defaultValue={jobOptions.find(option => option.value === field.value)}
