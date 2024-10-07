@@ -9,7 +9,7 @@ import PostContentField from '@/Components/PostInputFields/PostContentField.tsx'
 import VoteSection from '@/Pages/community/Components/Vote/VoteSection.tsx';
 import PostHashTagField from '@/Components/PostInputFields/PostHashTagField.tsx';
 import FormOptionManager from '@/Pages/community/Components/FormOptionManager/FormOptionManager.tsx';
-import getSingleCommunityPostInfo from '@/Pages/community/Utils/getSingleCommunityPostInfo.ts';
+import fetchCommunityPostById from '@/Pages/community/Utils/fetchCommunityPostById.ts';
 import Swal from 'sweetalert2';
 import useHashtagField from '@/Hooks/PostInputFieldHooks/useHashtagField.ts';
 
@@ -33,7 +33,7 @@ export default function CommunityPostEditForm({ postId }: Props) {
 
     const { data: communityPostData } = useSuspenseQuery({
         queryKey: ['post', postId],
-        queryFn: getSingleCommunityPostInfo,
+        queryFn: fetchCommunityPostById,
         retryOnMount: true,
     });
 

@@ -5,7 +5,7 @@ import PostDetails from '@/Pages/community/[boardId]/Components/PostDetails.tsx'
 import PostInteraction from '@/Components/PostInfo/PostView/PostInteraction.tsx';
 import CommentWriteForm from '@/Components/PostInfo/Comment/CommentWriteForm.tsx';
 import CommentList from '@/Components/PostInfo/Comment/CommentList.tsx';
-import getSingleCommunityPostInfo from '@/Pages/community/Utils/getSingleCommunityPostInfo.ts';
+import fetchCommunityPostById from '@/Pages/community/Utils/fetchCommunityPostById.ts';
 import useLoggedInUserData from '@/Hooks/useLoggedInUserData.ts';
 
 export default function PostView() {
@@ -13,7 +13,7 @@ export default function PostView() {
 
     const { data } = useSuspenseQuery({
         queryKey: ['post', postId],
-        queryFn: getSingleCommunityPostInfo,
+        queryFn: fetchCommunityPostById,
     });
 
     const isLoggedIn = !!useLoggedInUserData();
