@@ -5,7 +5,7 @@ import PostDetails from '@/Pages/qnas/[boardId]/Components/PostDetails.tsx';
 import PostInteraction from '@/Components/PostInfo/PostView/PostInteraction.tsx';
 import CommentWriteForm from '@/Components/PostInfo/Comment/CommentWriteForm.tsx';
 import CommentList from '@/Components/PostInfo/Comment/CommentList.tsx';
-import getSingleQnAPostInfo from '@/Pages/qnas/Utils/getSingleQnAPostInfo.ts';
+import fetchQnAPostById from '@/Pages/qnas/Utils/fetchQnAPostById.ts';
 import useLoggedInUserData from '@/Hooks/useLoggedInUserData.ts';
 
 export default function PostView() {
@@ -13,7 +13,7 @@ export default function PostView() {
 
     const { data } = useSuspenseQuery({
         queryKey: ['post', postId],
-        queryFn: getSingleQnAPostInfo,
+        queryFn: fetchQnAPostById,
     });
 
     const isLoggedIn = !!useLoggedInUserData();

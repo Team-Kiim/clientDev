@@ -11,7 +11,7 @@ import WhiteboardSection from '@/Pages/qnas/Components/Whiteboard/WhiteboardSect
 import SkillCategorySection from '@/Pages/qnas/Components/SkillCategory/SkillCategorySection.tsx';
 import PostHashTagField from '@/Components/PostInputFields/PostHashTagField.tsx';
 import FormOptionManager from '@/Pages/qnas/Components/FormOptionManager/FormOptionManager.tsx';
-import getSingleQnAPostInfo from '@/Pages/qnas/Utils/getSingleQnAPostInfo.ts';
+import fetchQnAPostById from '@/Pages/qnas/Utils/fetchQnAPostById.ts';
 import Swal from 'sweetalert2';
 import 'react-toastify/dist/ReactToastify.css';
 import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
@@ -31,7 +31,7 @@ export default function QnAPostEditForm({ postId }: Props) {
 
     const { data: qnaPostData } = useSuspenseQuery({
         queryKey: ['post', postId],
-        queryFn: getSingleQnAPostInfo,
+        queryFn: fetchQnAPostById,
         retryOnMount: true,
         refetchOnMount: true,
     });
