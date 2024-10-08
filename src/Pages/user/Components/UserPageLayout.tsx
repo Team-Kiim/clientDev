@@ -7,16 +7,16 @@ import FollowToggleButton from '@/Pages/user/Components/FollowToggleButton.tsx';
 import EmployeeVerificationSection from '@/Pages/user/Components/EmployeeVerification/EmployeeVerificationSection.tsx';
 import SideNavbar from '@/Pages/user/Components/SideNavbar.tsx';
 import VisitorSideNavbar from '@/Pages/user/Components/VisitorSideNavbar.tsx';
-import getUserData from '@/Pages/user/Utils/getUserData.ts';
+import fetchUserData from '@/Pages/user/Utils/fetchUserData.ts';
 
 export default function UserPageLayout() {
     const { VITE_SERVER_URL } = import.meta.env;
 
-    const profileMemberId = useParams().profileMemberId ?? null;
+    const profileMemberId = useParams().profileMemberId;
 
     const { data, isLoading, isPending } = useQuery({
-        queryKey: ['user', profileMemberId],
-        queryFn: getUserData,
+        queryKey: profileMemberId ? ['user', profileMemberId] : ['user'],
+        queryFn: fetchUserData,
         throwOnError: true,
         gcTime: 0,
     });
