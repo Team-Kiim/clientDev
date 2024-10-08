@@ -2,10 +2,10 @@ import { Link, NavLink } from 'react-router-dom';
 import SearchPostInput from '@/Components/PostSearch/SearchPostInput.tsx';
 import LogOutSection from '@/Components/Auth/LogOutSection.tsx';
 import LogInSection from '@/Components/Auth/LogInSection.tsx';
-import useLoggedInUserData from '@/Hooks/useLoggedInUserData.ts';
+import useAuth from '@/Hooks/Auth/useAuth.tsx';
 
 export default function GlobalNavbar() {
-    const loggedInUserData = useLoggedInUserData();
+    const { user } = useAuth();
 
     return (
         <nav className={'flex w-full items-center justify-between'}>
@@ -38,7 +38,7 @@ export default function GlobalNavbar() {
                 </div>
                 <SearchPostInput />
             </div>
-            {!!loggedInUserData ? <LogInSection /> : <LogOutSection />}
+            {user ? <LogInSection /> : <LogOutSection />}
         </nav>
     );
 }

@@ -6,7 +6,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { BookmarkIcon } from '@heroicons/react/24/outline';
 import { BookmarkIcon as BookmarkSolidIcon } from '@heroicons/react/24/solid';
 import useRequireLoginAlert from '@/Hooks/Alert/useRequireLoginAlert.tsx';
-import useLoggedInUserData from '@/Hooks/useLoggedInUserData.ts';
+import useAuth from '@/Hooks/Auth/useAuth.tsx';
 import type { PostInfo } from '@/Types/PostInfo.ts';
 
 interface Props {
@@ -21,7 +21,7 @@ export default function PostBookmarkButton({ memberBookmarked, bookmarkCount, po
     const [previousBookmarkState, setPreviousBookmarkState] = useState(memberBookmarked);
     const [previousBookmarkCount, setPreviousBookmarkCount] = useState(bookmarkCount);
 
-    const isLoggedIn = !!useLoggedInUserData();
+    const { user } = useAuth();
 
     const { showRequireLoginAlert } = useRequireLoginAlert({
         message: '로그인 후 게시글을 북마크할 수 있어요.',
@@ -57,7 +57,7 @@ export default function PostBookmarkButton({ memberBookmarked, bookmarkCount, po
     const debouncedMutate = useCallback(debounce(mutate, 250), []);
 
     const handleBookmarkButtonClick = async () => {
-        if (!isLoggedIn) {
+        if (!user) {
             showRequireLoginAlert();
             return;
         }

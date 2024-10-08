@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import GlobalNavbar from '@/Components/GNB/GlobalNavbar.tsx';
 import MyChatSection from '@/Components/MyChat/MyChatSection.tsx';
-import useLoggedInUserData from '@/Hooks/useLoggedInUserData.ts';
+import useAuth from '@/Hooks/Auth/useAuth.tsx';
 import AppErrorBoundary from '@/Components/Error/AppErrorBoundary.tsx';
 
 const shouldHideGNB = (pathname: string): boolean => {
@@ -24,7 +24,7 @@ const shouldHideGNB = (pathname: string): boolean => {
 
 export default function Layout() {
     const { pathname, search } = useLocation();
-    const isLoggedIn = !!useLoggedInUserData();
+    const { user } = useAuth();
 
     const [isScrolled, setIsScrolled] = useState(false);
 
@@ -62,7 +62,7 @@ export default function Layout() {
                     <Outlet />
                 </AppErrorBoundary>
             </div>
-            {isLoggedIn && <MyChatSection />}
+            {user && <MyChatSection />}
         </div>
     );
 }

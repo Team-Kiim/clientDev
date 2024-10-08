@@ -6,7 +6,7 @@ import PostInteraction from '@/Components/PostInfo/PostView/PostInteraction.tsx'
 import CommentWriteForm from '@/Components/PostInfo/Comment/CommentWriteForm.tsx';
 import CommentList from '@/Components/PostInfo/Comment/CommentList.tsx';
 import fetchQnAPostById from '@/Pages/qnas/Utils/fetchQnAPostById.ts';
-import useLoggedInUserData from '@/Hooks/useLoggedInUserData.ts';
+import useAuth from '@/Hooks/Auth/useAuth.tsx';
 
 export default function PostView() {
     const postId = useParams().postId;
@@ -16,7 +16,7 @@ export default function PostView() {
         queryFn: fetchQnAPostById,
     });
 
-    const isLoggedIn = !!useLoggedInUserData();
+    const { user } = useAuth();
 
     return (
         <div className={'col-span-7'}>
@@ -26,7 +26,7 @@ export default function PostView() {
                 postId={postId}
             />
             <div className={'my-5 flex flex-col gap-y-5'}>
-                {isLoggedIn && <CommentWriteForm postId={postId} />}
+                {user && <CommentWriteForm postId={postId} />}
                 <CommentList postId={postId} commentInfoDtoList={data.commentInfoDtoList} />
             </div>
         </div>

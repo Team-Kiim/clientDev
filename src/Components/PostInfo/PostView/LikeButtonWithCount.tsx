@@ -4,7 +4,7 @@ import { useCallback, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { HeartIcon } from '@heroicons/react/24/outline';
 import useRequireLoginAlert from '@/Hooks/Alert/useRequireLoginAlert.tsx';
-import useLoggedInUserData from '@/Hooks/useLoggedInUserData.ts';
+import useAuth from '@/Hooks/Auth/useAuth.tsx';
 import formatNumber from '@/Utils/formatNumber.ts';
 import type { PostInfo } from '@/Types/PostInfo.ts';
 
@@ -17,7 +17,7 @@ interface Props {
 export default function LikeButtonWithCount({ memberLiked, likeCount, postId }: Props) {
     const queryClient = useQueryClient();
 
-    const isLoggedIn = !!useLoggedInUserData();
+    const { user } = useAuth();
 
     const { showRequireLoginAlert } = useRequireLoginAlert({
         message: '로그인 후 게시글에 좋아요할 수 있어요.',
@@ -59,7 +59,7 @@ export default function LikeButtonWithCount({ memberLiked, likeCount, postId }: 
     const debouncedMutate = useCallback(debounce(mutate, 250), []);
 
     const handleLikeButtonClick = async () => {
-        if (!isLoggedIn) {
+        if (!user) {
             showRequireLoginAlert();
             return;
         }
