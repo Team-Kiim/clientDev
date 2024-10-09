@@ -1,4 +1,4 @@
-import { Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { HiCheck } from 'react-icons/hi';
 import { MdCorporateFare, MdOutlineEmail } from 'react-icons/md';
@@ -10,7 +10,7 @@ import VisitorSideNavbar from '@/Pages/user/Components/VisitorSideNavbar.tsx';
 import fetchUserData from '@/Pages/user/Utils/fetchUserData.ts';
 
 export default function UserPageLayout() {
-    const { VITE_SERVER_URL } = import.meta.env;
+    const { VITE_ADMIN_SECRET_KEY, VITE_SERVER_URL } = import.meta.env;
 
     const profileMemberId = useParams().profileMemberId;
 
@@ -44,15 +44,28 @@ export default function UserPageLayout() {
                         </div>
                     )}
                     <div className={'flex h-[144px] flex-1 flex-col justify-center gap-y-1'}>
-                        <div className={'flex items-center gap-x-2'}>
-                            <span className={'text-3xl font-extrabold'}>{data.nickname}</span>
-                            {data.corpVerified && (
-                                <div
-                                    className={
-                                        'flex size-6 items-center justify-center rounded-full bg-gradient-to-r from-plump-purple-600 to-rose-500'
-                                    }
-                                >
-                                    <HiCheck className={'size-5 text-white'} />
+                        <div className={'flex items-center justify-between'}>
+                            <div className={'flex items-center gap-x-2'}>
+                                <span className={'text-3xl font-extrabold'}>{data.nickname}</span>
+                                {data.corpVerified && (
+                                    <div
+                                        className={
+                                            'flex size-6 items-center justify-center rounded-full bg-gradient-to-r from-plump-purple-600 to-rose-500'
+                                        }
+                                    >
+                                        <HiCheck className={'size-5 text-white'} />
+                                    </div>
+                                )}
+                            </div>
+                            {data.memberRole === 'ADMIN' && (
+                                <div className={'px-1'}>
+                                    <Link
+                                        className={'text-[0.85rem] text-slate-600 underline underline-offset-4'}
+                                        to={`/admin-${VITE_ADMIN_SECRET_KEY}`}
+                                        target={'_blank'}
+                                    >
+                                        관리자 페이지
+                                    </Link>
                                 </div>
                             )}
                         </div>
