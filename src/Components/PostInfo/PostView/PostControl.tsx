@@ -1,9 +1,8 @@
-import axios from 'axios';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import { useNavigate } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
 import { HiOutlineExclamationCircle } from 'react-icons/hi2';
+import useDeletePostMutation from '@/Hooks/PostMutation/useDeletePostMutation.tsx';
 import ALERT_STYLE from '@/Constants/alertStyle.ts';
 
 interface Props {
@@ -14,34 +13,7 @@ interface Props {
 export default function PostControl({ postId, postType }: Props) {
     const navigate = useNavigate();
 
-    const { mutate: deleteMutate } = useMutation({
-        mutationFn: () => {
-            return axios.delete(`/api/post/delete/${postId}`);
-        },
-
-        onSuccess: async () => {
-            await Swal.fire({
-                icon: 'success',
-                text: '성공적으로 삭제하였습니다.',
-                confirmButtonText: '확인',
-                customClass: {
-                    confirmButton: 'text-white font-bold bg-violet-600',
-                },
-            });
-            navigate(`/${postType}`);
-        },
-
-        onError: async () => {
-            await Swal.fire({
-                icon: 'error',
-                text: '게시글을 삭제할 수 없습니다. 잠시 후 다시 시도해주세요.',
-                customClass: {
-                    confirmButton: 'text-white font-bold bg-violet-600',
-                },
-            });
-            return;
-        },
-    });
+    const { deletePost } = useDeletePostMutation();
 
     const handleDeletePostButtonClick = () => {
         withReactContent(Swal)
@@ -60,7 +32,7 @@ export default function PostControl({ postId, postType }: Props) {
             })
             .then(result => {
                 if (result.isConfirmed) {
-                    deleteMutate();
+                    deletePost(postId);
                 }
             });
     };
