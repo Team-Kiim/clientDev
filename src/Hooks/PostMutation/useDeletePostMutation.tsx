@@ -36,7 +36,7 @@ const useDeletePostMutation = () => {
             await withReactContent(Swal).fire({
                 title: (
                     <div className={'flex items-center gap-x-2'}>
-                        <HiOutlineXCircle className={'size-6 text-red-500'} />
+                        <HiOutlineXCircle className={'size-6 text-rose-500'} />
                         <h1 className={'font-bold'}>게시글 삭제 실패</h1>
                     </div>
                 ),

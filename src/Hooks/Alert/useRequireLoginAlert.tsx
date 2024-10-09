@@ -18,7 +18,7 @@ const useRequireLoginAlert = ({ message, from }: { message: string; from: string
                 ),
                 title: (
                     <div className={'flex items-center gap-x-2'}>
-                        <HiOutlineExclamationCircle className={'size-6 text-rose-500'} />
+                        <HiOutlineExclamationCircle className={'size-6 text-amber-500'} />
                         <h1 className={'font-bold'}>로그인 필요</h1>
                     </div>
                 ),
