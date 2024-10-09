@@ -1,7 +1,10 @@
 import axios from 'axios';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
-import Swal from 'sweetalert2';
+import { HiOutlineExclamationCircle } from 'react-icons/hi2';
+import ALERT_STYLE from '@/Constants/alertStyle.ts';
 
 interface Props {
     postId: number;
@@ -41,23 +44,25 @@ export default function PostControl({ postId, postType }: Props) {
     });
 
     const handleDeletePostButtonClick = () => {
-        Swal.fire({
-            icon: 'warning',
-            text: '정말로 게시글을 삭제하시겠습니까?',
-            showCancelButton: true,
-            confirmButtonText: '삭제',
-            cancelButtonText: '취소',
-            customClass: {
-                cancelButton: 'text-black font-bold bg-slate-100 rounded-xl text-[0.9rem]',
-                confirmButton: 'font-bold bg-plump-purple-600 rounded-xl text-[0.9rem]',
-                popup: 'rounded-[2rem]',
-                htmlContainer: '!text-slate-500',
-            },
-        }).then(result => {
-            if (result.isConfirmed) {
-                deleteMutate();
-            }
-        });
+        withReactContent(Swal)
+            .fire({
+                title: (
+                    <div className={'flex items-center gap-x-2'}>
+                        <HiOutlineExclamationCircle className={'size-6 text-amber-500'} />
+                        <h1 className={'font-bold'}>게시글 삭제</h1>
+                    </div>
+                ),
+                html: <p className={'text-sm text-slate-500'}>정말로 게시글을 삭제하시겠습니까?</p>,
+                showCancelButton: true,
+                confirmButtonText: '삭제',
+                cancelButtonText: '취소',
+                customClass: ALERT_STYLE,
+            })
+            .then(result => {
+                if (result.isConfirmed) {
+                    deleteMutate();
+                }
+            });
     };
 
     return (
