@@ -1,5 +1,7 @@
 import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import { useState } from 'react';
+import { HiOutlineExclamationCircle } from 'react-icons/hi2';
 import CommentListItem from '@/Components/PostInfo/Comment/CommentListItem.tsx';
 import { useDeleteComment } from '@/Components/PostInfo/Comment/Hooks/useDeleteComment.tsx';
 import type { CommentInfo } from '@/Types/PostInfo.ts';
@@ -40,6 +42,7 @@ import 'prismjs/components/prism-wasm';
 import 'prismjs/components/prism-xml-doc';
 import 'prismjs/components/prism-yaml';
 import 'react-toastify/dist/ReactToastify.css';
+import ALERT_STYLE from '@/Constants/alertStyle.ts';
 
 interface Props {
     postId: string;
@@ -67,23 +70,25 @@ export default function CommentList({ postId, commentInfoDtoList }: Props) {
     const { mutate } = useDeleteComment(postId);
 
     const handleCommentDeleteButtonClick = async (commentId: number) => {
-        Swal.fire({
-            icon: 'warning',
-            text: '정말로 댓글을 삭제하시겠습니까?',
-            showCancelButton: true,
-            confirmButtonText: '확인',
-            cancelButtonText: '취소',
-            customClass: {
-                cancelButton: 'text-black font-bold bg-slate-100 rounded-xl text-[0.9rem]',
-                confirmButton: 'font-bold bg-plump-purple-600 rounded-xl text-[0.9rem]',
-                popup: 'rounded-[2rem]',
-                htmlContainer: '!text-slate-500',
-            },
-        }).then(result => {
-            if (result.isConfirmed) {
-                mutate(commentId);
-            }
-        });
+        withReactContent(Swal)
+            .fire({
+                title: (
+                    <div className={'flex items-center gap-x-2'}>
+                        <HiOutlineExclamationCircle className={'size-6 text-amber-500'} />
+                        <h1 className={'font-bold'}>댓글 삭제</h1>
+                    </div>
+                ),
+                html: <p className={'text-sm text-slate-500'}>정말로 댓글을 삭제하시겠습니까?</p>,
+                showCancelButton: true,
+                confirmButtonText: '확인',
+                cancelButtonText: '취소',
+                customClass: ALERT_STYLE,
+            })
+            .then(result => {
+                if (result.isConfirmed) {
+                    mutate(commentId);
+                }
+            });
     };
 
     return (
