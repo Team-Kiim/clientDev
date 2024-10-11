@@ -1,11 +1,10 @@
-import axios from 'axios';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm, FormProvider } from 'react-hook-form';
 import EmailVerificationInputs from '@/Pages/sign_up/Component/EmailVerificationInputs.tsx';
 import PasswordInputs from '@/Pages/sign_up/Component/PasswordInputs.tsx';
 import NicknameInput from '@/Pages/sign_up/Component/NicknameInput.tsx';
 import JobSelectInput from '@/Pages/sign_up/Component/JobSelectInput.tsx';
+import useAuth from '@/Hooks/Auth/useAuth.tsx';
 
 interface FormData {
     email: string;
@@ -19,7 +18,7 @@ interface FormData {
 export default function SignUpForm() {
     const [isEmailVerified, setIsEmailVerified] = useState(false);
 
-    const navigate = useNavigate();
+    const { signUp } = useAuth();
 
     const formMethods = useForm<FormData>({
         mode: 'onBlur',
@@ -47,19 +46,12 @@ export default function SignUpForm() {
         const nickname = data.nickname.trim();
         const job = data.job;
 
-        try {
-            const response = await axios.post('/api/auth/signup', {
-                email,
-                password,
-                nickname,
-                memberRole: job,
-            });
-            window.alert(response.data);
-            navigate('/sign_in', { replace: true });
-        } catch (error) {
-            //TODO
-            // 에러처리
-        }
+        signUp({
+            email,
+            password,
+            nickname,
+            job,
+        });
     };
 
     return (
