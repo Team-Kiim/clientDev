@@ -1,6 +1,4 @@
-import axios from 'axios';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import {
     HiOutlineEye,
@@ -9,6 +7,7 @@ import {
     HiOutlineLockClosed,
     HiOutlineExclamationCircle,
 } from 'react-icons/hi2';
+import useAuth from '@/Hooks/Auth/useAuth.tsx';
 
 interface FormData {
     email: string;
@@ -16,7 +15,7 @@ interface FormData {
 }
 
 export default function SignInForm() {
-    const navigate = useNavigate();
+    const { signIn } = useAuth();
 
     const {
         handleSubmit,
@@ -36,16 +35,7 @@ export default function SignInForm() {
         const email = data.email.replace(/\s/gi, '');
         const password = data.password.replace(/\s/gi, '');
 
-        try {
-            await axios.post('/api/auth/login', {
-                email,
-                password,
-            });
-            navigate('/');
-        } catch (error) {
-            //TODO
-            // 에러 처리
-        }
+        signIn({ email, password });
     };
 
     return (
