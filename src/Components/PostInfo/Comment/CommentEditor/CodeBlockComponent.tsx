@@ -7,7 +7,6 @@ export default function CodeBlockComponent({
     updateAttributes,
     extension,
 }) {
-    console.log(defaultLanguage);
     return (
         <NodeViewWrapper className={'relative'}>
             <select
