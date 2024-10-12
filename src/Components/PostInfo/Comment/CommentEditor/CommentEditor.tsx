@@ -10,7 +10,6 @@ import StarterKit from '@tiptap/starter-kit';
 import { Placeholder } from '@tiptap/extension-placeholder';
 import CommentEditorToolbar from '@/Components/PostInfo/Comment/CommentEditor/CommentEditorToolbar.tsx';
 import CodeBlockComponent from '@/Components/PostInfo/Comment/CommentEditor/CodeBlockComponent.tsx';
-import 'highlight.js/styles/atom-one-dark.css';
 
 interface Props {
     submitCount?: number;

@@ -23,7 +23,7 @@ export default function CodeBlockComponent({
                     </option>
                 ))}
             </select>
-            <pre className={'!bg-neutral-800 py-8'}>
+            <pre className={'!bg-[#24273a] py-8'}>
                 <NodeViewContent as='code' className={'!whitespace-pre'} />
             </pre>
         </NodeViewWrapper>
