@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import PostListItem from '@/Components/Post/PostListItem.tsx';
+import NoPostMessage from '@/Components/Post/NoPostMessage.tsx';
 import fetchCommunityPostList from '@/Pages/community/Utils/fetchCommunityPostList.ts';
 import getCurrentPostSortFilter from '@/Utils/getCurrentPostSortFilter.ts';
 
@@ -26,7 +27,7 @@ export default function CommunityPostList() {
     return (
         <>
             {communityPostList.length === 0 ? (
-                <p>게시글 없음.</p>
+                <NoPostMessage />
             ) : (
                 <InfiniteScroll
                     next={fetchNextPage}
