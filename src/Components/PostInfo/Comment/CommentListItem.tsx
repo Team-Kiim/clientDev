@@ -88,7 +88,9 @@ export default function CommentListItem({
                         />
                     ) : (
                         <div
-                            className={'prose prose-sm max-w-full text-[0.87rem] text-black [&_code]:text-[0.87rem]'}
+                            className={
+                                'prose prose-sm max-w-full text-[0.87rem] text-black [&_code]:text-[0.87rem] [&_pre]:bg-[#24273a]'
+                            }
                             dangerouslySetInnerHTML={{ __html: dompurify.sanitize(commentInfo.content) }}
                         />
                     )}

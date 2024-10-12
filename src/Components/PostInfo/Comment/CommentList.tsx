@@ -5,7 +5,6 @@ import { HiOutlineExclamationCircle } from 'react-icons/hi2';
 import CommentListItem from '@/Components/PostInfo/Comment/CommentListItem.tsx';
 import { useDeleteComment } from '@/Components/PostInfo/Comment/Hooks/useDeleteComment.tsx';
 import type { CommentInfo } from '@/Types/PostInfo.ts';
-import 'prism-themes/themes/prism-one-dark.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import 'prismjs/components/prism-arduino';
