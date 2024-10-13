@@ -10,7 +10,7 @@ export default function CodeBlockComponent({
     return (
         <NodeViewWrapper className={'relative'}>
             <select
-                className={'select select-sm absolute right-0 top-0 bg-neutral-800 text-white focus:outline-none'}
+                className={'select select-sm absolute right-0 top-0 bg-[#24273a] text-white focus:outline-none'}
                 contentEditable={false}
                 defaultValue={defaultLanguage}
                 onChange={event => updateAttributes({ language: event.target.value })}
