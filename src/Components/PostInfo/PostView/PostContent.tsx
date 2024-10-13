@@ -4,7 +4,6 @@ import Prism from 'prismjs';
 import { useEffect } from 'react';
 import WhiteboardViewer from '@/Components/PostInfo/PostView/WhiteboardViewer.tsx';
 import checkIpAddress from '@/Utils/checkIpAddress.ts';
-import 'prism-themes/themes/prism-one-dark.css';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import 'prismjs/components/prism-c';
@@ -93,7 +92,7 @@ export default function PostContent({ bodyContent, visualData }: Props) {
         <div className={'flex w-full flex-col gap-y-5'}>
             <div
                 className={
-                    'prose prose-sm min-h-56 max-w-full !text-[0.9rem] text-[#020617] prose-strong:text-inherit [&_code]:bg-neutral-800 [&_code]:text-[0.9rem] [&_pre]:bg-neutral-800'
+                    'prose prose-sm min-h-56 max-w-full !text-[0.9rem] text-[#020617] prose-strong:text-inherit [&_code]:bg-[#24273a] [&_code]:text-[0.9rem] [&_pre]:bg-[#24273a]'
                 }
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
             />
