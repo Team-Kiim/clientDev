@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 import { useController, useFormContext } from 'react-hook-form';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import { dracula } from 'react-syntax-highlighter/dist/cjs/styles/prism';
 
 interface FormData {
     language: string;
@@ -31,12 +31,12 @@ export default function SourceCodeField() {
             </span>
             <div
                 className={
-                    'relative flex h-[35rem] w-full flex-col gap-y-2 overflow-x-auto overflow-y-auto rounded-lg bg-[#282c34]'
+                    'relative flex h-[35rem] w-full flex-col gap-y-2 overflow-x-auto overflow-y-auto rounded-lg bg-[#24273a]'
                 }
             >
                 <div
                     className={
-                        'sticky top-0 flex w-full justify-end gap-x-3 bg-[#282c34]/40 px-4 py-2.5 backdrop-blur-md'
+                        'sticky top-0 flex w-full justify-end gap-x-3 bg-[#24273a]/40 px-4 py-2.5 backdrop-blur-md'
                     }
                 >
                     <button
@@ -58,20 +58,26 @@ export default function SourceCodeField() {
                         미리보기
                     </button>
                 </div>
-                <div className={'shrink-0 flex-grow basis-0 px-3'}>
+                <div className={'min-h-0 flex-1 overflow-x-auto overflow-y-auto px-3'}>
                     {isPreviewMode ? (
                         <SyntaxHighlighter
                             language={currentLanguage}
-                            style={oneDark}
+                            style={dracula}
                             showLineNumbers={true}
-                            customStyle={{ padding: 0 }}
+                            customStyle={{
+                                padding: 0,
+                                backgroundColor: '#24273a',
+                                height: '100%',
+                                margin: 0,
+                                fontSize: '0.9rem',
+                            }}
                         >
                             {field.value}
                         </SyntaxHighlighter>
                     ) : (
                         <textarea
                             className={
-                                'h-full w-full resize-none overflow-x-auto overflow-y-auto bg-[#282c34] text-[0.9rem] text-white focus:outline-none'
+                                'h-full w-full resize-none overflow-x-auto overflow-y-auto bg-[#24273a] text-[0.9rem] text-white focus:outline-none'
                             }
                             value={field.value}
                             onBlur={field.onBlur}
