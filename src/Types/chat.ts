@@ -6,6 +6,5 @@ export type Chat = {
     content: string;
     messageType: 'ENTER' | 'EXIT' | 'IMAGE' | 'SOURCE_CODE' | 'TEXT';
     createdTime: number[] | string;
-    profileImagePath: string;
-    profileImageName: string;
+    profileImageUrl: string;
 };
