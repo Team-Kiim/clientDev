@@ -10,8 +10,7 @@ export type CommentInfo = {
     nickname: string;
     createdTime: number[];
     modifiedTime?: number[] | null;
-    profileImagePath?: string;
-    profileImageName?: string;
+    profileImageUrl: string;
     memberWritten: boolean;
     memberId: number;
 };
