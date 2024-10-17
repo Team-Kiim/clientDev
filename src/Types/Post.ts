@@ -2,10 +2,8 @@ export type Post = {
     id: number;
     title: string;
     nickname: string;
-    profileImageName: string;
-    profileImagePath: string;
-    imageName: string;
-    imagePath: string;
+    profileImageUrl: string;
+    contentImageUrl: string;
     bodyContent: string;
     viewCount: number;
     likeCount: number;
