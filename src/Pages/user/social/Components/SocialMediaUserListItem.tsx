@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function SocialMediaUserListItem({ socialMediaUser, onUnfollowButtonClick }: Props) {
-    const { email, nickname, profileImagePath, profileImageName, memberId, followedByLoginMember } = socialMediaUser;
+    const { email, nickname, profileImageUrl, memberId, followedByLoginMember } = socialMediaUser;
 
     const { VITE_SERVER_URL } = import.meta.env;
 
@@ -17,8 +17,8 @@ export default function SocialMediaUserListItem({ socialMediaUser, onUnfollowBut
             <div className={'avatar size-8'}>
                 <img
                     className={'size-8 rounded-full'}
-                    src={`${VITE_SERVER_URL}/image/${profileImagePath}/${profileImageName}`}
-                    alt={profileImageName}
+                    src={`${VITE_SERVER_URL}/${profileImageUrl}`}
+                    alt={`${nickname}'s profile image`}
                 />
             </div>
             <div className={'flex min-w-0 flex-1 flex-col gap-y-1'}>
