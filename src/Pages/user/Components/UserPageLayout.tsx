@@ -30,10 +30,7 @@ export default function UserPageLayout() {
             <div className={'w-[60rem]'}>
                 <div className={'flex gap-x-10 border-b border-gray-200 p-2 pb-6'}>
                     {data.isLoginMember ? (
-                        <EditableProfileImage
-                            profileImageName={data.profileImageName}
-                            profileImagePath={`${VITE_SERVER_URL}/image/${data.profileImagePath}/${data.profileImageName}`}
-                        />
+                        <EditableProfileImage profileImageSrc={data.profileImageSrc} />
                     ) : (
                         <div className={'w-[10rem]'}>
                             <img
