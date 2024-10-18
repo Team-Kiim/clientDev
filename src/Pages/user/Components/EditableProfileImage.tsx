@@ -7,11 +7,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
 
 interface Props {
-    profileImageName: string;
-    profileImagePath: string;
+    profileImageSrc: string;
 }
 
-export default function EditableProfileImage({ profileImageName, profileImagePath }: Props) {
+export default function EditableProfileImage({ profileImageSrc }: Props) {
     const [profileImagePathToChange, setProfileImagePathToChange] = useState('');
 
     const inputRef = useRef<HTMLInputElement>(null);
@@ -51,7 +50,7 @@ export default function EditableProfileImage({ profileImageName, profileImagePat
                 </p>,
                 TOAST_OPTIONS,
             );
-            setProfileImagePathToChange(profileImagePath);
+            setProfileImagePathToChange(profileImageSrc);
         },
     });
 
@@ -77,8 +76,8 @@ export default function EditableProfileImage({ profileImageName, profileImagePat
                 />
                 <img
                     className={'size-36 rounded-full object-cover'}
-                    src={profileImagePathToChange || profileImagePath}
-                    alt={profileImageName}
+                    src={profileImagePathToChange || profileImageSrc}
+                    alt={'profile image'}
                 />
                 <button
                     className={
