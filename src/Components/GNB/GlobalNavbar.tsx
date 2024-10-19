@@ -1,7 +1,7 @@
 import { Link, NavLink } from 'react-router-dom';
 import SearchPostInput from '@/Components/PostSearch/SearchPostInput.tsx';
 import LogOutSection from '@/Components/Auth/LogOutSection.tsx';
-import LogInSection from '@/Components/Auth/LogInSection.tsx';
+import LogInSection from '@/Components/GNB/LoginSection.tsx';
 import useAuth from '@/Hooks/Auth/useAuth.tsx';
 
 export default function GlobalNavbar() {
