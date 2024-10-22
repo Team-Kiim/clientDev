@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { HiCheck } from 'react-icons/hi';
 import { MdCorporateFare, MdOutlineEmail } from 'react-icons/md';
 import EditableProfileImage from '@/Pages/user/Components/EditableProfileImage.tsx';
-import FollowToggleButton from '@/Pages/user/Components/FollowToggleButton.tsx';
+import FollowStateToggleButton from '@/Pages/user/Components/FollowStateToggleButton.tsx';
 import EmployeeVerificationSection from '@/Pages/user/Components/EmployeeVerification/EmployeeVerificationSection.tsx';
 import SideNavbar from '@/Pages/user/Components/SideNavbar.tsx';
 import VisitorSideNavbar from '@/Pages/user/Components/VisitorSideNavbar.tsx';
@@ -86,9 +86,10 @@ export default function UserPageLayout() {
                                 )}
                             </div>
                             {!data.isLoginMember ? (
-                                <FollowToggleButton
+                                <FollowStateToggleButton
                                     profileMemberId={profileMemberId}
                                     isFollowingMember={data.isFollowingMember}
+                                    userNickname={data.nickname}
                                 />
                             ) : (
                                 <EmployeeVerificationSection />
