@@ -10,39 +10,28 @@ interface Props {
 export default function UserActivityPostListItem({ post, postType }: Props) {
     const { VITE_SERVER_URL } = import.meta.env;
 
-    const {
-        id,
-        title,
-        profileImagePath,
-        profileImageName,
-        imagePath,
-        imageName,
-        bodyContent,
-        nickname,
-        viewCount,
-        likeCount,
-        createdTime,
-    } = post;
+    const { id, title, profileImageUrl, contentImageUrl, bodyContent, nickname, viewCount, likeCount, createdTime } =
+        post;
 
     return (
         <li className={'h-72 rounded-3xl border border-slate-200 transition-all hover:-translate-y-2'}>
             <Link to={`/${postType}/${id}`}>
                 <div className={'flex h-full w-full flex-col gap-y-2'}>
-                    {imagePath !== null && (
+                    {contentImageUrl !== null && (
                         <div className={'w-full'}>
                             <img
                                 className={'h-[8.5rem] w-full rounded-t-[calc(1.5rem-1px)] object-cover'}
-                                src={`${VITE_SERVER_URL}/image/${imagePath}/${imageName}`}
-                                alt={imageName}
+                                src={`${VITE_SERVER_URL}/${contentImageUrl}`}
+                                alt={`post ${id} - image`}
                             />
                         </div>
                     )}
-                    <div className={`flex w-full items-center gap-x-2 px-2 ${imagePath === null ? 'mt-2' : ''}`}>
+                    <div className={`flex w-full items-center gap-x-2 px-2 ${contentImageUrl === null ? 'mt-2' : ''}`}>
                         <div className={'avatar size-6'}>
                             <img
                                 className={'rounded-full'}
-                                src={`${VITE_SERVER_URL}/image/${profileImagePath}/${profileImageName}`}
-                                alt={profileImageName}
+                                src={`${VITE_SERVER_URL}/${profileImageUrl}`}
+                                alt={`${nickname}'s profile image`}
                             />
                         </div>
                         <div className={'flex min-w-0 flex-1 flex-col'}>
@@ -57,7 +46,7 @@ export default function UserActivityPostListItem({ post, postType }: Props) {
                     <h2 className={'line-clamp-1 px-2 text-[0.9rem] font-bold'}>{title}</h2>
                     <div className={'flex-1 px-2'}>
                         <p
-                            className={`${imagePath === null ? 'line-clamp-4' : 'line-clamp-2'} text-[0.75rem] leading-relaxed text-slate-500`}
+                            className={`${contentImageUrl === null ? 'line-clamp-4' : 'line-clamp-2'} text-[0.75rem] leading-relaxed text-slate-500`}
                         >
                             {bodyContent.replace(/<[^>]+>/g, '')}
                         </p>
