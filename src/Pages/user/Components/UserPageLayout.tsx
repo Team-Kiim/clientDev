@@ -46,11 +46,16 @@ export default function UserPageLayout() {
                                 <span className={'text-3xl font-extrabold'}>{data.nickname}</span>
                                 {data.corpVerified && (
                                     <div
-                                        className={
-                                            'flex size-6 items-center justify-center rounded-full bg-gradient-to-r from-plump-purple-600 to-rose-500'
-                                        }
+                                        className={'tooltip tooltip-right flex items-center before:text-[0.85rem]'}
+                                        data-tip={'현직자 인증 완료'}
                                     >
-                                        <HiCheck className={'size-5 text-white'} />
+                                        <div
+                                            className={
+                                                'flex size-6 items-center justify-center rounded-full bg-gradient-to-r from-plump-purple-600 to-plump-purple-400'
+                                            }
+                                        >
+                                            <HiCheck className={'size-5 text-white'} />
+                                        </div>
                                     </div>
                                 )}
                             </div>
