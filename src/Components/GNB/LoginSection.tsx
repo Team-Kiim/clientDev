@@ -8,13 +8,11 @@ import useAuth from '@/Hooks/Auth/useAuth.tsx';
 import { useEffect } from 'react';
 
 export default function LoginSection() {
-    const { VITE_SERVER_URL } = import.meta.env;
-
     const { pathname } = useLocation();
 
     const { user } = useAuth();
 
-    const { profileImageSrc } = user;
+    const { profileImageUrl } = user;
 
     const {
         isDropdownOpen: isWritePostDropdownOpen,
@@ -49,7 +47,7 @@ export default function LoginSection() {
                 >
                     <div className={'avatar flex items-center'}>
                         <div className={'size-7 rounded-full'}>
-                            <img src={`${VITE_SERVER_URL}/${profileImageSrc}`} alt={'user profile image'} />
+                            <img src={`https://${profileImageUrl}`} alt={'user profile image'} />
                         </div>
                     </div>
                 </button>
