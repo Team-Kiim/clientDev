@@ -10,7 +10,7 @@ import VisitorSideNavbar from '@/Pages/user/Components/VisitorSideNavbar.tsx';
 import fetchUserData from '@/Pages/user/Utils/fetchUserData.ts';
 
 export default function UserPageLayout() {
-    const { VITE_ADMIN_SECRET_KEY, VITE_SERVER_URL } = import.meta.env;
+    const { VITE_ADMIN_SECRET_KEY } = import.meta.env;
 
     const profileMemberId = useParams().profileMemberId;
 
@@ -30,12 +30,12 @@ export default function UserPageLayout() {
             <div className={'w-[60rem]'}>
                 <div className={'flex gap-x-10 border-b border-gray-200 p-2 pb-6'}>
                     {data.isLoginMember ? (
-                        <EditableProfileImage profileImageSrc={data.profileImageSrc} />
+                        <EditableProfileImage profileImageUrl={data.profileImageUrl} />
                     ) : (
                         <div className={'w-[10rem]'}>
                             <img
                                 className={'size-36 rounded-full object-cover'}
-                                src={`${VITE_SERVER_URL}/${data.profileImageSrc}`}
+                                src={`https://${data.profileImageUrl}`}
                                 alt={'user profile image'}
                             />
                         </div>
