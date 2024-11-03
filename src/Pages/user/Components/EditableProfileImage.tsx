@@ -7,10 +7,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
 
 interface Props {
-    profileImageSrc: string;
+    profileImageUrl: string;
 }
 
-export default function EditableProfileImage({ profileImageSrc }: Props) {
+export default function EditableProfileImage({ profileImageUrl }: Props) {
     const [profileImagePathToChange, setProfileImagePathToChange] = useState('');
 
     const inputRef = useRef<HTMLInputElement>(null);
@@ -24,7 +24,7 @@ export default function EditableProfileImage({ profileImageSrc }: Props) {
                 type: 'application/octet-stream',
             });
             return axios.post(
-                '/api/member/enroll-profile-image',
+                '/api/member/enroll-profile-image/s3',
                 {
                     file: fileBlob,
                 },
@@ -50,7 +50,7 @@ export default function EditableProfileImage({ profileImageSrc }: Props) {
                 </p>,
                 TOAST_OPTIONS,
             );
-            setProfileImagePathToChange(profileImageSrc);
+            setProfileImagePathToChange(profileImageUrl);
         },
     });
 
@@ -76,7 +76,7 @@ export default function EditableProfileImage({ profileImageSrc }: Props) {
                 />
                 <img
                     className={'size-36 rounded-full object-cover'}
-                    src={profileImagePathToChange || profileImageSrc}
+                    src={profileImagePathToChange || `https://${profileImageUrl}`}
                     alt={'profile image'}
                 />
                 <button
