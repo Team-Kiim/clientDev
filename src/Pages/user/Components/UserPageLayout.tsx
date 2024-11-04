@@ -35,7 +35,7 @@ export default function UserPageLayout() {
                         <div className={'w-[10rem]'}>
                             <img
                                 className={'size-36 rounded-full object-cover'}
-                                src={`https://${data.profileImageUrl}`}
+                                src={data.profileImageUrl}
                                 alt={'user profile image'}
                             />
                         </div>
