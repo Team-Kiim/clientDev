@@ -8,8 +8,6 @@ export default function PublicRoute() {
 
     const { user } = useAuth();
 
-    console.log(user);
-
     if (pathSegment === 'sign_in' || pathSegment === 'sign_up') {
         if (user === undefined) {
             return null;
