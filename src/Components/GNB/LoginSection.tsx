@@ -47,7 +47,7 @@ export default function LoginSection() {
                 >
                     <div className={'avatar flex items-center'}>
                         <div className={'size-7 rounded-full'}>
-                            <img src={`https://${profileImageUrl}`} alt={'user profile image'} />
+                            <img src={profileImageUrl} alt={'user profile image'} />
                         </div>
                     </div>
                 </button>
