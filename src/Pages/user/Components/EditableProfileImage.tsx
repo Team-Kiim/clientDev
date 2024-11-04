@@ -50,7 +50,7 @@ export default function EditableProfileImage({ profileImageUrl }: Props) {
                 </p>,
                 TOAST_OPTIONS,
             );
-            setProfileImagePathToChange(profileImageUrl);
+            setProfileImagePathToChange('');
         },
     });
 
@@ -76,7 +76,7 @@ export default function EditableProfileImage({ profileImageUrl }: Props) {
                 />
                 <img
                     className={'size-36 rounded-full object-cover'}
-                    src={profileImagePathToChange || `https://${profileImageUrl}`}
+                    src={profileImagePathToChange || profileImageUrl}
                     alt={'profile image'}
                 />
                 <button
