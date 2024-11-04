@@ -1,5 +1,5 @@
 export type SocialMediaUser = {
-    memberId: number;
+    memberId: string;
     nickname: string;
     email: string;
     profileImageUrl: string;
