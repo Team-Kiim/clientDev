@@ -16,7 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
 
 interface Props {
-    postId: number;
+    postId: string;
 }
 
 interface FormData {
