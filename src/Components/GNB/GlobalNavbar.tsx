@@ -1,6 +1,6 @@
 import { Link, NavLink } from 'react-router-dom';
 import SearchPostInput from '@/Components/PostSearch/SearchPostInput.tsx';
-import LogOutSection from '@/Components/Auth/LogOutSection.tsx';
+import LogOutSection from '@/Components/GNB/LogOutSection.tsx';
 import LogInSection from '@/Components/GNB/LoginSection.tsx';
 import useAuth from '@/Hooks/Auth/useAuth.tsx';
 
