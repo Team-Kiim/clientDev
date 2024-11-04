@@ -72,8 +72,8 @@ const useAuth = () => {
         },
 
         onSuccess: () => {
-            queryClient.setQueryData(['user', 'loggedIn'], null);
             navigate('/', { replace: true });
+            queryClient.setQueryData(['user', 'loggedIn'], null);
         },
 
         onError: (error: AxiosError) => {
