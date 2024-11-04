@@ -39,7 +39,6 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <AppLayout />,
-        errorElement: <NotFoundErrorPage />,
         children: [
             {
                 element: <PublicRoute />,
@@ -132,6 +131,10 @@ const router = createBrowserRouter([
                         ],
                     },
                 ],
+            },
+            {
+                path: '*',
+                element: <NotFoundErrorPage />,
             },
         ],
     },
