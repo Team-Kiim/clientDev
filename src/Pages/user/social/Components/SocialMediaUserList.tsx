@@ -32,7 +32,7 @@ export default function SocialMediaUserList() {
         keyword: userNicknameToSearch,
     });
 
-    const handleUnFollowButtonClick = (memberId: number) => {
+    const handleUnFollowButtonClick = (memberId: string) => {
         unfollowMember(memberId);
     };
 
