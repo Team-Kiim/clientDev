@@ -10,14 +10,12 @@ interface Props {
 export default function SocialMediaUserListItem({ socialMediaUser, onUnfollowButtonClick }: Props) {
     const { email, nickname, profileImageUrl, memberId, followedByLoginMember } = socialMediaUser;
 
-    const { VITE_SERVER_URL } = import.meta.env;
-
     return (
         <li className={'flex gap-x-4 border-b border-slate-200 px-3.5 py-5 last:border-none'}>
             <div className={'avatar size-8'}>
                 <img
                     className={'size-8 rounded-full'}
-                    src={`${VITE_SERVER_URL}/${profileImageUrl}`}
+                    src={`https://${profileImageUrl}`}
                     alt={`${nickname}'s profile image`}
                 />
             </div>
