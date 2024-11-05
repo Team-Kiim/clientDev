@@ -4,7 +4,7 @@ import type { SocialMediaUser } from '@/Types/SocialMediaUser.ts';
 interface Props {
     loginMember?: boolean;
     socialMediaUser: SocialMediaUser;
-    onUnfollowButtonClick(memberId: number): void;
+    onUnfollowButtonClick(memberId: string): void;
 }
 
 export default function SocialMediaUserListItem({ socialMediaUser, onUnfollowButtonClick }: Props) {
