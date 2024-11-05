@@ -15,11 +15,11 @@ export const useUnfollowMember = ({
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn(memberId: number) {
+        mutationFn(memberId: string) {
             return axios.post(`/api/member-follow/${memberId}`);
         },
 
-        onMutate: async (memberId: number) => {
+        onMutate: async (memberId: string) => {
             await queryClient.cancelQueries({
                 queryKey: ['user', 'social'],
             });
