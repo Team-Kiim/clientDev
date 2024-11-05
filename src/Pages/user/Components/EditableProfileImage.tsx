@@ -20,16 +20,13 @@ export default function EditableProfileImage({ profileImageUrl }: Props) {
     const { mutate: changeProfileImageMutate } = useMutation({
         mutationFn: () => {
             const file = inputRef.current.files[0];
-            const fileBlob = new Blob([file], {
-                type: 'application/octet-stream',
+
+            const formData = new FormData();
+            formData.append('file', file);
+
+            return axios.post('/api/member/enroll-profile-image/s3', formData, {
+                headers: { 'Content-Type': 'multipart/form-data' },
             });
-            return axios.post(
-                '/api/member/enroll-profile-image/s3',
-                {
-                    file: fileBlob,
-                },
-                { headers: { 'Content-Type': 'multipart/form-data' } },
-            );
         },
         onSuccess: async () => {
             await queryClient
