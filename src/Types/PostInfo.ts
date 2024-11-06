@@ -39,8 +39,7 @@ export type PostInfo = {
     memberWritten: boolean;
     createdTime: number[];
     modifiedTime?: number[] | null;
-    profileImagePath?: string;
-    profileImageName?: string;
+    profileImageUrl: string;
     imageFileInfoDtoList: ImageInfo[] | null;
     commentInfoDtoList?: CommentInfo[];
     tagInfoDtoList: {
