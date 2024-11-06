@@ -15,4 +15,5 @@ export type User = {
     followedByLoginMember: boolean;
     corpName: string;
     corpVerified: boolean;
+    unreadNotificationCount: number;
 };
