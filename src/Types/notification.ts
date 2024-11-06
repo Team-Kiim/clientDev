@@ -9,7 +9,7 @@ export type Notification = {
     content: string;
     commentId: number | null;
     url: number;
-    notificationType: 'COMMENT' | 'POST' | 'FOLLOW';
+    notificationType: 'COMMENT' | 'POST' | 'FOLLOW' | 'CORP';
     createdTime: number[];
     read: boolean;
 };
