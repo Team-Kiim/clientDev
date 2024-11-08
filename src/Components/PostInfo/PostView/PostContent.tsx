@@ -69,7 +69,7 @@ export default function PostContent({ bodyContent, visualData }: Props) {
         <div className={'flex w-full flex-col gap-y-5'}>
             <div
                 className={
-                    'prose prose-sm min-h-56 max-w-full !text-[0.9rem] text-[#020617] prose-strong:text-inherit [&_code]:bg-[#24273a] [&_code]:text-[0.9rem] [&_pre]:bg-[#24273a]'
+                    'prose prose-sm min-h-56 max-w-full !text-[0.9rem] text-[#020617] prose-strong:text-inherit  [&_code]:text-[0.9rem] [&_pre]:bg-[#24273a]'
                 }
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
             />
