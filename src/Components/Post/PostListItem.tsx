@@ -8,8 +8,6 @@ interface Props {
 }
 
 export default function PostListItem({ post, postType }: Props) {
-    const { VITE_SERVER_URL } = import.meta.env;
-
     const { id, title, nickname, profileImageUrl, contentImageUrl, bodyContent, createdTime, likeCount, viewCount } =
         post;
 
@@ -21,18 +19,14 @@ export default function PostListItem({ post, postType }: Props) {
                         <div className={'w-full'}>
                             <img
                                 className={'h-40 w-full rounded-t-3xl object-cover'}
-                                src={`${VITE_SERVER_URL}/${contentImageUrl}`}
+                                src={contentImageUrl}
                                 alt={`post ${id} - image`}
                             />
                         </div>
                     )}
                     <div className={`flex w-full items-center gap-x-2 px-2 ${contentImageUrl === null ? 'mt-3' : ''}`}>
                         <div className={'avatar size-8'}>
-                            <img
-                                className={'rounded-full'}
-                                src={`${VITE_SERVER_URL}/${profileImageUrl}`}
-                                alt={`${nickname}'s profile image`}
-                            />
+                            <img className={'rounded-full'} src={profileImageUrl} alt={`${nickname}'s profile image`} />
                         </div>
                         <div className={'flex min-w-0 flex-1 flex-col'}>
                             <span className={'line-clamp-1 w-fit text-[0.8rem] font-bold text-neutral-800'}>
