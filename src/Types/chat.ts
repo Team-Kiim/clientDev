@@ -1,7 +1,7 @@
 export type Chat = {
     messageId: string;
     loginMember: boolean;
-    senderId: number;
+    senderId: string;
     senderNickname: string;
     content: string;
     messageType: 'ENTER' | 'EXIT' | 'IMAGE' | 'SOURCE_CODE' | 'TEXT';
