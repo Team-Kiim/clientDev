@@ -58,7 +58,7 @@ export default function Page() {
         <div className={'relative flex w-full min-w-[1500px] justify-center'}>
             <div className={'my-5 flex flex-col gap-y-5'}>
                 <h1 className={'mx-0.5 text-lg font-extrabold'}>커뮤니티 게시글 작성</h1>
-                <CommunityPostWriteForm postId={Number(postId ?? data)} />
+                <CommunityPostWriteForm postId={postId ?? data} />
             </div>
         </div>
     );
