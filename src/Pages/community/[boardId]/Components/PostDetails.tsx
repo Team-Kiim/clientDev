@@ -13,8 +13,7 @@ export default function PostDetails({
     id,
     title,
     nickname,
-    profileImagePath,
-    profileImageName,
+    profileImageUrl,
     bodyContent,
     viewCount,
     likeCount,
@@ -30,8 +29,7 @@ export default function PostDetails({
                 createdTime={createdTime}
                 title={title}
                 nickname={nickname}
-                profileImageName={profileImageName}
-                profileImagePath={profileImagePath}
+                profileImageUrl={profileImageUrl}
                 viewCount={viewCount}
                 likeCount={likeCount}
                 memberId={memberId}
