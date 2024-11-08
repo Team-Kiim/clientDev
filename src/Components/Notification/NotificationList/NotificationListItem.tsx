@@ -8,8 +8,8 @@ dayjs.extend(relativeTime);
 
 interface Props {
     notification: Notification;
-    onDeleteNotificationButtonClick(id: number): void;
-    onNotificationListItemClick(id: number, senderId: number, notification: Notification): void;
+    onDeleteNotificationButtonClick(id: string): void;
+    onNotificationListItemClick(id: string, senderId: string, notification: Notification): void;
 }
 
 export default function NotificationListItem({
