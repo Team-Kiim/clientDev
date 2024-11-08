@@ -33,7 +33,7 @@ export default function LoginSection() {
 
     return (
         <div className={'relative flex items-center gap-x-6 justify-self-end'}>
-            <NotificationSection />
+            <NotificationSection unreadNotificationCount={user.unreadNotificationCount} />
             <Link className={'rounded-full p-1 transition-all hover:bg-slate-100'} to={'/chats'}>
                 <HiOutlineChatBubbleOvalLeftEllipsis className={'size-7'} />
             </Link>
