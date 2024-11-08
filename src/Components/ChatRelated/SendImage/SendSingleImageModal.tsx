@@ -1,9 +1,13 @@
+import axios from 'axios';
 import { nanoid } from 'nanoid';
 import { ClipboardEventHandler, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import Modal from 'react-modal';
 import { GoImage, GoX } from 'react-icons/go';
 import UploadImageZone from '@/Components/ChatRelated/SendImage/SingleImageUploadZone.tsx';
 import UploadedImageViewer from '@/Components/ChatRelated/SendImage/UploadedSingleImageViewer.tsx';
+import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface ImageInfoToSend {
     id: string;
@@ -12,12 +16,18 @@ interface ImageInfoToSend {
 }
 
 interface Props {
+    chatRoomId: string;
     initialImageInfoToSend: ImageInfoToSend | null;
     isSendImageModalOpen: boolean;
     closeModal(): void;
 }
 
-export default function SendImageModal({ initialImageInfoToSend, isSendImageModalOpen, closeModal }: Props) {
+export default function SendImageModal({
+    chatRoomId,
+    initialImageInfoToSend,
+    isSendImageModalOpen,
+    closeModal,
+}: Props) {
     const [imageInfoToSend, setImageInfoToSend] = useState<ImageInfoToSend | null>(initialImageInfoToSend);
 
     const uploadImage = (imageInfo: ImageInfoToSend) => {
@@ -50,6 +60,41 @@ export default function SendImageModal({ initialImageInfoToSend, isSendImageModa
 
     const handleDeleteImageButtonClick = () => {
         setImageInfoToSend(null);
+    };
+
+    const handleSendImageButtonClick = () => {
+        if (!imageInfoToSend) {
+            return;
+        }
+
+        const formData = new FormData();
+
+        const chatRoomIdBlob = new Blob([chatRoomId], {
+            type: 'application/json',
+        });
+
+        formData.append('file', imageInfoToSend.imageFile);
+        formData.append('chatRoomId', chatRoomIdBlob);
+
+        axios
+            .post('/api/file/chat', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            })
+            .then(() => {
+                closeModal();
+            })
+            .catch(() => {
+                toast.error(
+                    <p className={'text-[0.85rem] leading-relaxed'}>
+                        이미지 전송에 실패하였습니다.
+                        <br />
+                        잠시 후 다시 시도해주세요.
+                    </p>,
+                    TOAST_OPTIONS,
+                );
+            });
     };
 
     return (
@@ -117,9 +162,7 @@ export default function SendImageModal({ initialImageInfoToSend, isSendImageModa
                             'rounded-lg bg-plump-purple-600 px-3.5 py-2 text-[0.9rem] font-bold text-white transition-all enabled:hover:bg-plump-purple-700 disabled:opacity-75'
                         }
                         disabled={imageInfoToSend === null}
-                        onClick={() => {
-                            console.log(imageInfoToSend.localImageUrl);
-                        }}
+                        onClick={handleSendImageButtonClick}
                     >
                         전송
                     </button>
