@@ -13,11 +13,7 @@ export default function SocialMediaUserListItem({ socialMediaUser, onUnfollowBut
     return (
         <li className={'flex gap-x-4 border-b border-slate-200 px-3.5 py-5 last:border-none'}>
             <div className={'avatar size-8'}>
-                <img
-                    className={'size-8 rounded-full'}
-                    src={`https://${profileImageUrl}`}
-                    alt={`${nickname}'s profile image`}
-                />
+                <img className={'size-8 rounded-full'} src={profileImageUrl} alt={`${nickname}'s profile image`} />
             </div>
             <div className={'flex min-w-0 flex-1 flex-col gap-y-1'}>
                 <Link
