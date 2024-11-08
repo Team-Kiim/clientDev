@@ -17,11 +17,11 @@ export default function NotificationList({ notificationList, filterValue }: Prop
     const navigate = useNavigate();
 
     const { mutate } = useMutation({
-        mutationFn: (notificationId: number) => {
+        mutationFn: (notificationId: string) => {
             return axios.delete(`/api/notifications/${notificationId}`);
         },
 
-        onMutate: async (notificationId: number) => {
+        onMutate: async (notificationId: string) => {
             await queryClient.cancelQueries({
                 queryKey: ['user', 'notifications'],
             });
@@ -92,16 +92,16 @@ export default function NotificationList({ notificationList, filterValue }: Prop
         },
     });
 
-    const handleDeleteNotificationButtonClick = (id: number) => {
+    const handleDeleteNotificationButtonClick = (id: string) => {
         mutate(id);
     };
 
-    const handleNotificationListItemClick = (id: number, senderId: number, notification: Notification) => {
+    const handleNotificationListItemClick = (id: string, senderId: string, notification: Notification) => {
         if (notification.notificationType === 'POST') {
             navigate(`/${notification.postType === 'DEV' ? 'qnas' : 'community'}/${notification.url}`);
         } else if (notification.notificationType === 'FOLLOW') {
             navigate(`/user/${senderId}`);
-        } else {
+        } else if (notification.notificationType === 'COMMENT') {
             navigate(`/${notification.postType === 'DEV' ? 'qnas' : 'community'}/${notification.url}`, {
                 state: {
                     notificationType: 'COMMENT',
