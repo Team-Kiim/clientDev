@@ -126,7 +126,19 @@ const useAuth = () => {
         },
 
         onError: (error: AxiosError) => {
-            console.error(error);
+            const errorMessage = error.response.data as string;
+
+            withReactContent(Swal).fire({
+                html: <p className={'text-sm leading-relaxed text-slate-500'}>{errorMessage}</p>,
+                title: (
+                    <div className={'flex items-center gap-x-2'}>
+                        <HiOutlineExclamationCircle className={'size-6 text-rose-500'} />
+                        <h1 className={'font-bold'}>회원가입 실패</h1>
+                    </div>
+                ),
+                confirmButtonText: '확인',
+                customClass: ALERT_STYLE,
+            });
         },
     });
 
