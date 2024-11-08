@@ -3,7 +3,6 @@ import mermaid from 'mermaid';
 import Prism from 'prismjs';
 import { useEffect } from 'react';
 import WhiteboardViewer from '@/Components/PostInfo/PostView/WhiteboardViewer.tsx';
-import checkIpAddress from '@/Utils/checkIpAddress.ts';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.js';
 import 'prismjs/plugins/line-numbers/prism-line-numbers.css';
 import 'prismjs/components/prism-c';
@@ -51,31 +50,9 @@ const changeToMermaidClass = (htmlString: string): string => {
     return htmlString.replaceAll('<code class="language-mermaid">', '<code class="mermaid">');
 };
 
-const changeImageSrc = (htmlString: string): string => {
-    const { VITE_SERVER_URL } = import.meta.env;
-    const srcArray: string[] = [];
-    const regex = /<img[^>]+src="([^">]+)"/g;
-    let match;
-
-    while ((match = regex.exec(htmlString)) !== null) {
-        const domain = match[1].split('/')[2];
-        if (checkIpAddress(domain.split(':')[0])) {
-            srcArray.push(match[1]);
-        }
-    }
-
-    if (srcArray.length === 0) {
-        return htmlString;
-    }
-
-    const domain = srcArray[0].split('/')[2];
-    const domainToChange = VITE_SERVER_URL.split('/')[2];
-    return htmlString.replaceAll(domain, domainToChange);
-};
-
 export default function PostContent({ bodyContent, visualData }: Props) {
     const safeHtmlString = dompurify.sanitize(bodyContent);
-    const htmlContent = changeToMermaidClass(changeImageSrc(safeHtmlString));
+    const htmlContent = changeToMermaidClass(safeHtmlString);
 
     useEffect(() => {
         Array.from(document.getElementsByTagName('pre')).forEach($preElement => {
