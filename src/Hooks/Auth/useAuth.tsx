@@ -21,6 +21,7 @@ const useAuth = () => {
                 .catch(() => null);
         },
         gcTime: Infinity,
+        refetchOnMount: false,
     });
 
     const { mutate: signIn } = useMutation({
