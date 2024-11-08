@@ -17,8 +17,6 @@ export default function NotificationListItem({
     onDeleteNotificationButtonClick,
     onNotificationListItemClick,
 }: Props) {
-    const { VITE_SERVER_URL } = import.meta.env;
-
     return (
         <li
             className={
@@ -31,8 +29,8 @@ export default function NotificationListItem({
             <div className={'avatar size-8 rounded-full'}>
                 <img
                     className={'size-8 rounded-full'}
-                    src={`${VITE_SERVER_URL}/image/${notification.profileImagePath}/${notification.profileImageName}`}
-                    alt={notification.profileImageName}
+                    src={notification.profileImageUrl}
+                    alt={`${notification.senderNickname}'s profile image`}
                 />
             </div>
             <div className={'flex min-w-0 flex-1 flex-col gap-y-2'}>
