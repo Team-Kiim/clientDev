@@ -3,7 +3,7 @@ type ChatRoom = {
     chatRoomId: number;
     chatRoomName: string;
     chatRoomType: 'DIRECT' | 'TECH';
-    lastMessage: string;
+    lastMessageContent: string;
     unreadMessageCount: number;
     lastMessageTime: number[];
     profileImageUrl: string;
