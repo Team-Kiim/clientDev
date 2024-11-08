@@ -7,6 +7,7 @@ import BeforeVoteList from '@/Pages/community/[boardId]/Components/Vote/BeforeVo
 import useRequireLoginAlert from '@/Hooks/Alert/useRequireLoginAlert.tsx';
 import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
 import 'react-toastify/dist/ReactToastify.css';
+import useAuth from '@/Hooks/Auth/useAuth.tsx';
 
 interface Props {
     postId: string;
@@ -20,7 +21,7 @@ interface Props {
 export default function BeforeVote({ postId, voteItems }: Props) {
     const queryClient = useQueryClient();
 
-    const isLoggedIn = !!queryClient.getQueryData(['loggedIn user']);
+    const isLoggedIn = !!useAuth().user;
 
     const { showRequireLoginAlert } = useRequireLoginAlert({
         message: '로그인 후 투표에 참여할 수 있습니다.',
