@@ -24,7 +24,6 @@ export default function CommentListItem({
     onCommentEditButtonClick,
     onCommentDeleteButtonClick,
 }: Props) {
-    const { VITE_SERVER_URL } = import.meta.env;
     const { nickname, profileImageUrl, memberWritten } = commentInfo;
 
     useEffect(() => {
@@ -41,7 +40,7 @@ export default function CommentListItem({
                     <div className={'avatar my-1 size-7'}>
                         <img
                             className={'size-7 rounded-full'}
-                            src={`${VITE_SERVER_URL}/${profileImageUrl}`}
+                            src={profileImageUrl}
                             alt={`${nickname}'s profile image`}
                         />
                     </div>
