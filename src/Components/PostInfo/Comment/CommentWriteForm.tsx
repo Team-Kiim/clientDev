@@ -45,7 +45,7 @@ export default function CommentWriteForm({ postId }: Props) {
     const { mutateAsync: commentPostMutate } = useMutation({
         mutationFn: (commentValue: string) => {
             return axios.post(`/api/comment`, {
-                postId: Number(postId),
+                postId,
                 content: commentValue,
             });
         },
