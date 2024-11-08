@@ -79,8 +79,6 @@ const editorConfiguration = {
 };
 
 export default function PostContentField({ postId }: Props) {
-    const { VITE_SERVER_URL } = import.meta.env;
-
     const {
         control,
         formState: { errors },
@@ -105,14 +103,12 @@ export default function PostContentField({ postId }: Props) {
                 return new Promise((resolve, reject) => {
                     const data = new FormData();
                     loader.file.then(file => {
-                        const fileBlob = new Blob([file], {
-                            type: 'application/octet-stream',
-                        });
-                        const postIdBlob = new Blob([JSON.stringify(postId)], {
+                        const postIdBlob = new Blob([String(postId)], {
                             type: 'application/json',
                         });
 
-                        data.append('file', fileBlob);
+                        data.append('file', file);
+
                         data.append('postId', postIdBlob);
 
                         axios
@@ -120,10 +116,9 @@ export default function PostContentField({ postId }: Props) {
                                 headers: { 'Content-Type': 'multipart/form-data' },
                             })
                             .then(res => {
-                                const imgName = res.data.name;
-                                const postType = res.data.path;
+                                const imageUrl = res.data.url;
                                 resolve({
-                                    default: `${VITE_SERVER_URL}/image/${postType}/${imgName}`,
+                                    default: imageUrl,
                                 });
                             })
                             .catch(err => reject(err));
