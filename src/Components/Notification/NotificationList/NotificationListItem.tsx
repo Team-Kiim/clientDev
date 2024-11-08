@@ -42,7 +42,9 @@ export default function NotificationListItem({
                             ? `${notification.senderNickname}님이 새로운 게시글을 작성하였어요.`
                             : notification.notificationType === 'COMMENT'
                               ? `${notification.senderNickname}님이 내 게시글에 댓글을 달았어요.`
-                              : `${notification.senderNickname}님이 나를 팔로우 했어요.`}
+                              : notification.notificationType === 'FOLLOW'
+                                ? `${notification.senderNickname}님이 나를 팔로우 했어요.`
+                                : `도메인 추가 요청이 ${notification.content}되었습니다.`}
                     </h3>
                     <p className={'text-[0.7rem] text-slate-400'}>
                         {notification.notificationType === 'POST' ? (
@@ -57,10 +59,16 @@ export default function NotificationListItem({
                                 <span className={'font-bold text-slate-600'}>{notification.title}</span> 게시글에 댓글을
                                 달았어요. 게시글을 확인해보세요.
                             </>
-                        ) : (
+                        ) : notification.notificationType === 'FOLLOW' ? (
                             <>
                                 {notification.senderNickname}님이 나를 팔로우 했어요. {notification.senderNickname}님의
                                 정보를 확인해보세요.
+                            </>
+                        ) : (
+                            <>
+                                {notification.content === '승인'
+                                    ? '현직자 인증을 진행 해보세요.'
+                                    : '확인되지 않은 도메인입니다.'}
                             </>
                         )}
                     </p>
