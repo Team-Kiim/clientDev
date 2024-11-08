@@ -1,9 +1,8 @@
 export type Notification = {
-    id: number;
-    senderId: number;
+    id: string;
+    senderId: string;
     senderNickname: string;
-    profileImagePath: string;
-    profileImageName: string;
+    profileImageUrl: string;
     postType: string | null;
     title: string;
     content: string;
