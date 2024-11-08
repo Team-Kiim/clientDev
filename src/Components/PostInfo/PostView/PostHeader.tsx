@@ -13,8 +13,7 @@ interface Props {
     createdTime: number[];
     title: string;
     nickname: string;
-    profileImageName: string;
-    profileImagePath: string;
+    profileImageUrl: string;
     viewCount: number;
     likeCount: number;
     memberId: number;
@@ -27,8 +26,7 @@ export default function PostHeader({
     createdTime,
     title,
     nickname,
-    profileImageName,
-    profileImagePath,
+    profileImageUrl,
     viewCount,
     likeCount,
     memberId,
@@ -36,8 +34,6 @@ export default function PostHeader({
     postId,
     postType,
 }: Props) {
-    const { VITE_SERVER_URL } = import.meta.env;
-
     const createdDate = `${createdTime[0]}-${createdTime[1]}-${createdTime[2]} ${createdTime[3]}:${createdTime[4]}:${createdTime[5]}`;
 
     return (
@@ -46,10 +42,7 @@ export default function PostHeader({
                 <Link to={`/user/${memberId}`}>
                     <div className={'avatar'}>
                         <div className={'size-8 rounded-full'}>
-                            <img
-                                src={`${VITE_SERVER_URL}/image/${profileImagePath}/${profileImageName}`}
-                                alt={profileImageName}
-                            />
+                            <img src={profileImageUrl} alt={`${nickname}'s profile image`} />
                         </div>
                     </div>
                 </Link>
