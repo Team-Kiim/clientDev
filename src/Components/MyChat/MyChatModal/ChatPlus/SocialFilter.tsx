@@ -9,7 +9,8 @@ export default function SocialFilter({ currentFilter, updateSocialFilter }: Prop
             {['following', 'follower'].map(value => {
                 return (
                     <li
-                        className={`font-extrabold ${currentFilter === value ? 'text-violet-700' : 'text-slate-400'} transition-all`}
+                        key={value}
+                        className={`font-extrabold ${currentFilter === value ? 'text-plump-purple-600' : 'text-slate-300'} transition-all`}
                     >
                         <button
                             type={'button'}
