@@ -11,7 +11,7 @@ interface CorpInfo {
 }
 
 const fetchCorpInfoList: QueryFunction<CorpInfo[], QueryKey> = () => {
-    return axios.get('/api/corps/domain').then(response => response.data);
+    return axios.get('/api/admin/corps').then(response => response.data);
 };
 
 export default fetchCorpInfoList;
