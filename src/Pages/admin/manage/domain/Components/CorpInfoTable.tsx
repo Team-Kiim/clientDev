@@ -27,14 +27,6 @@ export default function CorpInfoTable() {
     const columns = useMemo<MRT_ColumnDef<CorpInfo>[]>(
         () => [
             {
-                accessorKey: 'id',
-                header: '아이디',
-                size: 80,
-                muiTableBodyCellProps: {
-                    className: '!font-extrabold',
-                },
-            },
-            {
                 accessorKey: 'name',
                 header: '회사명',
                 size: 200,
