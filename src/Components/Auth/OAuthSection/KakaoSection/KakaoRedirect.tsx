@@ -50,7 +50,8 @@ export default function KakaoRedirect() {
 
     if (isSuccess) {
         queryClient.invalidateQueries({
-            queryKey: ['loggedIn user'],
+            queryKey: ['user', 'loggedIn'],
+            refetchType: 'all',
         });
         return <Navigate to={'/'} replace={true} />;
     }

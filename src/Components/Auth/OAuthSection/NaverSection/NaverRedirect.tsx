@@ -34,7 +34,8 @@ export default function NaverRedirect() {
 
     if (isSuccess) {
         queryClient.invalidateQueries({
-            queryKey: ['loggedIn user'],
+            queryKey: ['user', 'loggedIn'],
+            refetchType: 'all',
         });
         return <Navigate to={'/'} replace={true} />;
     }
