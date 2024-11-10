@@ -75,12 +75,12 @@ export default function QnAPostWriteForm({ postId }: Props) {
         const { title, bodyContent } = data;
 
         const $postImageList = document.querySelectorAll('img');
-        const postImageIdList: number[] = [];
+
+        const postImageSrcList: string[] = [];
 
         for (const $postImage of $postImageList) {
-            const postImageId = Number($postImage.src.split('#').at(-1));
-            if (postImageId) {
-                postImageIdList.push(postImageId);
+            if ($postImage.currentSrc.includes('https://koffeechat.site')) {
+                postImageSrcList.push(window.decodeURI($postImage.currentSrc));
             }
         }
 
@@ -96,7 +96,7 @@ export default function QnAPostWriteForm({ postId }: Props) {
                         childSkillCategory,
                     };
                 }),
-                fileIdList: postImageIdList,
+                fileUrlList: postImageSrcList,
                 visualData: canvasDataJSONString === '[]' ? null : canvasDataJSONString,
                 tagContentList:
                     hashtagInfoList.length !== 0 ? hashtagInfoList.map(hashTagInfo => hashTagInfo.content) : [],
