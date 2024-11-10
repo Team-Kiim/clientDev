@@ -2,7 +2,9 @@ import { Suspense } from 'react';
 import PostSearchInput from '@/Pages/user/posts/Components/PostSearchInput.tsx';
 import UserActivityFilter from '@/Pages/user/posts/Components/UserActivityFilter.tsx';
 import PostSortFilter from '@/Pages/user/posts/Components/PostSortFilter.tsx';
+import UserActivityPostListLoading from '@/Pages/user/posts/Components/UserActivityPostListLoading.tsx';
 import UserActivityPostList from '@/Pages/user/posts/Components/UserActivityPostList.tsx';
+import UserActivityPostApiErrorBoundary from '@/Pages/user/posts/Components/UserActivityPostApiErrorBoundary.tsx';
 
 export default function Page() {
     return (
@@ -19,9 +21,11 @@ export default function Page() {
                     </div>
                 </div>
                 <div>
-                    <Suspense>
-                        <UserActivityPostList />
-                    </Suspense>
+                    <UserActivityPostApiErrorBoundary>
+                        <Suspense fallback={<UserActivityPostListLoading />}>
+                            <UserActivityPostList />
+                        </Suspense>
+                    </UserActivityPostApiErrorBoundary>
                 </div>
             </div>
         </div>
