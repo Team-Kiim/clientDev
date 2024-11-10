@@ -8,8 +8,13 @@ export default function useUpdateStatusMutation() {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: ({ id, statusToUpdate }: { id: number; statusToUpdate: 'APPROVED' | 'REJECTED' }) =>
-            axios.patch(`/api/corps/admin/${id}`, statusToUpdate),
+        mutationFn: ({ id, statusToUpdate }: { id: number; statusToUpdate: 'APPROVED' | 'REJECTED' }) => {
+            if (statusToUpdate === 'APPROVED') {
+                return axios.patch(`/api/admin/corps/approve/${id}`);
+            } else {
+                return axios.patch(`/api/admin/corps/reject/${id}`);
+            }
+        },
 
         onSuccess: (_, variables) => {
             toast.success(
