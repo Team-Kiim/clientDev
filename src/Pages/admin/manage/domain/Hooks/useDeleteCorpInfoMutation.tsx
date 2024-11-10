@@ -8,7 +8,7 @@ export default function useDeleteCorpInfoMutation() {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: (id: number) => axios.delete(`/api/corps/admin/${id}`),
+        mutationFn: (id: number) => axios.delete(`/api/admin/corps/${id}`),
 
         onSuccess: () => {
             toast.success(<p className={'text-[0.85rem]'}>성공적으로 삭제하였습니다.</p>, TOAST_OPTIONS);
