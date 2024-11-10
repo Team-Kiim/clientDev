@@ -59,7 +59,7 @@ export default function UserPageLayout() {
                                     </div>
                                 )}
                             </div>
-                            {data.memberRole === 'ADMIN' && (
+                            {data.memberRole === 'ADMIN' && data.isLoginMember && (
                                 <div className={'px-1'}>
                                     <Link
                                         className={'text-[0.85rem] text-slate-600 underline underline-offset-4'}
