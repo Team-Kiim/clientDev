@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
-import EmailField from '@/Pages/user/Components/EmployeeVerification/EmployeeVerificationForm/EmailField.tsx';
+import LocalPartField from '@/Pages/user/Components/EmployeeVerification/EmployeeVerificationForm/LocalPartField.tsx';
 import VerificationCodeField from '@/Pages/user/Components/EmployeeVerification/EmployeeVerificationForm/VerificationCodeField.tsx';
 import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,7 +14,7 @@ interface CorpInfo {
 }
 
 interface FormValues {
-    email: string;
+    localPart: string;
     verificationCode: string;
 }
 
@@ -33,7 +33,7 @@ export default function EmployeeVerificationForm({ selectedCorpInfo, closeModal 
     const formMethods = useForm<FormValues>({
         mode: 'onBlur',
         defaultValues: {
-            email: '',
+            localPart: '',
             verificationCode: '',
         },
     });
@@ -41,16 +41,16 @@ export default function EmployeeVerificationForm({ selectedCorpInfo, closeModal 
     const { mutate: verifyEmployee, isPending } = useMutation({
         mutationFn: ({
             corpName,
-            email,
+            localPart,
             verificationCode,
         }: {
             corpName: string;
-            email: string;
+            localPart: string;
             verificationCode: string;
         }) => {
             return axios.post('/api/corps/email-auth/code', {
                 name: corpName,
-                email,
+                email: `${localPart}@${selectedCorpInfo.corpEmailDomain}`,
                 code: verificationCode,
             });
         },
@@ -75,12 +75,12 @@ export default function EmployeeVerificationForm({ selectedCorpInfo, closeModal 
     });
 
     const onSubmit: SubmitHandler<FormValues> = data => {
-        const email = data.email.replace(/\s/gi, '');
+        const localPart = data.localPart.replace(/\s/gi, '');
 
         const verificationCode = data.verificationCode.replace(/\s/gi, '');
 
         verifyEmployee({
-            email,
+            localPart,
             verificationCode,
             corpName: selectedCorpInfo.corpName,
         });
@@ -90,7 +90,7 @@ export default function EmployeeVerificationForm({ selectedCorpInfo, closeModal 
         <FormProvider {...formMethods}>
             <form className={'flex w-full flex-col gap-y-10'} onSubmit={formMethods.handleSubmit(onSubmit)}>
                 <div className={'flex flex-col gap-y-6'}>
-                    <EmailField
+                    <LocalPartField
                         selectedCorpInfo={selectedCorpInfo}
                         isRequestingVerification={isRequestingVerification}
                         updateIsRequestingVerification={(isRequestingVerification: boolean) => {

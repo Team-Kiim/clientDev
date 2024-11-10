@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useFormContext } from 'react-hook-form';
 import { useMutation } from '@tanstack/react-query';
 import { HiOutlineEnvelope, HiOutlineExclamationCircle } from 'react-icons/hi2';
-import { emailRegexp } from '@/Constants/regexps.ts';
 
 interface CorpInfo {
     corpName: string;
@@ -18,7 +17,7 @@ interface Props {
 }
 
 interface FormValue {
-    email: string;
+    localPart: string;
 }
 
 export default function ({
@@ -52,16 +51,16 @@ export default function ({
     });
 
     const handleVerificationRequestButtonClick = async () => {
-        const email = getValues().email.replace(/\s/gi, '');
+        const localPart = getValues().localPart.replace(/\s/gi, '');
 
-        if (!getFieldState('email').isTouched || getFieldState('email').invalid) {
+        if (!getFieldState('localPart').isTouched || getFieldState('localPart').invalid) {
             return;
         }
 
-        if (window.confirm(`입력한 이메일 주소는 ${email} 입니다. 이메일 주소가 정확한지 확인해주세요.`)) {
+        if (window.confirm(`입력한 로컬 파트는 ${localPart} 입니다. 입력한 정보가 정확한지 확인해주세요.`)) {
             updateIsRequestingVerification(true);
             sendVerificationCode({
-                email,
+                email: `${localPart}@${selectedCorpInfo.corpEmailDomain}`,
                 corpName: selectedCorpInfo.corpName,
             });
         }
@@ -70,7 +69,7 @@ export default function ({
     return (
         <div className={'flex flex-col gap-y-2'}>
             <label className={'mx-2 w-fit text-[0.9rem] font-bold text-slate-800'} htmlFor={'emailInput'}>
-                회사 이메일
+                로컬 파트 (@ 앞 부분)
                 <span className={'text-rose-500'}>﹡</span>
             </label>
             <div className={'flex w-full items-center gap-x-2 rounded-2xl border border-slate-300 px-3 py-3.5'}>
@@ -81,18 +80,18 @@ export default function ({
                     className={
                         'flex-1 text-[0.9rem] placeholder:text-slate-400 focus:outline-none disabled:bg-white disabled:opacity-50'
                     }
-                    placeholder={'회사 이메일'}
+                    placeholder={'example@corp.com 에서 example 까지 입력'}
                     autoComplete={'off'}
                     autoCapitalize={'off'}
                     disabled={isRequestingVerification || isVerificationCodeSent}
-                    {...register('email', {
+                    {...register('localPart', {
                         required: {
                             value: true,
-                            message: '회사 이메일을 입력해주세요.',
+                            message: '로컬 파트를 입력해주세요.',
                         },
                         pattern: {
-                            value: emailRegexp,
-                            message: '유효한 이메일 주소를 입력해주세요.',
+                            value: /^[^@]+$/,
+                            message: '@ 앞 부분까지만 입력해주세요.',
                         },
                     })}
                 />
@@ -107,16 +106,16 @@ export default function ({
                     인증
                 </button>
             </div>
-            {errors?.email?.message && errors?.email.type === 'required' && (
+            {errors?.localPart?.message && errors?.localPart.type === 'required' && (
                 <div className={'mx-1 flex items-center gap-x-1 text-red-500'}>
                     <HiOutlineExclamationCircle className={'size-4'} />
-                    <p className={'text-[0.8rem]'}>{errors.email.message}</p>
+                    <p className={'text-[0.8rem]'}>{errors.localPart.message}</p>
                 </div>
             )}
-            {errors?.email?.message && errors?.email.type === 'pattern' && (
+            {errors?.localPart?.message && errors?.localPart.type === 'pattern' && (
                 <div className={'mx-1 flex items-center gap-x-1 text-red-500'}>
                     <HiOutlineExclamationCircle className={'size-4'} />
-                    <p className={'text-[0.8rem]'}>{errors.email.message}</p>
+                    <p className={'text-[0.8rem]'}>{errors.localPart.message}</p>
                 </div>
             )}
         </div>
