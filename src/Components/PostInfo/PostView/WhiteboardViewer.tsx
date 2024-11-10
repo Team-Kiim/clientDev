@@ -11,11 +11,30 @@ export default function WhiteboardViewer({ visualData }: Props) {
     const [excalidrawAPI, setExcalidrawAPI] = useState<ExcalidrawImperativeAPI>(null);
 
     useEffect(() => {
-        console.log('called');
         if (excalidrawAPI) {
             excalidrawAPI.scrollToContent(visualData as ExcalidrawElement[], {
                 fitToViewport: true,
             });
+        }
+    }, [excalidrawAPI]);
+
+    useEffect(() => {
+        if (excalidrawAPI) {
+            excalidrawAPI.updateScene({
+                elements: visualData as ExcalidrawElement[],
+            });
+        }
+    }, [visualData]);
+
+    useEffect(() => {
+        if (excalidrawAPI) {
+            excalidrawAPI.history.clear();
+        }
+    }, [excalidrawAPI]);
+
+    useEffect(() => {
+        if (excalidrawAPI) {
+            console.log(excalidrawAPI.getSceneElements());
         }
     }, [excalidrawAPI]);
 
