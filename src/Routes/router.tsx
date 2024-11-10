@@ -30,6 +30,10 @@ import UserAccountPage from '@/Pages/user/account/page.tsx';
 
 import AdminPageLayout from '@/Pages/admin/Components/AdminPageLayout.tsx';
 import ManageDomainPage from '@/Pages/admin/manage/domain/page.tsx';
+import ManageSkillChatRoomPage from '@/Pages/admin/manage/skill_chat_room/page.tsx';
+
+import SkillChatListPage from '@/Pages/chats/page.tsx';
+import SkillChatPage from '@/Pages/chats/[chatRoomId]/page.tsx';
 
 import NotFoundErrorPage from '@/Pages/ErrorPages/NotFoundErrorPage.tsx';
 
@@ -130,6 +134,14 @@ const router = createBrowserRouter([
                             },
                         ],
                     },
+                    {
+                        path: 'chats/:skillCategory?',
+                        element: <SkillChatListPage />,
+                    },
+                    {
+                        path: 'chat/:chatRoomId',
+                        element: <SkillChatPage />,
+                    },
                 ],
             },
             {
@@ -141,7 +153,10 @@ const router = createBrowserRouter([
     {
         path: `/admin-${VITE_ADMIN_SECRET_KEY}`,
         element: <AdminPageLayout />,
-        children: [{ path: 'manage/domain', element: <ManageDomainPage /> }],
+        children: [
+            { path: 'manage/domain', element: <ManageDomainPage /> },
+            { path: 'manage/skill_chat_room', element: <ManageSkillChatRoomPage /> },
+        ],
     },
 ]);
 
