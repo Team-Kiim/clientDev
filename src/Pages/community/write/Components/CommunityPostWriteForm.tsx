@@ -12,7 +12,7 @@ import FormOptionManager from '@/Pages/community/Components/FormOptionManager/Fo
 import useHashtagField from '@/Hooks/PostInputFieldHooks/useHashtagField.ts';
 
 interface Props {
-    postId: number;
+    postId: string;
 }
 
 interface FormData {
@@ -77,12 +77,12 @@ export default function CommunityPostWriteForm({ postId }: Props) {
         const { title, bodyContent, voteTopic, firstVoteItem, secondVoteItem, additionalVoteItems } = data;
 
         const $postImageList = document.querySelectorAll('img');
-        const postImageIdList: number[] = [];
+
+        const postImageSrcList: string[] = [];
 
         for (const $postImage of $postImageList) {
-            const postImageId = Number($postImage.src.split('#').at(-1));
-            if (postImageId) {
-                postImageIdList.push(postImageId);
+            if ($postImage.currentSrc.includes('https://koffeechat.site')) {
+                postImageSrcList.push(window.decodeURI($postImage.currentSrc));
             }
         }
 
@@ -92,7 +92,7 @@ export default function CommunityPostWriteForm({ postId }: Props) {
                     saveCommunityPostInfoRequest: {
                         title,
                         bodyContent: dompurify.sanitize(bodyContent),
-                        fileIdList: postImageIdList,
+                        fileUrlList: postImageSrcList,
                         tagContentList:
                             hashtagInfoList.length !== 0 ? hashtagInfoList.map(hashTagInfo => hashTagInfo.content) : [],
                     },
