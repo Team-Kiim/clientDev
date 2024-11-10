@@ -1,6 +1,6 @@
 type ChatRoom = {
-    memberId: number;
-    chatRoomId: number;
+    memberId: string;
+    chatRoomId: string;
     chatRoomName: string;
     chatRoomType: 'DIRECT' | 'TECH';
     lastMessageContent: string;
