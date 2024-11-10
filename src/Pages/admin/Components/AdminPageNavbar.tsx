@@ -40,6 +40,16 @@ export default function AdminPageNavbar() {
                                 게시글 관리
                             </NavLink>
                         </li>
+                        <li>
+                            <NavLink
+                                to={`/admin-${VITE_ADMIN_SECRET_KEY}/manage/skill_chat_room`}
+                                className={({ isActive }) => {
+                                    return `rounded-lg px-2 py-2.5 text-[0.93rem] font-bold transition-all ${isActive ? 'bg-plump-purple-50 text-plump-purple-600' : 'text-slate-800 hover:bg-slate-100'}  `;
+                                }}
+                            >
+                                기술 채팅방 관리
+                            </NavLink>
+                        </li>
                     </ul>
                 </div>
             </div>
