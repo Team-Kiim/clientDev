@@ -9,7 +9,7 @@ export default function useAddCorpInfoMutation() {
 
     return useMutation({
         mutationFn: ({ corpName, corpEmailDomain }: { corpName: string; corpEmailDomain: string }) =>
-            axios.post('/api/corps/admin', {
+            axios.post('/api/admin/corps', {
                 corpName,
                 corpEmailDomain,
             }),
