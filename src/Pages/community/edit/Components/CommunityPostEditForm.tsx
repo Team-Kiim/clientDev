@@ -91,13 +91,11 @@ export default function CommunityPostEditForm({ postId }: Props) {
         const { title, bodyContent, voteTopic, firstVoteItem, secondVoteItem, additionalVoteItems } = data;
 
         const $postImageList = document.querySelectorAll('img');
-        const postImageIdList: number[] = [];
+
+        const postImageSrcList: string[] = [];
 
         for (const $postImage of $postImageList) {
-            const postImageId = Number($postImage.src.split('#').at(-1));
-            if (postImageId) {
-                postImageIdList.push(postImageId);
-            }
+            postImageSrcList.push(window.decodeURI($postImage.currentSrc));
         }
 
         try {
@@ -106,20 +104,22 @@ export default function CommunityPostEditForm({ postId }: Props) {
                     modifyCommunityPostInfoRequest: {
                         title,
                         bodyContent: dompurify.sanitize(bodyContent),
-                        fileIdList: postImageIdList,
+                        fileUrlList: postImageSrcList,
                         tagContentList:
                             hashtagInfoList.length !== 0 ? hashtagInfoList.map(hashTagInfo => hashTagInfo.content) : [],
                     },
-                    modifyVoteRequest: {
-                        title: voteTopic,
-                        items: [
-                            firstVoteItem,
-                            secondVoteItem,
-                            ...additionalVoteItems
-                                .map(voteItem => voteItem.label)
-                                .filter(voteItem => voteItem.length !== 0),
-                        ],
-                    },
+                    modifyVoteRequest: isVoteAttached
+                        ? {
+                              title: voteTopic,
+                              items: [
+                                  firstVoteItem,
+                                  secondVoteItem,
+                                  ...additionalVoteItems
+                                      .map(voteItem => voteItem.label)
+                                      .filter(voteItem => voteItem.length !== 0),
+                              ],
+                          }
+                        : null,
                 })
                 .then(response => response.data);
             navigate(`/community/${postId}`, { replace: true });
