@@ -22,7 +22,7 @@ export default function NickNameSearchInput({ updateNickNameToSearch }: Props) {
         <div className={'flex-1'}>
             <div
                 className={
-                    'rounded-2xl border border-slate-300 px-3 py-1 transition-all focus-within:border-violet-700'
+                    'rounded-lg border border-slate-300 px-3 py-1 transition-all focus-within:border-plump-purple-600'
                 }
             >
                 <input
