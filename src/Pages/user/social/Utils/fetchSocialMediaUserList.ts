@@ -2,7 +2,7 @@ import axios from 'axios';
 import { QueryFunction } from '@tanstack/react-query';
 import type { SocialMediaUser } from '@/Types/SocialMediaUser.ts';
 
-type QueryKey = [_1: string, _2: string, _3: { relationshipType: string; keyword?: string; memberId?: number }];
+type QueryKey = [_1: string, _2: string, _3: { relationshipType: string; keyword?: string; memberId?: string }];
 
 const fetchSocialMediaUserList: QueryFunction<SocialMediaUser[], QueryKey, number> = ({ queryKey, pageParam }) => {
     const { relationshipType, keyword, memberId } = queryKey[2];
