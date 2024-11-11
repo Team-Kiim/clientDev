@@ -17,6 +17,7 @@ export default function ChatRoomList({ currentParentSkillCategory }: Props) {
         <ul className={'grid grid-cols-2 gap-x-3 gap-y-5'}>
             {data.map(skillChatRoom => (
                 <ChatRoomListItem
+                    key={skillChatRoom.chatRoomId}
                     chatRoomId={skillChatRoom.chatRoomId}
                     parentSkillCategory={
                         CATEGORIES.find(category => category.value === skillChatRoom.parentSkillCategory).label
