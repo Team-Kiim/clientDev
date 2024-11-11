@@ -8,7 +8,7 @@ const useSocialMediaUserListQuery = ({
 }: {
     relationshipType: string;
     keyword: string;
-    memberId: number | null;
+    memberId: string | null;
 }) => {
     return useSuspenseInfiniteQuery({
         queryKey: ['user', 'social', { relationshipType, keyword, memberId }],
