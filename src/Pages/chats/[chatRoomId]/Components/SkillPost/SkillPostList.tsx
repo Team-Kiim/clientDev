@@ -45,7 +45,7 @@ export default function SkillPostList({ childSkillCategory }: Props) {
                 <h2 className={'text-center text-[0.95rem] font-extrabold text-slate-800'}>관련 Q&A 게시글</h2>
             </div>
             <div
-                id={'scrollableDiv'}
+                id={'scrollableDivForSkillPostList'}
                 className={'shrink-0 flex-grow basis-0 overflow-y-auto border-b border-slate-300'}
             >
                 <InfiniteScroll
@@ -54,7 +54,7 @@ export default function SkillPostList({ childSkillCategory }: Props) {
                     loader={null}
                     dataLength={skillPostList.length}
                     scrollThreshold={0.9}
-                    scrollableTarget={'scrollableDiv'}
+                    scrollableTarget={'scrollableDivForSkillPostList'}
                 >
                     <ul className={'h-full w-full'}>
                         {skillPostList.map(skillPost => (
