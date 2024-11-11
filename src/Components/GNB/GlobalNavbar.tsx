@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import SearchPostInput from '@/Components/PostSearch/SearchPostInput.tsx';
 import LogOutSection from '@/Components/GNB/LogOutSection.tsx';
 import LogInSection from '@/Components/GNB/LoginSection.tsx';
@@ -6,6 +6,8 @@ import useAuth from '@/Hooks/Auth/useAuth.tsx';
 
 export default function GlobalNavbar() {
     const { user } = useAuth();
+
+    const { pathname } = useLocation();
 
     return (
         <nav className={'flex w-full items-center justify-between'}>
@@ -22,7 +24,7 @@ export default function GlobalNavbar() {
                     <NavLink
                         to={'/qnas'}
                         className={({ isActive }) => {
-                            return `rounded-lg px-2 py-2.5 text-[0.93rem] font-bold transition-all ${isActive ? 'bg-plump-purple-50 text-plump-purple-600' : 'text-slate-800 hover:bg-slate-100'}  `;
+                            return `rounded-lg px-2 py-2.5 text-[0.93rem] font-bold transition-all ${isActive || pathname === '/' ? 'bg-plump-purple-50 text-plump-purple-600' : 'text-slate-800 hover:bg-slate-100'}  `;
                         }}
                     >
                         {'Q&A'}
