@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
 
 const initNaverLogin = () => {
-    const { VITE_DEV_URL, VITE_NAVER_CLIENT_ID } = import.meta.env;
+    const { VITE_PROD_URL, VITE_NAVER_CLIENT_ID } = import.meta.env;
     const { naver } = window as any;
 
     const naverLogin = new naver.LoginWithNaverId({
         clientId: VITE_NAVER_CLIENT_ID,
-        callbackUrl: `${VITE_DEV_URL}/oauth/naver`,
+        callbackUrl: `${VITE_PROD_URL}/oauth/naver`,
         isPopup: false,
         callbackHandle: true,
 
