@@ -12,7 +12,6 @@ export default function ChildSkillCategoryList({
     selectedSkillCategories,
     onChildSkillCategoryButtonClick,
 }: Props) {
-    console.log(selectedSkillCategories);
     return (
         <ul className={'flex h-48 w-full flex-wrap  content-start gap-x-1 gap-y-2 px-3'}>
             {CATEGORIES.find(category => category.value === selectedParentSkillCategory).childCategories.map(

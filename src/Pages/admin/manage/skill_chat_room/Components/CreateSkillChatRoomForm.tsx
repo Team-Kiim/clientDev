@@ -54,7 +54,6 @@ export default function CreateSkillChatRoomForm() {
         rules: {
             validate: {
                 isNotSelected(value) {
-                    console.log(value);
                     return !!value || '하위 카테고리를 선택해주세요.';
                 },
             },
