@@ -23,7 +23,7 @@ export default function SocialMediaUserList() {
 
     const { data, fetchNextPage, hasNextPage } = useSocialMediaUserListQuery({
         relationshipType: currentSocialType === 'following' ? 'followings' : 'followers',
-        memberId: profileMemberId ? Number(profileMemberId) : null,
+        memberId: profileMemberId ? profileMemberId : null,
         keyword: userNicknameToSearch ?? null,
     });
 
