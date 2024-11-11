@@ -32,12 +32,6 @@ export default function WhiteboardViewer({ visualData }: Props) {
         }
     }, [excalidrawAPI]);
 
-    useEffect(() => {
-        if (excalidrawAPI) {
-            console.log(excalidrawAPI.getSceneElements());
-        }
-    }, [excalidrawAPI]);
-
     return (
         <div className={'h-[34rem] rounded-xl border border-slate-200 p-2'}>
             <Excalidraw

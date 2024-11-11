@@ -50,10 +50,6 @@ export default function LikeButtonWithCount({ memberLiked, likeCount, postId }: 
                 likeCount: previousLikeCount,
             });
         },
-
-        onSettled() {
-            console.log('settled');
-        },
     });
 
     const debouncedMutate = useCallback(debounce(mutate, 250), []);
