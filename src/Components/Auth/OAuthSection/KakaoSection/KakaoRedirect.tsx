@@ -7,7 +7,7 @@ export default function KakaoRedirect() {
 
     const [searchParams] = useSearchParams();
     const code = searchParams.get('code');
-    const { VITE_DEV_URL, VITE_KAKAO_CLIENT_SECRET, VITE_KAKAO_REST_API_KEY } = import.meta.env;
+    const { VITE_PROD_URL, VITE_KAKAO_CLIENT_SECRET, VITE_KAKAO_REST_API_KEY } = import.meta.env;
 
     const { isSuccess, isError } = useQuery({
         queryKey: ['oauth', 'kakao'],
@@ -15,7 +15,7 @@ export default function KakaoRedirect() {
             return axios
                 .post('/api/oauth/get-kakao-code', {
                     clientId: VITE_KAKAO_REST_API_KEY,
-                    redirectUri: `${VITE_DEV_URL}/oauth/kakao`,
+                    redirectUri: `${VITE_PROD_URL}/oauth/kakao`,
                     code: code,
                     clientSecret: VITE_KAKAO_CLIENT_SECRET,
                 })

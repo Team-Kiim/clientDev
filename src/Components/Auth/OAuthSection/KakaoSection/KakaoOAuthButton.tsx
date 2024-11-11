@@ -1,7 +1,7 @@
 export default function KakaoOAuthButton() {
-    const { VITE_DEV_URL, VITE_KAKAO_REST_API_KEY } = import.meta.env;
+    const { VITE_PROD_URL, VITE_KAKAO_REST_API_KEY } = import.meta.env;
 
-    const redirectURL = `${VITE_DEV_URL}/oauth/kakao`;
+    const redirectURL = `${VITE_PROD_URL}/oauth/kakao`;
     const kakaoLoginURL = `https://kauth.kakao.com/oauth/authorize?client_id=${VITE_KAKAO_REST_API_KEY}&redirect_uri=${redirectURL}&response_type=code`;
 
     return (
