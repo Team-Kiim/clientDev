@@ -58,7 +58,7 @@ export default function SkillPostList({ childSkillCategory }: Props) {
                 >
                     <ul className={'h-full w-full'}>
                         {skillPostList.map(skillPost => (
-                            <SkillPostListItem post={skillPost} />
+                            <SkillPostListItem key={skillPost.postId} post={skillPost} />
                         ))}
                     </ul>
                 </InfiniteScroll>
