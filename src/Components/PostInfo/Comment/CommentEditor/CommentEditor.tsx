@@ -17,9 +17,10 @@ interface Props {
     isSubmitSuccessful?: boolean;
     onChange: (...args: any) => any;
     onBlur: (...args: any) => any;
+    setValue: (...args: any) => any;
 }
 
-export default function CommentEditor({ value, isSubmitSuccessful, submitCount, onChange, onBlur }: Props) {
+export default function CommentEditor({ value, isSubmitSuccessful, submitCount, onChange, onBlur, setValue }: Props) {
     const editor = useEditor({
         onUpdate: ({ editor }) => {
             const commentValue = editor.getHTML();
@@ -82,6 +83,7 @@ export default function CommentEditor({ value, isSubmitSuccessful, submitCount, 
         if (editor) {
             if (isSubmitSuccessful) {
                 editor.commands.clearContent();
+                setValue('commentValue', '');
             }
         }
     }, [isSubmitSuccessful, editor, submitCount]);

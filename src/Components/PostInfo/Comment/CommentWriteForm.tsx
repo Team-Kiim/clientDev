@@ -23,7 +23,9 @@ export default function CommentWriteForm({ postId }: Props) {
         control,
         handleSubmit,
         formState: { errors, submitCount, isSubmitSuccessful },
+        setValue,
     } = useForm<FormData>({
+        mode: 'onBlur',
         defaultValues: {
             commentValue: '',
         },
@@ -96,6 +98,7 @@ export default function CommentWriteForm({ postId }: Props) {
                     submitCount={submitCount}
                     onChange={onChange}
                     onBlur={onBlur}
+                    setValue={setValue}
                     isSubmitSuccessful={isSubmitSuccessful}
                 />
             </div>
