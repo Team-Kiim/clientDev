@@ -27,3 +27,5 @@ src/**/mock.ts
 *.sw?
 
 ckeditor5
+
+public
