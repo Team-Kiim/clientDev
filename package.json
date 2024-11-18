@@ -50,6 +50,7 @@
     "event-source-polyfill": "^1.0.31",
     "framer-motion": "^11.3.21",
     "highlight.js": "^11.10.0",
+    "ky": "^1.7.2",
     "lodash": "^4.17.21",
     "lowlight": "^3.1.0",
     "material-react-table": "^3.0.1",
