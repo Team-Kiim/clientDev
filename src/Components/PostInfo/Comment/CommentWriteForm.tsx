@@ -1,12 +1,8 @@
-import axios from 'axios';
 import dompurify from 'dompurify';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { SubmitHandler, useController, useForm } from 'react-hook-form';
-import { toast } from 'react-toastify';
 import { AiOutlineExclamationCircle } from 'react-icons/ai';
-import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
 import CommentEditor from '@/Components/PostInfo/Comment/CommentEditor/CommentEditor.tsx';
-import 'react-toastify/dist/ReactToastify.css';
+import useAddComment from '@/Components/PostInfo/Comment/Hooks/useAddComment.tsx';
 
 interface Props {
     postId: string;
@@ -17,8 +13,6 @@ interface FormData {
 }
 
 export default function CommentWriteForm({ postId }: Props) {
-    const queryClient = useQueryClient();
-
     const {
         control,
         handleSubmit,
@@ -44,51 +38,13 @@ export default function CommentWriteForm({ postId }: Props) {
         },
     });
 
-    const { mutateAsync: commentPostMutate } = useMutation({
-        mutationFn: (commentValue: string) => {
-            return axios.post(`/api/comment`, {
-                postId,
-                content: commentValue,
-            });
-        },
-
-        onSuccess: () => {
-            toast.success(
-                <div className={'flex flex-col gap-y-2 text-[0.85rem]'}>
-                    <p>댓글을 성공적으로 작성하였습니다.</p>
-                    <div>
-                        <button
-                            className={'rounded-3xl border border-slate-200 px-3 py-1  text-slate-800'}
-                            type={'button'}
-                            onClick={() => {
-                                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-                            }}
-                        >
-                            확인하기
-                        </button>
-                    </div>
-                </div>,
-            );
-        },
-
-        onError: () => {
-            toast.error(
-                <div className={'text-[0.85rem]'}>
-                    댓글을 작성할 수 없습니다.
-                    <br />
-                    잠시 후 다시 시도해주세요.
-                </div>,
-                TOAST_OPTIONS,
-            );
-        },
-
-        onSettled: () => {
-            return queryClient.invalidateQueries({ queryKey: ['post', postId] });
-        },
-    });
+    const { mutateAsync: addComment } = useAddComment();
 
     const onSubmit: SubmitHandler<FormData> = async data => {
-        await commentPostMutate(dompurify.sanitize(data.commentValue));
+        await addComment({
+            postId: postId,
+            commentValue: dompurify.sanitize(data.commentValue),
+        });
     };
 
     return (
