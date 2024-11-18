@@ -17,14 +17,18 @@ export default function SocialListItem({ socialInfo, onChatButtonClick }: Props)
 
     return (
         <li className={'flex gap-x-4 border-b border-slate-200 px-4 py-3'}>
-            <div className={'avatar size-10 rounded-full'}>
+            <div className={'avatar size-10 shrink-0 rounded-full'}>
                 <img className={'size-10 rounded-full'} src={profileImageUrl} alt={'profileImg'} />
             </div>
-            <div className={'flex flex-1 flex-col'}>
+            <div className={'flex min-w-0 flex-1 flex-col'}>
                 <span className={'line-clamp-1 text-[0.9rem] font-extrabold'}>{nickname}</span>
-                <span className={'text-[0.75rem] text-slate-500'}>{email}</span>
+                <span
+                    className={'w-full overflow-hidden text-ellipsis whitespace-nowrap text-[0.75rem] text-slate-500'}
+                >
+                    {email}
+                </span>
             </div>
-            <div className={'flex flex-col justify-center'}>
+            <div className={'flex shrink-0 flex-col justify-center'}>
                 <button
                     className={
                         'rounded-3xl border-2 border-neutral-800 px-2 py-1 text-[0.7rem] font-extrabold transition-all hover:bg-slate-100'
