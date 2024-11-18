@@ -20,6 +20,7 @@ export default function CommentEditForm({ postId, commentId, originalCommentValu
         control,
         handleSubmit,
         formState: { errors, isSubmitSuccessful },
+        setValue,
     } = useForm<FormData>({
         defaultValues: {
             commentValue: originalCommentValue,
@@ -58,6 +59,7 @@ export default function CommentEditForm({ postId, commentId, originalCommentValu
                     isSubmitSuccessful={isSubmitSuccessful}
                     onChange={onChange}
                     onBlur={onBlur}
+                    setValue={setValue}
                 />
             </div>
             <div className={'flex items-center'}>
