@@ -1,8 +1,7 @@
-import axios from 'axios';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import Select from 'react-select';
 import { HiOutlineExclamationCircle, HiOutlineIdentification } from 'react-icons/hi2';
+import useUpdateProfileMutation from '@/Pages/user/Hooks/useUpdateProfileMutation.tsx';
 
 interface Props {
     closeModal(): void;
@@ -26,8 +25,6 @@ const jobOptions = [
 ];
 
 export default function ProfileUpdateForm({ closeModal, profileData }: Props) {
-    const queryClient = useQueryClient();
-
     const {
         control,
         formState: { errors, isSubmitting },
@@ -41,31 +38,12 @@ export default function ProfileUpdateForm({ closeModal, profileData }: Props) {
         },
     });
 
-    const { mutate: profileUpdateMutate } = useMutation({
-        mutationFn: ({ nickname, memberRole }: { nickname: string; memberRole: string }) => {
-            return axios.patch('/api/member/profile', { nickname, memberRole });
-        },
-
-        onSuccess: () => {
-            return queryClient.invalidateQueries({
-                queryKey: ['user'],
-            });
-        },
-
-        onError: () => {
-            //TODO
-            // 에러처리
-        },
-
-        onSettled: () => {
-            closeModal();
-        },
-    });
+    const { updateProfile } = useUpdateProfileMutation();
 
     const onSubmit: SubmitHandler<FormData> = async data => {
         const nickname = data.nickname.trim();
         const memberRole = data.job;
-        profileUpdateMutate({ nickname, memberRole });
+        updateProfile({ nickname, memberRole }, { onSuccess: () => closeModal() });
     };
 
     return (
