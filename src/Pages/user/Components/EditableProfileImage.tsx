@@ -1,10 +1,6 @@
-import axios from 'axios';
 import { useRef, useState } from 'react';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { toast } from 'react-toastify';
 import { RiImageEditLine } from 'react-icons/ri';
-import 'react-toastify/dist/ReactToastify.css';
-import TOAST_OPTIONS from '@/Constants/toastOptions.ts';
+import useUpdateProfileMutation from '@/Pages/user/Hooks/useUpdateProfileMutation.tsx';
 
 interface Props {
     profileImageUrl: string;
@@ -15,41 +11,19 @@ export default function EditableProfileImage({ profileImageUrl }: Props) {
 
     const inputRef = useRef<HTMLInputElement>(null);
 
-    const queryClient = useQueryClient();
+    const { updateProfileImage } = useUpdateProfileMutation();
 
-    const { mutate: changeProfileImageMutate } = useMutation({
-        mutationFn: () => {
-            const file = inputRef.current.files[0];
-
-            const formData = new FormData();
-            formData.append('file', file);
-
-            return axios.post('/api/member/enroll-profile-image/s3', formData, {
-                headers: { 'Content-Type': 'multipart/form-data' },
-            });
-        },
-        onSuccess: async () => {
-            await queryClient
-                .invalidateQueries({
-                    queryKey: ['user'],
-                })
-                .then(() => {
-                    setProfileImagePathToChange('');
-                });
-            await queryClient.invalidateQueries({
-                queryKey: ['loggedIn user'],
-            });
-        },
-        onError: () => {
-            toast.error(
-                <p className={'text-[0.85rem] leading-relaxed'}>
-                    프로필 사진 변경에 실패하였습니다. <br /> 잠시 후 다시 시도해주세요.
-                </p>,
-                TOAST_OPTIONS,
-            );
-            setProfileImagePathToChange('');
-        },
-    });
+    const handleUpdateImageButtonClick = () => {
+        const file = inputRef.current.files[0];
+        updateProfileImage(
+            {
+                imageFile: file,
+            },
+            {
+                onSettled: () => setProfileImagePathToChange(''),
+            },
+        );
+    };
 
     return (
         <div className={'flex w-[10rem] flex-col items-center gap-y-3'}>
@@ -96,9 +70,7 @@ export default function EditableProfileImage({ profileImageUrl }: Props) {
                             'rounded-xl border border-slate-300 bg-white px-3.5 py-1.5 text-[0.85rem] transition-all hover:bg-slate-100'
                         }
                         type={'button'}
-                        onClick={() => {
-                            changeProfileImageMutate();
-                        }}
+                        onClick={handleUpdateImageButtonClick}
                     >
                         <span className={'font-bold text-neutral-800'}>변경</span>
                     </button>
