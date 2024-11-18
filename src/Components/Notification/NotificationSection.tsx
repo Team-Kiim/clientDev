@@ -5,7 +5,11 @@ import useEventSourceStore from '@/Stores/useEventSourceStore.ts';
 import NotificationOpenButton from '@/Components/Notification/NotificationOpenButton.tsx';
 import NotificationModal from '@/Components/Notification/NotificationModal.tsx';
 
-export default function NotificationSection() {
+interface Props {
+    unreadNotificationCount: number;
+}
+
+export default function NotificationSection({ unreadNotificationCount }: Props) {
     const { eventSource } = useEventSourceStore(state => state);
 
     const { modalRef, isModalOpen, setIsModalOpen } = useModal<HTMLDivElement>({
@@ -15,6 +19,16 @@ export default function NotificationSection() {
     const isModalOpenRef = useRef(isModalOpen);
 
     const [isUserChecked, setIsUserChecked] = useState(true);
+
+    useEffect(() => {
+        isModalOpenRef.current = isModalOpen;
+    }, [isModalOpen]);
+
+    useEffect(() => {
+        if (unreadNotificationCount !== 0) {
+            setIsUserChecked(false);
+        }
+    }, []);
 
     useEffect(() => {
         eventSource.addEventListener('message', (event: MessageEvent) => {
