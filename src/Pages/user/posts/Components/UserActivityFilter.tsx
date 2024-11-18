@@ -4,7 +4,6 @@ import getCurrentPostFilter from '@/Pages/user/posts/Utils/getCurrentPostFilter.
 const activityFilters = [
     { value: 'write', label: '작성한' },
     { value: 'bookmark', label: '북마크 한' },
-    { value: 'comment', label: '댓글 단' },
 ];
 
 const postTypeFilters = [
