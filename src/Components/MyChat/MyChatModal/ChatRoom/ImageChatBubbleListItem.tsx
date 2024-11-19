@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 import 'dayjs/locale/ko.js';
+import { Link } from 'react-router-dom';
 import type { Chat } from '@/Types/chat.ts';
 
 dayjs.locale('ko');
@@ -22,7 +23,9 @@ export default function ImageChatBubbleListItem({ chatData, memberId, oppositeMe
         <li className={`chat ${isLoginMember ? 'chat-end' : 'chat-start'} space-y-1 [&_img]:cursor-pointer`}>
             <div className={'avatar chat-image'}>
                 <div className={'size-9 rounded-full'}>
-                    <img src={chatData.profileImageUrl} alt={`profile image`} />
+                    <Link to={`/user/${senderId}`}>
+                        <img src={chatData.profileImageUrl} alt={`profile image`} />
+                    </Link>
                 </div>
             </div>
             <div className={'chat-header flex items-center text-[0.75rem]'}>

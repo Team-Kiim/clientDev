@@ -1,61 +1,60 @@
+import ky from 'ky';
+import { useQueryClient } from '@tanstack/react-query';
 import { GoChevronLeft, GoSignOut } from 'react-icons/go';
-import Swal from 'sweetalert2';
 
 interface Props {
+    chatRoomId: string;
+    isConnectingToChatRoom: boolean;
     otherUserNickname: string;
     updateCurrentViewName(viewName: string): void;
+    openLeaveTheChatModal(): void;
+    isLeavingTheChatRoom: boolean;
 }
 
-export default function ChatRoomTop({ otherUserNickname, updateCurrentViewName }: Props) {
+export default function ChatRoomTop({
+    chatRoomId,
+    isConnectingToChatRoom,
+    otherUserNickname,
+    updateCurrentViewName,
+    openLeaveTheChatModal,
+    isLeavingTheChatRoom,
+}: Props) {
+    const queryClient = useQueryClient();
+
     const handleLeaveChatButtonClick = () => {
-        Swal.fire({
-            target: '.myChatModal',
-            text: '채팅방을 나가시겠습니까?',
-            showCancelButton: true,
-            confirmButtonText: '확인',
-            cancelButtonText: '취소',
-            confirmButtonColor: '#7c3aed',
-            cancelButtonColor: '#f1f5f9',
-            customClass: {
-                popup: 'rounded-3xl w-[240px] text-[0.8rem] py-3',
-                container: 'absolute rounded-[2.5rem]',
-                cancelButton: 'text-black font-bold',
-                confirmButton: 'font-bold',
-            },
-        }).then(result => {
-            if (result.isConfirmed) {
-                updateCurrentViewName('home');
-            }
-        });
+        openLeaveTheChatModal();
     };
 
     return (
-        <div className={'flex items-center border-b border-slate-200 px-4 pb-2'}>
+        <div className={'flex items-center border-b border-slate-200 px-4 py-3'}>
             <button
-                className={'rounded-full p-1 hover:bg-slate-100'}
                 onClick={() => {
+                    ky.patch(`/api/chat-room/close/${chatRoomId}`)
+                        .catch()
+                        .finally(() => {
+                            queryClient
+                                .invalidateQueries({
+                                    queryKey: ['user', 'chatRoomList'],
+                                    refetchType: 'all',
+                                })
+                                .catch();
+                        });
                     updateCurrentViewName('home');
                 }}
                 type={'button'}
             >
-                <GoChevronLeft className={'size-6 text-slate-500'} />
+                <GoChevronLeft className={'size-6 text-slate-800'} />
             </button>
             <div className={'flex flex-1 flex-col text-center'}>
-                <span className={'line-clamp-1 font-extrabold'}>{otherUserNickname}</span>
-                <span
-                    className={
-                        'line-clamp-1 text-[0.7rem] font-bold text-slate-500 underline decoration-slate-500 decoration-1 underline-offset-2'
-                    }
-                >
-                    kkangasdf12@gmail.com
-                </span>
+                <span className={'line-clamp-1 font-extrabold text-neutral-800'}>{otherUserNickname}</span>
             </div>
             <button
-                className={'rounded-full p-1 hover:bg-slate-100'}
                 onClick={handleLeaveChatButtonClick}
                 type={'button'}
+                disabled={isLeavingTheChatRoom || isConnectingToChatRoom}
+                className={'transition-all disabled:opacity-50'}
             >
-                <GoSignOut className={'size-6 text-slate-500'} />
+                <GoSignOut className={'size-6 text-slate-800'} />
             </button>
         </div>
     );
