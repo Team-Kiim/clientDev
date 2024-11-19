@@ -52,7 +52,6 @@ export default function SignInForm() {
                             className={'flex-1 text-[0.9rem] placeholder:text-slate-400 focus:outline-none'}
                             type={'text'}
                             placeholder={'이메일'}
-                            autoComplete={'off'}
                             autoCapitalize={'off'}
                             {...register('email', {
                                 required: { value: true, message: '이메일을 입력해주세요.' },
@@ -77,7 +76,6 @@ export default function SignInForm() {
                             className={'w-full flex-1 text-[0.9rem] placeholder:text-slate-400 focus:outline-none'}
                             type={isPasswordVisible ? 'text' : 'password'}
                             placeholder={'비밀번호'}
-                            autoComplete={'off'}
                             autoCapitalize={'off'}
                             {...register('password', {
                                 required: {
