@@ -81,6 +81,11 @@ export default function SendMessageSection({ client, chatRoomId }: Props) {
                 return;
             }
             sendChatMessage(chatMessageToSend);
+
+            const $divElement = document.getElementById('scrollableDiv');
+            if ($divElement) {
+                $divElement.scrollTop = $divElement.scrollHeight;
+            }
         }
     };
 
