@@ -14,19 +14,21 @@ export default function ChatRoomList({ currentParentSkillCategory }: Props) {
     });
 
     return (
-        <ul className={'grid grid-cols-2 gap-x-3 gap-y-5'}>
+        <ul className={'mb-10 grid grid-cols-2 gap-x-3 gap-y-5'}>
             {data.map(skillChatRoom => (
                 <ChatRoomListItem
                     key={skillChatRoom.chatRoomId}
                     chatRoomId={skillChatRoom.chatRoomId}
-                    parentSkillCategory={
+                    parentSkillCategory={currentParentSkillCategory}
+                    parentSkillCategoryLabel={
                         CATEGORIES.find(category => category.value === skillChatRoom.parentSkillCategory).label
                     }
-                    childSkillCategory={
+                    childSkillCategoryLabel={
                         CATEGORIES.find(
                             category => category.value === skillChatRoom.parentSkillCategory,
                         ).childCategories.find(category => category.value === skillChatRoom.childSkillCategory).label
                     }
+                    childSkillCategory={skillChatRoom.childSkillCategory}
                     currentMemberSize={skillChatRoom.currentMemberSize}
                 />
             ))}
