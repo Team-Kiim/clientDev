@@ -3,16 +3,18 @@ import { PiChatsTeardrop, PiX } from 'react-icons/pi';
 
 interface Props {
     isModalOpen: boolean;
+    isButtonDisabled: boolean;
     onMyChatButtonClick(): void;
 }
 
-export default function MyChatButton({ isModalOpen, onMyChatButtonClick }: Props) {
+export default function MyChatButton({ isModalOpen, isButtonDisabled, onMyChatButtonClick }: Props) {
     return (
         <div className={'tooltip tooltip-bottom rounded-full shadow-2xl'} data-tip={'나의 채팅'}>
             <button
                 className={'flex items-center justify-center rounded-full bg-plump-purple-600 p-3.5 shadow-2xl'}
                 type={'button'}
                 onClick={onMyChatButtonClick}
+                disabled={isButtonDisabled}
             >
                 <AnimatePresence initial={false} mode={'popLayout'}>
                     {isModalOpen ? (
