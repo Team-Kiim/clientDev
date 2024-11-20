@@ -41,7 +41,9 @@ export default function SearchChatRoomInput() {
     return (
         <div className={'flex w-full gap-x-2 rounded-xl border border-slate-300 px-4 py-2'}>
             <input
-                className={'flex-1 text-[0.85rem] text-neutral-800 placeholder:text-slate-400 focus:outline-none'}
+                className={
+                    'min-w-0 flex-1 text-[0.85rem] text-neutral-800 placeholder:text-slate-400 focus:outline-none'
+                }
                 type={'text'}
                 onKeyDown={handleKeyDown}
                 placeholder={'기술명으로 채팅방 검색'}
