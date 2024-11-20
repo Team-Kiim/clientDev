@@ -1,30 +1,35 @@
-# React + TypeScript + Vite
+# Koffeechat 프론트엔트
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<hr/>
 
-Currently, two official plugins are available:
+##### 소개
+\: 개발자들이 여러 기술에 관해 효과적으로 의견을 나눌 수 있도록 게시글이나 채팅과 같은 다양한 기능과 소통 공간을 제공하는 웹 어플리케이션
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<br/>
 
-## Expanding the ESLint configuration
+##### 개발 기간
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+\: 2024년 3월 ~ 2024년 11월
 
-- Configure the top-level `parserOptions` property like this:
+<br/>
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+##### 주요 기능
+- **회원가입 및 로그인**: 이메일 인증을 통한 사용자 가입 및 로그인, 소셜 로그인 기능.
+- **게시글 작성 및 관리**: 게시글 작성, 시각자료 및 태그 추가, 투표 및 댓글 기능.
+- **실시간 알림**: 새 글, 댓글, 팔로우, 채팅 등과 관련된 실시간 알림 기능.
+- **채팅 기능**:
+    - 1:1 팔로워 개인 채팅
+    - 그룹 채팅방 (기술별)
+- **팔로우 기능**
+- **검색 및 필터링**: 카테고리, 태그 및 정렬을 이용한 게시글 검색 기능.
+- **현직자 인증**: 신뢰할 수 있는 답변 제공을 위한 인증 시스템 기능.
+
+<br/>
+
+##### 사용 기술 스택
+[![My Tech Stacks](https://skillicons.dev/icons?i=html,css,js,ts,react,tailwind,pnpm,vite)](https://skillicons.dev)
+
+그 외: ky, Tanstack Query, React Router, Zustand 등
+
+<br/>
